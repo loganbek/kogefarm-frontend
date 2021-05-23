@@ -1,0 +1,50 @@
+#kogeLogoImage {
+  max-width: 50%;
+  height: auto;
+  flex-shrink: -1;
+  order: -10;
+}
+
+#quickSwapLogo {
+  height: 25px;
+  color: white;
+}
+
+/* #kogeLogoAnchor {
+}
+
+#kogeLogoDiv {
+  margin-left: 5px;
+}
+
+@media screen and (min-width: 761px) {
+  #kogeLogoAnchor {
+  }
+
+  #kogeLogoDiv {
+  }
+}
+
+@media screen and (max-width: 760px) {
+  #kogeLogoAnchor {
+  }
+
+  #kogeLogoDiv {
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #kogeLogoAnchor {
+  }
+
+  #kogeLogoDiv {
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #kogeLogoAnchor {
+  }
+
+  #kogeLogoDiv {
+  }
+} */
