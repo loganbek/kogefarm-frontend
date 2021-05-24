@@ -34,60 +34,7 @@ export const config: MenuEntry[] = [
   {
     label: "Telegram",
     icon: "TelegramIcon",
-    items: [
-      {
-        label: "English",
-        href: "https://t.me/kogecoin",
-      },
-      {
-        label: "Bahasa Indonesia",
-        href: "https://t.me/kogecoinIndonesia",
-      },
-      {
-        label: "中文",
-        href: "https://t.me/kogecoin_CN",
-      },
-      {
-        label: "Tiếng Việt",
-        href: "https://t.me/kogecoinVN",
-      },
-      {
-        label: "Italiano",
-        href: "https://t.me/kogecoin_ita",
-      },
-      {
-        label: "русский",
-        href: "https://t.me/kogecoin_ru",
-      },
-      {
-        label: "Türkiye",
-        href: "https://t.me/kogecointurkiye",
-      },
-      {
-        label: "Português",
-        href: "https://t.me/kogecoinPortuguese",
-      },
-      {
-        label: "Español",
-        href: "https://t.me/kogecoinEs",
-      },
-      {
-        label: "日本語",
-        href: "https://t.me/kogecoinjp",
-      },
-      {
-        label: "Français",
-        href: "https://t.me/kogecoinfr",
-      },
-      {
-        label: "Announcements",
-        href: "https://t.me/kogecoinAnn",
-      },
-      {
-        label: "Whale Alert",
-        href: "https://t.me/kogecoinWhales",
-      },
-    ],
+    href: "https://t.me/kogecoin",
   },
   /* {
       label: 'Farms',
