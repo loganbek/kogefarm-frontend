@@ -97,7 +97,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           {lpName}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Deposited')}
+          {t('Staked')}
         </Text>
       </Flex>
       {!account ? <UnlockButton mt="8px" width="100%" /> : renderApprovalOrStakeButton()}
