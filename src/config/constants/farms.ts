@@ -58,8 +58,9 @@ const farms: FarmConfig[] = [
     },
     token: tokens.fish,
     quoteToken: tokens.matic,
-    rewardPerBlock: 1,
-    poolWeightDesignate: 10000/21300,
+    rewardPerBlock: 0.8,
+    poolWeightDesignate: 6000/25700,
+    minutesPerCompound: 1,
   },
   {
     pid: 2,
@@ -81,6 +82,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardPerBlock: 0.5,
     poolWeightDesignate: 10000/33650,
+    minutesPerCompound: 1,
   },
 
   {
@@ -103,6 +105,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.matic,
     rewardPerBlock: 0.5,
     poolWeightDesignate: 10000/33650,
+    minutesPerCompound: 1,
   },
 
 /*  {

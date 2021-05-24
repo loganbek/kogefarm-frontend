@@ -113,7 +113,7 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
 //  const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
+  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, 'kogefarm_farm_view')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
@@ -314,13 +314,14 @@ const Farms: React.FC = () => {
         originalValue: farm.apr,
       },
       apy: {
-        value: farm.apr && ((Math.exp(farm.apr/100) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        // (1+800/(100*365*24*60))^(365*24*60)-1
+        value: farm.apr && (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
 //        multiplier: farm.multiplier,
 //        lpLabel,
 //        tokenAddress,
 //        quoteTokenAddress,
 //        cakePrice,
-        originalValue: ((Math.exp(farm.apr/100) - 1)*100),
+        originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
       },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
@@ -417,7 +418,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('We ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon. No fees until June 3!')}
+          {t('KogeFarm ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounds</a></u> {t(' high APR farms on Polygon. No fees until June 3!')}
         </Heading>
       </PageHeader>
       <Page>
@@ -435,10 +436,14 @@ const Farms: React.FC = () => {
               <Text>SORT BY</Text>
               <Select
                 options={[
-//                  {
-//                    label: 'Hot',
-//                    value: 'hot',
-//                  },
+                  {
+                    label: 'Hot',
+                    value: 'hot',
+                  },
+                  {
+                    label: 'Total Staked',
+                    value: 'liquidity',
+                  },
                   {
                     label: 'APY',
                     value: 'apr',
@@ -451,10 +456,6 @@ const Farms: React.FC = () => {
 //                    label: 'Earned',
 //                    value: 'earned',
 //                  },
-                  {
-                    label: 'Total Staked',
-                    value: 'liquidity',
-                  },
                 ]}
                 onChange={handleSortOptionChange}
               />

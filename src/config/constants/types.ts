@@ -68,6 +68,7 @@ export interface FarmConfig {
     earnLabel: string
     endBlock: number
   }
+  minutesPerCompound: number
 }
 
 export interface PoolConfig {
