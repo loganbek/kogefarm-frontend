@@ -115,7 +115,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, 'kogefarm_farm_view')
   const { account } = useWeb3React()
-  const [sortOption, setSortOption] = useState('liquidity')
+  const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
 
   const dispatch = useAppDispatch()
@@ -435,10 +435,10 @@ const Farms: React.FC = () => {
               <Text>SORT BY</Text>
               <Select
                 options={[
-//                  {
-//                    label: 'Hot',
-//                    value: 'hot',
-//                  },
+                  {
+                    label: 'Hot',
+                    value: 'hot',
+                  },
                   {
                     label: 'Total Staked',
                     value: 'liquidity',
