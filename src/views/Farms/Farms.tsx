@@ -417,7 +417,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('We ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon. No fees until June 3!')}
+          {t('KogeFarm ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounds</a></u> {t(' high APR farms on Polygon. No fees until June 3!')}
         </Heading>
       </PageHeader>
       <Page>
