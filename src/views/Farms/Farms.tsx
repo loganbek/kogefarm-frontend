@@ -115,7 +115,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
   const { account } = useWeb3React()
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('liquidity')
   const prices = useGetApiPrices()
 
   const dispatch = useAppDispatch()
@@ -440,6 +440,10 @@ const Farms: React.FC = () => {
 //                    value: 'hot',
 //                  },
                   {
+                    label: 'Total Staked',
+                    value: 'liquidity',
+                  },
+                  {
                     label: 'APY',
                     value: 'apr',
                   },
@@ -451,10 +455,6 @@ const Farms: React.FC = () => {
 //                    label: 'Earned',
 //                    value: 'earned',
 //                  },
-                  {
-                    label: 'Total Staked',
-                    value: 'liquidity',
-                  },
                 ]}
                 onChange={handleSortOptionChange}
               />
