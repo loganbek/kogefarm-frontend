@@ -44,6 +44,9 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const displayBalance = useCallback(() => {
     const stakedBalanceNumber = getBalanceNumber(stakedBalance)
     const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
+    if (stakedBalanceNumber===0){
+      return stakedBalanceNumber.toLocaleString()
+    }
     if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
       return getFullDisplayBalance(displayBalanceNumber, 18, 18).toLocaleString()
     }
