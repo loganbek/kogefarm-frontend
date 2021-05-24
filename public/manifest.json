@@ -1,0 +1,16 @@
+{
+  "short_name": "KogeFarm",
+  "name": "KogeFarm",
+  "description": "Farm with KogeFarm LP Tokens",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "96x96"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
