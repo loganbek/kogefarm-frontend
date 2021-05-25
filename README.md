@@ -12,16 +12,4 @@ If you want to contribute, please refer to the [contributing guidelines](./CONTR
 
 `yarn start`
 
----
-
-TODO:
-
-- [ ] change the logo text
-- [ ] change some of the meta descriptions.
-- [ ] menu social links bottom
-  - [x] added to Menu
-- [ ] swap public locals
-- [ ] swapout analytics
-- [ ] gitbook
-- [x] favico dimensions warnming
-- [x] new koala graphics
+--------------------
