@@ -46,7 +46,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         value={val}
         max={fullBalance}
         symbol={tokenName}
-        inputTitle={t('Pool share')}
+        inputTitle={t('LP share')}
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
@@ -66,7 +66,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         </Button>
       </ModalActions>
       <LinkExternal href={withdrawFAQ} style={{ alignSelf: 'center' }}>
-        {t('FAQ: What are LP pool shares?')}
+        {t('FAQ: What are LP shares?')}
       </LinkExternal>
     </Modal>
   )
