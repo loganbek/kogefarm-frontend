@@ -36,12 +36,13 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
-        <Flex justifyContent="center">
-          {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-          {isSushiFarm &&  <SushiTag /> }
-
+        {/* <Flex justifyContent="center"> */}
+        {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
+        <Wrapper marginTop="6px">
+        {isSushiFarm && <SushiTag />}
+        </Wrapper>
 {/*          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> */}
-        </Flex>
+        {/* </Flex> */}
       </Flex>
     </Wrapper>
   )
