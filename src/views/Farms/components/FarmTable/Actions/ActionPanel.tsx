@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@pancakeswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
+import { CommunityTag, CoreTag, SushiTag, DualTag } from 'components/Tags'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -155,14 +155,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://explorer-mainnet.maticvigil.com/address/${jarAddress}`
-  const info = `https://info.quickswap.exchange/pair/${lpAddress}`
+  const info = farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)
+  const liquidityurl = farm.isSushi? (`https://app.sushi.com/add/${liquidityUrlPathParts}`) : (`https://quickswap.exchange/#/add/${liquidityUrlPathParts}`)
 
   return (
     <Container expanded={expanded}>
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternal href={`https://quickswap.exchange/#/add/${liquidityUrlPathParts}`}>
+            <StyledLinkExternal href={liquidityurl}>
               {t(`Get ${lpLabel}`, { name: lpLabel })}
             </StyledLinkExternal>
           </StakeContainer>
@@ -171,6 +172,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
+          {farm.isSushi && <SushiTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>

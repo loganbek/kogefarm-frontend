@@ -6,7 +6,7 @@ import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -103,7 +103,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
   })
-  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  const addLiquidityUrl = farm.isSushi ? `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}` : `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const isPromotedFarm = farm.token.symbol === 'CAKE'
 
@@ -114,6 +114,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         lpLabel={lpLabel}
 //        multiplier={farm.multiplier}
         isCommunityFarm={farm.isCommunity}
+        isSushiFarm={farm.isSushi}
         farmImage={farmImage}
         tokenSymbol={farm.token.symbol}
       />
@@ -160,7 +161,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         <DetailsSection
           removed={removed}
           bscScanAddress={`https://explorer-mainnet.maticvigil.com/address/${farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]}`}
-          infoAddress={`https://info.quickswap.exchange/pair/${lpAddress}`}
+          infoAddress={farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)}
           totalValueFormatted={totalValueFormatted}
           userValueFormatted={userValueFormatted}
           lpLabel={lpLabel}

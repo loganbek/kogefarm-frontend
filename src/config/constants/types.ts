@@ -62,6 +62,7 @@ export interface FarmConfig {
   rewardPerBlock: number
   poolWeightDesignate: number
   multiplier?: string
+  isSushi?: boolean
   isCommunity?: boolean
   dual?: {
     rewardPerBlock: number
