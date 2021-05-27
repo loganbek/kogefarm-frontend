@@ -108,6 +108,30 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
   },
 
+  {
+    pid: 4,
+    lpSymbol: 'Titan-MATIC LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xA79983Daf2A92c2C902cD74217Efe3D8AF9Fba2a',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0xaA5237Ff567987445e1AC35D5148c11Ef3703173',
+    },
+    token: tokens.titan,
+    quoteToken: tokens.matic,
+    rewardPerBlock: 14.797916666666666666,
+    poolWeightDesignate: 300000/1000000,
+    minutesPerCompound: 1,
+    isSushi: true,
+  },
+
 /*  {
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',

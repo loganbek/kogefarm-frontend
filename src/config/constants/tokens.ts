@@ -48,6 +48,16 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://polygaj.finance',
   },
+  titan: {
+    symbol: 'Titan',
+    coingeico: '',
+    address: {
+      137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: 'https://polygon.iron.finance/',
+  },
 }
 
 export default tokens

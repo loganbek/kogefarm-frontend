@@ -468,6 +468,9 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
+        <Text  color="text" textAlign="center" fontSize="125%">
+          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently risky. Always DYOR. ')}
+        </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>
     </>
