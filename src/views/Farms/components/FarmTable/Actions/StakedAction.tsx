@@ -107,7 +107,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <ActionContainer>
           <ActionTitles>
             <Title>{lpSymbol} </Title>
-            <Subtle>{t('DEPOSITED')}</Subtle>
+            <Subtle>{t('STAKED')}</Subtle>
           </ActionTitles>
           <ActionContent>
             <div>
