@@ -469,7 +469,7 @@ const Farms: React.FC = () => {
         {renderContent()}
         <div ref={loadMoreRef} />
         <Text  color="text" textAlign="center" fontSize="125%">
-          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently risky. Always DYOR. ')}
+          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u> {t('. Always DYOR. ')}
         </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>
