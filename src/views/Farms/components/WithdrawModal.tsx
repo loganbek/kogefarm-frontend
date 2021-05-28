@@ -8,21 +8,26 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface WithdrawModalProps {
   max: BigNumber
+  displayMax: BigNumber
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
 }
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
+const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, displayMax, tokenName = '' }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
+  const fullDisplayBalance = useMemo(() => {
+    return getFullDisplayBalance(displayMax,18,18)
+  }, [displayMax])
 
   const valNumber = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
+  const fullDisplayBalanceNumber = new BigNumber(fullDisplayBalance)
   const withdrawFAQ = 'https://kogecoin-io.gitbook.io/kogefarm/faqs/what-are-lp-shares'
 
   const handleChange = useCallback(
@@ -35,8 +40,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   )
 
   const handleSelectMax = useCallback(() => {
-    setVal(fullBalance)
-  }, [fullBalance, setVal])
+    setVal(fullDisplayBalance)
+  }, [fullDisplayBalance, setVal])
 
   return (
     <Modal title={t('Unstake LP')} onDismiss={onDismiss}>
@@ -44,7 +49,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         onSelectMax={handleSelectMax}
         onChange={handleChange}
         value={val}
-        max={fullBalance}
+        max={fullDisplayBalance}
         symbol={tokenName}
         inputTitle={t('LP share')}
       />
@@ -53,10 +58,14 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           {t('Cancel')}
         </Button>
         <Button
-          disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
+          disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullDisplayBalanceNumber)}
           onClick={async () => {
+            let withdrawBalance = valNumber.times(fullBalanceNumber).div(fullDisplayBalanceNumber).toFixed(18,1)
+            if (val===fullDisplayBalance){
+              withdrawBalance = fullBalance
+            }
             setPendingTx(true)
-            await onConfirm(val)
+            await onConfirm(withdrawBalance)
             setPendingTx(false)
             onDismiss()
           }}
@@ -65,9 +74,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
       </ModalActions>
-      <LinkExternal href={withdrawFAQ} style={{ alignSelf: 'center' }}>
+{/*      <LinkExternal href={withdrawFAQ} style={{ alignSelf: 'center' }}>
         {t('FAQ: What are LP shares?')}
-      </LinkExternal>
+      </LinkExternal> */}
     </Modal>
   )
 }

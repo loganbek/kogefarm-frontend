@@ -57,21 +57,21 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
+  const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {
     const stakedBalanceNumber = getBalanceNumber(stakedBalance)
-    const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
     if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
       return getFullDisplayBalance(displayBalanceNumber,18,18).toLocaleString()
     }
 //    return stakedBalanceNumber.toLocaleString()
   return getFullDisplayBalance(displayBalanceNumber,18,18).toLocaleString()
 
-}, [stakedBalance, jarRatio])
+}, [stakedBalance, displayBalanceNumber])
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
   )
-  const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={lpSymbol} />)
+  const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} />)
 
   const lpContract = getBep20Contract(lpAddress, web3)
 //  const jarContract = getBep20Contract(jarAddress, web3)

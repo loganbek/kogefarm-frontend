@@ -41,9 +41,9 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const { onUnstake } = useUnstake(jarAddress)
   const location = useLocation()
 
+  const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {
     const stakedBalanceNumber = getBalanceNumber(stakedBalance)
-    const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
     if (stakedBalanceNumber===0){
       return stakedBalanceNumber.toLocaleString()
     }
@@ -52,13 +52,13 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     }
     return getFullDisplayBalance(displayBalanceNumber, 18, 18).toLocaleString()
 //    return stakedBalanceNumber.toLocaleString()
-}, [stakedBalance, jarRatio])
+}, [stakedBalance, displayBalanceNumber])
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={tokenName} />,
+    <WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={tokenName} />,
   )
 
   const renderStakingButtons = () => {
