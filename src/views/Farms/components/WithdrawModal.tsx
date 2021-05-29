@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, LinkExternal} from '@pancakeswap/uikit'
+import { Button, Modal } from '@pancakeswap/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import { useTranslation } from 'contexts/Localization'
@@ -28,7 +28,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const valNumber = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
   const fullDisplayBalanceNumber = new BigNumber(fullDisplayBalance)
-  const withdrawFAQ = 'https://kogecoin-io.gitbook.io/kogefarm/faqs/what-are-lp-shares'
+//  const withdrawFAQ = 'https://kogecoin-io.gitbook.io/kogefarm/faqs/what-are-lp-shares'
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
