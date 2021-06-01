@@ -8,15 +8,16 @@ import { CommunityTag, CoreTag, SushiTag, DualTag } from 'components/Tags'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
-import Apr, { AprProps } from '../Apr'
+// import Apr, { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
 // import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
 
 export interface ActionPanelProps {
-  apr: AprProps
+//  apr: AprProps
   apy: ApyProps
+  apyd: ApyProps
 //  multiplier: MultiplierProps
   liquidity: LiquidityProps
   userValue: UserValueProps
@@ -134,8 +135,9 @@ const ValueWrapper = styled.div`
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
-  apr,
+//  apr,
   apy,
+  apyd,
 //  multiplier,
   liquidity,
   userValue,
@@ -177,13 +179,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         </TagsContainer>
       </InfoContainer>
       <ValueContainer>
-        <ValueWrapper>
+{/*         <ValueWrapper>
           <Text>{t('APR')}</Text>
           <Apr {...apr} />
-        </ValueWrapper>
+        </ValueWrapper> */}
         <ValueWrapper>
           <Text>{t('APY')}</Text>
           <Apy {...apy} />
+        </ValueWrapper>
+        <ValueWrapper>
+          <Text>{t('Daily')}</Text>
+          <Apy {...apyd} />
         </ValueWrapper>
   {/*      <ValueWrapper>
           <Text>{t('Multiplier')}</Text>

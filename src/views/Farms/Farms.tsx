@@ -323,6 +323,16 @@ const Farms: React.FC = () => {
 //        cakePrice,
         originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
       },
+      apyd: {
+        // (1+800/(100*365*24*60))^(365*24*60)-1
+        value: farm.apr && (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+//        multiplier: farm.multiplier,
+//        lpLabel,
+//        tokenAddress,
+//        quoteTokenAddress,
+//        cakePrice,
+        originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
+      },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
         label: lpLabel,
@@ -418,7 +428,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon. No fees until June 3!')}
+          {t('KogeFarm helps you ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon.')}
         </Heading>
       </PageHeader>
       <Page>
@@ -469,7 +479,12 @@ const Farms: React.FC = () => {
         {renderContent()}
         <div ref={loadMoreRef} />
         <Text  color="text" textAlign="center" fontSize="125%">
-          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u> {t('. Always DYOR. ')}
+          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u>
+          {t('. Always DYOR.')}
+        </Text>
+        <Text color="text" textAlign="center" fontSize="125%">
+          {"\n"}
+          {t('Fee Disclosure: The service is currently free but we may charge a very small ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards after June 3.')}
         </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>
