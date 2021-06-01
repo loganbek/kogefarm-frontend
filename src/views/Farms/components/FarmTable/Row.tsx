@@ -25,6 +25,7 @@ export interface RowProps {
   earned: EarnedProps
 //  multiplier: MultiplierProps
   apy: ApyProps
+  apyd: ApyProps
   liquidity: LiquidityProps
   userValue: UserValueProps
   details: FarmWithStakedValue
@@ -37,6 +38,7 @@ interface RowPropsWithLoading extends RowProps {
 const cells = {
   apr: Apr,
   apy: Apy,
+  apyd: Apy,
   farm: Farm,
   earned: Earned,
   details: Details,
@@ -123,7 +125,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   </td>
                 )
               case 'apr':
-                return (
+/*                return (
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={t('APR')} >
@@ -131,7 +133,8 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                       </CellLayout>
                     </CellInner>
                   </td>
-                )
+                ) */
+                return null
               default:
                 return (
                   <td key={key}>
@@ -174,6 +177,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             <ApyMobileCell>
               <CellLayout label={t('APY')}>
               <Apy {...props.apy} hideButton />
+              </CellLayout>
+            </ApyMobileCell>
+
+            <ApyMobileCell>
+              <CellLayout label={t('Daily')}>
+              <Apy {...props.apyd} hideButton />
               </CellLayout>
             </ApyMobileCell>
           </tr>

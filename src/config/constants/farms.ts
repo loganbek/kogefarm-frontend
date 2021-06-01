@@ -132,6 +132,30 @@ const farms: FarmConfig[] = [
     isSushi: true,
   },
 
+  {
+    pid: 5,
+    lpSymbol: 'Titan-Iron LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x35c1895DAC1e2432b320e2927b4F71a0D995602F',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xb444d596273C66Ac269C33c30Fbb245F4ba8A79d',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0x9A48219D7b3106BaAD3F5D6Cf50d94F1Cf747C8D',
+    },
+    token: tokens.titan,
+    quoteToken: tokens.iron,
+    rewardPerBlock: 2.219675925925926,
+    poolWeightDesignate: 100000/100000,
+    minutesPerCompound: 1,
+    isSushi: true,
+  },
+
 /*  {
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',
