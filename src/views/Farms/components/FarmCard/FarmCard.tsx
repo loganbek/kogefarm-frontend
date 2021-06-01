@@ -96,7 +96,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-//  const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPY = (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYD = (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 //  const farmAPYW = (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60*7/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
@@ -120,7 +120,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         farmImage={farmImage}
         tokenSymbol={farm.token.symbol}
       />
-{/*      {!removed && (
+      {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center', textDecoration: 'line-through' }}>
@@ -133,7 +133,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
             )}
           </Text>
         </Flex>
-      )}  */}
+      )}
       <Flex justifyContent="space-between" alignItems="center">
         <Text style={{textAlign: 'left'}}>{t('APY')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
@@ -147,19 +147,18 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
           )}
         </Text>
       </Flex>
-      <Flex justifyContent="space-between" alignItems="center">
+{/*      <Flex justifyContent="space-between" alignItems="center">
         <Text style={{textAlign: 'left'}}>{t('Daily')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
           {farm.apr ? (
             <>
-            {/*  <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apr={farm.apr} /> */}
               {farmAPYD}%
             </>
           ) : (
             <Skeleton height={24} width={80} />
           )}
         </Text>
-      </Flex>
+      </Flex> */}
 
 {/*      <Flex justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
@@ -178,6 +177,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
           infoAddress={farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)}
           totalValueFormatted={totalValueFormatted}
           userValueFormatted={userValueFormatted}
+          apyD={farmAPYD}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
         />
