@@ -8,14 +8,14 @@ import { CommunityTag, CoreTag, SushiTag, DualTag } from 'components/Tags'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
-import Apr, { AprProps } from '../Apr'
+// import Apr, { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
 // import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
 
 export interface ActionPanelProps {
-  apr: AprProps
+//  apr: AprProps
   apy: ApyProps
   apyd: ApyProps
 //  multiplier: MultiplierProps
@@ -135,7 +135,7 @@ const ValueWrapper = styled.div`
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
-  apr,
+//  apr,
   apy,
   apyd,
 //  multiplier,
