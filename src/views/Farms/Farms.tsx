@@ -428,7 +428,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon. No fees until June 3!')}
+          {t('KogeFarm helps you ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon.')}
         </Heading>
       </PageHeader>
       <Page>
@@ -479,7 +479,12 @@ const Farms: React.FC = () => {
         {renderContent()}
         <div ref={loadMoreRef} />
         <Text  color="text" textAlign="center" fontSize="125%">
-          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u> {t('. Always DYOR. ')}
+          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u>
+          {t('. Always DYOR.')}
+        </Text>
+        <Text color="text" textAlign="center" fontSize="125%">
+          {"\n"}
+          {t('Fee Disclosure: We have no deposit/withdrawal fees and may charge a very small ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards after June 3.')}
         </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>
