@@ -323,6 +323,16 @@ const Farms: React.FC = () => {
 //        cakePrice,
         originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
       },
+      apyd: {
+        // (1+800/(100*365*24*60))^(365*24*60)-1
+        value: farm.apr && (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+//        multiplier: farm.multiplier,
+//        lpLabel,
+//        tokenAddress,
+//        quoteTokenAddress,
+//        cakePrice,
+        originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
+      },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
         label: lpLabel,

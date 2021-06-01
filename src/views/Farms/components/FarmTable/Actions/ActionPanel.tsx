@@ -17,6 +17,7 @@ import UserValue, { UserValueProps } from '../UserValue'
 export interface ActionPanelProps {
   apr: AprProps
   apy: ApyProps
+  apyd: ApyProps
 //  multiplier: MultiplierProps
   liquidity: LiquidityProps
   userValue: UserValueProps
@@ -136,6 +137,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apr,
   apy,
+  apyd,
 //  multiplier,
   liquidity,
   userValue,
@@ -177,13 +179,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         </TagsContainer>
       </InfoContainer>
       <ValueContainer>
-        <ValueWrapper>
+{/*         <ValueWrapper>
           <Text>{t('APR')}</Text>
           <Apr {...apr} />
-        </ValueWrapper>
+        </ValueWrapper> */}
         <ValueWrapper>
           <Text>{t('APY')}</Text>
           <Apy {...apy} />
+        </ValueWrapper>
+        <ValueWrapper>
+          <Text>{t('Daily')}</Text>
+          <Apy {...apyd} />
         </ValueWrapper>
   {/*      <ValueWrapper>
           <Text>{t('Multiplier')}</Text>

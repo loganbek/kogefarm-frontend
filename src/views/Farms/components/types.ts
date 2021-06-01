@@ -21,8 +21,9 @@ export type ScrollBarProps = {
 
 export type TableDataTypes = {
   POOL: string
-  APR: string
+//  APR: string
   APY: string
+  APYD: string
   EARNED: string
   STAKED: string
   DETAILS: string
@@ -52,6 +53,13 @@ export const MobileColumnSchema: ColumnsDefTypes[] = [
     label: 'APY',
   },
   {
+    id: 5,
+    name: 'apyd',
+    translationId: 1073,
+    sortable: true,
+    label: 'Daily',
+  },
+  {
     id: 6,
     name: 'details',
     translationId: 999,
@@ -74,20 +82,27 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 1072,
     sortable: true,
     label: 'Earned',
-  }, */
+  },
   {
     id: 3,
     name: 'apr',
     translationId: 736,
     sortable: true,
     label: 'APR',
-  },
+  }, */
   {
-    id: 4,
+    id: 3,
     name: 'apy',
     translationId: 1072,
     sortable: true,
     label: 'APY',
+  },
+  {
+    id: 4,
+    name: 'apyd',
+    translationId: 1073,
+    sortable: true,
+    label: 'Daily',
   },
 /*  {
     id: 5,
