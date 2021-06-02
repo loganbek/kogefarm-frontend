@@ -52,13 +52,13 @@ export const MobileColumnSchema: ColumnsDefTypes[] = [
     sortable: true,
     label: 'APY',
   },
-/*  {
+  {
     id: 5,
     name: 'apyd',
     translationId: 1073,
     sortable: true,
     label: 'Daily',
-  }, */
+  },
   {
     id: 6,
     name: 'details',
@@ -82,14 +82,14 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 1072,
     sortable: true,
     label: 'Earned',
-  }, */
+  },
   {
     id: 3,
     name: 'apr',
     translationId: 736,
     sortable: true,
     label: 'APR',
-  },
+  }, */
   {
     id: 3,
     name: 'apy',
@@ -97,14 +97,14 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     sortable: true,
     label: 'APY',
   },
-/*  {
+  {
     id: 4,
     name: 'apyd',
     translationId: 1073,
     sortable: true,
     label: 'Daily',
   },
-  {
+/*  {
     id: 5,
     name: 'multiplier',
     translationId: 999,

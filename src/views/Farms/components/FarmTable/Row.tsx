@@ -125,7 +125,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   </td>
                 )
               case 'apr':
-                return (
+/*                return (
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={t('APR')} >
@@ -133,7 +133,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                       </CellLayout>
                     </CellInner>
                   </td>
-                )
+                ) */
                 return null
               default:
                 return (
@@ -179,12 +179,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               <Apy {...props.apy} hideButton />
               </CellLayout>
             </ApyMobileCell>
-{/*
+
             <ApyMobileCell>
               <CellLayout label={t('Daily')}>
               <Apy {...props.apyd} hideButton />
               </CellLayout>
-            </ApyMobileCell> */}
+            </ApyMobileCell>
           </tr>
         </td>
         <td>
