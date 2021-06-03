@@ -315,23 +315,23 @@ const Farms: React.FC = () => {
       },
       apy: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
 //        multiplier: farm.multiplier,
 //        lpLabel,
 //        tokenAddress,
 //        quoteTokenAddress,
 //        cakePrice,
-        originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
+        originalValue: (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
       },
       apyd: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
 //        multiplier: farm.multiplier,
 //        lpLabel,
 //        tokenAddress,
 //        quoteTokenAddress,
 //        cakePrice,
-        originalValue: (((1+farm.apr/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
+        originalValue: (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
       },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
@@ -484,7 +484,7 @@ const Farms: React.FC = () => {
         </Text>
         <Text color="text" textAlign="center" fontSize="125%">
           {"\n"}
-          {t('Fee Disclosure: The service is currently free but we may charge a very small ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards after June 3.')}
+          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0.5-1% ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards.')}
         </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>
