@@ -70,6 +70,7 @@ export interface FarmConfig {
     endBlock: number
   }
   minutesPerCompound: number
+  kogefarmFee: number
 }
 
 export interface PoolConfig {
