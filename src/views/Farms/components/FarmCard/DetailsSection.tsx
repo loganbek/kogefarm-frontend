@@ -9,6 +9,7 @@ export interface ExpandableSectionProps {
   removed?: boolean
   totalValueFormatted?: string
   userValueFormatted?: string
+  apyD?: string
   lpLabel?: string
   addLiquidityUrl?: string
 }
@@ -27,6 +28,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   removed,
   totalValueFormatted,
   userValueFormatted,
+  apyD,
   lpLabel,
   addLiquidityUrl,
 }) => {
@@ -41,6 +43,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       <Flex justifyContent="space-between">
         <Text>{t('Total Staked')}:</Text>
         <Text>{totalValueFormatted}</Text>
+      </Flex>
+      <Flex justifyContent="space-between">
+        <Text>{t('Daily Return')}:</Text>
+        <Text>{apyD}%</Text>
       </Flex>
       {!removed && (
         <StyledLinkExternal href={addLiquidityUrl}>{t(`Get ${lpLabel}`, { name: lpLabel })}</StyledLinkExternal>
