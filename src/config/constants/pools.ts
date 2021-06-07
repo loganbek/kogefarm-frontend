@@ -9,7 +9,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.kogecoin,
     contractAddress: {
       80001: '',
-      137: '0xEb13036d00994559630405E688EA120E00f41Fe6',
+      137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
@@ -24,7 +24,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.kogecoin,
     contractAddress: {
       80001: '',
-      137: '0xEb13036d00994559630405E688EA120E00f41Fe6',
+      137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

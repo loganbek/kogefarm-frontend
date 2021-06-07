@@ -72,7 +72,7 @@ const tokens = {
     symbol: 'KogeCoin',
     coingeico: 'kogecoin',
     address: {
-      137: '0xC548352AeB28AF9eba82dd5AD9965d7Be6f0a912',
+      137: '0x13748d548D95D78a3c83fe3F32604B4796CFfa23',
       80001: '',
     },
     decimals: 9,
@@ -82,7 +82,7 @@ const tokens = {
     symbol: 'KogeCoin-Matic LP',
     coingeico: 'kogematiclp',
     address: {
-      137: '0x3d6e6432a7530b24d267ff0FDC978316a770064B',
+      137: '0x3885503aEF5E929fCB7035FBDcA87239651C8154',
       80001: '',
     },
     decimals: 18,

@@ -65,7 +65,7 @@ const Pools: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [observerIsSet])
-//  const Completionist = () => <span>You are good to go!</span>;
+  const Completionist = () => <span>now</span>;
 
   return (
     <>
@@ -76,8 +76,10 @@ const Pools: React.FC = () => {
               {t('KogeCoin Farms')}
             </Heading>
             <Heading scale="md" color="text">
-              {t('Simply stake tokens to earn. Rewards start in block 21312220, or around ')}
-              <Countdown date={new Date(2000*21312220000)} precision={3} />{t('.')}
+              {t('Simply stake tokens to earn. KogeCoin rewards start in block 15626746, or around ')}
+              <Countdown date={Date.now() + 2*1000*(15626746-currentBlock)} precision={3} >
+              <Completionist />
+              </Countdown>{t('!')}
             </Heading>
           </Flex>
         </Flex>

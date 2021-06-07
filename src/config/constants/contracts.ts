@@ -4,7 +4,7 @@ export default {
     80001: '0x7943e9e54215046d8E96F6f5F4B7A538DB98D8BF',
   },
   masterChef: {
-    137: '0xEb13036d00994559630405E688EA120E00f41Fe6',
+    137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
     80001: '',
   },
   cakeVault: {
