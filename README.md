@@ -13,3 +13,7 @@ If you want to contribute, please refer to the [contributing guidelines](./CONTR
 `yarn start`
 
 --------------------
+TODO:
+- [ ] test
+- [ ] glow unlock + lp stake
+- [ ] security fix
