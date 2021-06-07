@@ -160,7 +160,6 @@ const farms: FarmConfig[] = [
     isSushi: true,
     kogefarmFee: 0.01,
   },
-
 /*  {
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',
