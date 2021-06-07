@@ -24,7 +24,7 @@ export const config: MenuEntry[] = [
   {
     label: 'KogeCoin Token',
     icon: 'TeamBattleIcon',
-    href: 'https://kogecoin-io.gitbook.io/kogefarm/the-kogecoin-token',
+    href: 'https://kogecoin.io',
   },
   {
     label: 'Twitter',
