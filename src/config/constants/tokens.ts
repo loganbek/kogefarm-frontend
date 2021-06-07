@@ -68,6 +68,26 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://polygon.iron.finance/',
   },
+  kogecoin: {
+    symbol: 'KogeCoin',
+    coingeico: 'kogecoin',
+    address: {
+      137: '0xC548352AeB28AF9eba82dd5AD9965d7Be6f0a912',
+      80001: '',
+    },
+    decimals: 9,
+    projectLink: 'https://kogecoin.io/',
+  },
+  kogecoinMatic: {
+    symbol: 'KogeCoin-Matic LP',
+    coingeico: 'kogematiclp',
+    address: {
+      137: '0xD86b5923F3AD7b585eD81B448170ae026c65ae9a',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { DEFAULT_TOKEN_DECIMAL } from 'config'
+import { DEFAULT_TOKEN_DECIMAL, KOGE_TOKEN_DECIMAL } from 'config'
 import { ethers } from 'ethers'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
 
@@ -17,17 +17,17 @@ export const jarApprove = async (lpContract, jarContractAddress, account) => {
 
 
 export const stake = async (masterChefContract, pid, amount, account) => {
-  if (pid === 0) {
-    return masterChefContract.methods
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: 300000 })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
-  }
-
   return masterChefContract.methods
     .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
+    .send({ from: account, gas: 300000 })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const stakeKoge = async (masterChefContract, pid, amount, account) => {
+  return masterChefContract.methods
+    .deposit(pid, new BigNumber(amount).times(KOGE_TOKEN_DECIMAL).toString())
     .send({ from: account, gas: 300000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -98,6 +98,15 @@ export const sousUnstake = async (sousChefContract, amount, decimals, account) =
     })
 }
 
+export const masterChefUnstake = async (masterChefContract, pid, amount, decimals, account) => {
+  return masterChefContract.methods
+    .withdraw(pid, new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
+    .send({ from: account, gas: 200000 })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
 export const sousEmergencyUnstake = async (sousChefContract, account) => {
   return sousChefContract.methods
     .emergencyWithdraw()
@@ -106,6 +115,16 @@ export const sousEmergencyUnstake = async (sousChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const masterChefEmergencyUnstake = async (masterChefContract, pid, account) => {
+  return masterChefContract.methods
+    .emergencyWithdraw(pid)
+    .send({ from: account, gas: 200000 })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
 
 export const harvest = async (masterChefContract, pid, account) => {
   if (pid === 0) {
@@ -133,6 +152,16 @@ export const soushHarvest = async (sousChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const masterchefHarvest = async (masterChefContract, pid, account) => {
+  return masterChefContract.methods
+    .deposit(pid, '0')
+    .send({ from: account, gas: 200000 })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
 
 export const soushHarvestBnb = async (sousChefContract, account) => {
   return sousChefContract.methods

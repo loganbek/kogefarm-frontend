@@ -2,6 +2,7 @@ import React from 'react'
 import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon, RefreshIcon, AutoRenewIcon } from '@pancakeswap/uikit'
 
 const CoreTag = (props) => (
+//  <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
   <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
     Auto-Compounding
   </Tag>
@@ -39,7 +40,7 @@ const ManualPoolTag = (props) => (
 
 const CompoundingPoolTag = (props) => (
   <Tag variant="success" outline startIcon={<AutoRenewIcon width="18px" color="success" mr="4px" />} {...props}>
-    Auto
+    Auto-Compounding
   </Tag>
 )
 

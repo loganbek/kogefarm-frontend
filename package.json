@@ -59,6 +59,7 @@
     "quickswap-sdk": "^3.0.8",
     "react": "^17.0.1",
     "react-chartjs-2": "2.11.1",
+    "react-countdown": "^2.3.2",
     "react-countup": "^4.3.3",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.8",

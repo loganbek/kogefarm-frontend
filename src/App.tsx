@@ -12,7 +12,7 @@ import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
-// import Pools from './views/Pools'
+import Pools from './views/Pools'
 import history from './routerHistory'
 
 // Route-based code splitting
@@ -51,11 +51,11 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Farms />
             </Route>
+            <Route path="/farms">
+               <Pools />
+             </Route>
 {/*             <Route path="/farms">
               <Farms />
-            </Route>
-           <Route path="/pools">
-              <Pools />
             </Route>
             <Route path="/lottery">
               <Lottery />

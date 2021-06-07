@@ -2,9 +2,14 @@ import { MenuEntry } from '@pancakeswap/uikit'
 
 export const config: MenuEntry[] = [
   {
-    label: 'Home',
+    label: 'Vaults',
     icon: 'HomeIcon',
     href: '/',
+  },
+  {
+    label: 'KogeCoin Farms',
+    icon: 'PoolIcon',
+    href: 'farms',
   },
   {
     label: 'Documentation',
