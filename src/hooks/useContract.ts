@@ -4,7 +4,10 @@ import {
   getBep20Contract,
 //  getCakeContract,
   getJarContract,
-//  getMasterchefContract,
+  getSouschefContract,
+  getSouschefV2Contract,
+  getCakeVaultContract,
+  getMasterchefContract
 } from 'utils/contractHelpers'
 
 /**
@@ -24,9 +27,31 @@ export const useERC20 = (address: string) => {
 //  return useMemo(() => getCakeContract(web3), [web3])
 // }
 
-/* Jar */
+// Jar
 
 export const useJar = (address: string) => {
   const web3 = useWeb3()
   return useMemo(() => getJarContract(address, web3), [address, web3])
+}
+
+
+// Sous
+export const useSousChef = (id) => {
+  const web3 = useWeb3()
+  return useMemo(() => getSouschefContract(id, web3), [id, web3])
+}
+
+export const useSousChefV2 = (id) => {
+  const web3 = useWeb3()
+  return useMemo(() => getSouschefV2Contract(id, web3), [id, web3])
+}
+
+export const useCakeVaultContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getCakeVaultContract(web3), [web3])
+}
+
+export const useMasterchef = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getMasterchefContract(web3), [web3])
 }

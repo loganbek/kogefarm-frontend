@@ -75,6 +75,7 @@ export interface FarmConfig {
 
 export interface PoolConfig {
   sousId: number
+  pid: number
   earningToken: Token
   stakingToken: Token
   contractAddress: Address

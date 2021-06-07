@@ -6,7 +6,7 @@ import multicall from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 // import masterChefABI from 'config/abi/masterchef.json'
 import GenericJarABI from 'config/abi/GenericJar.json'
-import farmsConfig from 'config/constants'
+import { farmsConfig } from 'config/constants'
 import { FarmConfig } from 'config/constants/types'
 import useRefresh from './useRefresh'
 
