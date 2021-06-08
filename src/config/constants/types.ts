@@ -71,6 +71,8 @@ export interface FarmConfig {
   }
   minutesPerCompound: number
   kogefarmFee: number
+  kogefarmComment?: string
+  rewardToken?: Token
 }
 
 export interface PoolConfig {

@@ -50,7 +50,7 @@ const tokens = {
   },
   titan: {
     symbol: 'Titan',
-    coingeico: '',
+    coingeico: 'iron-titanium-token',
     address: {
       137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
       80001: '',
