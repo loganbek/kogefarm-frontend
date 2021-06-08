@@ -428,7 +428,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon.')}
+          {t('KogeFarm helps you earn more yield by ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounding</a></u> {t(' high APR farms on Polygon.')}
         </Heading>
       </PageHeader>
       <Page>
@@ -478,7 +478,10 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
-        <Text  color="text" textAlign="center" fontSize="125%">
+        <Text color="text" textAlign="center" fontSize="125%">
+        {t('No more sleep deprived degens with KogeFarm! We compound your farming rewards every minute so you can play more.')}
+        </Text>
+        <Text color="text" textAlign="center" fontSize="125%">
           {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u>
           {t('. Always DYOR.')}
         </Text>
