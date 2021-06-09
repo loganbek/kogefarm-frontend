@@ -164,7 +164,7 @@ const farms: FarmConfig[] = [
     rewardPerBlock: 0.8,
     poolWeightDesignate: 5000/31110,
     minutesPerCompound: 1,
-    kogefarmFee: 0.005,
+    kogefarmFee: 0.000,
     kogefarmComment: ' (Quick)'
   },
 
@@ -189,7 +189,7 @@ const farms: FarmConfig[] = [
     rewardPerBlock: 0.8,
     poolWeightDesignate: 5000/31110,
     minutesPerCompound: 1,
-    kogefarmFee: 0.005,
+    kogefarmFee: 0.000,
     isSushi: true,
     kogefarmComment: ' (Sushi)'
   },
@@ -215,7 +215,7 @@ const farms: FarmConfig[] = [
     rewardPerBlock: 0.8,
     poolWeightDesignate: 3500/31110,
     minutesPerCompound: 1,
-    kogefarmFee: 0.005,
+    kogefarmFee: 0.000,
   },
 
 
