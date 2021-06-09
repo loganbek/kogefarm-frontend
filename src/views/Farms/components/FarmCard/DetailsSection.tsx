@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Text, Flex, LinkExternal } from '@pancakeswap/uikit'
 
 export interface ExpandableSectionProps {
-  maticExplorerAddress?: string
+  bscScanAddress?: string
   infoAddress?: string
   removed?: boolean
   totalValueFormatted?: string
@@ -23,7 +23,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
-  maticExplorerAddress,
+  bscScanAddress,
   infoAddress,
   removed,
   totalValueFormatted,
@@ -51,7 +51,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       {!removed && (
         <StyledLinkExternal href={addLiquidityUrl}>{t(`Get ${lpLabel}`, { name: lpLabel })}</StyledLinkExternal>
       )}
-      <StyledLinkExternal href={maticExplorerAddress}>{t('View Contract')}</StyledLinkExternal>
+      <StyledLinkExternal href={bscScanAddress}>{t('View Contract')}</StyledLinkExternal>
       <StyledLinkExternal href={infoAddress}>{t('See Pair Info')}</StyledLinkExternal>
     </Wrapper>
   )
