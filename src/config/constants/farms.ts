@@ -95,6 +95,32 @@ const farms: FarmConfig[] = [
     lpSymbol: 'Iron-USDC LP',
     lpAddresses: {
       80001: '',
+      137: '0x2Bbe0F728f4d5821F84eeE0432D2A4be7C0cB7Fc',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      80001: '',
+      137: '0x3fae5e941B7eb3A7BeE94399bF669224efa9432C',
+    },
+    token: tokens.iron,
+    quoteToken: tokens.usdc,
+    rewardPerBlock: 14.797916666666666,
+    poolWeightDesignate: 350000/1000000,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.005,
+    kogefarmComment: ' (Quick)',
+    rewardToken: tokens.titan,
+  },
+
+  {
+    pid: 4,
+    lpSymbol: 'Iron-USDC LP',
+    lpAddresses: {
+      80001: '',
       137: '0x85dE135fF062Df790A5f20B79120f17D3da63b2d',
     },
     masterChefAddresses: {
@@ -114,32 +140,6 @@ const farms: FarmConfig[] = [
     isSushi: true,
     kogefarmFee: 0.005,
     kogefarmComment: ' (Sushi)',
-    rewardToken: tokens.titan,
-  },
-
-  {
-    pid: 4,
-    lpSymbol: 'Iron-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x2Bbe0F728f4d5821F84eeE0432D2A4be7C0cB7Fc',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
-    },
-    masterChefPid: 2,
-    jarAddresses: {
-      80001: '',
-      137: '0x3fae5e941B7eb3A7BeE94399bF669224efa9432C',
-    },
-    token: tokens.iron,
-    quoteToken: tokens.usdc,
-    rewardPerBlock: 14.797916666666666,
-    poolWeightDesignate: 350000/1000000,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.005,
-    kogefarmComment: ' (Quick)',
     rewardToken: tokens.titan,
   },
 
