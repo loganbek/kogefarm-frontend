@@ -5,6 +5,9 @@ import Container from '../layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
   background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
+  z-index: -1;
+  background: linear-gradient(to right bottom, rgb(77, 84, 209), rgb(165, 28, 123) 50%, rgb(238, 74, 55) 100%) center center;
+  animation: 2s linear 0s infinite normal none running;
 `
 
 const Inner = styled(Container)`
