@@ -125,6 +125,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         tokenAmount: tokenAmount.toJSON(),
         quoteTokenAmount: quoteTokenAmount.toJSON(),
         lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
+        lpTokenBalanceMC: new BigNumber(lpTokenBalanceMC).div(DEFAULT_TOKEN_DECIMAL).toJSON(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         jarLPDeposits: jarDeposits.toJSON(),

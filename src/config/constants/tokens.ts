@@ -50,7 +50,7 @@ const tokens = {
   },
   titan: {
     symbol: 'Titan',
-    coingeico: '',
+    coingeico: 'iron-titanium-token',
     address: {
       137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
       80001: '',
@@ -67,6 +67,26 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://polygon.iron.finance/',
+  },
+  kogecoin: {
+    symbol: 'KogeCoin',
+    coingeico: 'kogecoin',
+    address: {
+      137: '0x13748d548D95D78a3c83fe3F32604B4796CFfa23',
+      80001: '',
+    },
+    decimals: 9,
+    projectLink: 'https://kogecoin.io/',
+  },
+  kogecoinMatic: {
+    symbol: 'KogeCoin-Matic LP',
+    coingeico: 'kogematiclp',
+    address: {
+      137: '0x3885503aEF5E929fCB7035FBDcA87239651C8154',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
   },
 }
 

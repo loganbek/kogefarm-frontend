@@ -10,7 +10,6 @@ interface ApyCalculatorModalProps {
   apr: number
   linkLabel: string
   linkHref: string
-  earningTokenSymbol?: string
   roundingDecimals?: number
   compoundFrequency?: number
   performanceFee?: number
@@ -18,7 +17,7 @@ interface ApyCalculatorModalProps {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, auto);
   margin-bottom: 24px;
 `
@@ -33,7 +32,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apr,
   linkLabel,
   linkHref,
-  earningTokenSymbol = 'CAKE',
   roundingDecimals = 2,
   compoundFrequency = 1,
   performanceFee = 0,
@@ -87,11 +85,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             {t('ROI')}
           </Text>
         </GridItem>
-        <GridItem>
-          <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            {earningTokenSymbol} {t('per')} $1000
-          </Text>
-        </GridItem>
         {/* 1 day row */}
         <GridItem>
           <Text>1d</Text>
@@ -104,9 +97,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             %
           </Text>
         </GridItem>
-        <GridItem>
-          <Text>{tokenEarnedPerThousand1D}</Text>
-        </GridItem>
         {/* 7 day row */}
         <GridItem>
           <Text>7d</Text>
@@ -118,9 +108,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             )}
             %
           </Text>
-        </GridItem>
-        <GridItem>
-          <Text>{tokenEarnedPerThousand7D}</Text>
         </GridItem>
         {/* 30 day row */}
         <GridItem>
@@ -135,9 +122,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             %
           </Text>
         </GridItem>
-        <GridItem>
-          <Text>{tokenEarnedPerThousand30D}</Text>
-        </GridItem>
         {/* 365 day / APY row */}
         <GridItem>
           <Text>365d(APY)</Text>
@@ -150,9 +134,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             }).toFixed(roundingDecimals)}
             %
           </Text>
-        </GridItem>
-        <GridItem>
-          <Text>{tokenEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
       <Box mb="28px" maxWidth="280px">

@@ -2,9 +2,14 @@ import { MenuEntry } from '@pancakeswap/uikit'
 
 export const config: MenuEntry[] = [
   {
-    label: 'Home',
+    label: 'Vaults',
     icon: 'HomeIcon',
     href: '/',
+  },
+  {
+    label: 'KogeCoin Farms',
+    icon: 'PoolIcon',
+    href: 'farms',
   },
   {
     label: 'Documentation',
@@ -19,7 +24,7 @@ export const config: MenuEntry[] = [
   {
     label: 'KogeCoin Token',
     icon: 'TeamBattleIcon',
-    href: 'https://kogecoin-io.gitbook.io/kogefarm/the-kogecoin-token',
+    href: 'https://kogecoin.io',
   },
   {
     label: 'Twitter',

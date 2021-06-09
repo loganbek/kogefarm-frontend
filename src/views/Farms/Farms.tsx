@@ -186,12 +186,18 @@ const Farms: React.FC = () => {
           return farm
         }
         const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
-        const tokenPriceVsQuote = new BigNumber(farm.tokenPriceVsQuote)
+        const tokenPriceVsQuote = farm.rewardToken? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]) : new BigNumber(farm.tokenPriceVsQuote)
 //        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken)
-        const totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
+        let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
+        if (farm.token===farm.quoteToken){
+          totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
+        }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
 //        const jarRatioNum = new BigNumber(farm.jarRatio)
-        const totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
+        let totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
+        if (farm.token===farm.quoteToken){
+          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10**18).times(new BigNumber(quoteTokenPriceUsd))
+        }
         const farmRatio = new BigNumber(farm.jarRatio).div(10**18)
         let userDeposits
         if (jarLPDeposits>new BigNumber(0)){
@@ -301,7 +307,8 @@ const Farms: React.FC = () => {
 //    const { token, quoteToken } = farm
 //    const tokenAddress = token.address
 //    const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+    const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '') + farmcomment
 
     const row: RowProps = {
       apr: {
@@ -428,7 +435,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compound</a></u> {t(' high APR farms on Polygon.')}
+          {t('KogeFarm helps you earn more yield by ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounding</a></u> {t(' high APR farms on Polygon.')}
         </Heading>
       </PageHeader>
       <Page>
@@ -478,7 +485,10 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
-        <Text  color="text" textAlign="center" fontSize="125%">
+        <Text color="text" textAlign="center" fontSize="125%">
+        {t('No more sleep deprived degens with KogeFarm! We compound your farming rewards every minute so you can play more.')}
+        </Text>
+        <Text color="text" textAlign="center" fontSize="125%">
           {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u>
           {t('. Always DYOR.')}
         </Text>
