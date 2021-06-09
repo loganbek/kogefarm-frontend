@@ -494,7 +494,7 @@ const Farms: React.FC = () => {
         </Text>
         <Text color="text" textAlign="center" fontSize="125%">
           {"\n"}
-          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0.5-1% ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards.')}
+          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0-1% ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards.')}
         </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>
