@@ -16,7 +16,7 @@ interface NotEnoughTokensModalProps {
 const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, stakingToken, onDismiss }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
-  let stakingTokenLink = BASE_EXCHANGE_URL
+  let stakingTokenLink = `${BASE_EXCHANGE_URL}/#/add/0x13748d548D95D78a3c83fe3F32604B4796CFfa23/0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270`
   if (stakingToken.coingeico==='kogecoin'){
     stakingTokenLink = `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
   }
