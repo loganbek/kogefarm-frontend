@@ -68,6 +68,16 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://polygon.iron.finance/',
   },
+  booty: {
+    symbol: 'Booty',
+    coingeico: 'pirate-dice',
+    address: {
+      137: '0xD12DC5319808Bb31ba95AE5764def2627d5966CE',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: 'https://piratedice.xyz/',
+  },
   kogecoin: {
     symbol: 'KogeCoin',
     coingeico: 'kogecoin',

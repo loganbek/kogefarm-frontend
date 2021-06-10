@@ -186,7 +186,10 @@ const Farms: React.FC = () => {
           return farm
         }
         const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
-        const tokenPriceVsQuote = farm.rewardToken? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]) : new BigNumber(farm.tokenPriceVsQuote)
+        let tokenPriceVsQuote = farm.rewardToken? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]) : new BigNumber(farm.tokenPriceVsQuote)
+        if (farm.token===farm.quoteToken){
+          tokenPriceVsQuote = new BigNumber(1)
+        }
 //        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken)
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
         if (farm.token===farm.quoteToken){
