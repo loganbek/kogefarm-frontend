@@ -218,9 +218,81 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.000,
   },
 
-
   {
     pid: 8,
+    lpSymbol: 'Booty-USDC LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xF2046f95621F349823cC1a12d914B2b5193ABD93',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xA7f3C3f80Ff6a6f31bB7BaB04E3E8AC4E4dAE0c3',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0xbFad80456C71BE0fdE53ecd623605662cF808e53',
+    },
+    token: tokens.booty,
+    quoteToken: tokens.usdc,
+    rewardPerBlock: 0.75,
+    poolWeightDesignate: 12500/34000,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.01,
+  },
+
+  {
+    pid: 9,
+    lpSymbol: 'Booty-Matic LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x57B6A39c06DfF5678266e36dca2Cfa86da675894',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xA7f3C3f80Ff6a6f31bB7BaB04E3E8AC4E4dAE0c3',
+    },
+    masterChefPid: 7,
+    jarAddresses: {
+      80001: '',
+      137: '0x0Be469DE6635A71a07Df915D65D5f08Fb4ac007F',
+    },
+    token: tokens.booty,
+    quoteToken: tokens.matic,
+    rewardPerBlock: 0.75,
+    poolWeightDesignate: 10000/34000,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.01,
+  },
+
+  {
+    pid: 10,
+    lpSymbol: 'Booty',
+    lpAddresses: {
+      80001: '',
+      137: '0xD12DC5319808Bb31ba95AE5764def2627d5966CE',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xA7f3C3f80Ff6a6f31bB7BaB04E3E8AC4E4dAE0c3',
+    },
+    masterChefPid: 8,
+    jarAddresses: {
+      80001: '',
+      137: '0xF0db902352dfe1EaF8deb2a2eb5c760568821f58',
+    },
+    token: tokens.booty,
+    quoteToken: tokens.booty,
+    rewardPerBlock: 0.75,
+    poolWeightDesignate: 3500/34000,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.01,
+  },
+
+
+  {
+    pid: 11,
     lpSymbol: 'Gaj-USDC LP',
     lpAddresses: {
       80001: '',
@@ -244,7 +316,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 9,
+    pid: 12,
     lpSymbol: 'Gaj-MATIC LP',
     lpAddresses: {
       80001: '',

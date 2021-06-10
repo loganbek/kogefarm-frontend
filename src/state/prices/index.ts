@@ -17,7 +17,7 @@ const initialState: PriceState = {
 export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async () => {
 //  const response = await fetch('https://api.pancakeswap.info/api/v2/tokens')
 //  const data = (await response.json()) as PriceApiResponse
-  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network%2Ciron-stablecoin%2Ciron-titanium-token%2Cpolycat-finance&vs_currencies=usd')
+  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network%2Ciron-stablecoin%2Ciron-titanium-token%2Cpolycat-finance%2Cpirate-dice&vs_currencies=usd')
   const data = (await response.json()) as GeicoApiList
 
   // Fetch KogeCoin price from LP pool
