@@ -145,6 +145,30 @@ const farms: FarmConfig[] = [
 
   {
     pid: 5,
+    lpSymbol: 'Fish',
+    lpAddresses: {
+      80001: '',
+      137: '0x3a3Df212b7AA91Aa0402B9035b098891d276572B',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x8CFD1B9B7478E7B0422916B72d1DB6A9D513D734',
+    },
+    masterChefPid: 1,
+    jarAddresses: {
+      80001: '',
+      137: '0x05d83F3Ef95F921971763b035c00298BC42ff008',
+    },
+    token: tokens.fish,
+    quoteToken: tokens.fish,
+    rewardPerBlock: 0.8,
+    poolWeightDesignate: 3500/31110,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.000,
+  },
+
+  {
+    pid: 6,
     lpSymbol: 'Fish-Matic LP',
     lpAddresses: {
       80001: '',
@@ -169,7 +193,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 6,
+    pid: 7,
     lpSymbol: 'Fish-Matic LP',
     lpAddresses: {
       80001: '',
@@ -195,31 +219,31 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 7,
-    lpSymbol: 'Fish',
+    pid: 8,
+    lpSymbol: 'Booty',
     lpAddresses: {
       80001: '',
-      137: '0x3a3Df212b7AA91Aa0402B9035b098891d276572B',
+      137: '0xD12DC5319808Bb31ba95AE5764def2627d5966CE',
     },
     masterChefAddresses: {
       80001: '',
-      137: '0x8CFD1B9B7478E7B0422916B72d1DB6A9D513D734',
+      137: '0xA7f3C3f80Ff6a6f31bB7BaB04E3E8AC4E4dAE0c3',
     },
-    masterChefPid: 1,
+    masterChefPid: 8,
     jarAddresses: {
       80001: '',
-      137: '0x05d83F3Ef95F921971763b035c00298BC42ff008',
+      137: '0xF0db902352dfe1EaF8deb2a2eb5c760568821f58',
     },
-    token: tokens.fish,
-    quoteToken: tokens.fish,
-    rewardPerBlock: 0.8,
-    poolWeightDesignate: 3500/31110,
+    token: tokens.booty,
+    quoteToken: tokens.booty,
+    rewardPerBlock: 0.75,
+    poolWeightDesignate: 3500/34000,
     minutesPerCompound: 1,
-    kogefarmFee: 0.000,
+    kogefarmFee: 0.01,
   },
 
   {
-    pid: 8,
+    pid: 9,
     lpSymbol: 'Booty-USDC LP',
     lpAddresses: {
       80001: '',
@@ -243,7 +267,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 9,
+    pid: 10,
     lpSymbol: 'Booty-Matic LP',
     lpAddresses: {
       80001: '',
@@ -262,30 +286,6 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.matic,
     rewardPerBlock: 0.75,
     poolWeightDesignate: 10000/34000,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-  },
-
-  {
-    pid: 10,
-    lpSymbol: 'Booty',
-    lpAddresses: {
-      80001: '',
-      137: '0xD12DC5319808Bb31ba95AE5764def2627d5966CE',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xA7f3C3f80Ff6a6f31bB7BaB04E3E8AC4E4dAE0c3',
-    },
-    masterChefPid: 8,
-    jarAddresses: {
-      80001: '',
-      137: '0xF0db902352dfe1EaF8deb2a2eb5c760568821f58',
-    },
-    token: tokens.booty,
-    quoteToken: tokens.booty,
-    rewardPerBlock: 0.75,
-    poolWeightDesignate: 3500/34000,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
   },
