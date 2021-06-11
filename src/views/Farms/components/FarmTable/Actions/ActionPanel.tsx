@@ -156,7 +156,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   })
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
-  const bsc = `https://explorer-mainnet.maticvigil.com/address/${jarAddress}`
+  const bsc = `https://polygonscan.com/address/${jarAddress}`
   const info = farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)
   const liquidityurl = farm.isSushi? (`https://app.sushi.com/add/${liquidityUrlPathParts}`) : (`https://quickswap.exchange/#/add/${liquidityUrlPathParts}`)
 

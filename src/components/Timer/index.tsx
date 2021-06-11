@@ -49,8 +49,8 @@ const TooltipContent = ({ blockNumber }) => (
     <Text color="body" mb="10px" fontWeight="600">
       Block {blockNumber}
     </Text>
-    <Link external href={`https://explorer-mainnet.maticvigil.com/block/${blockNumber}`}>
-      View on BscScan
+    <Link external href={`https://polygonscan.com/block/${blockNumber}`}>
+      View on PolygonScan
     </Link>
   </>
 )

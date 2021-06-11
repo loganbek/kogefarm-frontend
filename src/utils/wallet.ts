@@ -23,7 +23,7 @@ export const setupNetwork = async () => {
               decimals: 18,
             },
             rpcUrls: nodes,
-            blockExplorerUrls: ['https://explorer-mainnet.maticvigil.com/'],
+            blockExplorerUrls: ['https://polygonscan.com/'],
           },
         ],
       })

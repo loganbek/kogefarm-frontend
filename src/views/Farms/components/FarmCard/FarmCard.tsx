@@ -173,7 +173,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          bscScanAddress={`https://explorer-mainnet.maticvigil.com/address/${farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]}`}
+          bscScanAddress={`https://polygonscan.com/address/${farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]}`}
           infoAddress={farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)}
           totalValueFormatted={totalValueFormatted}
           userValueFormatted={userValueFormatted}
