@@ -27,6 +27,11 @@ export const config: MenuEntry[] = [
     href: 'https://kogecoin.io',
   },
   {
+    label: 'Back up site',
+    icon: 'MoreIcon',
+    href: 'https://main.d282tvvic8lprz.amplifyapp.com',
+  },
+  {
     label: 'Twitter',
     icon: 'TwitterIcon',
     href: 'https://twitter.com/kogecoin',
