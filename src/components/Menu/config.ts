@@ -22,8 +22,13 @@ export const config: MenuEntry[] = [
     href: 'https://kogecoin-io.gitbook.io/kogefarm/audit/',
   },
   {
-    label: 'KogeCoin Token',
+    label: 'Fees',
     icon: 'TeamBattleIcon',
+    href: 'https://kogecoin-io.gitbook.io/kogefarm/fees/',
+  },
+  {
+    label: 'KogeCoin Token',
+    icon: 'GroupsIcon',
     href: 'https://kogecoin.io',
   },
   {
