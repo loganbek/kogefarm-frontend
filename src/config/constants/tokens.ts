@@ -70,7 +70,7 @@ const tokens = {
   },
   booty: {
     symbol: 'Booty',
-    coingeico: 'pirate-dice',
+    coingeico: 'booty',
     address: {
       137: '0xD12DC5319808Bb31ba95AE5764def2627d5966CE',
       80001: '',
