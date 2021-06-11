@@ -17,13 +17,15 @@ const initialState: PriceState = {
 export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async () => {
 //  const response = await fetch('https://api.pancakeswap.info/api/v2/tokens')
 //  const data = (await response.json()) as PriceApiResponse
-  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network%2Ciron-stablecoin%2Ciron-titanium-token%2Cpolycat-finance%2Cpirate-dice&vs_currencies=usd')
+  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network%2Ciron-stablecoin%2Cpolycat-finance%2Cpirate-dice&vs_currencies=usd')
   const data = (await response.json()) as GeicoApiList
 
   // Fetch KogeCoin price from LP pool
   const kogecoinAddr = '0x13748d548D95D78a3c83fe3F32604B4796CFfa23'
   const maticAddr ='0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
   const kogeMaticLP = '0x3885503aEF5E929fCB7035FBDcA87239651C8154'
+  const titanAddr = '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A'
+  const titanMaticLP = '0xA79983Daf2A92c2C902cD74217Efe3D8AF9Fba2a'
   const calls = [
     // Balance of token in the LP contract
     {
@@ -41,20 +43,34 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     {
       address: kogeMaticLP,
       name: 'totalSupply',
-    }
+    },
+    {
+      address: titanAddr,
+      name: 'balanceOf',
+      params: [titanMaticLP],
+    },
+    // Balance of quote token on LP contract
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [titanMaticLP],
+    },
   ]
-  const [kogeBalanceLP, maticTokenBalanceLP, totalLPSupply] = await multicall(erc20, calls)
+  const [kogeBalanceLP, maticTokenBalanceLP, totalLPSupply, titanBalanceLP, maticBalanceLP] = await multicall(erc20, calls)
   // Get Koge price in matic
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
+  const titanMatic = titanBalanceLP/maticBalanceLP
   // Get Matic price
   const maticUSD = parseFloat(data['matic-network'].usd)
   // Get Koge price in USD
   const kogeUSD = maticUSD/kogeMatic
+  const titanUSD = maticUSD/titanMatic
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
   data.kogecoin = {"usd":kogeUSD.toString()}
   data.kogematiclp = {"usd":kogeMaticLPUSD.toString()}
+  data.titan = {"usd":titanUSD.toString()}
 
   // Return normalized token names
   return {
