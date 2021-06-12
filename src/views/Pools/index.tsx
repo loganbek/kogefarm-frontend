@@ -76,10 +76,7 @@ const Pools: React.FC = () => {
               {t('KogeCoin Farms')}
             </Heading>
             <Heading scale="md" color="text">
-              {t('Simply stake tokens to earn. KogeCoin rewards start in block 15626746, or around ')}
-              <Countdown date={Date.now() + 2*1000*(15626746-currentBlock)} precision={3} >
-              <Completionist />
-              </Countdown>{t('!')}
+              {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply are being distributed to holders through this farm.')}
             </Heading>
           </Flex>
         </Flex>
