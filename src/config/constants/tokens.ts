@@ -30,7 +30,7 @@ const tokens = {
   },
   fish: {
     symbol: 'FISH',
-    coingeico: 'polycat-finance',
+    coingeico: 'fish',
     address: {
       137: '0x3a3df212b7aa91aa0402b9035b098891d276572b',
       80001: '',

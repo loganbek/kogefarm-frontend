@@ -17,7 +17,7 @@ const initialState: PriceState = {
 export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async () => {
 //  const response = await fetch('https://api.pancakeswap.info/api/v2/tokens')
 //  const data = (await response.json()) as PriceApiResponse
-  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network%2Cpolycat-finance&vs_currencies=usd')
+  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network&vs_currencies=usd')
   const data = (await response.json()) as GeicoApiList
 
   // Fetch KogeCoin price from LP pool
@@ -31,6 +31,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const bootyMaticLP = '0x57B6A39c06DfF5678266e36dca2Cfa86da675894'
   const ironAddr = '0xD86b5923F3AD7b585eD81B448170ae026c65ae9a'
   const ironUSDCLP = '0x2Bbe0F728f4d5821F84eeE0432D2A4be7C0cB7Fc'
+  const fishAddr = '0x3a3df212b7aa91aa0402b9035b098891d276572b'
+  const fishMaticLP = '0x289cf2B63c5Edeeeab89663639674d9233E8668E'
   const calls = [
     // Balance of token in the LP contract
     {
@@ -82,19 +84,34 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [bootyMaticLP],
     },
+    // Fish
+    {
+      address: fishAddr,
+      name: 'balanceOf',
+      params: [fishMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [fishMaticLP],
+    },
   ]
-  const [kogeBalanceLP, maticTokenBalanceLP, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty] = await multicall(erc20, calls)
+  const [kogeBalanceLP, maticTokenBalanceLP, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish] = await multicall(erc20, calls)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
   const titanMatic = titanBalanceLP/maticBalanceLP
   const bootyMatic = bootyBalanceLP/maticBalanceBooty
-  const ironUSDC = usdcBalanceIron/ironBalanceLP*10**12
+  const fishMatic = fishBalance/maticFish
+  const ironUSDC = ironBalanceLP/(usdcBalanceIron*10**12)
   // Get Matic price
   const maticUSD = parseFloat(data['matic-network'].usd)
+  const usdcUSD = parseFloat(data['usd-coin'].usd)
   // Get Koge price in USD
   const kogeUSD = maticUSD/kogeMatic
   const titanUSD = maticUSD/titanMatic
   const bootyUSD = maticUSD/bootyMatic
+  const fishUSD = maticUSD/fishMatic
+  const ironUSD = usdcUSD/ironUSDC
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -102,7 +119,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.kogematiclp = {"usd":kogeMaticLPUSD.toString()}
   data.titan = {"usd":titanUSD.toString()}
   data.booty = {"usd":bootyUSD.toString()}
-  data.iron = {"usd":ironUSDC.toString()}
+  data.iron = {"usd":ironUSD.toString()}
+  data.fish = {"usd":fishUSD.toString()}
 
   // Return normalized token names
   return {
