@@ -8,10 +8,11 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useBlock, useFetchCakeVault } from 'state/hooks'
+import { usePools, useBlock, useFetchCakeVault, useGetApiPrice } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
+import Balance from 'components/Balance'
 import PoolCard from './components/PoolCard'
 // import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
@@ -67,7 +68,7 @@ const Pools: React.FC = () => {
   }, [observerIsSet])
   const Completionist = () => <span>now</span>;
 
-
+  const kogePrice = useGetApiPrice('kogecoin');
 
   return (
     <>
@@ -79,6 +80,9 @@ const Pools: React.FC = () => {
             </Heading>
             <Heading scale="md" color="text">
               {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply are being distributed to holders through this farm.')}
+            </Heading>
+            <Heading scale="md" color="brown">
+            {t('KogeCoin Price: $')}{kogePrice && kogePrice.toFixed(4)}
             </Heading>
           </Flex>
         </Flex>
