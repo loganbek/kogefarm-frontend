@@ -67,6 +67,8 @@ const Pools: React.FC = () => {
   }, [observerIsSet])
   const Completionist = () => <span>now</span>;
 
+
+
   return (
     <>
       <PageHeader>

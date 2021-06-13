@@ -3,7 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from '@pancakeswap/uikit'
+import { Image, Heading, RowType, Toggle, Text, Skeleton } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -367,6 +367,7 @@ const Farms: React.FC = () => {
     return row
   })
 
+
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
       const columnSchema = DesktopColumnSchema
@@ -430,6 +431,12 @@ const Farms: React.FC = () => {
     setSortOption(option.value)
   }
 
+  const tvl = rowData.reduce((sum,current) =>  sum.plus(current.liquidity.liquidity) , new BigNumber(0) );
+  const displayTVL = tvl ? (
+    `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  ) : (
+    <Skeleton width={60} />
+  )
 
   return (
     <>
@@ -439,6 +446,9 @@ const Farms: React.FC = () => {
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
           {t('KogeFarm helps you earn more yield by ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounding</a></u>{t(' high APR farms. ')}<u><a href='https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf'>Audited</a></u>{t(' by Obelisk.')}
+        </Heading>
+        <Heading scale="lg" color="brown" textAlign="center">
+        {t('Vault TVL: ')} {displayTVL!=='$NaN' && displayTVL}
         </Heading>
       </PageHeader>
       <Page>
