@@ -40,8 +40,33 @@ const farms: FarmConfig[] = [
    * All farms below here are from v1 and are to be set to 0x
    */
 
+   {
+     pid: 2,
+     lpSymbol: 'Titan',
+     lpAddresses: {
+       80001: '',
+       137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xa37DD1f62661EB18c338f18Cf797cff8b5102d8e',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x72812112d635873F5fEF2b0bcAb22cC5BBA2E0dD',
+     },
+     token: tokens.titan,
+     quoteToken: tokens.titan,
+     rewardToken: tokens.usdc,
+     rewardPerBlock: 0.23148148148,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.000,
+   },
+
   {
-    pid: 1,
+    pid: 3,
     lpSymbol: 'Titan-MATIC LP',
     lpAddresses: {
       80001: '',
@@ -66,7 +91,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 2,
+    pid: 4,
     lpSymbol: 'Titan-Iron LP',
     lpAddresses: {
       80001: '',
@@ -91,7 +116,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 3,
+    pid: 5,
     lpSymbol: 'Iron-USDC LP',
     lpAddresses: {
       80001: '',
@@ -117,7 +142,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 4,
+    pid: 6,
     lpSymbol: 'Iron-USDC LP',
     lpAddresses: {
       80001: '',
@@ -144,7 +169,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 5,
+    pid: 7,
     lpSymbol: 'Fish',
     lpAddresses: {
       80001: '',
@@ -168,7 +193,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 6,
+    pid: 8,
     lpSymbol: 'Fish-Matic LP',
     lpAddresses: {
       80001: '',
@@ -193,7 +218,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 7,
+    pid: 9,
     lpSymbol: 'Fish-Matic LP',
     lpAddresses: {
       80001: '',
@@ -219,7 +244,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 8,
+    pid: 10,
     lpSymbol: 'Booty',
     lpAddresses: {
       80001: '',
@@ -243,7 +268,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 9,
+    pid: 11,
     lpSymbol: 'Booty-USDC LP',
     lpAddresses: {
       80001: '',
@@ -267,7 +292,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 10,
+    pid: 12,
     lpSymbol: 'Booty-Matic LP',
     lpAddresses: {
       80001: '',
@@ -292,7 +317,7 @@ const farms: FarmConfig[] = [
 
 
   {
-    pid: 11,
+    pid: 13,
     lpSymbol: 'Gaj-USDC LP',
     lpAddresses: {
       80001: '',
@@ -316,7 +341,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 12,
+    pid: 14,
     lpSymbol: 'Gaj-MATIC LP',
     lpAddresses: {
       80001: '',

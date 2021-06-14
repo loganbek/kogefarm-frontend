@@ -31,6 +31,7 @@ export interface Farm extends FarmConfig {
     stakedBalance: string
     earnings: string
   }
+  tradingFeeRate?: number
 }
 
 export interface Pool extends PoolConfig {

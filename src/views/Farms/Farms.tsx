@@ -186,8 +186,8 @@ const Farms: React.FC = () => {
           return farm
         }
         const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
-        let tokenPriceVsQuote = farm.rewardToken? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]) : new BigNumber(farm.tokenPriceVsQuote)
-        if (farm.token===farm.quoteToken){
+        let tokenPriceVsQuote = farm.rewardToken? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]).div(new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()])) : new BigNumber(farm.tokenPriceVsQuote)
+        if (!farm.rewardToken && farm.token===farm.quoteToken) {
           tokenPriceVsQuote = new BigNumber(1)
         }
 //        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken)
@@ -210,8 +210,9 @@ const Farms: React.FC = () => {
         }
 
         const apr = isActive ? getMetaFarmApr(farm.poolWeightDesignate, farm.rewardPerBlock, totalLiquidity, tokenPriceVsQuote) : 0
+        const tradingFeeRate = isActive ? new BigNumber(farm.tradingFeeRate).toNumber() : 0
 
-        return { ...farm, apr, liquidity: totalDeposits, userValue: userDeposits}
+        return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits}
       })
 
       if (query) {
@@ -325,23 +326,23 @@ const Farms: React.FC = () => {
       },
       apy: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
 //        multiplier: farm.multiplier,
 //        lpLabel,
 //        tokenAddress,
 //        quoteTokenAddress,
 //        cakePrice,
-        originalValue: (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
+        originalValue: (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
       },
       apyd: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
 //        multiplier: farm.multiplier,
 //        lpLabel,
 //        tokenAddress,
 //        quoteTokenAddress,
 //        cakePrice,
-        originalValue: (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
+        originalValue: (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
       },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
@@ -356,7 +357,7 @@ const Farms: React.FC = () => {
         liquidity: farm.liquidity,
       },
       userValue: {
-        userValue: farm.userValue,
+          userValue: farm.userValue,
       },
 /*      multiplier: {
         multiplier: farm.multiplier,

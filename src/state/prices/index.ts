@@ -114,6 +114,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const ironUSD = usdcUSD/ironUSDC
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
+  const stableCoin = 1.0000
   // Get Koge price and Koge LP price
   data.kogecoin = {"usd":kogeUSD.toString()}
   data.kogematiclp = {"usd":kogeMaticLPUSD.toString()}
@@ -121,6 +122,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.booty = {"usd":bootyUSD.toString()}
   data.iron = {"usd":ironUSD.toString()}
   data.fish = {"usd":fishUSD.toString()}
+  data.usdc = {"usd":stableCoin.toString()}
 
   // Return normalized token names
   return {

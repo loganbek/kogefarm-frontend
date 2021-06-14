@@ -8,6 +8,11 @@ import { BIG_TEN } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
 import { FarmConfig } from 'config/constants/types'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
+import { createClient } from 'urql';
+
+
+const quickGraphURL = "https://api.thegraph.com/subgraphs/name/sameepsi/quickswap";
+const sushiGraphURL = "https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange";
 
 const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
   const data = await Promise.all(
@@ -90,6 +95,72 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
       const jarRatioNum = new BigNumber(jarRatioBal)
       const totalDeposits = jarDeposits.times(2).div(lpTotalSupplyNum).times(lpQuoteTokenNum).div(BIG_TEN.pow(quoteTokenDecimals))
 
+      let tradingFeeRate = 0
+      // Subgraph Trading Pair Data
+      if (farmConfig.token.address!==farmConfig.quoteToken.address){
+          let APIURL = quickGraphURL
+          let subgraphQuery = `
+          query {
+            pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pairAddress:"${lpAddress}"}) {
+              reserve0
+              reserve1
+              reserveUSD
+              dailyVolumeToken0
+              dailyVolumeToken1
+              dailyVolumeUSD
+            }
+          }
+          `
+          if (farmConfig.isSushi) {
+            APIURL = sushiGraphURL
+            subgraphQuery = `
+            query {
+              pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pair_contains:"${lpAddress.toLowerCase()}"}) {
+                reserve0
+                reserve1
+                reserveUSD
+                volumeToken0
+                volumeToken1
+                volumeUSD
+              }
+            }
+            `
+          }
+
+          const client = createClient({
+            url: APIURL
+          });
+
+          const responseData = await client.query(subgraphQuery).toPromise();
+          console.log(responseData)
+          let volume0 = 0
+          let volume1 = 0
+          let volumeUSD = 0
+          try{
+            if (farmConfig.isSushi) {
+              volume0 = responseData.data.pairDayDatas[0].volumeToken0
+              volume1 = responseData.data.pairDayDatas[0].volumeToken1
+              volumeUSD = responseData.data.pairDayDatas[0].volumeUSD
+            } else{
+              volume0 = responseData.data.pairDayDatas[0].dailyVolumeToken0
+              volume1 = responseData.data.pairDayDatas[0].dailyVolumeToken1
+              volumeUSD = responseData.data.pairDayDatas[0].dailyVolumeUSD
+            }
+            const reserve0 = responseData.data.pairDayDatas[0].reserve0
+            const reserve1 = responseData.data.pairDayDatas[0].reserve1
+            const reserveUSD = responseData.data.pairDayDatas[0].reserveUSD
+            tradingFeeRate = 0.003 *100 * volumeUSD/reserveUSD
+            if (volumeUSD<=1000){
+              tradingFeeRate = 0.003 *100 * (1/2*volume0/reserve0 + 1/2*volume1/reserve1)
+            }
+          } catch(e){
+            console.log(e)
+          }
+
+      }
+
+      console.log(lpAddress)
+      console.log(tradingFeeRate)
       // new BigNumber(totalDepositsVal).times(quoteTokenAmount).div(tokenAmount).div(BIG_TEN.pow(quoteTokenDecimals)).times(2)
 
     /*    const calls = farmsToFetch.map((farm) => {
@@ -131,6 +202,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         jarLPDeposits: jarDeposits.toJSON(),
         jarRatio: jarRatioNum.toJSON(),
         totalDeposits: totalDeposits.toJSON(),
+        tradingFeeRate: JSON.stringify(tradingFeeRate),
 //        poolWeight: poolWeight.toJSON(),
 //        multiplier: `${allocPoint.div(100).toString()}X`,
       }
