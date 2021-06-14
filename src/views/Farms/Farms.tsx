@@ -432,7 +432,7 @@ const Farms: React.FC = () => {
     setSortOption(option.value)
   }
 
-  const tvl = rowData.reduce((sum,current) =>  sum.plus(current.liquidity.liquidity) , new BigNumber(0) );
+  const tvl = farmsList(activeFarms).reduce((sum,current) =>  sum.plus(current.liquidity) , new BigNumber(0) );
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
