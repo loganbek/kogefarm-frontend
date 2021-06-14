@@ -132,7 +132,6 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           });
 
           const responseData = await client.query(subgraphQuery).toPromise();
-          console.log(responseData)
           let volume0 = 0
           let volume1 = 0
           let volumeUSD = 0
@@ -158,9 +157,6 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           }
 
       }
-
-      console.log(lpAddress)
-      console.log(tradingFeeRate)
       // new BigNumber(totalDepositsVal).times(quoteTokenAmount).div(tokenAmount).div(BIG_TEN.pow(quoteTokenDecimals)).times(2)
 
     /*    const calls = farmsToFetch.map((farm) => {
