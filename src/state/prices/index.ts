@@ -17,7 +17,7 @@ const initialState: PriceState = {
 export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async () => {
 //  const response = await fetch('https://api.pancakeswap.info/api/v2/tokens')
 //  const data = (await response.json()) as PriceApiResponse
-  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=usd-coin%2Cmatic-network&vs_currencies=usd')
+  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd')
   const data = (await response.json()) as GeicoApiList
 
   // Fetch KogeCoin price from LP pool
@@ -105,7 +105,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const ironUSDC = ironBalanceLP/(usdcBalanceIron*10**12)
   // Get Matic price
   const maticUSD = parseFloat(data['matic-network'].usd)
-  const usdcUSD = parseFloat(data['usd-coin'].usd)
+  const usdcUSD = 1.000
   // Get Koge price in USD
   const kogeUSD = maticUSD/kogeMatic
   const titanUSD = maticUSD/titanMatic
@@ -114,7 +114,6 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const ironUSD = usdcUSD/ironUSDC
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
-  const stableCoin = 1.0000
   // Get Koge price and Koge LP price
   data.kogecoin = {"usd":kogeUSD.toString()}
   data.kogematiclp = {"usd":kogeMaticLPUSD.toString()}
@@ -122,7 +121,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.booty = {"usd":bootyUSD.toString()}
   data.iron = {"usd":ironUSD.toString()}
   data.fish = {"usd":fishUSD.toString()}
-  data.usdc = {"usd":stableCoin.toString()}
+  data.usdc = {"usd":usdcUSD.toString()}
 
   // Return normalized token names
   return {
