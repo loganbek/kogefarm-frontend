@@ -446,7 +446,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you earn more yield by ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounding</a></u>{t(' high APR farms. ')}<u><a href='https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf'>Audited</a></u>{t(' by Obelisk.')}
+          {t('KogeFarm helps you earn more yield by ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounding</a></u>. <u><a href='https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf'>Audited</a></u> by Obelisk.
         </Heading>
         <Heading scale="lg" color="brown" textAlign="center">
         {t('Vault TVL: ')} {displayTVL!=='$NaN' && displayTVL}
