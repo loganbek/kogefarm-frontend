@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import Countdown from 'react-countdown';
+// import Countdown from 'react-countdown';
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -12,7 +12,7 @@ import { usePools, useBlock, useFetchCakeVault, useGetApiPrice } from 'state/hoo
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
-import Balance from 'components/Balance'
+// import Balance from 'components/Balance'
 import PoolCard from './components/PoolCard'
 // import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
@@ -66,7 +66,7 @@ const Pools: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [observerIsSet])
-  const Completionist = () => <span>now</span>;
+//  const Completionist = () => <span>now</span>;
 
   const kogePrice = useGetApiPrice('kogecoin');
 
