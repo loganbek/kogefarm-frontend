@@ -9,7 +9,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
@@ -37,6 +37,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   quoteToken,
   token,
   isSushi,
+  isWault,
   userDataReady,
 }) => {
   const { t } = useTranslation()
@@ -57,7 +58,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     tokenAddress: token.address,
   })
 //  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  const addLiquidityUrl = isSushi ? `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}` : `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  if (isSushi===true){
+    addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (isWault===true){
+    addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
 
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {

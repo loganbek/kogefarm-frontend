@@ -6,7 +6,7 @@ import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -106,9 +106,25 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
   })
-  const addLiquidityUrl = farm.isSushi ? `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}` : `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  if (farm.isSushi===true){
+    addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.isWault===true){
+    addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const isPromotedFarm = farm.token.symbol === 'CAKE'
+
+  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
+  if (farm.isSushi===true){
+    infoAddr = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
+  }
+  if (farm.isWault===true){
+    infoAddr = `https://polygonscan.com/address/${lpAddress}`
+  }
+
 
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
@@ -118,6 +134,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
 //        multiplier={farm.multiplier}
         isCommunityFarm={farm.isCommunity}
         isSushiFarm={farm.isSushi}
+        isWaultFarm={farm.isWault}
         farmImage={farmImage}
         tokenSymbol={farm.token.symbol}
       />
@@ -175,7 +192,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         <DetailsSection
           removed={removed}
           bscScanAddress={`https://polygonscan.com/address/${farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]}`}
-          infoAddress={farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)}
+          infoAddress={infoAddr}
           totalValueFormatted={totalValueFormatted}
           userValueFormatted={userValueFormatted}
           apyD={farmAPYD}

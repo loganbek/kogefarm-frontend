@@ -98,6 +98,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  wexpoly: {
+    symbol: 'WEXpoly',
+    coingeico: 'wexpoly',
+    address: {
+      137: '0x4c4BF319237D98a30A929A96112EfFa8DA3510EB',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

@@ -33,6 +33,9 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const ironUSDCLP = '0x2Bbe0F728f4d5821F84eeE0432D2A4be7C0cB7Fc'
   const fishAddr = '0x3a3df212b7aa91aa0402b9035b098891d276572b'
   const fishMaticLP = '0x289cf2B63c5Edeeeab89663639674d9233E8668E'
+  const wexAddr = '0x4c4BF319237D98a30A929A96112EfFa8DA3510EB'
+  const wexUSDCLP = '0x5DE6a3CcA10d3F788EEdbD4923e31D4658bf6f9a'
+
   const calls = [
     // Balance of token in the LP contract
     {
@@ -95,14 +98,26 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [fishMaticLP],
     },
+    // WexPoly
+    {
+      address: wexAddr,
+      name: 'balanceOf',
+      params: [wexUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [wexUSDCLP],
+    },
   ]
-  const [kogeBalanceLP, maticTokenBalanceLP, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish] = await multicall(erc20, calls)
+  const [kogeBalanceLP, maticTokenBalanceLP, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex] = await multicall(erc20, calls)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
   const titanMatic = titanBalanceLP/maticBalanceLP
   const bootyMatic = bootyBalanceLP/maticBalanceBooty
   const fishMatic = fishBalance/maticFish
   const ironUSDC = ironBalanceLP/(usdcBalanceIron*10**12)
+  const wexUSDC = wexBalanceLP/(usdcWex*10**12)
   // Get Matic price
   const maticUSD = parseFloat(data['matic-network'].usd)
   const usdcUSD = 1.000
@@ -112,6 +127,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const bootyUSD = maticUSD/bootyMatic
   const fishUSD = maticUSD/fishMatic
   const ironUSD = usdcUSD/ironUSDC
+  const wexUSD = usdcUSD/wexUSDC
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -122,6 +138,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.iron = {"usd":ironUSD.toString()}
   data.fish = {"usd":fishUSD.toString()}
   data.usdc = {"usd":usdcUSD.toString()}
+  data.wexpoly = {"usd":wexUSD.toString()}
 
   // Return normalized token names
   return {
