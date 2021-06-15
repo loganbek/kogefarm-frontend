@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@pancakeswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, SushiTag, DualTag } from 'components/Tags'
+import { CommunityTag, CoreTag, SushiTag, WaultTag, DualTag } from 'components/Tags'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -157,8 +157,21 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://polygonscan.com/address/${jarAddress}`
-  const info = farm.isSushi ? (`https://analytics-polygon.sushi.com/pairs/${lpAddress}`) : (`https://info.quickswap.exchange/pair/${lpAddress}`)
-  const liquidityurl = farm.isSushi? (`https://app.sushi.com/add/${liquidityUrlPathParts}`) : (`https://quickswap.exchange/#/add/${liquidityUrlPathParts}`)
+  let info = `https://info.quickswap.exchange/pair/${lpAddress}`
+  if (farm.isSushi===true){
+    info = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
+  }
+  if (farm.isWault===true){
+    info =  `https://polygonscan.com/address/${lpAddress}`
+  }
+
+  let liquidityurl = `https://quickswap.exchange/#/add/${liquidityUrlPathParts}`
+  if (farm.isSushi===true){
+    liquidityurl = `https://app.sushi.com/add/${liquidityUrlPathParts}`
+  }
+  if (farm.isWault===true){
+    liquidityurl = `https://swap.wault.finance/polygon/#/add/${liquidityUrlPathParts}`
+  }
 
   return (
     <Container expanded={expanded}>
@@ -175,6 +188,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {farm.isSushi && <SushiTag />}
+          {farm.isWault && <WaultTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>

@@ -169,6 +169,81 @@ const farms: FarmConfig[] = [
   },
 
   {
+    pid: 13,
+    lpSymbol: 'WEXPoly',
+    lpAddresses: {
+      80001: '',
+      137: '0x4c4BF319237D98a30A929A96112EfFa8DA3510EB',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xC8Bd86E5a132Ac0bf10134e270De06A8Ba317BFe',
+    },
+    masterChefPid: 1,
+    jarAddresses: {
+      80001: '',
+      137: '0x7f9fc5bA0c2d213C9Eee7940fefA1a7a297B2320',
+    },
+    token: tokens.wexpoly,
+    quoteToken: tokens.wexpoly,
+    rewardPerBlock: 1500,
+    poolWeightDesignate: 90/1500,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.005,
+    isWault: true,
+  },
+
+  {
+    pid: 14,
+    lpSymbol: 'WEXPoly-Matic LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xC46991072C7eAC184F7bd69d3122cd1750300b27',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xC8Bd86E5a132Ac0bf10134e270De06A8Ba317BFe',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      80001: '',
+      137: '0x12977EdF05A6718036f4ecc9bE2D26366a97B96b',
+    },
+    token: tokens.wexpoly,
+    quoteToken: tokens.matic,
+    rewardPerBlock: 1500,
+    poolWeightDesignate: 490/1500,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.01,
+    isWault: true,
+  },
+
+  {
+    pid: 15,
+    lpSymbol: 'WEXPoly-USDC LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x5DE6a3CcA10d3F788EEdbD4923e31D4658bf6f9a',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xC8Bd86E5a132Ac0bf10134e270De06A8Ba317BFe',
+    },
+    masterChefPid: 3,
+    jarAddresses: {
+      80001: '',
+      137: '0xe1A9ab14B4c0efa25a1EE6f1348ef4C34418c258',
+    },
+    token: tokens.wexpoly,
+    quoteToken: tokens.usdc,
+    rewardPerBlock: 1500,
+    poolWeightDesignate: 100/1500,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.01,
+    isWault: true,
+  },
+
+  {
     pid: 7,
     lpSymbol: 'Fish',
     lpAddresses: {
@@ -317,7 +392,7 @@ const farms: FarmConfig[] = [
 
 
   {
-    pid: 13,
+    pid: 16,
     lpSymbol: 'Gaj-USDC LP',
     lpAddresses: {
       80001: '',
@@ -341,7 +416,7 @@ const farms: FarmConfig[] = [
   },
 
   {
-    pid: 14,
+    pid: 17,
     lpSymbol: 'Gaj-MATIC LP',
     lpAddresses: {
       80001: '',
