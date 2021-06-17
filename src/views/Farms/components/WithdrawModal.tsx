@@ -66,7 +66,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         <Button
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullDisplayBalanceNumber)}
           onClick={async () => {
-            let withdrawBalance = valNumber.times(fullBalanceNumber).div(fullDisplayBalanceNumber).toFixed(18,1)
+            let withdrawBalance = valNumber.times(fullBalanceNumber).div(fullDisplayBalanceNumber).toFixed(numDecimals,1)
             if (val===fullDisplayBalance){
               withdrawBalance = fullBalance
             }
