@@ -1,16 +1,14 @@
 diff --git a/node_modules/@pancakeswap/uikit/.DS_Store b/node_modules/@pancakeswap/uikit/.DS_Store
 new file mode 100644
-index 0000000..2964dd4
-Binary files /dev/null and b/node_modules/@pancakeswap/uikit/.DS_Store differ
+index 0000000..e69de29
 diff --git a/node_modules/@pancakeswap/uikit/dist/.DS_Store b/node_modules/@pancakeswap/uikit/dist/.DS_Store
 new file mode 100644
-index 0000000..1f3b97a
-Binary files /dev/null and b/node_modules/@pancakeswap/uikit/dist/.DS_Store differ
+index 0000000..e69de29
 diff --git a/node_modules/@pancakeswap/uikit/dist/hooks/.DS_Store b/node_modules/@pancakeswap/uikit/dist/hooks/.DS_Store
 new file mode 100644
 index 0000000..e69de29
 diff --git a/node_modules/@pancakeswap/uikit/dist/index.cjs.js b/node_modules/@pancakeswap/uikit/dist/index.cjs.js
-index 94e2ef0..15e12f5 100644
+index 94e2ef0..3afad99 100644
 --- a/node_modules/@pancakeswap/uikit/dist/index.cjs.js
 +++ b/node_modules/@pancakeswap/uikit/dist/index.cjs.js
 @@ -1842,11 +1842,14 @@ Radio.defaultProps = {
@@ -168,12 +166,12 @@ index 94e2ef0..15e12f5 100644
          React__default['default'].createElement(Text, { fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, account),
          React__default['default'].createElement(Flex, { mb: "32px" },
 -            React__default['default'].createElement(LinkExternal, { small: true, href: "https://bscscan.com/address/" + account, mr: "16px" }, "View on BscScan"),
-+            React__default['default'].createElement(LinkExternal, { small: true, href: "https://explorer-mainnet.maticvigil.com/address/" + account, mr: "16px" }, "View on MaticVigil"),
++            React__default['default'].createElement(LinkExternal, { small: true, href: "https://polygonscan.com/address/" + account, mr: "16px" }, "View on PolygonScan"),
              React__default['default'].createElement(CopyToClipboard, { toCopy: account }, "Copy Address")),
          React__default['default'].createElement(Flex, { justifyContent: "center" },
              React__default['default'].createElement(Button, { scale: "sm", variant: "secondary", onClick: function () {
 diff --git a/node_modules/@pancakeswap/uikit/dist/index.esm.js b/node_modules/@pancakeswap/uikit/dist/index.esm.js
-index 0cb8985..32ccc62 100644
+index 0cb8985..125d344 100644
 --- a/node_modules/@pancakeswap/uikit/dist/index.esm.js
 +++ b/node_modules/@pancakeswap/uikit/dist/index.esm.js
 @@ -1828,11 +1828,17 @@ Radio.defaultProps = {
@@ -333,15 +331,13 @@ index 0cb8985..32ccc62 100644
          React.createElement(Text, { fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, account),
          React.createElement(Flex, { mb: "32px" },
 -            React.createElement(LinkExternal, { small: true, href: "https://bscscan.com/address/" + account, mr: "16px" }, "View on BscScan"),
-+            React.createElement(LinkExternal, { small: true, href: "https://explorer-mainnet.maticvigil.com/address/" + account, mr: "16px" }, "View on MaticVigil"),
++            React.createElement(LinkExternal, { small: true, href: "https://polygonscan.com/address/" + account, mr: "16px" }, "View on PolygonScan"),
              React.createElement(CopyToClipboard, { toCopy: account }, "Copy Address")),
          React.createElement(Flex, { justifyContent: "center" },
              React.createElement(Button, { scale: "sm", variant: "secondary", onClick: function () {
 diff --git a/node_modules/@pancakeswap/uikit/dist/widgets/.DS_Store b/node_modules/@pancakeswap/uikit/dist/widgets/.DS_Store
 new file mode 100644
-index 0000000..0bfbeee
-Binary files /dev/null and b/node_modules/@pancakeswap/uikit/dist/widgets/.DS_Store differ
+index 0000000..e69de29
 diff --git a/node_modules/@pancakeswap/uikit/dist/widgets/Menu/.DS_Store b/node_modules/@pancakeswap/uikit/dist/widgets/Menu/.DS_Store
 new file mode 100644
-index 0000000..180d78b
-Binary files /dev/null and b/node_modules/@pancakeswap/uikit/dist/widgets/Menu/.DS_Store differ
+index 0000000..e69de29

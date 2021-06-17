@@ -181,7 +181,10 @@ const Farms: React.FC = () => {
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
         const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
 */
-
+        let decimals = 18
+        if (farm.lpSymbol==="KogeCoin"){
+          decimals = 9
+        }
         if (!farm.tokenPriceVsQuote || !prices) {
           return farm
         }
@@ -199,7 +202,7 @@ const Farms: React.FC = () => {
 //        const jarRatioNum = new BigNumber(farm.jarRatio)
         let totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
         if (farm.token===farm.quoteToken){
-          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10**18).times(new BigNumber(quoteTokenPriceUsd))
+          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10**decimals).times(new BigNumber(quoteTokenPriceUsd))
         }
         const farmRatio = new BigNumber(farm.jarRatio).div(10**18)
         let userDeposits

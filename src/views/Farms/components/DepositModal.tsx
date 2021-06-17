@@ -18,9 +18,16 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+
+  let numDecimals = 18
+  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+    numDecimals = 9
+  }
+
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
-  }, [max])
+    return getFullDisplayBalance(max, numDecimals)
+  }, [max, numDecimals])
+
 
   const valNumber = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
