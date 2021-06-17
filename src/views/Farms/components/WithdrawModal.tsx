@@ -18,12 +18,18 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+
+  let numDecimals = 18
+  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+    numDecimals = 9
+  }
+
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
-  }, [max])
+    return getFullDisplayBalance(max, numDecimals)
+  }, [max, numDecimals])
   const fullDisplayBalance = useMemo(() => {
-    return getFullDisplayBalance(displayMax,18,18)
-  }, [displayMax])
+    return getFullDisplayBalance(displayMax,numDecimals,numDecimals)
+  }, [displayMax, numDecimals])
 
   const valNumber = new BigNumber(val)
   const fullBalanceNumber = new BigNumber(fullBalance)
@@ -41,7 +47,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
 
   const handleSelectMax = useCallback(() => {
     setVal(fullDisplayBalance)
-  }, [fullDisplayBalance, setVal])
+  }, [fullDisplayBalance, setVal ])
 
   return (
     <Modal title={t('Unstake LP')} onDismiss={onDismiss}>

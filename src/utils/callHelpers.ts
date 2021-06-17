@@ -35,8 +35,12 @@ export const stakeKoge = async (masterChefContract, pid, amount, account) => {
 }
 
 export const depositJar = async (jarContract, amount, account) => {
+  let decimals = DEFAULT_TOKEN_DECIMAL
+  if (jarContract.options.address==="0x992Ae1912CE6b608E0c0d2BF66259ab1aE62A657"){
+    decimals = KOGE_TOKEN_DECIMAL
+  }
   return jarContract.methods
-    .deposit(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
+    .deposit(new BigNumber(amount).times(decimals).toString())
     .send({ from: account, gas: 800000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -80,8 +84,12 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const withdrawalJar = async (jarContract, amount, account) => {
+  let decimals = DEFAULT_TOKEN_DECIMAL
+  if (jarContract.options.address==="0x992Ae1912CE6b608E0c0d2BF66259ab1aE62A657"){
+    decimals = KOGE_TOKEN_DECIMAL
+  }
   return jarContract.methods
-    .withdraw(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
+    .withdraw(new BigNumber(amount).times(decimals).toString())
     .send({ from: account, gas: 800000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash

@@ -39,134 +39,29 @@ const farms: FarmConfig[] = [
   /**
    * All farms below here are from v1 and are to be set to 0x
    */
-
    {
-     pid: 2,
-     lpSymbol: 'Titan',
+     pid: 18,
+     lpSymbol: 'KogeCoin',
      lpAddresses: {
        80001: '',
-       137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
+       137: '0x13748d548D95D78a3c83fe3F32604B4796CFfa23',
      },
      masterChefAddresses: {
        80001: '',
-       137: '0xa37DD1f62661EB18c338f18Cf797cff8b5102d8e',
+       137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
      },
-     masterChefPid: 0,
+     masterChefPid: 1,
      jarAddresses: {
        80001: '',
-       137: '0x72812112d635873F5fEF2b0bcAb22cC5BBA2E0dD',
+       137: '0x992Ae1912CE6b608E0c0d2BF66259ab1aE62A657',
      },
-     token: tokens.titan,
-     quoteToken: tokens.titan,
-     rewardToken: tokens.usdc,
-     rewardPerBlock: 0.23148148148,
-     poolWeightDesignate: 1,
+     token: tokens.kogecoin,
+     quoteToken: tokens.kogecoin,
+     rewardPerBlock: 0.0000000028,
+     poolWeightDesignate: 1/2,
      minutesPerCompound: 1,
-     kogefarmFee: 0.000,
+     kogefarmFee: 0.00,
    },
-
-  {
-    pid: 3,
-    lpSymbol: 'Titan-MATIC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0xA79983Daf2A92c2C902cD74217Efe3D8AF9Fba2a',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      137: '0xaA5237Ff567987445e1AC35D5148c11Ef3703173',
-    },
-    token: tokens.titan,
-    quoteToken: tokens.matic,
-    rewardPerBlock: 14.797916666666666666,
-    poolWeightDesignate: 300000/1000000,
-    minutesPerCompound: 1,
-    isSushi: true,
-    kogefarmFee: 0.01,
-  },
-
-  {
-    pid: 4,
-    lpSymbol: 'Titan-Iron LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x35c1895DAC1e2432b320e2927b4F71a0D995602F',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xb444d596273C66Ac269C33c30Fbb245F4ba8A79d',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      137: '0x9A48219D7b3106BaAD3F5D6Cf50d94F1Cf747C8D',
-    },
-    token: tokens.titan,
-    quoteToken: tokens.iron,
-    rewardPerBlock: 2.219675925925926,
-    poolWeightDesignate: 100000/100000,
-    minutesPerCompound: 1,
-    isSushi: true,
-    kogefarmFee: 0.01,
-  },
-
-  {
-    pid: 5,
-    lpSymbol: 'Iron-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x2Bbe0F728f4d5821F84eeE0432D2A4be7C0cB7Fc',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
-    },
-    masterChefPid: 2,
-    jarAddresses: {
-      80001: '',
-      137: '0x3fae5e941B7eb3A7BeE94399bF669224efa9432C',
-    },
-    token: tokens.iron,
-    quoteToken: tokens.usdc,
-    rewardPerBlock: 14.797916666666666,
-    poolWeightDesignate: 350000/1000000,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.005,
-    kogefarmComment: ' (Quick)',
-    rewardToken: tokens.titan,
-  },
-
-  {
-    pid: 6,
-    lpSymbol: 'Iron-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x85dE135fF062Df790A5f20B79120f17D3da63b2d',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
-    },
-    masterChefPid: 1,
-    jarAddresses: {
-      80001: '',
-      137: '0xBDdC52842add45eAe21FeaF06f5c348a157cd148',
-    },
-    token: tokens.iron,
-    quoteToken: tokens.usdc,
-    rewardPerBlock: 14.797916666666666,
-    poolWeightDesignate: 350000/1000000,
-    minutesPerCompound: 1,
-    isSushi: true,
-    kogefarmFee: 0.005,
-    kogefarmComment: ' (Sushi)',
-    rewardToken: tokens.titan,
-  },
 
   {
     pid: 13,
@@ -438,6 +333,135 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
   },
+
+  {
+    pid: 2,
+    lpSymbol: 'Titan',
+    lpAddresses: {
+      80001: '',
+      137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xa37DD1f62661EB18c338f18Cf797cff8b5102d8e',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0x72812112d635873F5fEF2b0bcAb22cC5BBA2E0dD',
+    },
+    token: tokens.titan,
+    quoteToken: tokens.titan,
+    rewardToken: tokens.usdc,
+    rewardPerBlock: 0.23148148148,
+    poolWeightDesignate: 1,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.000,
+  },
+
+ {
+   pid: 3,
+   lpSymbol: 'Titan-MATIC LP',
+   lpAddresses: {
+     80001: '',
+     137: '0xA79983Daf2A92c2C902cD74217Efe3D8AF9Fba2a',
+   },
+   masterChefAddresses: {
+     80001: '',
+     137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
+   },
+   masterChefPid: 0,
+   jarAddresses: {
+     80001: '',
+     137: '0xaA5237Ff567987445e1AC35D5148c11Ef3703173',
+   },
+   token: tokens.titan,
+   quoteToken: tokens.matic,
+   rewardPerBlock: 14.797916666666666666,
+   poolWeightDesignate: 300000/1000000,
+   minutesPerCompound: 1,
+   isSushi: true,
+   kogefarmFee: 0.01,
+ },
+
+ {
+   pid: 4,
+   lpSymbol: 'Titan-Iron LP',
+   lpAddresses: {
+     80001: '',
+     137: '0x35c1895DAC1e2432b320e2927b4F71a0D995602F',
+   },
+   masterChefAddresses: {
+     80001: '',
+     137: '0xb444d596273C66Ac269C33c30Fbb245F4ba8A79d',
+   },
+   masterChefPid: 0,
+   jarAddresses: {
+     80001: '',
+     137: '0x9A48219D7b3106BaAD3F5D6Cf50d94F1Cf747C8D',
+   },
+   token: tokens.titan,
+   quoteToken: tokens.iron,
+   rewardPerBlock: 2.219675925925926,
+   poolWeightDesignate: 100000/100000,
+   minutesPerCompound: 1,
+   isSushi: true,
+   kogefarmFee: 0.01,
+ },
+
+ {
+   pid: 5,
+   lpSymbol: 'Iron-USDC LP',
+   lpAddresses: {
+     80001: '',
+     137: '0x2Bbe0F728f4d5821F84eeE0432D2A4be7C0cB7Fc',
+   },
+   masterChefAddresses: {
+     80001: '',
+     137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
+   },
+   masterChefPid: 2,
+   jarAddresses: {
+     80001: '',
+     137: '0x3fae5e941B7eb3A7BeE94399bF669224efa9432C',
+   },
+   token: tokens.iron,
+   quoteToken: tokens.usdc,
+   rewardPerBlock: 14.797916666666666,
+   poolWeightDesignate: 350000/1000000,
+   minutesPerCompound: 1,
+   kogefarmFee: 0.005,
+   kogefarmComment: ' (Quick)',
+   rewardToken: tokens.titan,
+ },
+
+ {
+   pid: 6,
+   lpSymbol: 'Iron-USDC LP',
+   lpAddresses: {
+     80001: '',
+     137: '0x85dE135fF062Df790A5f20B79120f17D3da63b2d',
+   },
+   masterChefAddresses: {
+     80001: '',
+     137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
+   },
+   masterChefPid: 1,
+   jarAddresses: {
+     80001: '',
+     137: '0xBDdC52842add45eAe21FeaF06f5c348a157cd148',
+   },
+   token: tokens.iron,
+   quoteToken: tokens.usdc,
+   rewardPerBlock: 14.797916666666666,
+   poolWeightDesignate: 350000/1000000,
+   minutesPerCompound: 1,
+   isSushi: true,
+   kogefarmFee: 0.005,
+   kogefarmComment: ' (Sushi)',
+   rewardToken: tokens.titan,
+ },
+
 /*  {
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',

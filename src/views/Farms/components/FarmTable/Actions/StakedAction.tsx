@@ -66,16 +66,21 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
 
+  let decimals = 18
+  if (lpSymbol==="KogeCoin"){
+    decimals = 9
+  }
+
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {
     const stakedBalanceNumber = getBalanceNumber(stakedBalance)
     if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
-      return getFullDisplayBalance(displayBalanceNumber,18,18).toLocaleString()
+      return getFullDisplayBalance(displayBalanceNumber,decimals,decimals).toLocaleString()
     }
 //    return stakedBalanceNumber.toLocaleString()
-  return getFullDisplayBalance(displayBalanceNumber,18,18).toLocaleString()
+  return getFullDisplayBalance(displayBalanceNumber,decimals,decimals).toLocaleString()
 
-}, [stakedBalance, displayBalanceNumber])
+}, [stakedBalance, displayBalanceNumber, decimals])
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,

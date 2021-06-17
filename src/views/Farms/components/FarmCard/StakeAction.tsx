@@ -41,18 +41,23 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const { onUnstake } = useUnstake(jarAddress)
   const location = useLocation()
 
+  let numDecimals = 18
+  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+    numDecimals = 9
+  }
+
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {
-    const stakedBalanceNumber = getBalanceNumber(stakedBalance)
+    const stakedBalanceNumber = getBalanceNumber(stakedBalance,numDecimals)
     if (stakedBalanceNumber===0){
       return stakedBalanceNumber.toLocaleString()
     }
     if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
-      return getFullDisplayBalance(displayBalanceNumber, 18, 18).toLocaleString()
+      return getFullDisplayBalance(displayBalanceNumber, numDecimals, numDecimals).toLocaleString()
     }
-    return getFullDisplayBalance(displayBalanceNumber, 18, 18).toLocaleString()
+    return getFullDisplayBalance(displayBalanceNumber, numDecimals, numDecimals).toLocaleString()
 //    return stakedBalanceNumber.toLocaleString()
-}, [stakedBalance, displayBalanceNumber])
+}, [stakedBalance, displayBalanceNumber, numDecimals])
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
