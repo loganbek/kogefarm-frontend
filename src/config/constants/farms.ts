@@ -63,6 +63,30 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.00,
    },
 
+   {
+     pid: 19,
+     lpSymbol: 'miMatic-Qi',
+     lpAddresses: {
+       80001: '',
+       137: '0x7AfcF11F3e2f01e71B7Cc6b8B5e707E42e6Ea397',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x574Fe4E8120C4Da1741b5Fd45584de7A5b521F0F',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0xaE48aCc701151061A5bfff8e4c3f0DCfe4A957E9',
+     },
+     token: tokens.qidao,
+     quoteToken: tokens.mimatic,
+     rewardPerBlock: 3,
+     poolWeightDesignate: 250/375,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01+0.005,
+   },
+
   {
     pid: 13,
     lpSymbol: 'WEXPoly',

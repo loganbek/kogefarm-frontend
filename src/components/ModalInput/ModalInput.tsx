@@ -68,6 +68,8 @@ const ModalInput: React.FC<ModalInputProps> = ({
   const { t } = useTranslation()
   const isBalanceZero = max === '0' || !max
 
+  const isQiDao = symbol.toUpperCase() === 'MIMATIC-QI'
+
   const displayBalance = (balance: string) => {
     if (isBalanceZero) {
       return '0'
@@ -111,6 +113,11 @@ const ModalInput: React.FC<ModalInputProps> = ({
             {t('get')} {symbol}
           </Link>
         </StyledErrorMessage>
+      )}
+      {isQiDao && (
+          <Text fontSize="14px" bold={false} color="failure">
+            {t('Note: this vault has a 0.5% third party deposit fee.')}
+          </Text>
       )}
     </div>
   )
