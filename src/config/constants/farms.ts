@@ -358,81 +358,6 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
   },
 
-  {
-    pid: 2,
-    lpSymbol: 'Titan',
-    lpAddresses: {
-      80001: '',
-      137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xa37DD1f62661EB18c338f18Cf797cff8b5102d8e',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      137: '0x72812112d635873F5fEF2b0bcAb22cC5BBA2E0dD',
-    },
-    token: tokens.titan,
-    quoteToken: tokens.titan,
-    rewardToken: tokens.usdc,
-    rewardPerBlock: 0.23148148148,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.000,
-  },
-
- {
-   pid: 3,
-   lpSymbol: 'Titan-MATIC LP',
-   lpAddresses: {
-     80001: '',
-     137: '0xA79983Daf2A92c2C902cD74217Efe3D8AF9Fba2a',
-   },
-   masterChefAddresses: {
-     80001: '',
-     137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
-   },
-   masterChefPid: 0,
-   jarAddresses: {
-     80001: '',
-     137: '0xaA5237Ff567987445e1AC35D5148c11Ef3703173',
-   },
-   token: tokens.titan,
-   quoteToken: tokens.matic,
-   rewardPerBlock: 14.797916666666666666,
-   poolWeightDesignate: 300000/1000000,
-   minutesPerCompound: 1,
-   isSushi: true,
-   kogefarmFee: 0.01,
- },
-
- {
-   pid: 4,
-   lpSymbol: 'Titan-Iron LP',
-   lpAddresses: {
-     80001: '',
-     137: '0x35c1895DAC1e2432b320e2927b4F71a0D995602F',
-   },
-   masterChefAddresses: {
-     80001: '',
-     137: '0xb444d596273C66Ac269C33c30Fbb245F4ba8A79d',
-   },
-   masterChefPid: 0,
-   jarAddresses: {
-     80001: '',
-     137: '0x9A48219D7b3106BaAD3F5D6Cf50d94F1Cf747C8D',
-   },
-   token: tokens.titan,
-   quoteToken: tokens.iron,
-   rewardPerBlock: 2.219675925925926,
-   poolWeightDesignate: 100000/100000,
-   minutesPerCompound: 1,
-   isSushi: true,
-   kogefarmFee: 0.01,
- },
-
  {
    pid: 5,
    lpSymbol: 'Iron-USDC LP',
@@ -455,8 +380,8 @@ const farms: FarmConfig[] = [
    poolWeightDesignate: 350000/1000000,
    minutesPerCompound: 1,
    kogefarmFee: 0.005,
-   kogefarmComment: ' (Quick)',
    rewardToken: tokens.titan,
+   kogefarmComment: ' (Quick)',
  },
 
  {
@@ -482,9 +407,88 @@ const farms: FarmConfig[] = [
    minutesPerCompound: 1,
    isSushi: true,
    kogefarmFee: 0.005,
-   kogefarmComment: ' (Sushi)',
    rewardToken: tokens.titan,
+   kogefarmComment: ' (Sushi)',
  },
+
+ {
+   pid: 2,
+   lpSymbol: 'Titan',
+   lpAddresses: {
+     80001: '',
+     137: '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A',
+   },
+   masterChefAddresses: {
+     80001: '',
+     137: '0xa37DD1f62661EB18c338f18Cf797cff8b5102d8e',
+   },
+   masterChefPid: 0,
+   jarAddresses: {
+     80001: '',
+     137: '0x72812112d635873F5fEF2b0bcAb22cC5BBA2E0dD',
+   },
+   token: tokens.titan,
+   quoteToken: tokens.titan,
+   rewardToken: tokens.usdc,
+   rewardPerBlock: 0.23148148148,
+   poolWeightDesignate: 1,
+   minutesPerCompound: 1,
+   kogefarmFee: 0.000,
+   kogefarmComment: ' (HIGH RISK)',
+ },
+
+{
+  pid: 3,
+  lpSymbol: 'Titan-MATIC LP',
+  lpAddresses: {
+    80001: '',
+    137: '0xA79983Daf2A92c2C902cD74217Efe3D8AF9Fba2a',
+  },
+  masterChefAddresses: {
+    80001: '',
+    137: '0x65430393358e55A658BcdE6FF69AB28cF1CbB77a',
+  },
+  masterChefPid: 0,
+  jarAddresses: {
+    80001: '',
+    137: '0xaA5237Ff567987445e1AC35D5148c11Ef3703173',
+  },
+  token: tokens.titan,
+  quoteToken: tokens.matic,
+  rewardPerBlock: 14.797916666666666666,
+  poolWeightDesignate: 300000/1000000,
+  minutesPerCompound: 1,
+  isSushi: true,
+  kogefarmFee: 0.01,
+  kogefarmComment: ' (HIGH RISK)',
+},
+
+{
+  pid: 4,
+  lpSymbol: 'Titan-Iron LP',
+  lpAddresses: {
+    80001: '',
+    137: '0x35c1895DAC1e2432b320e2927b4F71a0D995602F',
+  },
+  masterChefAddresses: {
+    80001: '',
+    137: '0xb444d596273C66Ac269C33c30Fbb245F4ba8A79d',
+  },
+  masterChefPid: 0,
+  jarAddresses: {
+    80001: '',
+    137: '0x9A48219D7b3106BaAD3F5D6Cf50d94F1Cf747C8D',
+  },
+  token: tokens.titan,
+  quoteToken: tokens.iron,
+  rewardPerBlock: 2.219675925925926,
+  poolWeightDesignate: 100000/100000,
+  minutesPerCompound: 1,
+  isSushi: true,
+  kogefarmFee: 0.01,
+  kogefarmComment: ' (HIGH RISK)',
+},
+
 
 /*  {
     pid: 2,

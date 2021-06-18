@@ -82,6 +82,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
+  const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
+
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
@@ -90,7 +92,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '').split(' ')[0] + farmcomment
 //  const earnLabel = farm.dual ? farm.dual.earnLabel : 'CAKE'
   const userValueFormatted = farm.userValue
     ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`

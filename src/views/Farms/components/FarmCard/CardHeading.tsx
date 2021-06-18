@@ -29,7 +29,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 //  multiplier,
   isCommunityFarm,
   isSushiFarm,
-  isWaultFarm, 
+  isWaultFarm,
   farmImage,
   tokenSymbol,
 }) => {
@@ -37,7 +37,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
       <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
       <Flex flexDirection="column" alignItems="flex-end">
-        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
+        <Heading mb="4px">{lpLabel}</Heading>
         {/* <Flex justifyContent="center"> */}
         {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
         <Wrapper marginTop="6px">
