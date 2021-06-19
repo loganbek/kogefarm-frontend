@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 // import { Tag, Flex, Heading, Image } from '@pancakeswap/uikit'
 import { Flex, Heading, Image } from '@pancakeswap/uikit'
-import { CommunityTag, CoreTag, SushiTag, WaultTag } from 'components/Tags'
+import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag } from 'components/Tags'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
 //  multiplier?: string
   isCommunityFarm?: boolean
   isSushiFarm?: boolean
+  isDfynFarm?: boolean
   isWaultFarm?: boolean
   farmImage?: string
   tokenSymbol?: string
@@ -29,6 +30,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 //  multiplier,
   isCommunityFarm,
   isSushiFarm,
+  isDfynFarm,
   isWaultFarm,
   farmImage,
   tokenSymbol,
@@ -43,6 +45,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <Wrapper marginTop="6px">
         {isSushiFarm && <SushiTag />}
         {isWaultFarm && <WaultTag />}
+        {isDfynFarm && <DfynTag />}
         </Wrapper>
 {/*          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> */}
         {/* </Flex> */}

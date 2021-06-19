@@ -28,6 +28,16 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://matic.network',
   },
+  weth: {
+    symbol: 'MATIC',
+    coingeico: 'matic-network',
+    address: {
+      137: '0x4c28f48448720e9000907BC2611F73022fdcE1fA',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: 'https://matic.network',
+  },
   fish: {
     symbol: 'FISH',
     coingeico: 'fish',

@@ -13,6 +13,7 @@ import { createClient } from 'urql';
 
 const quickGraphURL = "https://api.thegraph.com/subgraphs/name/sameepsi/quickswap";
 const sushiGraphURL = "https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange";
+const dfynGraphURL = "https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5";
 
 const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
   const data = await Promise.all(
@@ -122,6 +123,22 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
                 volumeToken0
                 volumeToken1
                 volumeUSD
+              }
+            }
+            `
+          }
+
+          if (farmConfig.isDfyn) {
+            APIURL = dfynGraphURL
+            subgraphQuery = `
+            query {
+              pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pairAddress:"${lpAddress}"}) {
+                reserve0
+                reserve1
+                reserveUSD
+                dailyVolumeToken0
+                dailyVolumeToken1
+                dailyVolumeUSD
               }
             }
             `

@@ -4,7 +4,8 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@pancakeswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, SushiTag, WaultTag, DualTag } from 'components/Tags'
+import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag } from 'components/Tags'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -164,13 +165,25 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   if (farm.isWault===true){
     info =  `https://polygonscan.com/address/${lpAddress}`
   }
+  if (farm.isDfyn===true){
+    info = `https://info.dfyn.network/pair/${lpAddress}`
+  }
+  if (farm.token===farm.quoteToken){
+    info = `https://info.quickswap.exchange/address/${lpAddress}`
+  }
 
-  let liquidityurl = `https://quickswap.exchange/#/add/${liquidityUrlPathParts}`
+  let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   if (farm.isSushi===true){
-    liquidityurl = `https://app.sushi.com/add/${liquidityUrlPathParts}`
+    liquidityurl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
   if (farm.isWault===true){
-    liquidityurl = `https://swap.wault.finance/polygon/#/add/${liquidityUrlPathParts}`
+    liquidityurl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.isDfyn===true){
+    liquidityurl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.token===farm.quoteToken){
+    liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
   }
 
   return (

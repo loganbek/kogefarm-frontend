@@ -6,7 +6,7 @@ import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -104,6 +104,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   const farmAPYDRaw = (((1+(farm.apr)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 //  const farmAPYW = (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60*7/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 
+  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
@@ -112,12 +114,17 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   if (farm.isSushi===true){
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.isDfyn===true){
+    addLiquidityUrl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
   if (farm.isWault===true){
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.token===farm.quoteToken){
+    addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
+  }
 
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
-  const isPromotedFarm = farm.token.symbol === 'CAKE'
+  const isPromotedFarm = false
 
   let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
   if (farm.isSushi===true){
@@ -125,6 +132,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   }
   if (farm.isWault===true){
     infoAddr = `https://polygonscan.com/address/${lpAddress}`
+  }
+  if (farm.isDfyn===true){
+    infoAddr = `https://info.dfyn.network/pair/${lpAddress}`
+  }
+  if (farm.token===farm.quoteToken){
+    infoAddr = `https://info.quickswap.exchange/address/${lpAddress}`
   }
 
 

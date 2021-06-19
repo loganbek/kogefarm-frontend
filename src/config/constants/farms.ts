@@ -238,6 +238,32 @@ const farms: FarmConfig[] = [
   },
 
   {
+    pid: 20,
+    lpSymbol: 'Fish-Matic LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x9e2Fbb31fBd68472f6cd54A1635b8cd64d78FC1C',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x8CFD1B9B7478E7B0422916B72d1DB6A9D513D734',
+    },
+    masterChefPid: 21,
+    jarAddresses: {
+      80001: '',
+      137: '0xf6cF9A3cB64c97D6278A57FA322D9945AA42E417',
+    },
+    token: tokens.fish,
+    quoteToken: tokens.weth,
+    rewardPerBlock: 0.8,
+    poolWeightDesignate: 5000/30960,
+    minutesPerCompound: 1,
+    kogefarmFee: 0.000,
+    isDfyn: true,
+    kogefarmComment: ' (Dfyn)'
+  },
+
+  {
     pid: 10,
     lpSymbol: 'Booty',
     lpAddresses: {
