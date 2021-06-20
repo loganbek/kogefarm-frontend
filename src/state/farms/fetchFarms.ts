@@ -169,6 +169,9 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
             if (volumeUSD<=1000){
               tradingFeeRate = 0.003 *100 * (1/2*volume0/reserve0 + 1/2*volume1/reserve1)
             }
+            if (tradingFeeRate>=2){
+              tradingFeeRate = 0
+            }
           } catch(e){
             console.error(e)
           }
