@@ -65,6 +65,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (isWault===true){
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (quoteToken===token){
+    addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
+  }
 
   let decimals = 18
   if (lpSymbol==="KogeCoin"){

@@ -138,6 +138,26 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  omen: {
+    symbol: 'Omen',
+    coingeico: 'Omen',
+    address: {
+      137: '0x76e63a3E7Ba1e2E61D3DA86a87479f983dE89a7E',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  yeld: {
+    symbol: 'Yeld',
+    coingeico: 'yeld',
+    address: {
+      137: '0xd0f3121A190d85dE0AB6131f2bCEcdbfcfB38891',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
