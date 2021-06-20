@@ -136,6 +136,55 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 24,
+     lpSymbol: 'Yeld',
+     lpAddresses: {
+       80001: '',
+       137: '0xd0f3121A190d85dE0AB6131f2bCEcdbfcfB38891',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2DC11B394BD0f1CC6AC0a269cfe3CC0b333601B4',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xb9A4d32a547a4865E5247D611De7F3D7F3B2d378',
+     },
+     token: tokens.yeld,
+     quoteToken: tokens.yeld,
+     rewardPerBlock: 0.015,
+     poolWeightDesignate: 2500/26000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+   },
+
+   {
+     pid: 25,
+     lpSymbol: 'Yeld-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xef71F798c15f8C9732488e109BB511144088bECe',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2DC11B394BD0f1CC6AC0a269cfe3CC0b333601B4',
+     },
+     masterChefPid: 9,
+     jarAddresses: {
+       80001: '',
+       137: '0x17051bB60771888Bc908B6946F4Fb7850042FE1d',
+     },
+     token: tokens.yeld,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 0.015,
+     poolWeightDesignate: 4000/26000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     kogefarmComment: ' (Quick)',
+   },
+
+   {
      pid: 23,
      lpSymbol: 'Yeld-Matic LP',
      lpAddresses: {
@@ -159,6 +208,30 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Sushi)',
+   },
+
+   {
+     pid: 26,
+     lpSymbol: 'Yeld-USDC LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xAD8f4c66b28756458Fc419AA67aD2207A21A6997',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2DC11B394BD0f1CC6AC0a269cfe3CC0b333601B4',
+     },
+     masterChefPid: 10,
+     jarAddresses: {
+       80001: '',
+       137: '0xDF47221A2240754245dD3b88e01100C0d1d85Aa9',
+     },
+     token: tokens.yeld,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 0.015,
+     poolWeightDesignate: 4000/26000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
    },
 
   {
