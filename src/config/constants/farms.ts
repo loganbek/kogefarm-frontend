@@ -87,6 +87,80 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01+0.005,
    },
 
+   {
+     pid: 21,
+     lpSymbol: 'Omen',
+     lpAddresses: {
+       80001: '',
+       137: '0x76e63a3E7Ba1e2E61D3DA86a87479f983dE89a7E',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x8a8c784DDE052dE731a4477Bb95B4F594f5B9Bc3',
+     },
+     token: tokens.omen,
+     quoteToken: tokens.omen,
+     rewardPerBlock: 17.777,
+     poolWeightDesignate: 50000000000000000000/348000000000000000000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+   },
+
+   {
+     pid: 22,
+     lpSymbol: 'Omen-USDC LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x50409De292f5F821888702e9538Bf15Fa273dFE6',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0x6726775952DE79b66c2340fCB4DD1cb3D48944E5',
+     },
+     token: tokens.omen,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 17.777,
+     poolWeightDesignate: 60000000000000000000/348000000000000000000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+   },
+
+   {
+     pid: 23,
+     lpSymbol: 'Yeld-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xdD650C8d274474FF1af1152B3B27f2702AcA8a98',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2DC11B394BD0f1CC6AC0a269cfe3CC0b333601B4',
+     },
+     masterChefPid: 11,
+     jarAddresses: {
+       80001: '',
+       137: '0x2f3E17b34A79F4990153EE5588aC04724E773C6E',
+     },
+     token: tokens.yeld,
+     quoteToken: tokens.matic,
+     isSushi: true,
+     rewardPerBlock: 0.015,
+     poolWeightDesignate: 4000/26000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     kogefarmComment: ' (Sushi)',
+   },
+
   {
     pid: 13,
     lpSymbol: 'WEXPoly',
