@@ -317,6 +317,11 @@ const Farms: React.FC = () => {
     const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '') + farmcomment
 
+    let farmAPYNum = ((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100
+    if (farmAPYNum>10**18){
+      farmAPYNum = Number.POSITIVE_INFINITY
+    }
+
     const row: RowProps = {
       apr: {
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
@@ -329,13 +334,13 @@ const Farms: React.FC = () => {
       },
       apy: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 }),
 //        multiplier: farm.multiplier,
 //        lpLabel,
 //        tokenAddress,
 //        quoteTokenAddress,
 //        cakePrice,
-        originalValue: (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
+        originalValue: farmAPYNum,
       },
       apyd: {
         // (1+800/(100*365*24*60))^(365*24*60)-1

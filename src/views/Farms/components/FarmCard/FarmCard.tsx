@@ -6,7 +6,7 @@ import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -99,7 +99,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     : '-'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
-  const farmAPY = (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  let farmAPYNum = ((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100
+  if (farmAPYNum>10**18){
+    farmAPYNum = Number.POSITIVE_INFINITY
+  }
+  const farmAPY = farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYD = (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYDRaw = (((1+(farm.apr)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 //  const farmAPYW = (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60*7/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
@@ -120,8 +124,14 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   if (farm.isWault===true){
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.isApe===true){
+    addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
   if (farm.token===farm.quoteToken){
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
+    if (farm.isApe===true){
+      addLiquidityUrl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
+    }
   }
 
   const isPromotedFarm = false
@@ -135,6 +145,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   }
   if (farm.isDfyn===true){
     infoAddr = `https://info.dfyn.network/pair/${lpAddress}`
+  }
+  if (farm.isApe===true){
+    infoAddr = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
   }
   if (farm.token===farm.quoteToken){
     infoAddr = `https://info.quickswap.exchange/address/${lpAddress}`
@@ -150,6 +163,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         isCommunityFarm={farm.isCommunity}
         isSushiFarm={farm.isSushi}
         isWaultFarm={farm.isWault}
+        isApeFarm={farm.isApe}
         farmImage={farmImage}
         tokenSymbol={farm.token.symbol}
       />

@@ -158,6 +158,46 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  crystl: {
+    symbol: 'Crystl',
+    coingeico: 'crystl',
+    address: {
+      137: '0x76bF0C28e604CC3fE9967c83b3C3F31c213cfE64',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  eth: {
+    symbol: 'ETH',
+    coingeico: 'eth',
+    address: {
+      137: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  banana: {
+    symbol: 'Banana',
+    coingeico: 'banana',
+    address: {
+      137: '0x5d47bAbA0d66083C52009271faF3F50DCc01023C',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  polydoge: {
+    symbol: 'PolyDoge',
+    coingeico: 'polydoge',
+    address: {
+      137: '0x8A953CfE442c5E8855cc6c61b1293FA648BAE472',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

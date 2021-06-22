@@ -4,8 +4,8 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@pancakeswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag } from 'components/Tags'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
+import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag, ApeTag } from 'components/Tags'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL } from 'config'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -168,8 +168,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   if (farm.isDfyn===true){
     info = `https://info.dfyn.network/pair/${lpAddress}`
   }
+  if (farm.isApe===true){
+    info = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
+  }
   if (farm.token===farm.quoteToken){
     info = `https://info.quickswap.exchange/address/${lpAddress}`
+    if (farm.isApe===true){
+      info = `https://polygon.info.apeswap.finance/address/${lpAddress}`
+    }
   }
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
@@ -182,8 +188,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   if (farm.isDfyn===true){
     liquidityurl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.isApe===true){
+    liquidityurl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
   if (farm.token===farm.quoteToken){
     liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
+    if (farm.isApe===true){
+      liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
+    }
   }
 
   return (
@@ -202,6 +214,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {farm.isSushi && <SushiTag />}
           {farm.isWault && <WaultTag />}
+          {farm.isApe && <ApeTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>

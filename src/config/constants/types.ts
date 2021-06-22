@@ -65,6 +65,7 @@ export interface FarmConfig {
   isSushi?: boolean
   isDfyn?: boolean
   isWault?: boolean
+  isApe?: boolean
   isCommunity?: boolean
   dual?: {
     rewardPerBlock: number
