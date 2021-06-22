@@ -88,52 +88,182 @@ const farms: FarmConfig[] = [
    },
 
    {
-     pid: 21,
-     lpSymbol: 'Omen',
+     pid: 31,
+     lpSymbol: 'miMatic-USDC',
      lpAddresses: {
        80001: '',
-       137: '0x76e63a3E7Ba1e2E61D3DA86a87479f983dE89a7E',
+       137: '0x160532D2536175d65C03B97b0630A9802c274daD',
      },
      masterChefAddresses: {
        80001: '',
-       137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
-     },
-     masterChefPid: 0,
-     jarAddresses: {
-       80001: '',
-       137: '0x8a8c784DDE052dE731a4477Bb95B4F594f5B9Bc3',
-     },
-     token: tokens.omen,
-     quoteToken: tokens.omen,
-     rewardPerBlock: 17.777,
-     poolWeightDesignate: 50000000000000000000/348000000000000000000,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-   },
-
-   {
-     pid: 22,
-     lpSymbol: 'Omen-USDC LP',
-     lpAddresses: {
-       80001: '',
-       137: '0x50409De292f5F821888702e9538Bf15Fa273dFE6',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+       137: '0x574Fe4E8120C4Da1741b5Fd45584de7A5b521F0F',
      },
      masterChefPid: 1,
      jarAddresses: {
        80001: '',
-       137: '0x6726775952DE79b66c2340fCB4DD1cb3D48944E5',
+       137: '0x3c928f0eE37bafeB6e90D835e7000ef533A09472',
      },
-     token: tokens.omen,
+     token: tokens.mimatic,
      quoteToken: tokens.usdc,
-     rewardPerBlock: 17.777,
-     poolWeightDesignate: 60000000000000000000/348000000000000000000,
+     rewardToken: tokens.qidao,
+     rewardPerBlock: 3,
+     poolWeightDesignate: 125/375,
      minutesPerCompound: 1,
-     kogefarmFee: 0.01,
+     kogefarmFee: 0.005,
    },
+
+      {
+        pid: 27,
+        lpSymbol: 'CRYSTL',
+        lpAddresses: {
+          80001: '',
+          137: '0x76bF0C28e604CC3fE9967c83b3C3F31c213cfE64',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0xeBCC84D2A73f0c9E23066089C6C24F4629Ef1e6d',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0x55C08f4F053170009010cF7435064d5e0E6905E3',
+        },
+        token: tokens.crystl,
+        quoteToken: tokens.crystl,
+        rewardPerBlock: 8,
+        poolWeightDesignate: 3000/12500,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        isApe: true,
+      },
+
+      {
+        pid: 28,
+        lpSymbol: 'CRYSTL-Matic LP',
+        lpAddresses: {
+          80001: '',
+          137: '0xB8e54c9Ea1616beEBe11505a419DD8dF1000E02a',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0xeBCC84D2A73f0c9E23066089C6C24F4629Ef1e6d',
+        },
+        masterChefPid: 1,
+        jarAddresses: {
+          80001: '',
+          137: '0x58201C1331Bf7f36ed326af0789A33851019875b',
+        },
+        token: tokens.crystl,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 8,
+        poolWeightDesignate: 3000/12500,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        isApe: true,
+      },
+
+      {
+        pid: 29,
+        lpSymbol: 'BANANA-ETH LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x44b82c02F404Ed004201FB23602cC0667B1D011e',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0xeBCC84D2A73f0c9E23066089C6C24F4629Ef1e6d',
+        },
+        masterChefPid: 3,
+        jarAddresses: {
+          80001: '',
+          137: '0xB131089e899a6F2E7726b83b85C32bbE097b138b',
+        },
+        token: tokens.banana,
+        quoteToken: tokens.eth,
+        rewardPerBlock: 8,
+        poolWeightDesignate: 2000/12500,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        isApe: true,
+        rewardToken: tokens.crystl,
+        kogefarmComment: ' (Cystl)',
+      },
+
+      {
+        pid: 30,
+        lpSymbol: 'POLYDOGE-MATIC LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x5D9d66ac0DB91Ec463Fb3e9E5B1513DBFf02fD0F',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0xeBCC84D2A73f0c9E23066089C6C24F4629Ef1e6d',
+        },
+        masterChefPid: 8,
+        jarAddresses: {
+          80001: '',
+          137: '0x510D776fEA6469531f8be69e669e553C0De69621',
+        },
+        token: tokens.polydoge,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 8,
+        poolWeightDesignate: 250/12500,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        isApe: true,
+        rewardToken: tokens.crystl,
+        kogefarmComment: ' (Cystl)',
+      },
+
+
+         {
+           pid: 21,
+           lpSymbol: 'Omen',
+           lpAddresses: {
+             80001: '',
+             137: '0x76e63a3E7Ba1e2E61D3DA86a87479f983dE89a7E',
+           },
+           masterChefAddresses: {
+             80001: '',
+             137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+           },
+           masterChefPid: 0,
+           jarAddresses: {
+             80001: '',
+             137: '0x8a8c784DDE052dE731a4477Bb95B4F594f5B9Bc3',
+           },
+           token: tokens.omen,
+           quoteToken: tokens.omen,
+           rewardPerBlock: 17.777,
+           poolWeightDesignate: 50000000000000000000/348000000000000000000,
+           minutesPerCompound: 1,
+           kogefarmFee: 0.01,
+         },
+
+         {
+           pid: 22,
+           lpSymbol: 'Omen-USDC LP',
+           lpAddresses: {
+             80001: '',
+             137: '0x50409De292f5F821888702e9538Bf15Fa273dFE6',
+           },
+           masterChefAddresses: {
+             80001: '',
+             137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+           },
+           masterChefPid: 1,
+           jarAddresses: {
+             80001: '',
+             137: '0x6726775952DE79b66c2340fCB4DD1cb3D48944E5',
+           },
+           token: tokens.omen,
+           quoteToken: tokens.usdc,
+           rewardPerBlock: 17.777,
+           poolWeightDesignate: 60000000000000000000/348000000000000000000,
+           minutesPerCompound: 1,
+           kogefarmFee: 0.01,
+         },
 
    {
      pid: 24,
@@ -233,6 +363,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
    },
+
 
   {
     pid: 13,

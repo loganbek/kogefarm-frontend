@@ -26,6 +26,12 @@ const DfynTag = (props) => (
   </Tag>
 )
 
+const ApeTag = (props) => (
+  <Tag variant="textSubtle" outline startIcon={<CommunityIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    ApeSwap
+  </Tag>
+)
+
 const CommunityTag = (props) => (
   <Tag variant="textSubtle" outline startIcon={<CommunityIcon width="18px" color="secondary" mr="4px" />} {...props}>
     Community
@@ -56,4 +62,4 @@ const CompoundingPoolTag = (props) => (
   </Tag>
 )
 
-export { CoreTag, CommunityTag, SushiTag, WaultTag, DfynTag, BinanceTag, DualTag, ManualPoolTag, CompoundingPoolTag }
+export { CoreTag, CommunityTag, SushiTag, WaultTag, DfynTag, ApeTag, BinanceTag, DualTag, ManualPoolTag, CompoundingPoolTag }
