@@ -155,6 +155,7 @@ const Farms: React.FC = () => {
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -440,7 +441,7 @@ const Farms: React.FC = () => {
     setSortOption(option.value)
   }
 
-  const tvl = farmsList(activeFarms).reduce((sum,current) =>  sum.plus(current.liquidity) , new BigNumber(0) );
+  const tvl = farmsList(allFarms).reduce((sum,current) =>  sum.plus(current.liquidity) , new BigNumber(0) );
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
