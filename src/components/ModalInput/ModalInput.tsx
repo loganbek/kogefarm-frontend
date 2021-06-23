@@ -69,6 +69,9 @@ const ModalInput: React.FC<ModalInputProps> = ({
   const isBalanceZero = max === '0' || !max
 
   const isQiDao = symbol.toUpperCase() === 'MIMATIC-QI' || symbol.toUpperCase() === 'MIMATIC-USDC'
+  const isCrystlEthMatic = symbol.toUpperCase() === 'ETH-MATIC LP'
+  const isCrystlUSDCDai = symbol.toUpperCase() === 'USDC-DAI LP'
+  console.log(symbol.toUpperCase())
 
   const displayBalance = (balance: string) => {
     if (isBalanceZero) {
@@ -117,6 +120,16 @@ const ModalInput: React.FC<ModalInputProps> = ({
       {isQiDao && (
           <Text fontSize="14px" bold={false} color="failure">
             {t('Note: this vault has a 0.5% third party deposit fee.')}
+          </Text>
+      )}
+      {isCrystlEthMatic && (
+          <Text fontSize="14px" bold={false} color="failure">
+            {t('Note: this vault has a 2% third party deposit fee.')}
+          </Text>
+      )}
+      {isCrystlUSDCDai && (
+          <Text fontSize="14px" bold={false} color="failure">
+            {t('Note: this vault has a 5% third party deposit fee.')}
           </Text>
       )}
     </div>
