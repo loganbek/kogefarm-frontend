@@ -98,82 +98,85 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
 
       let tradingFeeRate = 0
       // Subgraph Trading Pair Data
-      if (farmConfig.token.address!==farmConfig.quoteToken.address){
-          let APIURL = quickGraphURL
-          let subgraphQuery = `
-          query {
-            pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pairAddress:"${lpAddress}"}) {
-              reserve0
-              reserve1
-              reserveUSD
-              dailyVolumeToken0
-              dailyVolumeToken1
-              dailyVolumeUSD
-            }
-          }
-          `
-          if (farmConfig.isSushi) {
-            APIURL = sushiGraphURL
-            subgraphQuery = `
-            query {
-              pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pair_contains:"${lpAddress.toLowerCase()}"}) {
-                reserve0
-                reserve1
-                reserveUSD
-                volumeToken0
-                volumeToken1
-                volumeUSD
+      if (!farmConfig.isApe && !farmConfig.isWault){
+          if (farmConfig.token.address!==farmConfig.quoteToken.address){
+              let APIURL = quickGraphURL
+              let subgraphQuery = `
+              query {
+                pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pairAddress:"${lpAddress}"}) {
+                  reserve0
+                  reserve1
+                  reserveUSD
+                  dailyVolumeToken0
+                  dailyVolumeToken1
+                  dailyVolumeUSD
+                }
               }
-            }
-            `
-          }
-
-          if (farmConfig.isDfyn) {
-            APIURL = dfynGraphURL
-            subgraphQuery = `
-            query {
-              pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pairAddress:"${lpAddress}"}) {
-                reserve0
-                reserve1
-                reserveUSD
-                dailyVolumeToken0
-                dailyVolumeToken1
-                dailyVolumeUSD
+              `
+              if (farmConfig.isSushi) {
+                APIURL = sushiGraphURL
+                subgraphQuery = `
+                query {
+                  pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pair_contains:"${lpAddress.toLowerCase()}"}) {
+                    reserve0
+                    reserve1
+                    reserveUSD
+                    volumeToken0
+                    volumeToken1
+                    volumeUSD
+                  }
+                }
+                `
               }
-            }
-            `
-          }
 
-          const client = createClient({
-            url: APIURL
-          });
+              if (farmConfig.isDfyn) {
+                APIURL = dfynGraphURL
+                subgraphQuery = `
+                query {
+                  pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pairAddress:"${lpAddress}"}) {
+                    reserve0
+                    reserve1
+                    reserveUSD
+                    dailyVolumeToken0
+                    dailyVolumeToken1
+                    dailyVolumeUSD
+                  }
+                }
+                `
+              }
 
-          const responseData = await client.query(subgraphQuery).toPromise();
-          let volume0 = 0
-          let volume1 = 0
-          let volumeUSD = 0
-          try{
-            if (farmConfig.isSushi) {
-              volume0 = responseData.data.pairDayDatas[0].volumeToken0
-              volume1 = responseData.data.pairDayDatas[0].volumeToken1
-              volumeUSD = responseData.data.pairDayDatas[0].volumeUSD
-            } else{
-              volume0 = responseData.data.pairDayDatas[0].dailyVolumeToken0
-              volume1 = responseData.data.pairDayDatas[0].dailyVolumeToken1
-              volumeUSD = responseData.data.pairDayDatas[0].dailyVolumeUSD
-            }
-            const reserve0 = responseData.data.pairDayDatas[0].reserve0
-            const reserve1 = responseData.data.pairDayDatas[0].reserve1
-            const reserveUSD = responseData.data.pairDayDatas[0].reserveUSD
-            tradingFeeRate = 0.003 *100 * volumeUSD/reserveUSD
-            if (volumeUSD<=1000){
-              tradingFeeRate = 0.003 *100 * (1/2*volume0/reserve0 + 1/2*volume1/reserve1)
-            }
-            if (tradingFeeRate>=2){
-              tradingFeeRate = 0
-            }
-          } catch(e){
-            console.error(e)
+              const client = createClient({
+                url: APIURL
+              });
+
+              const responseData = await client.query(subgraphQuery).toPromise();
+              let volume0 = 0
+              let volume1 = 0
+              let volumeUSD = 0
+              try{
+                if (farmConfig.isSushi) {
+                  volume0 = responseData.data.pairDayDatas[0].volumeToken0
+                  volume1 = responseData.data.pairDayDatas[0].volumeToken1
+                  volumeUSD = responseData.data.pairDayDatas[0].volumeUSD
+                }
+                else{
+                  volume0 = responseData.data.pairDayDatas[0].dailyVolumeToken0
+                  volume1 = responseData.data.pairDayDatas[0].dailyVolumeToken1
+                  volumeUSD = responseData.data.pairDayDatas[0].dailyVolumeUSD
+                }
+                const reserve0 = responseData.data.pairDayDatas[0].reserve0
+                const reserve1 = responseData.data.pairDayDatas[0].reserve1
+                const reserveUSD = responseData.data.pairDayDatas[0].reserveUSD
+                tradingFeeRate = 0.003 *100 * volumeUSD/reserveUSD
+                if (volumeUSD<=1000){
+                  tradingFeeRate = 0.003 *100 * (1/2*volume0/reserve0 + 1/2*volume1/reserve1)
+                }
+                if (tradingFeeRate>=2){
+                  tradingFeeRate = 0
+                }
+              } catch(e){
+                console.error(e)
+              }
           }
 
       }
