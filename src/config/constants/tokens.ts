@@ -15,7 +15,7 @@ const tokens = {
       137: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
       80001: '',
     },
-    decimals: 18,
+    decimals: 6,
     projectLink: 'https://www.centre.io/usdc',
   },
   matic: {
@@ -27,6 +27,16 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://matic.network',
+  },
+  roll: {
+    symbol: 'ROLL',
+    coingeico: 'roll',
+    address: {
+      137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: 'https://polyroll.org',
   },
   weth: {
     symbol: 'MATIC',
@@ -206,6 +216,16 @@ const tokens = {
       80001: '',
     },
     decimals: 18,
+    projectLink: '',
+  },
+  usdt: {
+    symbol: 'USDT',
+    coingeico: 'usdt',
+    address: {
+      137: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+      80001: '',
+    },
+    decimals: 6,
     projectLink: '',
   },
 }

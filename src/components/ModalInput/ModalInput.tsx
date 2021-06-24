@@ -12,6 +12,7 @@ interface ModalInputProps {
   value: string
   addLiquidityUrl?: string
   inputTitle?: string
+  depositFee?: number
 }
 
 const getBoxShadow = ({ isWarning = false, theme }) => {
@@ -64,6 +65,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
   value,
   addLiquidityUrl,
   inputTitle,
+  depositFee,
 }) => {
   const { t } = useTranslation()
   const isBalanceZero = max === '0' || !max
@@ -117,19 +119,9 @@ const ModalInput: React.FC<ModalInputProps> = ({
           </Link>
         </StyledErrorMessage>
       )}
-      {isQiDao && (
+      {depositFee && (
           <Text fontSize="14px" bold={false} color="failure">
-            {t('Note: this vault has a 0.5% third party deposit fee.')}
-          </Text>
-      )}
-      {isCrystlEthMatic && (
-          <Text fontSize="14px" bold={false} color="failure">
-            {t('Note: this vault has a 2% third party deposit fee.')}
-          </Text>
-      )}
-      {isCrystlUSDCDai && (
-          <Text fontSize="14px" bold={false} color="failure">
-            {t('Note: this vault has a 5% third party deposit fee.')}
+            {t('Note: this vault has a ') + (depositFee*100).toString() + t('% third party deposit fee.')}
           </Text>
       )}
     </div>

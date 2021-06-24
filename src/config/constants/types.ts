@@ -76,6 +76,7 @@ export interface FarmConfig {
   kogefarmFee: number
   kogefarmComment?: string
   rewardToken?: Token
+  depositFee?: number
 }
 
 export interface PoolConfig {

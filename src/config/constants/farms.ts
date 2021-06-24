@@ -65,7 +65,7 @@ const farms: FarmConfig[] = [
 
    {
      pid: 19,
-     lpSymbol: 'miMatic-Qi',
+     lpSymbol: 'MAI(miMatic)-Qi',
      lpAddresses: {
        80001: '',
        137: '0x7AfcF11F3e2f01e71B7Cc6b8B5e707E42e6Ea397',
@@ -85,11 +85,12 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 250/375,
      minutesPerCompound: 1,
      kogefarmFee: 0.01+0.005,
+     depositFee: 0.005,
    },
 
    {
      pid: 31,
-     lpSymbol: 'miMatic-USDC',
+     lpSymbol: 'MAI(miMatic)-USDC',
      lpAddresses: {
        80001: '',
        137: '0x160532D2536175d65C03B97b0630A9802c274daD',
@@ -110,6 +111,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 125/375,
      minutesPerCompound: 1,
      kogefarmFee: 0.005,
+     depositFee: 0.005,
    },
    {
      pid: 32,
@@ -136,6 +138,7 @@ const farms: FarmConfig[] = [
      isApe: true,
      rewardToken: tokens.crystl,
      kogefarmComment: ' (Crystl)',
+     depositFee: 0.02,
    },
 
    {
@@ -163,6 +166,7 @@ const farms: FarmConfig[] = [
      isApe: true,
      rewardToken: tokens.crystl,
      kogefarmComment: ' (Crystl)',
+     depositFee: 0.05,
    },
 
       {
@@ -214,6 +218,162 @@ const farms: FarmConfig[] = [
         kogefarmFee: 0.01,
         isApe: true,
       },
+
+/*      {
+        pid: 35,
+        lpSymbol: 'Roll',
+        lpAddresses: {
+          80001: '',
+          137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+        },
+        masterChefPid: 1,
+        jarAddresses: {
+          80001: '',
+          137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
+        },
+        token: tokens.roll,
+        quoteToken: tokens.roll,
+        rewardPerBlock: 50,
+        poolWeightDesignate: 30/360,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+      },
+
+      {
+        pid: 36,
+        lpSymbol: 'Roll-Matic LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x905DCc700fcce9a49b7D907E371230995a45ebCE',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0x8488E2f70055fdc2aCDF511Be789AEb93ae0B1B3',
+        },
+        token: tokens.roll,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 50,
+        poolWeightDesignate: 180/360,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+      },
+
+      {
+        pid: 37,
+        lpSymbol: 'WMatic',
+        lpAddresses: {
+          80001: '',
+          137: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+        },
+        masterChefPid: 2,
+        jarAddresses: {
+          80001: '',
+          137: '0x9c347d804429bC37d65e56aa6c5a07Cb8e0edAbB',
+        },
+        token: tokens.matic,
+        quoteToken: tokens.matic,
+        rewardToken: tokens.roll,
+        rewardPerBlock: 50,
+        poolWeightDesignate: 30/360,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01+0.04,
+        kogefarmComment: ' (ROLL)',
+        depositFee: 0.04,
+      },
+
+      {
+        pid: 38,
+        lpSymbol: 'Eth',
+        lpAddresses: {
+          80001: '',
+          137: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+        },
+        masterChefPid: 3,
+        jarAddresses: {
+          80001: '',
+          137: '0xbC036A0c3F0bfd81bD1E1708f5005A3Ed9CE771a',
+        },
+        token: tokens.eth,
+        quoteToken: tokens.eth,
+        rewardToken: tokens.roll,
+        rewardPerBlock: 50,
+        poolWeightDesignate: 30/360,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01+0.04,
+        kogefarmComment: ' (ROLL)',
+        depositFee: 0.04,
+      },
+
+      {
+        pid: 39,
+        lpSymbol: 'USDC',
+        lpAddresses: {
+          80001: '',
+          137: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+        },
+        masterChefPid: 4,
+        jarAddresses: {
+          80001: '',
+          137: '0x32219C86B0317601ea4cEd7586A278ac89B465eB',
+        },
+        token: tokens.usdc,
+        quoteToken: tokens.usdc,
+        rewardToken: tokens.roll,
+        rewardPerBlock: 50,
+        poolWeightDesignate: 30/360,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01+0.04,
+        kogefarmComment: ' (ROLL)',
+        depositFee: 0.04,
+      },
+
+      {
+        pid: 40,
+        lpSymbol: 'USDT',
+        lpAddresses: {
+          80001: '',
+          137: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+        },
+        masterChefPid: 5,
+        jarAddresses: {
+          80001: '',
+          137: '0x5AB24bA8183dA4D0E050fD00257dE291CDD17a89',
+        },
+        token: tokens.usdt,
+        quoteToken: tokens.usdt,
+        rewardToken: tokens.roll,
+        rewardPerBlock: 50,
+        poolWeightDesignate: 30/360,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01+0.04,
+        kogefarmComment: ' (ROLL)',
+        depositFee: 0.04,
+      }, */
 
       {
         pid: 29,
@@ -391,6 +551,32 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Sushi)',
+   },
+
+   {
+     pid: 41,
+     lpSymbol: 'Yeld-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xC1Dd63cA154837AC4356D888F7c10fbBe442407e',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2DC11B394BD0f1CC6AC0a269cfe3CC0b333601B4',
+     },
+     masterChefPid: 13,
+     jarAddresses: {
+       80001: '',
+       137: '0x97B0262670F3F640A6Be287f403302E2285F5A87',
+     },
+     token: tokens.yeld,
+     quoteToken: tokens.matic,
+     isApe: true,
+     rewardPerBlock: 0.015,
+     poolWeightDesignate: 4000/31000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     kogefarmComment: ' (Ape)',
    },
 
    {

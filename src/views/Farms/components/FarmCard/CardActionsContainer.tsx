@@ -72,6 +72,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
    //     pid={pid}
         jarAddress={jarAddress}
         addLiquidityUrl={addLiquidityUrl}
+        depositFee={farm.depositFee}
       />
     ) : (
       <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>

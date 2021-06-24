@@ -39,6 +39,12 @@ export const depositJar = async (jarContract, amount, account) => {
   if (jarContract.options.address==="0x992Ae1912CE6b608E0c0d2BF66259ab1aE62A657"){
     decimals = KOGE_TOKEN_DECIMAL
   }
+  if (jarContract.options.address==="0x32219C86B0317601ea4cEd7586A278ac89B465eB"){
+    decimals = new BigNumber(10**6)
+  }
+  if (jarContract.options.address==="0x5AB24bA8183dA4D0E050fD00257dE291CDD17a89"){
+    decimals = new BigNumber(10**6)
+  }
   return jarContract.methods
     .deposit(new BigNumber(amount).times(decimals).toString())
     .send({ from: account, gas: 800000 })
@@ -87,6 +93,12 @@ export const withdrawalJar = async (jarContract, amount, account) => {
   let decimals = DEFAULT_TOKEN_DECIMAL
   if (jarContract.options.address==="0x992Ae1912CE6b608E0c0d2BF66259ab1aE62A657"){
     decimals = KOGE_TOKEN_DECIMAL
+  }
+  if (jarContract.options.address==="0x32219C86B0317601ea4cEd7586A278ac89B465eB"){
+    decimals = new BigNumber(10**6)
+  }
+  if (jarContract.options.address==="0x5AB24bA8183dA4D0E050fD00257dE291CDD17a89"){
+    decimals = new BigNumber(10**6)
   }
   return jarContract.methods
     .withdraw(new BigNumber(amount).times(decimals).toString())

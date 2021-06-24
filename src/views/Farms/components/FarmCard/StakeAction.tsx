@@ -18,6 +18,7 @@ interface FarmCardActionsProps {
 //  pid?: number
   jarAddress?: string
   addLiquidityUrl?: string
+  depositFee?: number
 }
 
 const IconButtonWrapper = styled.div`
@@ -35,6 +36,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 //  pid,
   jarAddress,
   addLiquidityUrl,
+  depositFee,
 }) => {
   const { t } = useTranslation()
   const { onStake } = useStake(jarAddress)
@@ -44,6 +46,9 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   let numDecimals = 18
   if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
     numDecimals = 9
+  }
+  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+    numDecimals = 6
   }
 
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
@@ -60,7 +65,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 }, [stakedBalance, displayBalanceNumber, numDecimals])
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
+    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} depositFee={depositFee}/>,
   )
   const [onPresentWithdraw] = useModal(
     <WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={tokenName} />,

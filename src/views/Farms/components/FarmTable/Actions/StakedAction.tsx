@@ -39,6 +39,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isSushi,
   isWault,
   isApe,
+  depositFee,
   userDataReady,
 }) => {
   const { t } = useTranslation()
@@ -77,6 +78,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (lpSymbol==="KogeCoin"){
     decimals = 9
   }
+  if (lpSymbol.toUpperCase()==="USDC" || lpSymbol.toUpperCase()==="USDT"){
+    decimals = 6
+  }
 
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {
@@ -90,7 +94,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 }, [stakedBalance, displayBalanceNumber, decimals])
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
+    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} depositFee={depositFee} />,
   )
   const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} />)
 

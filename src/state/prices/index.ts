@@ -48,7 +48,11 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const yeldUSDCLP = '0xAD8f4c66b28756458Fc419AA67aD2207A21A6997'
   const crystlAddr = '0x76bF0C28e604CC3fE9967c83b3C3F31c213cfE64'
   const crystlMaticLP = '0xB8e54c9Ea1616beEBe11505a419DD8dF1000E02a'
-
+/*  const rollAddr = '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6'
+  const rollMaticLP = '0x905DCc700fcce9a49b7D907E371230995a45ebCE'
+  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+  const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
+*/
   const calls = [
     // Matic Price
     {
@@ -199,6 +203,28 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [crystlMaticLP],
     },
+/*    // ROLL
+    {
+      address: rollAddr,
+      name: 'balanceOf',
+      params: [rollMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [rollMaticLP],
+    },
+    // USDT
+    {
+      address: usdtAddr,
+      name: 'balanceOf',
+      params: [usdtUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [usdtUSDCLP],
+    }, */
   ]
   const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance] = await multicall(erc20, calls)
   // Get prices in matic/USDC
