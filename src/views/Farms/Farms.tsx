@@ -25,6 +25,7 @@ import PageHeader from 'components/PageHeader'
 import { fetchFarmsPublicDataAsync, setLoadArchivedFarmsData } from 'state/farms'
 import Select, { OptionProps } from 'components/Select/Select'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
+import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
 // import FarmTabButtons from './components/FarmTabButtons'
 import SearchInput from './components/SearchInput'
@@ -469,7 +470,7 @@ const Farms: React.FC = () => {
               <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
               <Text> {t('Staked only')}</Text>
             </ToggleWrapper>
-  {/*          <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
+            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
           </ViewControls>
           <FilterContainer>
             <LabelWrapper>

@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 // import { Router, Redirect, Route, Switch } from 'react-router-dom'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import { ResetCSS } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -48,7 +48,8 @@ const App: React.FC = () => {
       <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/" exact>
+            <Redirect exact from="/" to="vaults" />
+            <Route path="/vaults">
               <Farms />
             </Route>
             <Route path="/farms">

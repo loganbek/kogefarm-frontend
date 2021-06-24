@@ -766,6 +766,7 @@ const farms: FarmConfig[] = [
    kogefarmFee: 0.005,
    rewardToken: tokens.titan,
    kogefarmComment: ' (Quick)',
+   multiplier: '0X',
  },
 
  {
@@ -793,6 +794,7 @@ const farms: FarmConfig[] = [
    kogefarmFee: 0.005,
    rewardToken: tokens.titan,
    kogefarmComment: ' (Sushi)',
+   multiplier: '0X',
  },
 
  {
@@ -819,6 +821,7 @@ const farms: FarmConfig[] = [
    minutesPerCompound: 1,
    kogefarmFee: 0.000,
    kogefarmComment: ' (HIGH RISK)',
+   multiplier: '0X',
  },
 
 {
@@ -845,6 +848,7 @@ const farms: FarmConfig[] = [
   isSushi: true,
   kogefarmFee: 0.01,
   kogefarmComment: ' (HIGH RISK)',
+  multiplier: '0X',
 },
 
 {
@@ -871,6 +875,7 @@ const farms: FarmConfig[] = [
   isSushi: true,
   kogefarmFee: 0.01,
   kogefarmComment: ' (HIGH RISK)',
+  multiplier: '0X',
 },
 
 
