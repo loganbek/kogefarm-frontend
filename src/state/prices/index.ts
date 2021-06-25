@@ -26,6 +26,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const usdcAddr = '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
   const ethAddr = '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
   const ethMaticLP = '0xadbF1854e5883eB8aa7BAf50705338739e558E5b'
+  const quickAddr = '0x831753DD7087CaC61aB5644b308642cc1c33Dc13'
+  const quickMaticLP = '0x019ba0325f1988213D448b3472fA1cf8D07618d7'
   const maticUSDCLP = '0x6e7a5FAFcec6BB1e78bAE2A1F0B612012BF14827'
   const kogeMaticLP = '0x3885503aEF5E929fCB7035FBDcA87239651C8154'
   const titanAddr = '0xaAa5B9e6c589642f98a1cDA99B9D024B8407285A'
@@ -48,9 +50,9 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const yeldUSDCLP = '0xAD8f4c66b28756458Fc419AA67aD2207A21A6997'
   const crystlAddr = '0x76bF0C28e604CC3fE9967c83b3C3F31c213cfE64'
   const crystlMaticLP = '0xB8e54c9Ea1616beEBe11505a419DD8dF1000E02a'
-/*  const rollAddr = '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6'
+  const rollAddr = '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6'
   const rollMaticLP = '0x905DCc700fcce9a49b7D907E371230995a45ebCE'
-  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+/*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
 */
   const calls = [
@@ -88,6 +90,17 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: maticAddr,
       name: 'balanceOf',
       params: [ethMaticLP],
+    },
+    // Quick Price
+    {
+      address: quickAddr,
+      name: 'balanceOf',
+      params: [quickMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [quickMaticLP],
     },
     // Total LP tokens minted
     {
@@ -203,7 +216,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [crystlMaticLP],
     },
-/*    // ROLL
+    // ROLL
     {
       address: rollAddr,
       name: 'balanceOf',
@@ -214,7 +227,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [rollMaticLP],
     },
-    // USDT
+/*    // USDT
     {
       address: usdtAddr,
       name: 'balanceOf',
@@ -226,11 +239,12 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       params: [usdtUSDCLP],
     }, */
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, rollBalance, rollMaticBalance] = await multicall(erc20, calls)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
   const titanMatic = titanBalanceLP/maticBalanceLP
   const ethMatic = ethBalance/ethMaticBalance
+  const quickMatic = quickBalance/quickMaticBalance
   const bootyMatic = bootyBalanceLP/maticBalanceBooty
   const fishMatic = fishBalance/maticFish
   const ironUSDC = ironBalanceLP/(usdcBalanceIron*10**12)
@@ -240,6 +254,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const omenUSDC = omenBalance/(omenUSDCBalance*10**12)
   const yeldUSDC = yeldBalance/(yeldUSDCBalance*10**12)
   const crystlMatic = crystlBalance/crystalMaticBalance
+  const rollMatic = rollBalance/rollMaticBalance
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
@@ -249,6 +264,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const titanUSD = maticUSD/titanMatic
   const bootyUSD = maticUSD/bootyMatic
   const ethUSD = maticUSD/ethMatic
+  const quickUSD = maticUSD/quickMatic
   const fishUSD = maticUSD/fishMatic
   const ironUSD = usdcUSD/ironUSDC
   const wexUSD = usdcUSD/wexUSDC
@@ -257,6 +273,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const omenUSD = usdcUSD/omenUSDC
   const yeldUSD = usdcUSD/yeldUSDC
   const crystlUSD = maticUSD/crystlMatic
+  const rollUSD = maticUSD/rollMatic
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -265,6 +282,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.kogematiclp = {"usd":kogeMaticLPUSD.toString()}
   data.titan = {"usd":titanUSD.toString()}
   data.eth = {"usd":ethUSD.toString()}
+  data.quick = {"usd":quickUSD.toString()}
   data.booty = {"usd":bootyUSD.toString()}
   data.iron = {"usd":ironUSD.toString()}
   data.fish = {"usd":fishUSD.toString()}
@@ -276,6 +294,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.omen = {"usd":omenUSD.toString()}
   data.yeld = {"usd":yeldUSD.toString()}
   data.crystl = {"usd":crystlUSD.toString()}
+  data.roll = {"usd":rollUSD.toString()}
 
   // Return normalized token names
   return {

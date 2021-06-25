@@ -228,6 +228,16 @@ const tokens = {
     decimals: 6,
     projectLink: '',
   },
+  quick: {
+    symbol: 'Quick',
+    coingeico: 'quick',
+    address: {
+      137: '0x831753DD7087CaC61aB5644b308642cc1c33Dc13',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

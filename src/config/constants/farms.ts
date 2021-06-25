@@ -63,6 +63,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.00,
    },
 
+
    {
      pid: 19,
      lpSymbol: 'MAI(miMatic)-Qi',
@@ -113,6 +114,33 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.005,
      depositFee: 0.005,
    },
+/*
+   {
+     pid: 42,
+     lpSymbol: 'USDC-DAI LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xf04adBF75cDFc5eD26eeA4bbbb991DB002036Bdd',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xEd8413eCEC87c3d4664975743c02DB3b574012a7',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x0ef967559fB9a94F8ecD305096E8387Eefb01F23',
+     },
+     token: tokens.dai,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 13/24/60/60*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: -0.2,
+     kogefarmComment: ' (Quick)',
+   }, */
+/* We seem to be dramatically underestimating trading fees compared to Quick. A hack to compensate */
    {
      pid: 32,
      lpSymbol: 'ETH-MATIC LP',
@@ -218,8 +246,8 @@ const farms: FarmConfig[] = [
         kogefarmFee: 0.01,
         isApe: true,
       },
-
-/*      {
+/*
+      {
         pid: 35,
         lpSymbol: 'Roll',
         lpAddresses: {
@@ -265,8 +293,8 @@ const farms: FarmConfig[] = [
         poolWeightDesignate: 180/360,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
-      },
-
+      }, */
+/*
       {
         pid: 37,
         lpSymbol: 'WMatic',
@@ -799,7 +827,7 @@ const farms: FarmConfig[] = [
     token: tokens.fish,
     quoteToken: tokens.matic,
     rewardPerBlock: 6,
-    poolWeightDesignate: 500/16750,
+    poolWeightDesignate: 500/20000,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
     isApe: true,

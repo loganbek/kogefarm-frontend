@@ -47,7 +47,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           name: 'totalSupply',
         },
         // Token decimals
-        {
+/*        {
           address: getAddress(farmConfig.token.address),
           name: 'decimals',
         },
@@ -55,7 +55,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         {
           address: getAddress(farmConfig.quoteToken.address),
           name: 'decimals',
-        },
+        }, */
         // Jar information
         {
           address: jarAddress,
@@ -68,8 +68,10 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         },
       ]
 
-      const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals, totalDepositsVal, jarRatioBal] =
+      const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, totalDepositsVal, jarRatioBal] =
         await multicall(erc20Jar, calls)
+      const tokenDecimals = farmConfig.token.decimals
+      const quoteTokenDecimals = farmConfig.quoteToken.decimals
 
       // Ratio in % a LP tokens that are in staking, vs the total number in circulation
       const lpTotalSupplyNum = new BigNumber(lpTotalSupply)
