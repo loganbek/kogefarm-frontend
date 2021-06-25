@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import jarAbi from 'config/abi/GenericJar.json'
+import erc20Jar from 'config/abi/erc20Jar.json'
 // import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
 import { BIG_TEN } from 'utils/bigNumber'
@@ -55,10 +56,20 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           address: getAddress(farmConfig.quoteToken.address),
           name: 'decimals',
         },
+        // Jar information
+        {
+          address: jarAddress,
+          name: 'balance',
+        },
+        // Ratio of tokens in our jar contract
+        {
+          address: jarAddress,
+          name: 'getRatio',
+        },
       ]
 
-      const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
-        await multicall(erc20, calls)
+      const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals, totalDepositsVal, jarRatioBal] =
+        await multicall(erc20Jar, calls)
 
       // Ratio in % a LP tokens that are in staking, vs the total number in circulation
       const lpTotalSupplyNum = new BigNumber(lpTotalSupply)
@@ -78,20 +89,6 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         .times(lpTokenRatio)
 
       // Fetch total deposits
-      const callDeposits = [
-        // Balance of tokens in our jar contract
-        {
-          address: jarAddress,
-          name: 'balance',
-        },
-        // Ratio of tokens in our jar contract
-        {
-          address: jarAddress,
-          name: 'getRatio',
-        },
-      ]
-
-      const [totalDepositsVal, jarRatioBal] = await multicall(jarAbi, callDeposits)
       const jarDeposits = new BigNumber(totalDepositsVal)
       const jarRatioNum = new BigNumber(jarRatioBal)
       const totalDeposits = jarDeposits.times(2).div(lpTotalSupplyNum).times(lpQuoteTokenNum).div(BIG_TEN.pow(quoteTokenDecimals))
