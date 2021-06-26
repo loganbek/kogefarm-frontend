@@ -983,7 +983,7 @@ const farms: FarmConfig[] = [
    multiplier: '0X',
  },
 
- {
+/* {
    pid: 6,
    lpSymbol: 'Iron-USDC LP',
    lpAddresses: {
@@ -1009,7 +1009,7 @@ const farms: FarmConfig[] = [
    rewardToken: tokens.titan,
    kogefarmComment: ' (Sushi)',
    multiplier: '0X',
- },
+ }, */
 
  {
    pid: 2,
