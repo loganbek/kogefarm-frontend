@@ -114,6 +114,33 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.005,
      depositFee: 0.005,
    },
+
+   {
+     pid: 43,
+     lpSymbol: 'PUSD-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0xc30D6Bc42911Aa21A63E51c7121B33b3E65cC3c4',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xCB881b62A97Cb733D01C59Eb8326B239E283E6a4',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xb33576835cC51EF8D71ccB861775B2821470bb71',
+     },
+     token: tokens.pusd,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.pyq,
+     rewardPerBlock: 0.462962962962962962*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isSushi: true,
+   },
+
 /*
    {
      pid: 42,

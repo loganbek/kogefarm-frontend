@@ -238,6 +238,26 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  pyq: {
+    symbol: 'Pyq',
+    coingeico: 'pyq',
+    address: {
+      137: '0x5a3064CbDCCF428ae907796cF6aD5a664CD7F3d8',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  pusd: {
+    symbol: 'PUSD',
+    coingeico: 'pusd',
+    address: {
+      137: '0x9aF3b7DC29D3C4B1A5731408B6A9656fA7aC3b72',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

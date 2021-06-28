@@ -52,6 +52,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const crystlMaticLP = '0xB8e54c9Ea1616beEBe11505a419DD8dF1000E02a'
   const rollAddr = '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6'
   const rollMaticLP = '0x905DCc700fcce9a49b7D907E371230995a45ebCE'
+  const pyqAddr = '0x5a3064CbDCCF428ae907796cF6aD5a664CD7F3d8'
+  const pyqUSDCLP = '0xd3924Ad8F881514efF89503Be9027B877E9e2bd0'
 /*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
 */
@@ -216,7 +218,18 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [crystlMaticLP],
     },
-    // ROLL
+    // PYQ
+    {
+      address: pyqAddr,
+      name: 'balanceOf',
+      params: [pyqUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [pyqUSDCLP],
+    },
+/*    // ROLL
     {
       address: rollAddr,
       name: 'balanceOf',
@@ -227,7 +240,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [rollMaticLP],
     },
-/*    // USDT
+    // USDT
     {
       address: usdtAddr,
       name: 'balanceOf',
@@ -239,7 +252,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       params: [usdtUSDCLP],
     }, */
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, rollBalance, rollMaticBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance] = await multicall(erc20, calls)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
   const titanMatic = titanBalanceLP/maticBalanceLP
@@ -254,7 +267,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const omenUSDC = omenBalance/(omenUSDCBalance*10**12)
   const yeldUSDC = yeldBalance/(yeldUSDCBalance*10**12)
   const crystlMatic = crystlBalance/crystalMaticBalance
-  const rollMatic = rollBalance/rollMaticBalance
+  const pyqUSDC = pyqBalance/(pyqUSDCBalance*10**12)
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
@@ -273,7 +286,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const omenUSD = usdcUSD/omenUSDC
   const yeldUSD = usdcUSD/yeldUSDC
   const crystlUSD = maticUSD/crystlMatic
-  const rollUSD = maticUSD/rollMatic
+  const pyqUSD = 0.75*usdcUSD/pyqUSDC
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -289,13 +302,11 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.wexpoly = {"usd":wexUSD.toString()}
   data.mimatic = {"usd":miMaticUSD.toString()}
   data.qidao = {"usd":qidaoUSD.toString()}
-  console.log(qidaomiMatic)
-  console.log(qidaoUSD)
   data.omen = {"usd":omenUSD.toString()}
   data.yeld = {"usd":yeldUSD.toString()}
   data.crystl = {"usd":crystlUSD.toString()}
-  data.roll = {"usd":rollUSD.toString()}
-
+  data.pyq = {"usd":pyqUSD.toString()}
+  console.log(pyqUSD)
   // Return normalized token names
   return {
 //    updated_at: data.updated_at,
