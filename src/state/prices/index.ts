@@ -286,7 +286,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const omenUSD = usdcUSD/omenUSDC
   const yeldUSD = usdcUSD/yeldUSDC
   const crystlUSD = maticUSD/crystlMatic
-  const pyqUSD = 0.75*usdcUSD/pyqUSDC
+  const pyqUSD = usdcUSD/pyqUSDC
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
