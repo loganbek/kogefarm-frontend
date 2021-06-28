@@ -141,6 +141,33 @@ const farms: FarmConfig[] = [
      isSushi: true,
    },
 
+   {
+     pid: 44,
+     lpSymbol: 'PYQ-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0xd3924Ad8F881514efF89503Be9027B877E9e2bd0',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2B8E5367628dF1481Be945B685ADf0968f1965E7',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xe5B7402d8Ccae02D3BaA65140a50B26f876cec8b',
+     },
+     token: tokens.pyq,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 1.26839167935058346*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isSushi: true,
+   },
+
+
+
 /*
    {
      pid: 42,
