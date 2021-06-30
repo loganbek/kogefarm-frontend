@@ -48,7 +48,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           name: 'totalSupply',
         },
         // Token decimals
-/*        {
+        {
           address: getAddress(farmConfig.token.address),
           name: 'decimals',
         },
@@ -56,7 +56,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         {
           address: getAddress(farmConfig.quoteToken.address),
           name: 'decimals',
-        }, */
+        }, 
         // Jar information
         {
           address: jarAddress,
@@ -95,7 +95,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         .times(lpQuoteTokenNum)
         .div(BIG_TEN.pow(quoteTokenDecimals))
       */
-      
+
       let tradingFeeRate = 0
       // Subgraph Trading Pair Data
       if (!farmConfig.isApe && !farmConfig.isWault) {
