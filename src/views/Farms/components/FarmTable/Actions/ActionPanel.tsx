@@ -197,6 +197,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
   }
+  if (farm.lpSymbol==="PYQ-USDC"){
+    liquidityurl = `https://app.polyquity.org/liquidity`
+  }
+
 
   return (
     <Container expanded={expanded}>

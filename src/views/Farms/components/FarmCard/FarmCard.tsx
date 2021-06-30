@@ -133,6 +133,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
       addLiquidityUrl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
   }
+  if (farm.lpSymbol==="PYQ-USDC"){
+    addLiquidityUrl = `https://app.polyquity.org/liquidity`
+  }
 
   const isPromotedFarm = false
 

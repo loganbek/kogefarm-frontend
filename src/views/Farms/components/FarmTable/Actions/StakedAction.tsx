@@ -73,6 +73,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (quoteToken===token){
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
   }
+  if (lpSymbol.toUpperCase()==="PYQ-USDC"){
+    addLiquidityUrl = `https://app.polyquity.org/liquidity`
+  }
 
   let decimals = 18
   if (lpSymbol==="KogeCoin"){

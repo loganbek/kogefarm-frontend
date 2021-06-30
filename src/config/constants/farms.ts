@@ -63,6 +63,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.00,
    },
 
+
    {
      pid: 19,
      lpSymbol: 'MAI(miMatic)-Qi',
@@ -113,6 +114,87 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.005,
      depositFee: 0.005,
    },
+
+   {
+     pid: 43,
+     lpSymbol: 'PUSD-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0xc30D6Bc42911Aa21A63E51c7121B33b3E65cC3c4',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xCB881b62A97Cb733D01C59Eb8326B239E283E6a4',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xb33576835cC51EF8D71ccB861775B2821470bb71',
+     },
+     token: tokens.pusd,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.pyq,
+     rewardPerBlock: 0.462962962962962962*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isSushi: true,
+   },
+
+   {
+     pid: 44,
+     lpSymbol: 'PYQ-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0xd3924Ad8F881514efF89503Be9027B877E9e2bd0',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x2B8E5367628dF1481Be945B685ADf0968f1965E7',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xe5B7402d8Ccae02D3BaA65140a50B26f876cec8b',
+     },
+     token: tokens.pyq,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 1.26839167935058346*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isSushi: true,
+   },
+
+
+
+/*
+   {
+     pid: 42,
+     lpSymbol: 'USDC-DAI LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xf04adBF75cDFc5eD26eeA4bbbb991DB002036Bdd',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xEd8413eCEC87c3d4664975743c02DB3b574012a7',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x0ef967559fB9a94F8ecD305096E8387Eefb01F23',
+     },
+     token: tokens.dai,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 13/24/60/60*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: -0.2,
+     kogefarmComment: ' (Quick)',
+   }, */
+/* We seem to be dramatically underestimating trading fees compared to Quick. A hack to compensate */
    {
      pid: 32,
      lpSymbol: 'ETH-MATIC LP',
@@ -132,7 +214,7 @@ const farms: FarmConfig[] = [
      token: tokens.eth,
      quoteToken: tokens.matic,
      rewardPerBlock: 4,
-     poolWeightDesignate: 1000/16750,
+     poolWeightDesignate: 1000/21700,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isApe: true,
@@ -160,7 +242,7 @@ const farms: FarmConfig[] = [
      token: tokens.dai,
      quoteToken: tokens.usdc,
      rewardPerBlock: 4,
-     poolWeightDesignate: 250/16750,
+     poolWeightDesignate: 250/21000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isApe: true,
@@ -188,7 +270,7 @@ const farms: FarmConfig[] = [
         token: tokens.crystl,
         quoteToken: tokens.crystl,
         rewardPerBlock: 4,
-        poolWeightDesignate: 3000/16750,
+        poolWeightDesignate: 4000/21700,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -213,13 +295,13 @@ const farms: FarmConfig[] = [
         token: tokens.crystl,
         quoteToken: tokens.matic,
         rewardPerBlock: 4,
-        poolWeightDesignate: 3000/16750,
+        poolWeightDesignate: 4000/21700,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
       },
-
-/*      {
+/*
+      {
         pid: 35,
         lpSymbol: 'Roll',
         lpAddresses: {
@@ -265,8 +347,8 @@ const farms: FarmConfig[] = [
         poolWeightDesignate: 180/360,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
-      },
-
+      }, */
+/*
       {
         pid: 37,
         lpSymbol: 'WMatic',
@@ -394,7 +476,7 @@ const farms: FarmConfig[] = [
         token: tokens.banana,
         quoteToken: tokens.eth,
         rewardPerBlock: 4,
-        poolWeightDesignate: 2000/16750,
+        poolWeightDesignate: 2000/21700,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -421,7 +503,7 @@ const farms: FarmConfig[] = [
         token: tokens.polydoge,
         quoteToken: tokens.matic,
         rewardPerBlock: 4,
-        poolWeightDesignate: 250/16750,
+        poolWeightDesignate: 250/21700,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -449,7 +531,7 @@ const farms: FarmConfig[] = [
            token: tokens.omen,
            quoteToken: tokens.omen,
            rewardPerBlock: 17.777,
-           poolWeightDesignate: 50000000000000000000/348000000000000000000,
+           poolWeightDesignate: 60000000000000000000/258000000000000000000,
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
          },
@@ -473,7 +555,7 @@ const farms: FarmConfig[] = [
            token: tokens.omen,
            quoteToken: tokens.usdc,
            rewardPerBlock: 17.777,
-           poolWeightDesignate: 60000000000000000000/348000000000000000000,
+           poolWeightDesignate: 100000000000000000000/258000000000000000000,
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
          },
@@ -496,7 +578,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.yeld,
      quoteToken: tokens.yeld,
-     rewardPerBlock: 0.015,
+     rewardPerBlock: 0.01,
      poolWeightDesignate: 2500/31000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -520,7 +602,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.yeld,
      quoteToken: tokens.matic,
-     rewardPerBlock: 0.015,
+     rewardPerBlock: 0.01,
      poolWeightDesignate: 4000/31000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -546,7 +628,7 @@ const farms: FarmConfig[] = [
      token: tokens.yeld,
      quoteToken: tokens.matic,
      isSushi: true,
-     rewardPerBlock: 0.015,
+     rewardPerBlock: 0.01,
      poolWeightDesignate: 4000/31000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -572,7 +654,7 @@ const farms: FarmConfig[] = [
      token: tokens.yeld,
      quoteToken: tokens.matic,
      isApe: true,
-     rewardPerBlock: 0.015,
+     rewardPerBlock: 0.01,
      poolWeightDesignate: 4000/31000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -597,7 +679,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.yeld,
      quoteToken: tokens.usdc,
-     rewardPerBlock: 0.015,
+     rewardPerBlock: 0.01,
      poolWeightDesignate: 4000/31000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -798,8 +880,8 @@ const farms: FarmConfig[] = [
     },
     token: tokens.fish,
     quoteToken: tokens.matic,
-    rewardPerBlock: 6,
-    poolWeightDesignate: 500/16750,
+    rewardPerBlock: 4,
+    poolWeightDesignate: 500/21700,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
     isApe: true,
@@ -955,7 +1037,7 @@ const farms: FarmConfig[] = [
    multiplier: '0X',
  },
 
- {
+/* {
    pid: 6,
    lpSymbol: 'Iron-USDC LP',
    lpAddresses: {
@@ -981,7 +1063,7 @@ const farms: FarmConfig[] = [
    rewardToken: tokens.titan,
    kogefarmComment: ' (Sushi)',
    multiplier: '0X',
- },
+ }, */
 
  {
    pid: 2,
