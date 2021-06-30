@@ -166,8 +166,55 @@ const farms: FarmConfig[] = [
      isSushi: true,
    },
 
+/*
+   {
+     pid: 35,
+     lpSymbol: 'Roll',
+     lpAddresses: {
+       80001: '',
+       137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.roll,
+     rewardPerBlock: 50,
+     poolWeightDesignate: 30/360,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+   },
 
-
+   {
+     pid: 36,
+     lpSymbol: 'Roll-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x905DCc700fcce9a49b7D907E371230995a45ebCE',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x8488E2f70055fdc2aCDF511Be789AEb93ae0B1B3',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 50,
+     poolWeightDesignate: 180/360,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+   },
+*/
 /*
    {
      pid: 42,
@@ -300,54 +347,6 @@ const farms: FarmConfig[] = [
         kogefarmFee: 0.01,
         isApe: true,
       },
-/*
-      {
-        pid: 35,
-        lpSymbol: 'Roll',
-        lpAddresses: {
-          80001: '',
-          137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
-        },
-        masterChefAddresses: {
-          80001: '',
-          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
-        },
-        masterChefPid: 1,
-        jarAddresses: {
-          80001: '',
-          137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
-        },
-        token: tokens.roll,
-        quoteToken: tokens.roll,
-        rewardPerBlock: 50,
-        poolWeightDesignate: 30/360,
-        minutesPerCompound: 1,
-        kogefarmFee: 0.01,
-      },
-
-      {
-        pid: 36,
-        lpSymbol: 'Roll-Matic LP',
-        lpAddresses: {
-          80001: '',
-          137: '0x905DCc700fcce9a49b7D907E371230995a45ebCE',
-        },
-        masterChefAddresses: {
-          80001: '',
-          137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
-        },
-        masterChefPid: 0,
-        jarAddresses: {
-          80001: '',
-          137: '0x8488E2f70055fdc2aCDF511Be789AEb93ae0B1B3',
-        },
-        token: tokens.roll,
-        quoteToken: tokens.matic,
-        rewardPerBlock: 50,
-        poolWeightDesignate: 180/360,
-        minutesPerCompound: 1,
-        kogefarmFee: 0.01,
-      }, */
 /*
       {
         pid: 37,
