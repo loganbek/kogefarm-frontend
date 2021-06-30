@@ -258,6 +258,36 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  bone: {
+    symbol: 'BONE',
+    coingeico: 'bone',
+    address: {
+      137: '0x6bb45cEAC714c52342Ef73ec663479da35934bf7',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  pup: {
+    symbol: 'PUP',
+    coingeico: 'pup',
+    address: {
+      137: '0xcFe2cF35D2bDDE84967e67d00aD74237e234CE59',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  btc: {
+    symbol: 'BTC',
+    coingeico: 'btc',
+    address: {
+      137: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

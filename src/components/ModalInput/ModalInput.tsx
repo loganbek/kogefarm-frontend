@@ -70,11 +70,6 @@ const ModalInput: React.FC<ModalInputProps> = ({
   const { t } = useTranslation()
   const isBalanceZero = max === '0' || !max
 
-  const isQiDao = symbol.toUpperCase() === 'MIMATIC-QI' || symbol.toUpperCase() === 'MIMATIC-USDC'
-  const isCrystlEthMatic = symbol.toUpperCase() === 'ETH-MATIC LP'
-  const isCrystlUSDCDai = symbol.toUpperCase() === 'USDC-DAI LP'
-  console.log(symbol.toUpperCase())
-
   const displayBalance = (balance: string) => {
     if (isBalanceZero) {
       return '0'
