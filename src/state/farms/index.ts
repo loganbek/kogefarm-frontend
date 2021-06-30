@@ -147,7 +147,7 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
   const farmQuoteTokenDecimal = await fetchFarmsQuoteTokenDecimals(farmsToFetch)
   const farmTotalDepositsVal = await fetchFarmsTotalDepositsVal(farmsToFetch)
   const farmJarRatioBal = await fetchFarmsJarRatioBal(farmsToFetch)
-  const farmTradingFeeRate = await fetchFarmsTradingFeeRate(farmsToFetch)
+  // const farmTradingFeeRate = await fetchFarmsTradingFeeRate(farmsToFetch)
 
   const arrayOfFarmDataObjects = farms.map((token, index) => {
     // Ratio in % a LP tokens that are in staking, vs the total number in circulation
