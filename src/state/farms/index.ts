@@ -30,17 +30,6 @@ const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
 
 const noAccountFarmConfig = farmsConfig.map((farm) => ({
   ...farm,
-  poolWeight: new BigNumber(0),
-  tokenAmount: new BigNumber(0),
-  quoteTokenAmount: new BigNumber(0),
-  lpTotalSupply: new BigNumber(0),
-  lpTokenBalanceMC: new BigNumber(0),
-  lpTotalInQuoteToken: new BigNumber(0),
-  tokenPriceVsQuote: new BigNumber(0),
-  jarLPDeposits: new BigNumber(0),
-  jarRatio: new BigNumber(0),
-  totalDeposits: new BigNumber(0),
-  tradingFeeRate: 0,
   userData: {
     allowance: '0',
     tokenBalance: '0',
@@ -56,17 +45,18 @@ export const farmsSlice = createSlice({
   initialState,
   reducers: {
     setFarmsPublicData: (state, action) => {
-      // const liveFarmsData: Farm[] = action.payload
-      // state.data = state.data.map((farm) => {
-      //   const liveFarmData = liveFarmsData?.find((f) => f.pid === farm.pid)
-      //   return { ...farm, ...liveFarmData }
-      // })
+      const liveFarmsData: Farm[] = action.payload
+      state.data = state.data.map((farm) => {
+        const liveFarmData = liveFarmsData.find((f) => f.pid === farm.pid)
+        return { ...farm, ...liveFarmData }
+      })
+      /*
       const { arrayOfFarmDataObjects } = action.payload
       arrayOfFarmDataObjects.forEach((farmDataEl) => {
         const { pid } = farmDataEl
         const index = state.data.findIndex((farm) => farm.pid === pid)
         state.data[index] = { ...farmDataEl, ...state.data[index] }
-      })
+      }) */
     },
     setFarmUserData: (state, action) => {
       const { arrayOfUserDataObjects } = action.payload
@@ -87,6 +77,7 @@ export const farmsSlice = createSlice({
 // Actions
 export const { setFarmsPublicData, setFarmUserData, setLoadArchivedFarmsData } = farmsSlice.actions
 
+/*
 // Thunks
 export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
   const fetchArchived = getState().farms.loadArchivedFarmsData
@@ -142,7 +133,74 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
   ///
   // dispatch(setFarmsPublicData({farms}))
   dispatch(setFarmsPublicData({ arrayOfFarmDataObjects }))
+} */
+
+export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
+  const fetchArchived = getState().farms.loadArchivedFarmsData
+  const farmsToFetch = fetchArchived ? farmsConfig : nonArchivedFarms
+  const farms = await fetchFarms(farmsToFetch)
+  const farmTokenBalanceLP = await fetchFarmsTokenBalanceLP(farmsToFetch)
+  const farmQuoteTokenBalanceLP = await fetchFarmsQuoteTokenBalanceLP(farmsToFetch)
+  const farmLPTokenBalanceMC = await fetchFarmsLpTokenBalanceMC(farmsToFetch)
+  const farmLPTotalSupply = await fetchFarmsLpTotalSupply(farmsToFetch)
+  const farmTokenDecimal = await fetchFarmsTokenDecimals(farmsToFetch)
+  const farmQuoteTokenDecimal = await fetchFarmsQuoteTokenDecimals(farmsToFetch)
+  const farmTotalDepositsVal = await fetchFarmsTotalDepositsVal(farmsToFetch)
+  const farmJarRatioBal = await fetchFarmsJarRatioBal(farmsToFetch)
+  const farmTradingFeeRate = await fetchFarmsTradingFeeRate(farmsToFetch)
+
+  const arrayOfFarmDataObjects = farms.map((token, index) => {
+    // Ratio in % a LP tokens that are in staking, vs the total number in circulation
+    const lpTokenBalanceMC = new BigNumber(farmLPTokenBalanceMC[index])
+    const lpTotalSupplyNum = new BigNumber(farmLPTotalSupply[index])
+    const lpQuoteTokenNum = new BigNumber(farmQuoteTokenBalanceLP[index])
+    const lpTokenRatio = lpTokenBalanceMC.div(lpTotalSupplyNum)
+    const quoteTokenDecimal = new BigNumber(farmQuoteTokenDecimal[index])
+    const tokenDecimal = new BigNumber(farmTokenDecimal[index])
+    console.log(lpTotalSupplyNum.toNumber())
+    console.log(lpQuoteTokenNum.toNumber())
+    console.log(lpTokenRatio.toNumber())
+    console.log(quoteTokenDecimal.toNumber())
+
+    // Total value in staking in quote token value
+    const lpTotalInQuoteToken = lpQuoteTokenNum.div(DEFAULT_TOKEN_DECIMAL).times(new BigNumber(2)).times(lpTokenRatio)
+
+    console.log(lpTotalInQuoteToken.toNumber())
+
+    // Amount of token in the LP that are considered staking (i.e amount of token * lp ratio)
+    const tokenAmount = new BigNumber(farmTokenBalanceLP[index]).div(BIG_TEN.pow(tokenDecimal)).times(lpTokenRatio)
+    const quoteTokenAmount = lpQuoteTokenNum.div(BIG_TEN.pow(quoteTokenDecimal)).times(lpTokenRatio)
+
+    const jarDeposits = new BigNumber(farmTotalDepositsVal[index])
+    const jarRatioNum = new BigNumber(farmJarRatioBal[index])
+    const totalDeposits = jarDeposits
+      .times(2)
+      .div(lpTotalSupplyNum)
+      .times(lpQuoteTokenNum)
+      .div(BIG_TEN.pow(quoteTokenDecimal))
+
+    const lpTotalSupply = new BigNumber(farmLPTotalSupply[index])
+    console.log(index)
+    console.log(token.lpAddresses)
+
+    return {
+      ...token,
+      tokenAmount: tokenAmount.toJSON(),
+      quoteTokenAmount: quoteTokenAmount.toJSON(),
+      lpTotalSupply: lpTotalSupply.toJSON(),
+      lpTokenBalanceMC: lpTokenBalanceMC.div(DEFAULT_TOKEN_DECIMAL).toJSON(),
+      lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
+      tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
+      jarLPDeposits: jarDeposits.toJSON(),
+      jarRatio: jarRatioNum.toJSON(),
+      totalDeposits: totalDeposits.toJSON(),
+    }
+  })
+
+  dispatch(setFarmsPublicData(arrayOfFarmDataObjects))
 }
+
+
 export const fetchFarmUserDataAsync = (account: string) => async (dispatch, getState) => {
   const fetchArchived = getState().farms.loadArchivedFarmsData
   const farmsToFetch = fetchArchived ? farmsConfig : nonArchivedFarms

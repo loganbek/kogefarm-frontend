@@ -20,6 +20,8 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
       const lpAddress = getAddress(farmConfig.lpAddresses)
       const masterChefAddress = getAddress(farmConfig.masterChefAddresses)
       const jarAddress = getAddress(farmConfig.jarAddresses)
+
+      /*
       const calls = [
         // Balance of token in the LP contract
         {
@@ -93,7 +95,8 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         .div(lpTotalSupplyNum)
         .times(lpQuoteTokenNum)
         .div(BIG_TEN.pow(quoteTokenDecimals))
-
+      */
+      
       let tradingFeeRate = 0
       // Subgraph Trading Pair Data
       if (!farmConfig.isApe && !farmConfig.isWault) {
@@ -208,6 +211,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
 
       return {
         ...farmConfig,
+        /*
         tokenAmount: tokenAmount.toJSON(),
         quoteTokenAmount: quoteTokenAmount.toJSON(),
         lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
@@ -216,7 +220,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         jarLPDeposits: jarDeposits.toJSON(),
         jarRatio: jarRatioNum.toJSON(),
-        totalDeposits: totalDeposits.toJSON(),
+        totalDeposits: totalDeposits.toJSON(), */
         tradingFeeRate: JSON.stringify(tradingFeeRate),
         //        poolWeight: poolWeight.toJSON(),
         //        multiplier: `${allocPoint.div(100).toString()}X`,
