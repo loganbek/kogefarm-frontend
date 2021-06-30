@@ -35,6 +35,7 @@ import { fetchPoolsStakingLimitsAsync } from './pools'
 export const useFetchPublicData = () => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
+
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
@@ -89,8 +90,6 @@ export const useLpTokenPrice = (symbol: string) => {
     : BIG_ZERO
 }
 
-
-
 // Prices
 export const useFetchPriceList = () => {
   const { slowRefresh } = useRefresh()
@@ -122,10 +121,10 @@ export const useGetApiPrice = (address: string) => {
 // }
 
 export const usePriceCakeBusd = (): BigNumber => {
-//  const cakeBnbFarm = useFarmFromPid(1)
-//  const bnbBusdPrice = usePriceBnbBusd()
+  //  const cakeBnbFarm = useFarmFromPid(1)
+  //  const bnbBusdPrice = usePriceBnbBusd()
 
-//  const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? cakeBnbFarm.tokenPriceVsQuote : BIG_ZERO
+  //  const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? cakeBnbFarm.tokenPriceVsQuote : BIG_ZERO
   const cakeBusdPrice = new BigNumber(100)
   return cakeBusdPrice
 }
@@ -138,7 +137,6 @@ export const useBlock = () => {
 export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
 }
-
 
 // Pools
 
