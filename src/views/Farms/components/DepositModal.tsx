@@ -27,6 +27,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
     numDecimals = 6
   }
+  if (tokenName.toUpperCase()==="BTC"){
+    numDecimals = 8
+  }
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, numDecimals)

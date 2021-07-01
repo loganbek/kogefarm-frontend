@@ -203,9 +203,7 @@ const Farms: React.FC = () => {
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
         if (farm.token === farm.quoteToken) {
           totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
-          if (farm.token.decimals === 6) {
-            totalLiquidity = totalLiquidity.times(10 ** 12)
-          }
+          totalLiquidity = totalLiquidity.times(10 ** (18-decimals))
         }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
         //        const jarRatioNum = new BigNumber(farm.jarRatio)

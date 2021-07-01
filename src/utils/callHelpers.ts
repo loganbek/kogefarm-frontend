@@ -45,6 +45,9 @@ export const depositJar = async (jarContract, amount, account) => {
   if (jarContract.options.address==="0x5AB24bA8183dA4D0E050fD00257dE291CDD17a89"){
     decimals = new BigNumber(10**6)
   }
+  if (jarContract.options.address==="0x58c12402428ca79Da43Bf14B70CbC59DF5Dfe61a"){
+    decimals = new BigNumber(10**8)
+  }
   return jarContract.methods
     .deposit(new BigNumber(amount).times(decimals).toString())
     .send({ from: account, gas: 800000 })
@@ -99,6 +102,9 @@ export const withdrawalJar = async (jarContract, amount, account) => {
   }
   if (jarContract.options.address==="0x5AB24bA8183dA4D0E050fD00257dE291CDD17a89"){
     decimals = new BigNumber(10**6)
+  }
+  if (jarContract.options.address==="0x58c12402428ca79Da43Bf14B70CbC59DF5Dfe61a"){
+    decimals = new BigNumber(10**8)
   }
   return jarContract.methods
     .withdraw(new BigNumber(amount).times(decimals).toString())

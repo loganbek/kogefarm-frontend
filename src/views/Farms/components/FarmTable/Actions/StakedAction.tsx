@@ -84,6 +84,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (lpSymbol.toUpperCase()==="USDC" || lpSymbol.toUpperCase()==="USDT"){
     decimals = 6
   }
+  if (lpSymbol.toUpperCase()==="BTC"){
+    decimals = 8
+  }
 
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {

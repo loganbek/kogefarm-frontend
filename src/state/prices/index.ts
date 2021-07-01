@@ -311,7 +311,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const rollMatic = rollBalance/rollMaticBalance
   const boneMatic = boneBalance/boneMaticBalance
   const pupMatic = pupBalance/pupMaticBalance
-  const btcUSDC = btcBalance/(btcUSDCBalance*10**12)
+  const btcUSDC = btcBalance*10**(18-8)/(btcUSDCBalance*10**12)
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM

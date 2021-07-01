@@ -50,6 +50,9 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
     numDecimals = 6
   }
+  if (tokenName.toUpperCase()==="BTC"){
+    numDecimals = 8
+  }
 
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
   const displayBalance = useCallback(() => {
