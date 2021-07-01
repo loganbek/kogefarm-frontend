@@ -57,7 +57,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.kogecoin,
      quoteToken: tokens.kogecoin,
-     rewardPerBlock: 0.0000000028,
+     rewardPerBlock: 2.8,
      poolWeightDesignate: 1/2,
      minutesPerCompound: 1,
      kogefarmFee: 0.00,
