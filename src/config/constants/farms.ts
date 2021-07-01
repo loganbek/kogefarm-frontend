@@ -472,6 +472,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 200/360,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     isSushi: true,
    },
 
 /*
