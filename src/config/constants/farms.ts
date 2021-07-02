@@ -445,7 +445,7 @@ const farms: FarmConfig[] = [
      token: tokens.roll,
      quoteToken: tokens.roll,
      rewardPerBlock: 44.2921190432,
-     poolWeightDesignate: 40/360,
+     poolWeightDesignate: 65/360,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
    },
