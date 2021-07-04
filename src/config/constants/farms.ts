@@ -791,7 +791,7 @@ const farms: FarmConfig[] = [
            token: tokens.omen,
            quoteToken: tokens.omen,
            rewardPerBlock: 17.777,
-           poolWeightDesignate: 60000000000000000000/308000000000000000000,
+           poolWeightDesignate: 60000000000000000000/338000000000000000000 ,
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
          },
@@ -815,9 +815,59 @@ const farms: FarmConfig[] = [
            token: tokens.omen,
            quoteToken: tokens.usdc,
            rewardPerBlock: 17.777,
-           poolWeightDesignate: 100000000000000000000/308000000000000000000,
+           poolWeightDesignate: 100000000000000000000/338000000000000000000 ,
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
+         },
+
+         {
+           pid: 55,
+           lpSymbol: 'Omen-WETH LP',
+           lpAddresses: {
+             80001: '',
+             137: '0xd7217619279F31DA063D738Cf1Bf7435764a07D9',
+           },
+           masterChefAddresses: {
+             80001: '',
+             137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+           },
+           masterChefPid: 17,
+           jarAddresses: {
+             80001: '',
+             137: '0x26C4Cb82c7B7D2e551d5d074f2298686DAc530cA',
+           },
+           token: tokens.omen,
+           quoteToken: tokens.eth,
+           rewardPerBlock: 17.777,
+           poolWeightDesignate: 40000000000000000000/338000000000000000000 ,
+           minutesPerCompound: 1,
+           kogefarmFee: 0.01,
+           isSushi: true,
+         },
+
+         {
+           pid: 56,
+           lpSymbol: 'Omen-WMatic LP',
+           lpAddresses: {
+             80001: '',
+             137: '0xe9Bb87c33d1607B06fb3988b31E9601BD21Ff3bD',
+           },
+           masterChefAddresses: {
+             80001: '',
+             137: '0x6ad70613d14c34aa69E1604af91c39e0591a132e',
+           },
+           masterChefPid: 18,
+           jarAddresses: {
+             80001: '',
+             137: '0x0e0BCba8269f5d2192Ab8ABED301Ee229DE0F244',
+           },
+           token: tokens.omen,
+           quoteToken: tokens.matic,
+           rewardPerBlock: 17.777,
+           poolWeightDesignate: 40000000000000000000/338000000000000000000 ,
+           minutesPerCompound: 1,
+           kogefarmFee: 0.01,
+           isSushi: true,
          },
 
    {
