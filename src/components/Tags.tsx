@@ -62,4 +62,5 @@ const CompoundingPoolTag = (props) => (
   </Tag>
 )
 
+
 export { CoreTag, CommunityTag, SushiTag, WaultTag, DfynTag, ApeTag, BinanceTag, DualTag, ManualPoolTag, CompoundingPoolTag }

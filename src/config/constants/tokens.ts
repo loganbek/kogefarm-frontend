@@ -268,6 +268,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  boneswap: {
+    symbol: 'BONE(Swap)',
+    coingeico: 'boneswap',
+    address: {
+      137: '0x80244C2441779361F35803b8C711C6c8fC6054a3',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
   pup: {
     symbol: 'PUP',
     coingeico: 'pup',
