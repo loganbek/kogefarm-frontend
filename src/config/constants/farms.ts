@@ -1452,7 +1452,7 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
   },
 
- {
+/* {
    pid: 5,
    lpSymbol: 'Iron-USDC LP',
    lpAddresses: {
@@ -1479,7 +1479,7 @@ const farms: FarmConfig[] = [
    multiplier: '0X',
  },
 
-/* {
+ {
    pid: 6,
    lpSymbol: 'Iron-USDC LP',
    lpAddresses: {
