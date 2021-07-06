@@ -607,6 +607,32 @@ const farms: FarmConfig[] = [
      isSushi: true,
    },
 
+   {
+     pid: 62,
+     lpSymbol: 'Roll-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x65C37f48781a555e2AD5542e4306ebAb1Ae93Cd7',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 8,
+     jarAddresses: {
+       80001: '',
+       137: '0x15113393DB8B1Cd9781E04499b942AE1A3412763',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 40.036567537489797621,
+     poolWeightDesignate: 120/720,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isApe: true,
+     kogefarmComment: ' (Ape)'
+   },
+
 /*
    {
      pid: 42,
