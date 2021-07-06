@@ -42,7 +42,7 @@ export const useFetchPublicData = () => {
     dispatch(fetchPoolsStakingLimitsAsync())
   }, [dispatch, slowRefresh])
 
-  useEffect(() => {
+/*  useEffect(() => {
     const web3 = getWeb3NoAccount()
     const interval = setInterval(async () => {
       const blockNumber = await web3.eth.getBlockNumber()
@@ -50,7 +50,7 @@ export const useFetchPublicData = () => {
     }, 6000)
 
     return () => clearInterval(interval)
-  }, [dispatch])
+  }, [dispatch]) */
 }
 
 // Farms
