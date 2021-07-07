@@ -28,7 +28,7 @@ const Container = styled.div`
 
 const UserValue: React.FunctionComponent<UserValueProps> = ({ userValue }) => {
   const displayUserValue = userValue ? (
-    `$${Number(userValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    `$${Number(userValue).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
     <Skeleton width={60} />
   )

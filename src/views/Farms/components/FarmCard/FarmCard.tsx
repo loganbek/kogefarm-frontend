@@ -95,7 +95,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '').split(' ')[0] + farmcomment
 //  const earnLabel = farm.dual ? farm.dual.earnLabel : 'CAKE'
   const userValueFormatted = farm.userValue
-    ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
