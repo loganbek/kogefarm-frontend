@@ -61,6 +61,7 @@ export interface FarmConfig {
   quoteToken: Token
   rewardPerBlock: number
   poolWeightDesignate: number
+  underlyingWebsite: string
   multiplier?: string
   isSushi?: boolean
   isDfyn?: boolean

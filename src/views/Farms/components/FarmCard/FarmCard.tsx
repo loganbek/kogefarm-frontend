@@ -136,10 +136,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   if (farm.lpSymbol==="PYQ-USDC"){
     addLiquidityUrl = `https://app.polyquity.org/liquidity`
   }
+  if (farm.token.coingeico==='curve3pool'){
+    addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
+  }
 
   const isPromotedFarm = false
 
-  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
+/*  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
   if (farm.isSushi===true){
     infoAddr = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
   }
@@ -154,7 +157,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   }
   if (farm.token===farm.quoteToken){
     infoAddr = `https://info.quickswap.exchange/address/${lpAddress}`
-  }
+  } */
+  const infoAddr = farm.underlyingWebsite
 
 
   return (
