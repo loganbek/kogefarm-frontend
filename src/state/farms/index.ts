@@ -157,15 +157,9 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
     const lpTokenRatio = lpTokenBalanceMC.div(lpTotalSupplyNum)
     const quoteTokenDecimal = new BigNumber(farmQuoteTokenDecimal[index])
     const tokenDecimal = new BigNumber(farmTokenDecimal[index])
-    console.log(lpTotalSupplyNum.toNumber())
-    console.log(lpQuoteTokenNum.toNumber())
-    console.log(lpTokenRatio.toNumber())
-    console.log(quoteTokenDecimal.toNumber())
 
     // Total value in staking in quote token value
     const lpTotalInQuoteToken = lpQuoteTokenNum.div(DEFAULT_TOKEN_DECIMAL).times(new BigNumber(2)).times(lpTokenRatio)
-
-    console.log(lpTotalInQuoteToken.toNumber())
 
     // Amount of token in the LP that are considered staking (i.e amount of token * lp ratio)
     const tokenAmount = new BigNumber(farmTokenBalanceLP[index]).div(BIG_TEN.pow(tokenDecimal)).times(lpTokenRatio)
@@ -180,8 +174,6 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
       .div(BIG_TEN.pow(quoteTokenDecimal))
 
     const lpTotalSupply = new BigNumber(farmLPTotalSupply[index])
-    console.log(index)
-    console.log(token.lpAddresses)
 
     return {
       ...token,

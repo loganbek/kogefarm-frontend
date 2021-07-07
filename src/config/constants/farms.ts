@@ -61,6 +61,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 10000/20000,
      minutesPerCompound: 1,
      kogefarmFee: 0.00,
+     underlyingWebsite: 'https://kogecoin.io'
    },
 
    {
@@ -87,6 +88,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.005,
      depositFee: 0.005,
+     underlyingWebsite: 'https://mai.finance'
    },
 
    {
@@ -112,6 +114,34 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01+0.005,
      depositFee: 0.005,
+     underlyingWebsite: 'https://mai.finance'
+   },
+
+   {
+     pid: 63,
+     lpSymbol: 'DAI-USDC-USDT',
+     lpAddresses: {
+       80001: '',
+       137: '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x19793B454D3AfC7b454F206Ffe95aDE26cA6912c',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x4a93D6b394Da4c1e6e436e9370E5DF08A45377a8',
+     },
+     token: tokens.curve3pool,
+     quoteToken: tokens.curve3pool,
+     rewardToken: tokens.matic,
+     rewardPerBlock: 1.344,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0,
+     kogefarmComment: ' (Curve)',
+     underlyingWebsite: 'https://polygon.curve.fi',
    },
 
 
@@ -139,6 +169,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isSushi: true,
+     underlyingWebsite: 'https://polyquity.org'
    },
 
    {
@@ -164,6 +195,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isSushi: true,
+     underlyingWebsite: 'https://polyquity.org'
    },
 
    {
@@ -188,7 +220,8 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 4000/30700,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     isSushi: true
+     isSushi: true,
+     underlyingWebsite: 'https://farm.boneswap.finance'
    },
 
    {
@@ -216,6 +249,7 @@ const farms: FarmConfig[] = [
      rewardToken: tokens.boneswap,
      kogefarmComment: ' (BoneSwap)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://farm.boneswap.finance'
    },
 
    {
@@ -243,6 +277,7 @@ const farms: FarmConfig[] = [
      rewardToken: tokens.boneswap,
      kogefarmComment: ' (BoneSwap)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://farm.boneswap.finance'
    },
 
 
@@ -268,6 +303,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 10000/46500,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -292,6 +328,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 10000/46500,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -318,6 +355,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      rewardToken: tokens.bone,
      kogefarmComment: ' (Bone)',
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -344,6 +382,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      rewardToken: tokens.bone,
      kogefarmComment: ' (Bone)',
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -371,6 +410,7 @@ const farms: FarmConfig[] = [
      rewardToken: tokens.bone,
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -398,6 +438,7 @@ const farms: FarmConfig[] = [
      rewardToken: tokens.bone,
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -422,6 +463,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 2500/46500,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -448,6 +490,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Bone)',
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -475,6 +518,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -502,6 +546,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -529,6 +574,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -556,6 +602,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
+     underlyingWebsite: 'https://bone.polypup.finance'
    },
 
    {
@@ -580,6 +627,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 130/720,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polyroll.org'
    },
 
    {
@@ -605,6 +653,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isSushi: true,
+     underlyingWebsite: 'https://polyroll.org'
    },
 
    {
@@ -630,7 +679,8 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isApe: true,
-     kogefarmComment: ' (Ape)'
+     kogefarmComment: ' (Ape)',
+     underlyingWebsite: 'https://polyroll.org'
    },
 
 /*
@@ -684,6 +734,7 @@ const farms: FarmConfig[] = [
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
+        underlyingWebsite: 'https://polycrystal.finance'
       },
 
       {
@@ -709,6 +760,7 @@ const farms: FarmConfig[] = [
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
+        underlyingWebsite: 'https://polycrystal.finance'
       },
 /*
       {
@@ -845,6 +897,7 @@ const farms: FarmConfig[] = [
         rewardToken: tokens.crystl,
         kogefarmComment: ' (Crystl)',
         depositFee: 0.02,
+        underlyingWebsite: 'https://polycrystal.finance'
       },
 
       {
@@ -873,6 +926,7 @@ const farms: FarmConfig[] = [
         rewardToken: tokens.crystl,
         kogefarmComment: ' (Crystl)',
         depositFee: 0.05,
+        underlyingWebsite: 'https://polycrystal.finance'
       },
 
       {
@@ -900,6 +954,7 @@ const farms: FarmConfig[] = [
         isApe: true,
         rewardToken: tokens.crystl,
         kogefarmComment: ' (Crystl)',
+        underlyingWebsite: 'https://polycrystal.finance'
       },
 
       {
@@ -927,6 +982,7 @@ const farms: FarmConfig[] = [
         isApe: true,
         rewardToken: tokens.crystl,
         kogefarmComment: ' (Crystl)',
+        underlyingWebsite: 'https://polycrystal.finance'
       },
 
 
@@ -952,6 +1008,7 @@ const farms: FarmConfig[] = [
            poolWeightDesignate: 60000000000000000000/338000000000000000000 ,
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
+           underlyingWebsite: 'https://augury.finance'
          },
 
          {
@@ -976,6 +1033,7 @@ const farms: FarmConfig[] = [
            poolWeightDesignate: 100000000000000000000/338000000000000000000 ,
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
+           underlyingWebsite: 'https://augury.finance'
          },
 
          {
@@ -1001,6 +1059,7 @@ const farms: FarmConfig[] = [
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
            isSushi: true,
+           underlyingWebsite: 'https://augury.finance'
          },
 
          {
@@ -1026,6 +1085,7 @@ const farms: FarmConfig[] = [
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
            isSushi: true,
+           underlyingWebsite: 'https://augury.finance'
          },
 
    {
@@ -1050,6 +1110,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 2500/28000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polyyeld.finance'
    },
 
    {
@@ -1075,6 +1136,8 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Quick)',
+     underlyingWebsite: 'https://polyyeld.finance',
+     multiplier: '0X',
    },
 
    {
@@ -1101,6 +1164,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Sushi)',
+     underlyingWebsite: 'https://polyyeld.finance'
    },
 
    {
@@ -1127,6 +1191,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Ape)',
+     underlyingWebsite: 'https://polyyeld.finance'
    },
 
    {
@@ -1151,6 +1216,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 4000/28000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polyyeld.finance'
    },
 
 
@@ -1177,6 +1243,7 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.005,
     isWault: true,
+    underlyingWebsite: 'https://wault.finance'
   },
 
   {
@@ -1202,6 +1269,7 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
     isWault: true,
+    underlyingWebsite: 'https://wault.finance'
   },
 
   {
@@ -1227,6 +1295,7 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
     isWault: true,
+    underlyingWebsite: 'https://wault.finance'
   },
 
   {
@@ -1251,6 +1320,7 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 3500/31110,
     minutesPerCompound: 1,
     kogefarmFee: 0.000,
+    underlyingWebsite: 'https://polycat.finance'
   },
 
   {
@@ -1275,7 +1345,8 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 5000/31110,
     minutesPerCompound: 1,
     kogefarmFee: 0.000,
-    kogefarmComment: ' (Quick)'
+    kogefarmComment: ' (Quick)',
+    underlyingWebsite: 'https://polycat.finance'
   },
 
   {
@@ -1301,7 +1372,8 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.000,
     isSushi: true,
-    kogefarmComment: ' (Sushi)'
+    kogefarmComment: ' (Sushi)',
+    underlyingWebsite: 'https://polycat.finance'
   },
 
   {
@@ -1327,7 +1399,8 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.000,
     isDfyn: true,
-    kogefarmComment: ' (Dfyn)'
+    kogefarmComment: ' (Dfyn)',
+    underlyingWebsite: 'https://polycat.finance'
   },
 
   {
@@ -1355,6 +1428,7 @@ const farms: FarmConfig[] = [
     isApe: true,
     rewardToken: tokens.crystl,
     kogefarmComment: ' (Crystl)',
+    underlyingWebsite: 'https://polycat.finance'
   },
 
   {
@@ -1379,6 +1453,7 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 3500/34500,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
+    underlyingWebsite: 'https://piratedice.xyz'
   },
 
   {
@@ -1403,6 +1478,7 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 12500/34500,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
+    underlyingWebsite: 'https://piratedice.xyz'
   },
 
   {
@@ -1427,6 +1503,7 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 10000/34500,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
+    underlyingWebsite: 'https://piratedice.xyz'
   },
 
 
@@ -1452,6 +1529,7 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 10000/63250,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygaj.finance'
   },
 
   {
@@ -1476,6 +1554,7 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 10000/63250,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygaj.finance'
   },
 
 /* {
@@ -1558,6 +1637,7 @@ const farms: FarmConfig[] = [
    kogefarmFee: 0.000,
    kogefarmComment: ' (HIGH RISK)',
    multiplier: '0X',
+   underlyingWebsite: 'https://iron.finance'
  },
 
 {
@@ -1585,6 +1665,7 @@ const farms: FarmConfig[] = [
   kogefarmFee: 0.01,
   kogefarmComment: ' (HIGH RISK)',
   multiplier: '0X',
+  underlyingWebsite: 'https://iron.finance'
 },
 
 {
@@ -1611,6 +1692,7 @@ const farms: FarmConfig[] = [
   isSushi: true,
   kogefarmFee: 0.01,
   kogefarmComment: ' (HIGH RISK)',
+  underlyingWebsite: 'https://iron.finance',
   multiplier: '0X',
 },
 

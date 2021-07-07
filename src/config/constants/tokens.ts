@@ -298,6 +298,16 @@ const tokens = {
     decimals: 8,
     projectLink: '',
   },
+  curve3pool: {
+    symbol: 'USDC/USDT/DAI',
+    coingeico: 'curve3pool',
+    address: {
+      137: '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

@@ -62,9 +62,37 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const btcUSDCLP = '0xF6a637525402643B0654a54bEAd2Cb9A83C8B498'
   const boneswapAddr = '0x80244C2441779361F35803b8C711C6c8fC6054a3'
   const boneswapMaticLP = '0x4026895A93D720083E4469eE675156A8Ff8D3853'
+  // Curve
+  const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
+  const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
+  const amUSDT = '0x60d55f02a771d515e077c9c2403a1ef324885cec'
+  const swap3pool = '0x445FE580eF8d70FF569aB36e80c647af338db351'
+  const am3crvLP = '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171'
 /*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
 */
+  const curveCalls = [
+    {
+      address: am3crvLP,
+      name: 'totalSupply'
+    },
+    {
+      address: amDai,
+      name: 'balanceOf',
+      params: [swap3pool],
+    },
+    {
+      address: amUSDC,
+      name: 'balanceOf',
+      params: [swap3pool],
+    },
+    {
+      address: amUSDT,
+      name: 'balanceOf',
+      params: [swap3pool],
+    },
+  ]
+
   const calls = [
     // Matic Price
     {
@@ -306,6 +334,10 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     }, */
   ]
   const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance] = await multicall(erc20, calls)
+
+  const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve] = await multicall(erc20, curveCalls)
+  // Curve ratio
+  const curveRatio = (amDaiCurve/10**18 + amUSDCCurve/10**6 + amUSDTCurve/10**6)/(curve3poolSupply/10**18)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
   const titanMatic = titanBalanceLP/maticBalanceLP
@@ -350,6 +382,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const pupUSD = maticUSD/pupMatic
   const btcUSD = usdcUSD/btcUSDC
   const boneswapUSD = maticUSD/boneswapMatic
+  const curve3poolUSD = curveRatio
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -375,6 +408,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.btc = {"usd":btcUSD.toString()}
   data.dai = {"usd":usdcUSD.toString()}
   data.boneswap = {"usd":boneswapUSD.toString()}
+  data.curve3pool = {"usd":curve3poolUSD.toString()}
   // Return normalized token names
   return {
 //    updated_at: data.updated_at,
