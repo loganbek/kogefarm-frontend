@@ -158,7 +158,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://polygonscan.com/address/${jarAddress}`
-  let info = `https://info.quickswap.exchange/pair/${lpAddress}`
+  const info = farm.underlyingWebsite
+/*  let info = `https://info.quickswap.exchange/pair/${lpAddress}`
   if (farm.isSushi===true){
     info = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
   }
@@ -176,7 +177,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     if (farm.isApe===true){
       info = `https://polygon.info.apeswap.finance/address/${lpAddress}`
     }
-  }
+  } */
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   if (farm.isSushi===true){
@@ -200,6 +201,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   if (farm.lpSymbol==="PYQ-USDC"){
     liquidityurl = `https://app.polyquity.org/liquidity`
   }
+  if (farm.token.coingeico==='curve3pool'){
+    liquidityurl = `https://polygon.curve.fi/aave/deposit`
+  }
 
 
   return (
@@ -213,7 +217,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </StakeContainer>
         )}
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+        <StyledLinkExternal href={info}>{t('Underlying Project')}</StyledLinkExternal>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {farm.isSushi && <SushiTag />}

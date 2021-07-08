@@ -76,6 +76,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (lpSymbol.toUpperCase()==="PYQ-USDC"){
     addLiquidityUrl = `https://app.polyquity.org/liquidity`
   }
+  if (token.coingeico==='curve3pool'){
+    addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
+  }
 
   let decimals = 18
   if (lpSymbol==="KogeCoin"){

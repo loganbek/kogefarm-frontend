@@ -56,7 +56,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         {
           address: getAddress(farmConfig.quoteToken.address),
           name: 'decimals',
-        }, 
+        },
         // Jar information
         {
           address: jarAddress,
@@ -176,6 +176,9 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           } catch (e) {
             console.error(e)
           }
+        }
+        if (farmConfig.token.coingeico==='curve3pool'){
+          tradingFeeRate = 0.0681/365*100
         }
       }
       // new BigNumber(totalDepositsVal).times(quoteTokenAmount).div(tokenAmount).div(BIG_TEN.pow(quoteTokenDecimals)).times(2)
