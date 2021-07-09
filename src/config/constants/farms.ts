@@ -287,12 +287,12 @@ const farms: FarmConfig[] = [
      },
      masterChefAddresses: {
        80001: '',
-       137: '0xa8974E37d2B9dF1c9dDD49e7D6363d32D366D976',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
      },
      masterChefPid: 16,
      jarAddresses: {
        80001: '',
-       137: '0x0867bc1f854938e1C1542c20dEa5100009621023',
+       137: '0xa8974E37d2B9dF1c9dDD49e7D6363d32D366D976',
      },
      token: tokens.usdc,
      quoteToken: tokens.dai,
