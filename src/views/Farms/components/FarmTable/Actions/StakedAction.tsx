@@ -9,7 +9,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
@@ -39,6 +39,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isSushi,
   isWault,
   isApe,
+  isJetSwap,
   depositFee,
   userDataReady,
 }) => {
@@ -69,6 +70,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }
   if (isApe===true){
     addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (isJetSwap===true){
+    addLiquidityUrl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
   if (quoteToken===token){
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
