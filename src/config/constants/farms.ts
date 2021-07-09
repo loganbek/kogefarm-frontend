@@ -200,32 +200,6 @@ const farms: FarmConfig[] = [
 
    {
      pid: 64,
-     lpSymbol: 'PWINGS-Matic',
-     lpAddresses: {
-       80001: '',
-       137: '0xA0A6e9A5185d5737CF6F7920CB417EA2F07F03B3',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
-     },
-     masterChefPid: 2,
-     jarAddresses: {
-       80001: '',
-       137: '0x0D3389DB05bC0d21961fEFd8b54B92558D798Fe2',
-     },
-     token: tokens.pwings,
-     quoteToken: tokens.matic,
-     rewardPerBlock: 2,
-     poolWeightDesignate: 1500/10000,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-     underlyingWebsite: 'https://jetswap.finance',
-     isJetSwap: true
-   },
-
-   {
-     pid: 65,
      lpSymbol: 'PWINGS-USDC',
      lpAddresses: {
        80001: '',
@@ -242,6 +216,32 @@ const farms: FarmConfig[] = [
      },
      token: tokens.pwings,
      quoteToken: tokens.usdc,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 1500/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://jetswap.finance',
+     isJetSwap: true
+   },
+
+   {
+     pid: 65,
+     lpSymbol: 'PWINGS-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0xA0A6e9A5185d5737CF6F7920CB417EA2F07F03B3',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0x0D3389DB05bC0d21961fEFd8b54B92558D798Fe2',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.matic,
      rewardPerBlock: 2,
      poolWeightDesignate: 1500/10000,
      minutesPerCompound: 1,
