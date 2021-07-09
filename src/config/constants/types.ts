@@ -67,6 +67,7 @@ export interface FarmConfig {
   isDfyn?: boolean
   isWault?: boolean
   isApe?: boolean
+  isJetSwap?: boolean
   isCommunity?: boolean
   dual?: {
     rewardPerBlock: number

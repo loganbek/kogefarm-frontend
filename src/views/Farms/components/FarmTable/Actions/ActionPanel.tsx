@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@pancakeswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag, ApeTag } from 'components/Tags'
+import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
 import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL } from 'config'
 
 // import HarvestAction from './HarvestAction'
@@ -223,6 +223,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           {farm.isSushi && <SushiTag />}
           {farm.isWault && <WaultTag />}
           {farm.isApe && <ApeTag />}
+          {farm.isJetSwap && <JetSwapTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>
