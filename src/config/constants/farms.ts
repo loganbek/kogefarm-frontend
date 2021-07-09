@@ -199,6 +199,114 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 64,
+     lpSymbol: 'PWINGS-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0xaf623E96d38191038C48990Df298e07Fb77b56c3',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0x32752c391fa2F241F60068e7EA1D8B84BaB88611',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 1500/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://jetswap.finance',
+     isJetSwap: true
+   },
+
+   {
+     pid: 65,
+     lpSymbol: 'PWINGS-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0xA0A6e9A5185d5737CF6F7920CB417EA2F07F03B3',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0x0D3389DB05bC0d21961fEFd8b54B92558D798Fe2',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 1500/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://jetswap.finance',
+     isJetSwap: true
+   },
+
+   {
+     pid: 66,
+     lpSymbol: 'ETH-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0x951E38875a93df95bbd24fe31f409b7933B35BED',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 7,
+     jarAddresses: {
+       80001: '',
+       137: '0x277c64Aa105bc4892280050726D3de0848b9C274',
+     },
+     token: tokens.eth,
+     quoteToken: tokens.matic,
+     rewardToken: tokens.pwings,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 250/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://jetswap.finance',
+     isJetSwap: true,
+     kogefarmComment: ' (JetSwap)',
+   },
+
+   {
+     pid: 67,
+     lpSymbol: 'USDC-Dai',
+     lpAddresses: {
+       80001: '',
+       137: '0x4A53119dd905fD39ccC532C68e69505dfB47fc2C',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 16,
+     jarAddresses: {
+       80001: '',
+       137: '0xa8974E37d2B9dF1c9dDD49e7D6363d32D366D976',
+     },
+     token: tokens.usdc,
+     quoteToken: tokens.dai,
+     rewardToken: tokens.pwings,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 250/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://jetswap.finance',
+     isJetSwap: true,
+     kogefarmComment: ' (JetSwap)',
+   },
+
+   {
      pid: 59,
      lpSymbol: 'Bone(Swap)-WMatic LP',
      lpAddresses: {

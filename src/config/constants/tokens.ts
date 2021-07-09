@@ -308,6 +308,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  pwings: {
+    symbol: 'PWINGS',
+    coingeico: 'pwings',
+    address: {
+      137: '0x845E76A8691423fbc4ECb8Dd77556Cb61c09eE25',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
