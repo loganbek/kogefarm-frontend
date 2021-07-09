@@ -220,7 +220,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 1500/10000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://jetswap.finance',
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true
    },
 
@@ -246,7 +246,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 1500/10000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://jetswap.finance',
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true
    },
 
@@ -273,7 +273,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 250/10000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://jetswap.finance',
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
      kogefarmComment: ' (JetSwap)',
    },
@@ -301,7 +301,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 250/10000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://jetswap.finance',
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
      kogefarmComment: ' (JetSwap)',
    },
