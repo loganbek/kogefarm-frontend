@@ -432,7 +432,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.gfi,
      quoteToken: tokens.gfi,
-     rewardPerBlock: 6.091617933723200000,
+     rewardPerBlock: 6.091617933723200000*2,
      poolWeightDesignate: 1,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
