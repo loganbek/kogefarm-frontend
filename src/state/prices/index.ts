@@ -385,9 +385,10 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const btcUSDC = btcBalance*10**(18-8)/(btcUSDCBalance*10**12)
   const boneswapMatic = boneswapBalance/boneswapMaticBalance
   const pwingsMatic = pwingsBalance/pwingsMaticBalance
-  const gfiMatic = gfiBalance/(gfiEthBalance/ethMatic)
+  const gfiEth = gfiBalance/gfiEthBalance
+  const gfiMatic = gfiEth*ethMatic
   console.log(ethMatic)
-  console.log(gfiEthBalance)
+  console.log(gfiEth)
   console.log(gfiMatic)
 
   // Get Matic price
