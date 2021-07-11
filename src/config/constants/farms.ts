@@ -404,12 +404,14 @@ const farms: FarmConfig[] = [
      },
      token: tokens.btc,
      quoteToken: tokens.usdt,
+     rewardToken: tokens.pwings,
      rewardPerBlock: 2,
      poolWeightDesignate: 250/10000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
+     kogefarmComment: ' (JetSwap)',
    },
 
    {
@@ -430,7 +432,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.gfi,
      quoteToken: tokens.gfi,
-     rewardPerBlock: 6.091617933723200000,
+     rewardPerBlock: 6.091617933723200000*2,
      poolWeightDesignate: 1,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
