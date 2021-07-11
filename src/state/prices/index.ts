@@ -64,7 +64,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const boneswapMaticLP = '0x4026895A93D720083E4469eE675156A8Ff8D3853'
   const pwingsAddr = '0x845E76A8691423fbc4ECb8Dd77556Cb61c09eE25'
   const pwingsMaticLP = '0xA0A6e9A5185d5737CF6F7920CB417EA2F07F03B3'
-  const gfiAddr = '0x845E76A8691423fbc4ECb8Dd77556Cb61c09eE25'
+  const gfiAddr = '0x874e178A2f3f3F9d34db862453Cd756E7eAb0381'
   const gfiEthLP = '0x1587663E8F475E69eA2DBb38482C8c4EE9F388Fb'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
@@ -387,9 +387,6 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const pwingsMatic = pwingsBalance/pwingsMaticBalance
   const gfiEth = gfiBalance/gfiEthBalance
   const gfiMatic = gfiEth*ethMatic
-  console.log(ethMatic)
-  console.log(gfiEth)
-  console.log(gfiMatic)
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
