@@ -199,6 +199,110 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 69,
+     lpSymbol: 'pWings',
+     lpAddresses: {
+       80001: '',
+       137: '0x845E76A8691423fbc4ECb8Dd77556Cb61c09eE25',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x01E02c272f0436317B1d05C350ED9C5482777aAb',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.pwings,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 2000/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
+     isJetSwap: true,
+   },
+
+   {
+     pid: 64,
+     lpSymbol: 'PWINGS-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0xaf623E96d38191038C48990Df298e07Fb77b56c3',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0x32752c391fa2F241F60068e7EA1D8B84BaB88611',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 1500/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
+     isJetSwap: true
+   },
+
+   {
+     pid: 65,
+     lpSymbol: 'PWINGS-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0xA0A6e9A5185d5737CF6F7920CB417EA2F07F03B3',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0x0D3389DB05bC0d21961fEFd8b54B92558D798Fe2',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 1500/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
+     isJetSwap: true
+   },
+
+   {
+     pid: 70,
+     lpSymbol: 'pWings-USDT LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xA39a7640790907D4865a74c1F9715715DBd00431',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 3,
+     jarAddresses: {
+       80001: '',
+       137: '0xceE1BaaEAD121DfC60fb292d64714acC0E3147C1',
+     },
+     token: tokens.pwings,
+     quoteToken: tokens.usdt,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 1500/10000,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
+     isJetSwap: true,
+   },
+
+   {
      pid: 67,
      lpSymbol: 'USDC-Dai',
      lpAddresses: {
@@ -283,25 +387,25 @@ const farms: FarmConfig[] = [
    },
 
    {
-     pid: 69,
-     lpSymbol: 'pWings',
+     pid: 71,
+     lpSymbol: 'BTC-USDT LP',
      lpAddresses: {
        80001: '',
-       137: '0x845E76A8691423fbc4ECb8Dd77556Cb61c09eE25',
+       137: '0x7641d6b873877007697D526EF3C50908779a6993',
      },
      masterChefAddresses: {
        80001: '',
        137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
      },
-     masterChefPid: 0,
+     masterChefPid: 12,
      jarAddresses: {
        80001: '',
-       137: '0x01E02c272f0436317B1d05C350ED9C5482777aAb',
+       137: '0x4B9815ba693f46A3B74e42A8767122EfCAa16C88',
      },
-     token: tokens.pwings,
-     quoteToken: tokens.pwings,
+     token: tokens.btc,
+     quoteToken: tokens.usdt,
      rewardPerBlock: 2,
-     poolWeightDesignate: 2000/10000,
+     poolWeightDesignate: 250/10000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
@@ -309,57 +413,79 @@ const farms: FarmConfig[] = [
    },
 
    {
-     pid: 64,
-     lpSymbol: 'PWINGS-USDC',
+     pid: 72,
+     lpSymbol: 'GFI',
      lpAddresses: {
        80001: '',
-       137: '0xaf623E96d38191038C48990Df298e07Fb77b56c3',
+       137: '0x874e178A2f3f3F9d34db862453Cd756E7eAb0381',
      },
      masterChefAddresses: {
        80001: '',
-       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+       137: '0xf9FBfA8Fd7568D39E1b2091379499B48EA2F4c72',
      },
-     masterChefPid: 1,
+     masterChefPid: 0,
      jarAddresses: {
        80001: '',
-       137: '0x32752c391fa2F241F60068e7EA1D8B84BaB88611',
+       137: '0xa67153C4b30f24F60286C664547aeE010AE87F1D',
      },
-     token: tokens.pwings,
-     quoteToken: tokens.usdc,
-     rewardPerBlock: 2,
-     poolWeightDesignate: 1500/10000,
+     token: tokens.gfi,
+     quoteToken: tokens.gfi,
+     rewardPerBlock: 6.091617933723200000,
+     poolWeightDesignate: 1,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
-     isJetSwap: true
+     underlyingWebsite: 'https://gravityfinance.io/',
    },
 
    {
-     pid: 65,
-     lpSymbol: 'PWINGS-Matic',
+     pid: 73,
+     lpSymbol: 'GFI-USDC LP',
      lpAddresses: {
        80001: '',
-       137: '0xA0A6e9A5185d5737CF6F7920CB417EA2F07F03B3',
+       137: '0xb1f3555A7c3753AB4E6DF1d66CFDB25477a36Ce7',
      },
      masterChefAddresses: {
        80001: '',
-       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+       137: '0xE6584E2432ef0b82A39C383e895E7e031655F2Bf',
      },
-     masterChefPid: 2,
+     masterChefPid: 0,
      jarAddresses: {
        80001: '',
-       137: '0x0D3389DB05bC0d21961fEFd8b54B92558D798Fe2',
+       137: '0x681354D3aaB77382e1B946E36d8Cd1fF11903aaA',
      },
-     token: tokens.pwings,
-     quoteToken: tokens.matic,
-     rewardPerBlock: 2,
-     poolWeightDesignate: 1500/10000,
+     token: tokens.gfi,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 30.381944444444400000,
+     poolWeightDesignate: 1,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
-     isJetSwap: true
+     underlyingWebsite: 'https://gravityfinance.io/',
    },
 
+   {
+     pid: 74,
+     lpSymbol: 'GFI-ETH LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x1587663E8F475E69eA2DBb38482C8c4EE9F388Fb',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xEf943A1B9A5E697Eb26B1cfc5e9225D2Aa00395a',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x5D24318318C7219e7283C71A2c037957e1e3bC3E',
+     },
+     token: tokens.gfi,
+     quoteToken: tokens.eth,
+     rewardPerBlock: 30.381944444444400000,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://gravityfinance.io/',
+   },
 
    {
      pid: 59,

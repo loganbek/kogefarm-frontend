@@ -318,6 +318,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  gfi: {
+    symbol: 'GFI',
+    coingeico: 'gfi',
+    address: {
+      137: '0x874e178A2f3f3F9d34db862453Cd756E7eAb0381',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
