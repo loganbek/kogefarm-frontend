@@ -64,6 +64,61 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://kogecoin.io'
    },
 
+
+      {
+        pid: 75,
+        lpSymbol: 'DAI-USDC-USDT',
+        lpAddresses: {
+          80001: '',
+          137: '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x1fD1259Fa8CdC60c6E8C86cfA592CA1b8403DFaD',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0x7B612e2A58F31Eb482812D1F3529e001655e6EB9',
+        },
+        token: tokens.iron3pool,
+        quoteToken: tokens.iron3pool,
+        rewardToken: tokens.ice,
+        rewardPerBlock: 15.854895991882293252*2,
+        poolWeightDesignate: 100000/150000,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        kogefarmComment: ' (Iron)',
+        underlyingWebsite: 'https://app.iron.finance/',
+      },
+
+      {
+        pid: 76,
+        lpSymbol: 'Ice-USDC LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x34832D9AC4127a232C1919d840f7aaE0fcb7315B',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x1fD1259Fa8CdC60c6E8C86cfA592CA1b8403DFaD',
+        },
+        masterChefPid: 2,
+        jarAddresses: {
+          80001: '',
+          137: '0x55D51F0C3215085e45BA7041d32Fc8d4890570fE',
+        },
+        token: tokens.ice,
+        quoteToken: tokens.usdc,
+        rewardPerBlock: 15.854895991882293252*2,
+        poolWeightDesignate: 25000/150000,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        isDfyn: true,
+        kogefarmComment: ' (Dfyn)',
+        underlyingWebsite: 'https://app.iron.finance/'
+      },
+    
    {
      pid: 31,
      lpSymbol: 'MAI(miMatic)-USDC',
@@ -144,32 +199,6 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://polygon.curve.fi',
    },
 
-   {
-     pid: 75,
-     lpSymbol: 'DAI-USDC-USDT',
-     lpAddresses: {
-       80001: '',
-       137: '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x1fD1259Fa8CdC60c6E8C86cfA592CA1b8403DFaD',
-     },
-     masterChefPid: 0,
-     jarAddresses: {
-       80001: '',
-       137: '0x7B612e2A58F31Eb482812D1F3529e001655e6EB9',
-     },
-     token: tokens.iron3pool,
-     quoteToken: tokens.iron3pool,
-     rewardToken: tokens.ice,
-     rewardPerBlock: 15.854895991882293252*2,
-     poolWeightDesignate: 100000/150000,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-     kogefarmComment: ' (Iron)',
-     underlyingWebsite: 'https://app.iron.finance/',
-   },
 
    {
      pid: 43,
