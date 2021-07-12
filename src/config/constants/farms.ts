@@ -490,6 +490,84 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 35,
+     lpSymbol: 'Roll',
+     lpAddresses: {
+       80001: '',
+       137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.roll,
+     rewardPerBlock: 37.682097073745097601,
+     poolWeightDesignate: 130/720,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polyroll.org'
+   },
+
+   {
+     pid: 36,
+     lpSymbol: 'Roll-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x905DCc700fcce9a49b7D907E371230995a45ebCE',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x8488E2f70055fdc2aCDF511Be789AEb93ae0B1B3',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 37.682097073745097601,
+     poolWeightDesignate: 280/720,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isSushi: true,
+     underlyingWebsite: 'https://polyroll.org'
+   },
+
+   {
+     pid: 62,
+     lpSymbol: 'Roll-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x65C37f48781a555e2AD5542e4306ebAb1Ae93Cd7',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 8,
+     jarAddresses: {
+       80001: '',
+       137: '0x15113393DB8B1Cd9781E04499b942AE1A3412763',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 37.682097073745097601,
+     poolWeightDesignate: 120/720,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isApe: true,
+     kogefarmComment: ' (Ape)',
+     underlyingWebsite: 'https://polyroll.org'
+   },
+
+   {
      pid: 59,
      lpSymbol: 'Bone(Swap)-WMatic LP',
      lpAddresses: {
@@ -894,84 +972,6 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Bone)',
      depositFee: 0.04,
      underlyingWebsite: 'https://bone.polypup.finance'
-   },
-
-   {
-     pid: 35,
-     lpSymbol: 'Roll',
-     lpAddresses: {
-       80001: '',
-       137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
-     },
-     masterChefPid: 1,
-     jarAddresses: {
-       80001: '',
-       137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
-     },
-     token: tokens.roll,
-     quoteToken: tokens.roll,
-     rewardPerBlock: 37.682097073745097601,
-     poolWeightDesignate: 130/720,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-     underlyingWebsite: 'https://polyroll.org'
-   },
-
-   {
-     pid: 36,
-     lpSymbol: 'Roll-Matic LP',
-     lpAddresses: {
-       80001: '',
-       137: '0x905DCc700fcce9a49b7D907E371230995a45ebCE',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
-     },
-     masterChefPid: 0,
-     jarAddresses: {
-       80001: '',
-       137: '0x8488E2f70055fdc2aCDF511Be789AEb93ae0B1B3',
-     },
-     token: tokens.roll,
-     quoteToken: tokens.matic,
-     rewardPerBlock: 37.682097073745097601,
-     poolWeightDesignate: 280/720,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-     isSushi: true,
-     underlyingWebsite: 'https://polyroll.org'
-   },
-
-   {
-     pid: 62,
-     lpSymbol: 'Roll-Matic LP',
-     lpAddresses: {
-       80001: '',
-       137: '0x65C37f48781a555e2AD5542e4306ebAb1Ae93Cd7',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
-     },
-     masterChefPid: 8,
-     jarAddresses: {
-       80001: '',
-       137: '0x15113393DB8B1Cd9781E04499b942AE1A3412763',
-     },
-     token: tokens.roll,
-     quoteToken: tokens.matic,
-     rewardPerBlock: 37.682097073745097601,
-     poolWeightDesignate: 120/720,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-     isApe: true,
-     kogefarmComment: ' (Ape)',
-     underlyingWebsite: 'https://polyroll.org'
    },
 
 /*
