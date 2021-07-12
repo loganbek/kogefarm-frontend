@@ -328,6 +328,26 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  ice: {
+    symbol: 'Ice',
+    coingeico: 'ice',
+    address: {
+      137: '0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  iron3pool: {
+    symbol: 'USDC/USDT/DAI',
+    coingeico: 'iron3pool',
+    address: {
+      137: '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

@@ -144,6 +144,32 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://polygon.curve.fi',
    },
 
+   {
+     pid: 75,
+     lpSymbol: 'DAI-USDC-USDT',
+     lpAddresses: {
+       80001: '',
+       137: '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1fD1259Fa8CdC60c6E8C86cfA592CA1b8403DFaD',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x7B612e2A58F31Eb482812D1F3529e001655e6EB9',
+     },
+     token: tokens.iron3pool,
+     quoteToken: tokens.iron3pool,
+     rewardToken: tokens.ice,
+     rewardPerBlock: 15.854895991882293252*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     kogefarmComment: ' (Iron)',
+     underlyingWebsite: 'https://app.iron.finance/',
+   },
 
    {
      pid: 43,
@@ -197,6 +223,7 @@ const farms: FarmConfig[] = [
      isSushi: true,
      underlyingWebsite: 'https://polyquity.org'
    },
+
 
    {
      pid: 69,

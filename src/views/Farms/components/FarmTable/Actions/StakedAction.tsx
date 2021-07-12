@@ -83,6 +83,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (token.coingeico==='curve3pool'){
     addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
   }
+  if (token.coingeico==='iron3pool'){
+    addLiquidityUrl = `https://app.iron.finance/swap/pools/is3usd/deposit`
+  }
 
   let decimals = 18
   if (lpSymbol==="KogeCoin"){
