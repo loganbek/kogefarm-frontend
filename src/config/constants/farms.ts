@@ -385,7 +385,7 @@ const farms: FarmConfig[] = [
      isJetSwap: true,
      kogefarmComment: ' (JetSwap)',
    },
-
+/*
    {
      pid: 71,
      lpSymbol: 'BTC-USDT LP',
@@ -412,7 +412,7 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
      kogefarmComment: ' (JetSwap)',
-   },
+   }, */
 
    {
      pid: 72,
