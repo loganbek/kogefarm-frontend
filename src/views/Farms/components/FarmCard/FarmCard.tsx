@@ -135,6 +135,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     if (farm.isApe===true){
       addLiquidityUrl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
+    if (farm.token.coingeico==='pwings'){
+      addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
   }
   if (farm.lpSymbol==="PYQ-USDC"){
     addLiquidityUrl = `https://app.polyquity.org/liquidity`

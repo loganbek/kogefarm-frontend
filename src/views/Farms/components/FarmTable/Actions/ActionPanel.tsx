@@ -200,6 +200,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     if (farm.isApe===true){
       liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
+    if (farm.token.coingeico==='pwings'){
+      liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
   }
   if (farm.lpSymbol==="PYQ-USDC"){
     liquidityurl = `https://app.polyquity.org/liquidity`
