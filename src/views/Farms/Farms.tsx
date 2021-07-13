@@ -493,7 +493,7 @@ const Farms: React.FC = () => {
         <Heading scale="lg" color="text" textAlign="center">
           {t('KogeFarm helps you earn more yield by ')}{' '}
           <u>
-            <a href="https://kogecoin-io.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
+            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
           </u>
           .{' '}
           <u>
@@ -560,7 +560,7 @@ const Farms: React.FC = () => {
         <Text color="text" textAlign="center" fontSize="125%">
           {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')}{' '}
           <u>
-            <a href="https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks">
+            <a href="https://koge.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks">
               risky
             </a>
           </u>
@@ -570,7 +570,7 @@ const Farms: React.FC = () => {
           {'\n'}
           {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0-1% ')}{' '}
           <u>
-            <a href="https://kogecoin-io.gitbook.io/kogefarm/fees">fee</a>
+            <a href="https://koge.gitbook.io/kogefarm/fees">fee</a>
           </u>
           {t(' on rewards.')}
         </Text>

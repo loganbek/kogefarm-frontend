@@ -14,17 +14,17 @@ export const config: MenuEntry[] = [
   {
     label: 'Documentation',
     icon: 'InfoIcon',
-    href: 'https://kogecoin-io.gitbook.io/kogefarm/',
+    href: 'https://koge.gitbook.io/kogefarm/',
   },
   {
     label: 'Audit',
     icon: 'NftIcon',
-    href: 'https://kogecoin-io.gitbook.io/kogefarm/audit/',
+    href: 'https://koge.gitbook.io/kogefarm/audit/',
   },
   {
     label: 'Fees',
     icon: 'TeamBattleIcon',
-    href: 'https://kogecoin-io.gitbook.io/kogefarm/fees/',
+    href: 'https://koge.gitbook.io/kogefarm/fees/',
   },
   {
     label: 'KogeCoin Token',
