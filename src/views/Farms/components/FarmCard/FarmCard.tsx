@@ -148,6 +148,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   if (farm.token.coingeico==='iron3pool'){
     addLiquidityUrl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
+  if (farm.token.coingeico==='atricrypto'){
+    addLiquidityUrl = `https://polygon.curve.fi/atricrypto/deposit`
+  }
+  if (farm.token.coingeico==='btcrenbtc'){
+    addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
+  }
 
   const isPromotedFarm = false
 

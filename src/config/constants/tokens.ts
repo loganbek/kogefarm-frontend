@@ -348,6 +348,36 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  atricrypto: {
+    symbol: 'atricrypto',
+    coingeico: 'atricrypto',
+    address: {
+      137: '0x8096ac61db23291252574D49f036f0f9ed8ab390',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  btcrenbtc: {
+    symbol: 'btcrenbtc',
+    coingeico: 'btcrenbtc',
+    address: {
+      137: '0xf8a57c1d3b9629b77b6726a042ca48990A84Fb49',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  crv: {
+    symbol: 'crv',
+    coingeico: 'crv',
+    address: {
+      137: '0x172370d5Cd63279eFa6d502DAB29171933a610AF',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

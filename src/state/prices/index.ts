@@ -68,6 +68,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const gfiEthLP = '0x1587663E8F475E69eA2DBb38482C8c4EE9F388Fb'
   const iceAddr = '0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef'
   const iceUSDCLP = '0x34832D9AC4127a232C1919d840f7aaE0fcb7315B'
+  const crvAddr = '0x172370d5Cd63279eFa6d502DAB29171933a610AF'
+  const crvWETHAddr = '0x396E655C309676cAF0acf4607a868e0CDed876dB'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
   const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
@@ -79,6 +81,16 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const iron3poolLP = '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17'
   const ironSwap = '0x837503e8A8753ae17fB8C8151B8e6f586defCb57'
+  // btcrenbtc
+  const amWBTC = '0x5c2ed810328349100A66B82b78a1791B101C9D61'
+  const renBTC = '0xDBf31dF14B66535aF65AaC99C32e9eA844e14501'
+  const swapBtcRenBtc = '0xC2d95EEF97Ec6C17551d45e77B590dc1F9117C67'
+  const btcrenbtcLP = '0xf8a57c1d3b9629b77b6726a042ca48990A84Fb49'
+  // atricrypto
+  const amWETH = '0x28424507fefb6f7f8E9D3860F56504E4e5f5f390'
+  const am3CRV = '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171'
+  const poolATriCrypto = '0x751B1e21756bDbc307CBcC5085c042a0e9AaEf36'
+  const atricryptoLP = '0x8096ac61db23291252574D49f036f0f9ed8ab390'
 /*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
 */
@@ -122,6 +134,41 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: usdtAddr,
       name: 'balanceOf',
       params: [ironSwap],
+    },
+    // BTC
+    {
+      address: btcrenbtcLP,
+      name: 'totalSupply'
+    },
+    {
+      address: amWBTC,
+      name: 'balanceOf',
+      params: [swapBtcRenBtc],
+    },
+    {
+      address: renBTC,
+      name: 'balanceOf',
+      params: [swapBtcRenBtc],
+    },
+    // atriCrypto
+    {
+      address: atricryptoLP,
+      name: 'totalSupply'
+    },
+    {
+      address: amWBTC,
+      name: 'balanceOf',
+      params: [poolATriCrypto],
+    },
+    {
+      address: amWETH,
+      name: 'balanceOf',
+      params: [poolATriCrypto],
+    },
+    {
+      address: am3CRV,
+      name: 'balanceOf',
+      params: [poolATriCrypto],
     },
   ]
 
@@ -385,24 +432,24 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [iceUSDCLP],
     },
-
-/*    // USDT
+    // CRV
     {
-      address: usdtAddr,
+      address: crvAddr,
       name: 'balanceOf',
-      params: [usdtUSDCLP],
+      params: [crvWETHAddr],
     },
     {
-      address: usdcAddr,
+      address: ethAddr,
       name: 'balanceOf',
-      params: [usdtUSDCLP],
-    }, */
+      params: [crvWETHAddr],
+    },
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance] = await multicall(erc20, calls)
 
-  const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron] = await multicall(erc20, curveCalls)
+  const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto] = await multicall(erc20, curveCalls)
   // Curve ratio
   const curveRatio = (amDaiCurve/10**18 + amUSDCCurve/10**6 + amUSDTCurve/10**6)/(curve3poolSupply/10**18)
+  const curveBtcRenBtcRatio = (amWBTCCurve/10**8 + amRenBTCCurve/10**8)/(btcrenbtcSupply/10**18)
   const ironRatio = (daiIron/10**18 + usdcIron/10**6 + usdtIron/10**6)/(iron3poolSupply/10**18)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
@@ -428,6 +475,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const gfiEth = gfiBalance/gfiEthBalance
   const gfiMatic = gfiEth*ethMatic
   const iceUSDC = iceBalance/(iceUSDCBalance*10**12)
+  const crvWETH = crvBalance/crvWETHBalance
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
@@ -455,8 +503,13 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const pwingsUSD = maticUSD/pwingsMatic
   const gfiUSD = maticUSD/gfiMatic
   const iceUSD = usdcUSD/iceUSDC
+  const crvUSD = ethUSD/crvWETH
+  // Curve stuff
   const curve3poolUSD = curveRatio
+  const curveBtcRenBtcUSD = curveBtcRenBtcRatio*btcUSD
   const iron3poolUSD = ironRatio
+  const atricryptoValue = amWBTCatricrypto/10**8*btcUSD + amWETHatricrypto/10**18*ethUSD + am3CRVatricrypto/10**18*curveRatio
+  const atricryptoUSD = atricryptoValue/(atricryptoSupply/10**18)
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -486,7 +539,10 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.gfi = {"usd":gfiUSD.toString()}
   data.ice = {"usd":iceUSD.toString()}
   data.usdt = {"usd":"1.0"}
+  data.crv = {"usd":crvUSD.toString()}
   data.curve3pool = {"usd":curve3poolUSD.toString()}
+  data.btcrenbtc = {"usd":curveBtcRenBtcUSD.toString()}
+  data.atricrypto = {"usd":atricryptoUSD.toString()}
   data.iron3pool = {"usd":iron3poolUSD.toString()}
   // Return normalized token names
   return {

@@ -213,6 +213,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   if (farm.token.coingeico==='iron3pool'){
     liquidityurl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
+  if (farm.token.coingeico==='atricrypto'){
+    liquidityurl = `https://polygon.curve.fi/atricrypto/deposit`
+  }
+  if (farm.token.coingeico==='btcrenbtc'){
+    liquidityurl = `https://polygon.curve.fi/ren/deposit`
+  }
 
 
   return (

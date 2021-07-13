@@ -178,7 +178,13 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           }
         }
         if (farmConfig.token.coingeico==='curve3pool'){
-          tradingFeeRate = 0.0681/365*100
+          tradingFeeRate = 0.0670/365*100
+        }
+        if (farmConfig.token.coingeico==='atricrypto'){
+          tradingFeeRate = 0.14/365*100
+        }
+        if (farmConfig.token.coingeico==='btcrenbtc'){
+          tradingFeeRate = 0.0383/365*100
         }
       }
       // new BigNumber(totalDepositsVal).times(quoteTokenAmount).div(tokenAmount).div(BIG_TEN.pow(quoteTokenDecimals)).times(2)

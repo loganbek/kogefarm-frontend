@@ -221,9 +221,14 @@ const Farms: React.FC = () => {
         } else {
           userDeposits = new BigNumber(0)
         }
+        // If dual rewards: transform reward/block in terms of token price
+        let rewardPerBlock = farm.rewardPerBlock
+        if (farm.rewardToken1){
+          rewardPerBlock = (farm.rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+        }
 
         const apr = isActive
-          ? getMetaFarmApr(farm.poolWeightDesignate, farm.rewardPerBlock, totalLiquidity, tokenPriceVsQuote)
+          ? getMetaFarmApr(farm.poolWeightDesignate, rewardPerBlock, totalLiquidity, tokenPriceVsQuote)
           : 0
         const tradingFeeRate = isActive ? new BigNumber(farm.tradingFeeRate).toNumber() : 0
 

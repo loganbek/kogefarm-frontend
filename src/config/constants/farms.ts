@@ -190,8 +190,10 @@ const farms: FarmConfig[] = [
      },
      token: tokens.curve3pool,
      quoteToken: tokens.curve3pool,
-     rewardToken: tokens.matic,
-     rewardPerBlock: 1.344,
+     rewardToken1: tokens.matic,
+     rewardToken2: tokens.crv,
+     rewardPerBlock1: 0.8066, // 0.8064
+     rewardPerBlock2: 0.295,
      poolWeightDesignate: 1,
      minutesPerCompound: 1,
      kogefarmFee: 0,
@@ -199,6 +201,63 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://polygon.curve.fi',
    },
 
+   {
+     pid: 77,
+     lpSymbol: 'atricrypto',
+     lpAddresses: {
+       80001: '',
+       137: '0x8096ac61db23291252574D49f036f0f9ed8ab390',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xb0a366b987d77b5eD5803cBd95C80bB6DEaB48C0',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x7a54BeCc6e4898249F4B4573Ea904F75Cbb17e2F',
+     },
+     token: tokens.atricrypto,
+     quoteToken: tokens.atricrypto,
+     rewardToken1: tokens.matic,
+     rewardToken2: tokens.crv,
+     rewardPerBlock1: 0.4575, // 0.4575
+     rewardPerBlock2: 0.2899, // 0.2901
+     poolWeightDesignate: 1,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.005,
+     kogefarmComment: ' (Curve)',
+     underlyingWebsite: 'https://polygon.curve.fi',
+   },
+/*
+  {
+    pid: 78,
+    lpSymbol: 'BTC-renBTC',
+    lpAddresses: {
+      80001: '',
+      137: '0xf8a57c1d3b9629b77b6726a042ca48990A84Fb49',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xffbACcE0CC7C19d46132f1258FC16CF6871D153c',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0x5eb6AC6FDc9ddb2485428a1761645278Db1ab9C0',
+    },
+    token: tokens.btcrenbtc,
+    quoteToken: tokens.btcrenbtc,
+    rewardToken1: tokens.matic,
+    rewardToken2: tokens.crv,
+    rewardPerBlock1: 0.208, // 0.22
+    rewardPerBlock2: 0.1316, // 0.1315
+    poolWeightDesignate: 1,
+    minutesPerCompound: 1,
+    kogefarmFee: 0,
+    kogefarmComment: ' (Curve)',
+    underlyingWebsite: 'https://polygon.curve.fi',
+  }, */
 
    {
      pid: 43,
