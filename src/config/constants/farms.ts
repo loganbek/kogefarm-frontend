@@ -229,7 +229,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Curve)',
      underlyingWebsite: 'https://polygon.curve.fi',
    },
-/*
+
   {
     pid: 78,
     lpSymbol: 'BTC-renBTC',
@@ -244,7 +244,7 @@ const farms: FarmConfig[] = [
     masterChefPid: 0,
     jarAddresses: {
       80001: '',
-      137: '0x5eb6AC6FDc9ddb2485428a1761645278Db1ab9C0',
+      137: '0x87E068d582807Cd20d5fbdb0fcAAB8f884a55EB8',
     },
     token: tokens.btcrenbtc,
     quoteToken: tokens.btcrenbtc,
@@ -257,7 +257,7 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0,
     kogefarmComment: ' (Curve)',
     underlyingWebsite: 'https://polygon.curve.fi',
-  }, */
+  },
 
    {
      pid: 43,
@@ -622,8 +622,8 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.roll,
-     rewardPerBlock: 37.682097073745097601,
-     poolWeightDesignate: 130/720,
+     rewardPerBlock: 35.4660883090322959,
+     poolWeightDesignate: 130/715,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polyroll.org'
@@ -647,7 +647,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.matic,
-     rewardPerBlock: 37.682097073745097601,
+     rewardPerBlock: 35.4660883090322959,
      poolWeightDesignate: 280/720,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -673,7 +673,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.matic,
-     rewardPerBlock: 37.682097073745097601,
+     rewardPerBlock: 35.4660883090322959,
      poolWeightDesignate: 120/720,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
