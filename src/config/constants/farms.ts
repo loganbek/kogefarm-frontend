@@ -229,7 +229,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Curve)',
      underlyingWebsite: 'https://polygon.curve.fi',
    },
-/*
+
   {
     pid: 78,
     lpSymbol: 'BTC-renBTC',
@@ -244,7 +244,7 @@ const farms: FarmConfig[] = [
     masterChefPid: 0,
     jarAddresses: {
       80001: '',
-      137: '0x87E068d582807Cd20d5fbdb0fcAAB8f884a55EB8',
+      137: '0x69aAF33Cd4bd6Cbd3Ef275f8Ddc3342e0365F083',
     },
     token: tokens.btcrenbtc,
     quoteToken: tokens.btcrenbtc,
@@ -257,7 +257,7 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0,
     kogefarmComment: ' (Curve)',
     underlyingWebsite: 'https://polygon.curve.fi',
-  }, */
+  },
 
    {
      pid: 43,
