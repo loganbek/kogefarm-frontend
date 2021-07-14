@@ -229,7 +229,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Curve)',
      underlyingWebsite: 'https://polygon.curve.fi',
    },
-
+/*
   {
     pid: 78,
     lpSymbol: 'BTC-renBTC',
@@ -257,7 +257,7 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0,
     kogefarmComment: ' (Curve)',
     underlyingWebsite: 'https://polygon.curve.fi',
-  },
+  }, */
 
    {
      pid: 43,
