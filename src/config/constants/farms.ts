@@ -332,7 +332,7 @@ const farms: FarmConfig[] = [
      token: tokens.pwings,
      quoteToken: tokens.pwings,
      rewardPerBlock: 2,
-     poolWeightDesignate: 2025/10125,
+     poolWeightDesignate: 2025/10750,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
@@ -358,11 +358,12 @@ const farms: FarmConfig[] = [
      token: tokens.pwings,
      quoteToken: tokens.usdc,
      rewardPerBlock: 2,
-     poolWeightDesignate: 0/10125,
+     poolWeightDesignate: 0/10750,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
-     isJetSwap: true
+     isJetSwap: true,
+     multiplier: '0X',
    },
 
    {
@@ -384,7 +385,7 @@ const farms: FarmConfig[] = [
      token: tokens.pwings,
      quoteToken: tokens.matic,
      rewardPerBlock: 2,
-     poolWeightDesignate: 5500/10125,
+     poolWeightDesignate: 5500/10750,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
@@ -415,6 +416,35 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
+     multiplier: '0X',
+   },
+
+   {
+     pid: 81,
+     lpSymbol: 'pForce-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0x4461677151ec95b2B4121122Cd07fECcde6b8A28',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x4e22399070aD5aD7f7BEb7d3A7b543e8EcBf1d85',
+     },
+     masterChefPid: 17,
+     jarAddresses: {
+       80001: '',
+       137: '0xdc351171072F753409f52910449af613A2FA202a',
+     },
+     token: tokens.pforce,
+     quoteToken: tokens.matic,
+     rewardToken: tokens.pwings,
+     rewardPerBlock: 2,
+     poolWeightDesignate: 500/10750,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.015+0.03,
+     underlyingWebsite: 'https://polygon.jetswap.finance/farms',
+     isJetSwap: true,
+     kogefarmComment: ' (JetSwap)',
    },
 
    {

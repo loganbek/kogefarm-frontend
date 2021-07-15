@@ -388,6 +388,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  pforce: {
+    symbol: 'pForce',
+    coingeico: 'pforce',
+    address: {
+      137: '0x0DE624ED2882E7480d97b2bBee57675C4FA26e33',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
