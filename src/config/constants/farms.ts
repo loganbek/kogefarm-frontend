@@ -681,7 +681,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Ape)',
      underlyingWebsite: 'https://polyroll.org'
    },
-/*
+
    {
      pid: 79,
      lpSymbol: 'Vert',
@@ -731,7 +731,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polyvertex.finance'
    },
-*/
+
 
    {
      pid: 59,
