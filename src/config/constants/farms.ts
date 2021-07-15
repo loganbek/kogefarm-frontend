@@ -681,6 +681,57 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Ape)',
      underlyingWebsite: 'https://polyroll.org'
    },
+/*
+   {
+     pid: 79,
+     lpSymbol: 'Vert',
+     lpAddresses: {
+       80001: '',
+       137: '0x72572CCf5208b59f4BcC14e6653d8c31Cd1fC5a0',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x8bE82Ab9B6179bE6EB88431E3E4E0fd93b9E607C',
+     },
+     masterChefPid: 3,
+     jarAddresses: {
+       80001: '',
+       137: '0xeeb87B59b162B54a7f61DD7C0E7157984A56f506',
+     },
+     token: tokens.vert,
+     quoteToken: tokens.vert,
+     rewardPerBlock: 0.05,
+     poolWeightDesignate: 10000/54000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polyvertex.finance'
+   },
+
+   {
+     pid: 80,
+     lpSymbol: 'Vert-USDC LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x668269d6E5D2c2dE31D132Ac218044211643622B',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x8bE82Ab9B6179bE6EB88431E3E4E0fd93b9E607C',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x424D5E4000a0795c4CAaa3ee252B1Ae13d4cA39B',
+     },
+     token: tokens.vert,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 0.05,
+     poolWeightDesignate: 10000/54000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polyvertex.finance'
+   },
+*/
 
    {
      pid: 59,
@@ -1136,7 +1187,7 @@ const farms: FarmConfig[] = [
         token: tokens.crystl,
         quoteToken: tokens.crystl,
         rewardPerBlock: 2,
-        poolWeightDesignate: 6000/21151,
+        poolWeightDesignate: 7000/22904,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -1162,7 +1213,7 @@ const farms: FarmConfig[] = [
         token: tokens.crystl,
         quoteToken: tokens.matic,
         rewardPerBlock: 2,
-        poolWeightDesignate: 6000/21151,
+        poolWeightDesignate: 7000/22904,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -1296,7 +1347,7 @@ const farms: FarmConfig[] = [
         token: tokens.eth,
         quoteToken: tokens.matic,
         rewardPerBlock: 2,
-        poolWeightDesignate: 800/21151,
+        poolWeightDesignate: 800/22904,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -1325,7 +1376,7 @@ const farms: FarmConfig[] = [
         token: tokens.dai,
         quoteToken: tokens.usdc,
         rewardPerBlock: 2,
-        poolWeightDesignate: 150/21151,
+        poolWeightDesignate: 150/22904,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -1354,7 +1405,7 @@ const farms: FarmConfig[] = [
         token: tokens.banana,
         quoteToken: tokens.eth,
         rewardPerBlock: 2,
-        poolWeightDesignate: 1750/21151,
+        poolWeightDesignate: 1750/22904,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -1382,7 +1433,7 @@ const farms: FarmConfig[] = [
         token: tokens.polydoge,
         quoteToken: tokens.matic,
         rewardPerBlock: 3,
-        poolWeightDesignate: 150/21151,
+        poolWeightDesignate: 150/22904,
         minutesPerCompound: 1,
         kogefarmFee: 0.01,
         isApe: true,
@@ -1828,7 +1879,7 @@ const farms: FarmConfig[] = [
     token: tokens.fish,
     quoteToken: tokens.matic,
     rewardPerBlock: 3,
-    poolWeightDesignate: 250/21551,
+    poolWeightDesignate: 250/22904,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
     isApe: true,

@@ -378,6 +378,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  vert: {
+    symbol: 'vert',
+    coingeico: 'vert',
+    address: {
+      137: '0x72572CCf5208b59f4BcC14e6653d8c31Cd1fC5a0',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
