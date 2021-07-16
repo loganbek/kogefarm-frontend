@@ -12,6 +12,11 @@ export const config: MenuEntry[] = [
     href: 'farms',
   },
   {
+    label: 'Governance',
+    icon: 'GroupsIcon',
+    href: 'https://vote.kogecoin.io'
+  },
+  {
     label: 'Documentation',
     icon: 'InfoIcon',
     href: 'https://koge.gitbook.io/kogefarm/',
@@ -28,7 +33,7 @@ export const config: MenuEntry[] = [
   },
   {
     label: 'KogeCoin Token',
-    icon: 'GroupsIcon',
+    icon: 'TradeIcon',
     href: 'https://kogecoin.io',
   },
   {
