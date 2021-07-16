@@ -25,6 +25,7 @@ import PageHeader from 'components/PageHeader'
 import { fetchFarmsPublicDataAsync, setLoadArchivedFarmsData } from 'state/farms'
 import Select, { OptionProps } from 'components/Select/Select'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
+import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
 // import FarmTabButtons from './components/FarmTabButtons'
 import SearchInput from './components/SearchInput'
@@ -111,7 +112,7 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-//  const cakePrice = usePriceCakeBusd()
+  //  const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
   const { account } = useWeb3React()
@@ -155,6 +156,7 @@ const Farms: React.FC = () => {
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -172,7 +174,7 @@ const Farms: React.FC = () => {
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
-/* DZ Hack
+        /* DZ Hack
         if (!farm.lpTotalInQuoteToken || !prices) {
           return farm
         }
@@ -182,40 +184,55 @@ const Farms: React.FC = () => {
         const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
 */
         let decimals = 18
-        if (farm.lpSymbol==="KogeCoin"){
-          decimals = 9
+        if (farm.token === farm.quoteToken) {
+          decimals = farm.token.decimals
         }
         if (!farm.tokenPriceVsQuote || !prices) {
           return farm
         }
         const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
-        let tokenPriceVsQuote = farm.rewardToken? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]).div(new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()])) : new BigNumber(farm.tokenPriceVsQuote)
-        if (!farm.rewardToken && farm.token===farm.quoteToken) {
+        let tokenPriceVsQuote = farm.rewardToken
+          ? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]).div(
+              new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()]),
+            )
+          : new BigNumber(farm.tokenPriceVsQuote)
+        if (!farm.rewardToken && farm.token === farm.quoteToken) {
           tokenPriceVsQuote = new BigNumber(1)
         }
-//        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken)
+        //        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken)
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
-        if (farm.token===farm.quoteToken){
+        if (farm.token === farm.quoteToken) {
           totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
+          totalLiquidity = totalLiquidity.times(10 ** (18-decimals))
         }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
-//        const jarRatioNum = new BigNumber(farm.jarRatio)
+        //        const jarRatioNum = new BigNumber(farm.jarRatio)
         let totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
-        if (farm.token===farm.quoteToken){
-          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10**decimals).times(new BigNumber(quoteTokenPriceUsd))
+        if (farm.token === farm.quoteToken) {
+          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10 ** decimals).times(new BigNumber(quoteTokenPriceUsd))
         }
-        const farmRatio = new BigNumber(farm.jarRatio).div(10**18)
+        const farmRatio = new BigNumber(farm.jarRatio).div(10 ** 18)
         let userDeposits
-        if (jarLPDeposits>new BigNumber(0)){
-          userDeposits = new BigNumber(farm.userData.stakedBalance).times(farmRatio).times(totalDeposits).div(jarLPDeposits);
-        } else{
-          userDeposits = new BigNumber(0);
+        if (jarLPDeposits > new BigNumber(0)) {
+          userDeposits = new BigNumber(farm.userData.stakedBalance)
+            .times(farmRatio)
+            .times(totalDeposits)
+            .div(jarLPDeposits)
+        } else {
+          userDeposits = new BigNumber(0)
+        }
+        // If dual rewards: transform reward/block in terms of token price
+        let rewardPerBlock = farm.rewardPerBlock
+        if (farm.rewardToken1){
+          rewardPerBlock = (farm.rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
         }
 
-        const apr = isActive ? getMetaFarmApr(farm.poolWeightDesignate, farm.rewardPerBlock, totalLiquidity, tokenPriceVsQuote) : 0
+        const apr = isActive
+          ? getMetaFarmApr(farm.poolWeightDesignate, rewardPerBlock, totalLiquidity, tokenPriceVsQuote)
+          : 0
         const tradingFeeRate = isActive ? new BigNumber(farm.tradingFeeRate).toNumber() : 0
 
-        return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits}
+        return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits }
       })
 
       if (query) {
@@ -226,7 +243,7 @@ const Farms: React.FC = () => {
       }
       return farmsToDisplayWithAPR
     },
-//    [cakePrice, prices, query, isActive],
+    //    [cakePrice, prices, query, isActive],
     [query, prices, isActive],
   )
 
@@ -311,41 +328,67 @@ const Farms: React.FC = () => {
   }, [farmsStakedMemoized, observerIsSet])
 
   const rowData = farmsStakedMemoized.map((farm) => {
-//    const { token, quoteToken } = farm
-//    const tokenAddress = token.address
-//    const quoteTokenAddress = quoteToken.address
-    const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
+    //    const { token, quoteToken } = farm
+    //    const tokenAddress = token.address
+    //    const quoteTokenAddress = quoteToken.address
+    const farmcomment = farm.kogefarmComment ? farm.kogefarmComment.toUpperCase() : ''
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '') + farmcomment
+
+    let farmAPYNum =
+      ((1 +
+        ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
+          ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+        ((365 * 24 * 60) / farm.minutesPerCompound) -
+        1) *
+      100
+    if (farmAPYNum > 10 ** 18) {
+      farmAPYNum = Number.POSITIVE_INFINITY
+    }
 
     const row: RowProps = {
       apr: {
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-//        multiplier: farm.multiplier,
-//        lpLabel,
-//        tokenAddress,
-//        quoteTokenAddress,
-//        cakePrice,
+        //        multiplier: farm.multiplier,
+        //        lpLabel,
+        //        tokenAddress,
+        //        quoteTokenAddress,
+        //        cakePrice,
         originalValue: farm.apr,
       },
       apy: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
-//        multiplier: farm.multiplier,
-//        lpLabel,
-//        tokenAddress,
-//        quoteTokenAddress,
-//        cakePrice,
-        originalValue: (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100),
+        value: farm.apr && farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        //        multiplier: farm.multiplier,
+        //        lpLabel,
+        //        tokenAddress,
+        //        quoteTokenAddress,
+        //        cakePrice,
+        originalValue: farmAPYNum,
       },
       apyd: {
         // (1+800/(100*365*24*60))^(365*24*60)-1
-        value: farm.apr && (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
-//        multiplier: farm.multiplier,
-//        lpLabel,
-//        tokenAddress,
-//        quoteTokenAddress,
-//        cakePrice,
-        originalValue: (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100),
+        value:
+          farm.apr &&
+          (
+            ((1 +
+              ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
+                ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+              ((24 * 60) / farm.minutesPerCompound) -
+              1) *
+            100
+          ).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        //        multiplier: farm.multiplier,
+        //        lpLabel,
+        //        tokenAddress,
+        //        quoteTokenAddress,
+        //        cakePrice,
+        originalValue:
+          ((1 +
+            ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
+              ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+            ((24 * 60) / farm.minutesPerCompound) -
+            1) *
+          100,
       },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
@@ -360,9 +403,9 @@ const Farms: React.FC = () => {
         liquidity: farm.liquidity,
       },
       userValue: {
-          userValue: farm.userValue,
+        userValue: farm.userValue,
       },
-/*      multiplier: {
+      /*      multiplier: {
         multiplier: farm.multiplier,
       }, */
       details: farm,
@@ -370,7 +413,6 @@ const Farms: React.FC = () => {
 
     return row
   })
-
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
@@ -391,11 +433,11 @@ const Farms: React.FC = () => {
 
               return 0
             case 'apy':
-                if (a.original.apr.value && b.original.apr.value) {
-                  return Number(a.original.apr.value) - Number(b.original.apr.value)
-                }
+              if (a.original.apr.value && b.original.apr.value) {
+                return Number(a.original.apr.value) - Number(b.original.apr.value)
+              }
 
-                return 0
+              return 0
             case 'earned':
               return a.original.earned.earnings - b.original.earned.earnings
             default:
@@ -435,7 +477,7 @@ const Farms: React.FC = () => {
     setSortOption(option.value)
   }
 
-  const tvl = farmsList(activeFarms).reduce((sum,current) =>  sum.plus(current.liquidity) , new BigNumber(0) );
+  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
@@ -445,14 +487,22 @@ const Farms: React.FC = () => {
   return (
     <>
       <PageHeader>
-{/*        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+        {/*        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
         </Heading> */}
         <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you earn more yield by ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/why-autocompound'>auto-compounding</a></u>. <u><a href='https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf'>Audited</a></u> by Obelisk.
+          {t('KogeFarm helps you earn more yield by ')}{' '}
+          <u>
+            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
+          </u>
+          .{' '}
+          <u>
+            <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
+          </u>{' '}
+          by Obelisk.
         </Heading>
         <Heading scale="lg" color="brown" textAlign="center">
-        {t('Vault TVL: ')} {displayTVL!=='$NaN' && displayTVL}
+          {t('Vault TVL: ')} {displayTVL !== '$NaN' && displayTVL}
         </Heading>
       </PageHeader>
       <Page>
@@ -463,7 +513,7 @@ const Farms: React.FC = () => {
               <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
               <Text> {t('Staked only')}</Text>
             </ToggleWrapper>
-  {/*          <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
+            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
           </ViewControls>
           <FilterContainer>
             <LabelWrapper>
@@ -482,14 +532,14 @@ const Farms: React.FC = () => {
                     label: 'APY',
                     value: 'apr',
                   },
-//                  {
-//                    label: 'Multiplier',
-//                    value: 'multiplier',
-//                  },
-//                  {
-//                    label: 'Earned',
-//                    value: 'earned',
-//                  },
+                  //                  {
+                  //                    label: 'Multiplier',
+                  //                    value: 'multiplier',
+                  //                  },
+                  //                  {
+                  //                    label: 'Earned',
+                  //                    value: 'earned',
+                  //                  },
                 ]}
                 onChange={handleSortOptionChange}
               />
@@ -503,15 +553,26 @@ const Farms: React.FC = () => {
         {renderContent()}
         <div ref={loadMoreRef} />
         <Text color="text" textAlign="center" fontSize="125%">
-        {t('No more sleep deprived degens with KogeFarm! We compound your farming rewards every minute so you can play more.')}
+          {t(
+            'No more sleep deprived degens with KogeFarm! We compound your farming rewards every minute so you can play more.',
+          )}
         </Text>
         <Text color="text" textAlign="center" fontSize="125%">
-          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks'>risky</a></u>
+          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')}{' '}
+          <u>
+            <a href="https://koge.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks">
+              risky
+            </a>
+          </u>
           {t('. Always DYOR.')}
         </Text>
         <Text color="text" textAlign="center" fontSize="125%">
-          {"\n"}
-          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0-1% ')} <u><a href='https://kogecoin-io.gitbook.io/kogefarm/fees'>fee</a></u>{t(' on rewards.')}
+          {'\n'}
+          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0-1% ')}{' '}
+          <u>
+            <a href="https://koge.gitbook.io/kogefarm/fees">fee</a>
+          </u>
+          {t(' on rewards.')}
         </Text>
         <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
       </Page>

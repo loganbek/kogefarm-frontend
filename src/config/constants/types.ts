@@ -59,11 +59,15 @@ export interface FarmConfig {
   masterChefPid: number
   token: Token
   quoteToken: Token
-  rewardPerBlock: number
+  rewardPerBlock?: number
   poolWeightDesignate: number
+  underlyingWebsite: string
   multiplier?: string
   isSushi?: boolean
+  isDfyn?: boolean
   isWault?: boolean
+  isApe?: boolean
+  isJetSwap?: boolean
   isCommunity?: boolean
   dual?: {
     rewardPerBlock: number
@@ -74,6 +78,11 @@ export interface FarmConfig {
   kogefarmFee: number
   kogefarmComment?: string
   rewardToken?: Token
+  rewardToken1?: Token
+  rewardToken2?: Token
+  rewardPerBlock1?: number
+  rewardPerBlock2?: number
+  depositFee?: number
 }
 
 export interface PoolConfig {

@@ -23,6 +23,12 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
     numDecimals = 9
   }
+  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+    numDecimals = 6
+  }
+  if (tokenName.toUpperCase()==="BTC"){
+    numDecimals = 8
+  }
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, numDecimals)
@@ -50,7 +56,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   }, [fullDisplayBalance, setVal ])
 
   return (
-    <Modal title={t('Unstake LP')} onDismiss={onDismiss}>
+    <Modal title={t('Unstake')} onDismiss={onDismiss}>
       <ModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}

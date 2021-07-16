@@ -6,7 +6,7 @@ import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -82,6 +82,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
+  const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
+  const depositFee = farm.depositFee
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
@@ -90,17 +92,23 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '').split(' ')[0] + farmcomment
 //  const earnLabel = farm.dual ? farm.dual.earnLabel : 'CAKE'
   const userValueFormatted = farm.userValue
-    ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
-  const farmAPY = (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  let farmAPYNum = ((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100
+  if (farmAPYNum>10**18){
+    farmAPYNum = Number.POSITIVE_INFINITY
+  }
+  const farmAPY = farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYD = (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYDRaw = (((1+(farm.apr)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 //  const farmAPYW = (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60*7/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
+
+  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
@@ -110,20 +118,62 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   if (farm.isSushi===true){
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.isDfyn===true){
+    addLiquidityUrl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
   if (farm.isWault===true){
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.isApe===true){
+    addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.isJetSwap===true){
+    addLiquidityUrl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.token===farm.quoteToken){
+    addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
+    if (farm.isApe===true){
+      addLiquidityUrl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
+    }
+    if (farm.token.coingeico==='pwings'){
+      addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
+  }
+  if (farm.lpSymbol==="PYQ-USDC"){
+    addLiquidityUrl = `https://app.polyquity.org/liquidity`
+  }
+  if (farm.token.coingeico==='curve3pool'){
+    addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
+  }
+  if (farm.token.coingeico==='iron3pool'){
+    addLiquidityUrl = `https://app.iron.finance/swap/pools/is3usd/deposit`
+  }
+  if (farm.token.coingeico==='atricrypto'){
+    addLiquidityUrl = `https://polygon.curve.fi/atricrypto/deposit`
+  }
+  if (farm.token.coingeico==='btcrenbtc'){
+    addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
+  }
 
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
-  const isPromotedFarm = farm.token.symbol === 'CAKE'
+  const isPromotedFarm = false
 
-  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
+/*  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
   if (farm.isSushi===true){
     infoAddr = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
   }
   if (farm.isWault===true){
     infoAddr = `https://polygonscan.com/address/${lpAddress}`
   }
+  if (farm.isDfyn===true){
+    infoAddr = `https://info.dfyn.network/pair/${lpAddress}`
+  }
+  if (farm.isApe===true){
+    infoAddr = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
+  }
+  if (farm.token===farm.quoteToken){
+    infoAddr = `https://info.quickswap.exchange/address/${lpAddress}`
+  } */
+  const infoAddr = farm.underlyingWebsite
 
 
   return (
@@ -135,6 +185,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         isCommunityFarm={farm.isCommunity}
         isSushiFarm={farm.isSushi}
         isWaultFarm={farm.isWault}
+        isApeFarm={farm.isApe}
+        isJetSwapFarm={farm.isJetSwap}
         farmImage={farmImage}
         tokenSymbol={farm.token.symbol}
       />
@@ -199,6 +251,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
           apyDRaw={farmAPYDRaw}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
+          depositFee={depositFee}
         />
       </ExpandingWrapper>
     </FCard>

@@ -4,7 +4,8 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@pancakeswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, SushiTag, WaultTag, DualTag } from 'components/Tags'
+import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL } from 'config'
 
 // import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -157,21 +158,68 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://polygonscan.com/address/${jarAddress}`
-  let info = `https://info.quickswap.exchange/pair/${lpAddress}`
+  const info = farm.underlyingWebsite
+/*  let info = `https://info.quickswap.exchange/pair/${lpAddress}`
   if (farm.isSushi===true){
     info = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
   }
   if (farm.isWault===true){
     info =  `https://polygonscan.com/address/${lpAddress}`
   }
+  if (farm.isDfyn===true){
+    info = `https://info.dfyn.network/pair/${lpAddress}`
+  }
+  if (farm.isApe===true){
+    info = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
+  }
+  if (farm.token===farm.quoteToken){
+    info = `https://info.quickswap.exchange/address/${lpAddress}`
+    if (farm.isApe===true){
+      info = `https://polygon.info.apeswap.finance/address/${lpAddress}`
+    }
+  } */
 
-  let liquidityurl = `https://quickswap.exchange/#/add/${liquidityUrlPathParts}`
+  let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   if (farm.isSushi===true){
-    liquidityurl = `https://app.sushi.com/add/${liquidityUrlPathParts}`
+    liquidityurl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
   if (farm.isWault===true){
-    liquidityurl = `https://swap.wault.finance/polygon/#/add/${liquidityUrlPathParts}`
+    liquidityurl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
+  if (farm.isDfyn===true){
+    liquidityurl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.isApe===true){
+    liquidityurl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.isJetSwap===true){
+    liquidityurl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  }
+  if (farm.token===farm.quoteToken){
+    liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
+    if (farm.isApe===true){
+      liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
+    }
+    if (farm.token.coingeico==='pwings'){
+      liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
+  }
+  if (farm.lpSymbol==="PYQ-USDC"){
+    liquidityurl = `https://app.polyquity.org/liquidity`
+  }
+  if (farm.token.coingeico==='curve3pool'){
+    liquidityurl = `https://polygon.curve.fi/aave/deposit`
+  }
+  if (farm.token.coingeico==='iron3pool'){
+    liquidityurl = `https://app.iron.finance/swap/pools/is3usd/deposit`
+  }
+  if (farm.token.coingeico==='atricrypto'){
+    liquidityurl = `https://polygon.curve.fi/atricrypto/deposit`
+  }
+  if (farm.token.coingeico==='btcrenbtc'){
+    liquidityurl = `https://polygon.curve.fi/ren/deposit`
+  }
+
 
   return (
     <Container expanded={expanded}>
@@ -184,11 +232,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </StakeContainer>
         )}
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+        <StyledLinkExternal href={info}>{t('Underlying Project')}</StyledLinkExternal>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {farm.isSushi && <SushiTag />}
           {farm.isWault && <WaultTag />}
+          {farm.isApe && <ApeTag />}
+          {farm.isJetSwap && <JetSwapTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>

@@ -12,9 +12,10 @@ interface DepositModalProps {
   onDismiss?: () => void
   tokenName?: string
   addLiquidityUrl?: string
+  depositFee?: number
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
+const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl, depositFee }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -22,6 +23,12 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   let numDecimals = 18
   if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
     numDecimals = 9
+  }
+  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+    numDecimals = 6
+  }
+  if (tokenName.toUpperCase()==="BTC"){
+    numDecimals = 8
   }
 
   const fullBalance = useMemo(() => {
@@ -46,7 +53,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Stake tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -55,6 +62,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={t('Stake')}
+        depositFee = {depositFee}
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
