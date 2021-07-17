@@ -64,6 +64,87 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://kogecoin.io'
    },
 
+   {
+     pid: 82,
+     lpSymbol: 'USDC-USDT',
+     lpAddresses: {
+       80001: '',
+       137: '0x2cF7252e74036d1Da831d11089D326296e64a728',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 8,
+     jarAddresses: {
+       80001: '',
+       137: '0x1e5F7C5A8c2D3a071573Cc8101288D413cBDDc80',
+     },
+     token: tokens.usdt,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 27.5,
+     poolWeightDesignate: 500/8000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+     kogefarmComment: ' (DinoSwap)',
+   },
+
+   {
+     pid: 83,
+     lpSymbol: 'WEth-WMatic',
+     lpAddresses: {
+       80001: '',
+       137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 6,
+     jarAddresses: {
+       80001: '',
+       137: '0x7F9bcE09fa5Dd6885142b34cAC9AfE4c142021Ff',
+     },
+     token: tokens.eth,
+     quoteToken: tokens.matic,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 27.5,
+     poolWeightDesignate: 500/8000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+     kogefarmComment: ' (DinoSwap)',
+   },
+
+   {
+     pid: 84,
+     lpSymbol: 'WEth-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0x853Ee4b2A13f8a742d64C8F088bE7bA2131f670d',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 7,
+     jarAddresses: {
+       80001: '',
+       137: '0xc78e2EBbdB1d45A9d0e1C35EFe2a477781387DcE',
+     },
+     token: tokens.eth,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 27.5,
+     poolWeightDesignate: 500/8000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+     kogefarmComment: ' (DinoSwap)',
+   },
+
 
       {
         pid: 75,

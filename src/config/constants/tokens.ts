@@ -398,6 +398,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  dino: {
+    symbol: 'Dino',
+    coingeico: 'dino',
+    address: {
+      137: '0xAa9654BECca45B5BDFA5ac646c939C62b527D394',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

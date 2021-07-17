@@ -72,6 +72,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const crvWETHAddr = '0x396E655C309676cAF0acf4607a868e0CDed876dB'
   const vertAddr = '0x72572CCf5208b59f4BcC14e6653d8c31Cd1fC5a0'
   const vertUSDCLP = '0x668269d6E5D2c2dE31D132Ac218044211643622B'
+  const dinoAddr = '0xAa9654BECca45B5BDFA5ac646c939C62b527D394'
+  const dinoUSDCLP = '0x3324af8417844e70b81555A6D1568d78f4D4Bf1f'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
   const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
@@ -456,8 +458,19 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [vertUSDCLP],
     },
+    // Dino
+    {
+      address: dinoAddr,
+      name: 'balanceOf',
+      params: [dinoUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [dinoUSDCLP],
+    },
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance] = await multicall(erc20, calls)
 
   const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto] = await multicall(erc20, curveCalls)
   // Curve ratio
@@ -490,6 +503,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const iceUSDC = iceBalance/(iceUSDCBalance*10**12)
   const vertUSDC = vertBalance/(vertUSDCBalance*10**12)
   const crvWETH = crvBalance/crvWETHBalance
+  const dinoUSDC = dinoBalance/(dinoUSDCBalance*10**12)
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
@@ -519,6 +533,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const iceUSD = usdcUSD/iceUSDC
   const crvUSD = ethUSD/crvWETH
   const vertUSD = usdcUSD/vertUSDC
+  const dinoUSD = usdcUSD/dinoUSDC
   // Curve stuff
   const curve3poolUSD = curveRatio
   const curveBtcRenBtcUSD = curveBtcRenBtcRatio*btcUSD
@@ -560,6 +575,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.atricrypto = {"usd":atricryptoUSD.toString()}
   data.iron3pool = {"usd":iron3poolUSD.toString()}
   data.vert = {"usd":vertUSD.toString()}
+  data.dino = {"usd":dinoUSD.toString()}
   // Return normalized token names
   return {
 //    updated_at: data.updated_at,
