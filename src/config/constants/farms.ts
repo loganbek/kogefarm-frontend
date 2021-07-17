@@ -65,6 +65,32 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 85,
+     lpSymbol: 'Dino-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0x3324af8417844e70b81555A6D1568d78f4D4Bf1f',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 10,
+     jarAddresses: {
+       80001: '',
+       137: '0x92F42e22D812C0C8ADFC30190faC42919032E19B',
+     },
+     token: tokens.dino,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 27.5,
+     poolWeightDesignate: 10000/18000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+   },
+
+   {
      pid: 82,
      lpSymbol: 'USDC-USDT',
      lpAddresses: {
@@ -84,7 +110,7 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.usdc,
      rewardToken: tokens.dino,
      rewardPerBlock: 27.5,
-     poolWeightDesignate: 500/8000,
+     poolWeightDesignate: 500/18000,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://dinoswap.exchange/',
@@ -111,7 +137,7 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.matic,
      rewardToken: tokens.dino,
      rewardPerBlock: 27.5,
-     poolWeightDesignate: 500/8000,
+     poolWeightDesignate: 500/18000,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://dinoswap.exchange/',
@@ -138,7 +164,7 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.usdc,
      rewardToken: tokens.dino,
      rewardPerBlock: 27.5,
-     poolWeightDesignate: 500/8000,
+     poolWeightDesignate: 500/18000,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://dinoswap.exchange/',
