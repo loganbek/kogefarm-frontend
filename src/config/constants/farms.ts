@@ -119,6 +119,33 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 86,
+     lpSymbol: 'Mai(miMatic)-USDC',
+     lpAddresses: {
+       80001: '',
+       137: '0x160532D2536175d65C03B97b0630A9802c274daD',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 9,
+     jarAddresses: {
+       80001: '',
+       137: '0xA2C2473ccE81aF668f25C8d798f7A1C0F9172Cb9',
+     },
+     token: tokens.mimatic,
+     quoteToken: tokens.usdc,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 27.5,
+     poolWeightDesignate: 500/18000,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+     kogefarmComment: ' (DinoSwap)',
+   },
+
+   {
      pid: 83,
      lpSymbol: 'WEth-WMatic',
      lpAddresses: {
