@@ -88,6 +88,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://dinoswap.exchange/',
+     isSushi: true,
    },
 
    {
