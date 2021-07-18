@@ -737,12 +737,13 @@ const farms: FarmConfig[] = [
      },
      token: tokens.gfi,
      quoteToken: tokens.usdc,
-     rewardPerBlock: 30.381944444444400000,
+     rewardPerBlock: 0,
      poolWeightDesignate: 1,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://gravityfinance.io/',
-     kogefarmComment: ' (legacy)'
+     kogefarmComment: ' (legacy)',
+     multiplier: '0X',
    },
 
    {
@@ -788,12 +789,13 @@ const farms: FarmConfig[] = [
      },
      token: tokens.gfi,
      quoteToken: tokens.eth,
-     rewardPerBlock: 30.381944444444400000,
+     rewardPerBlock: 0,
      poolWeightDesignate: 1,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://gravityfinance.io/',
-     kogefarmComment: ' (legacy)'
+     kogefarmComment: ' (legacy)',
+     multiplier: '0X',
    },
 
    {
