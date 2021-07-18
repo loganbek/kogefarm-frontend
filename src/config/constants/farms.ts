@@ -739,7 +739,33 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.usdc,
      rewardPerBlock: 30.381944444444400000,
      poolWeightDesignate: 1,
-     minutesPerCompound: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://gravityfinance.io/',
+     kogefarmComment: ' (legacy)'
+   },
+
+   {
+     pid: 88,
+     lpSymbol: 'GFI-USDC LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xb1f3555A7c3753AB4E6DF1d66CFDB25477a36Ce7',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x037013d0952a0215CC235F176e9eb88E6a465970',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0x7F75a9924066Fff7c97B150cB5119D5F9C8FD0E4',
+     },
+     token: tokens.gfi,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 17.361111111111100000,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://gravityfinance.io/',
    },
@@ -764,7 +790,33 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.eth,
      rewardPerBlock: 30.381944444444400000,
      poolWeightDesignate: 1,
-     minutesPerCompound: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://gravityfinance.io/',
+     kogefarmComment: ' (legacy)'
+   },
+
+   {
+     pid: 89,
+     lpSymbol: 'GFI-ETH LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x1587663E8F475E69eA2DBb38482C8c4EE9F388Fb',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xA85587945C97359d64d94d141BF1D95C215D1626',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xcB57482aF988A2A00F14fa796920c50C4eb932A1',
+     },
+     token: tokens.gfi,
+     quoteToken: tokens.eth,
+     rewardPerBlock: 17.361111111111100000,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://gravityfinance.io/',
    },
