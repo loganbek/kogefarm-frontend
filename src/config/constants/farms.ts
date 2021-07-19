@@ -254,6 +254,33 @@ const farms: FarmConfig[] = [
         underlyingWebsite: 'https://app.iron.finance/'
       },
 
+      {
+        pid: 90,
+        lpSymbol: 'Ice-WETH LP',
+        lpAddresses: {
+          80001: '',
+          137: '0xf1EE78544a1118F2efb87f7EaCd9f1E6e80e1ea5',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x1fD1259Fa8CdC60c6E8C86cfA592CA1b8403DFaD',
+        },
+        masterChefPid: 1,
+        jarAddresses: {
+          80001: '',
+          137: '0x95a56528Dcf6e8eC4c020Af18f869eA77b76E265',
+        },
+        token: tokens.ice,
+        quoteToken: tokens.eth,
+        rewardPerBlock: 15.854895991882293252*2,
+        poolWeightDesignate: 25000/150000,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        isFirebird: true,
+        kogefarmComment: ' (Firebird)',
+        underlyingWebsite: 'https://app.iron.finance/'
+      },
+
    {
      pid: 31,
      lpSymbol: 'MAI(miMatic)-USDC',
@@ -527,7 +554,7 @@ const farms: FarmConfig[] = [
      isJetSwap: true
    },
 
-   {
+/*   {
      pid: 70,
      lpSymbol: 'pWings-USDT LP',
      lpAddresses: {
@@ -552,7 +579,7 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
      multiplier: '0X',
-   },
+   }, */
 
    {
      pid: 81,
@@ -771,7 +798,7 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://gravityfinance.io/',
    },
 
-   {
+/*   {
      pid: 74,
      lpSymbol: 'GFI-ETH LP',
      lpAddresses: {
@@ -796,7 +823,7 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://gravityfinance.io/',
      kogefarmComment: ' (legacy)',
      multiplier: '0X',
-   },
+   }, */
 
    {
      pid: 89,

@@ -61,6 +61,9 @@ export const depositJar = async (jarContract, amount, account) => {
   if (jarContract.options.address==="0xcB57482aF988A2A00F14fa796920c50C4eb932A1"){
     gasLimit = 3000000
   }
+  if (jarContract.options.address==="0x95a56528Dcf6e8eC4c020Af18f869eA77b76E265"){
+    gasLimit = 3000000
+  }
   return jarContract.methods
     .deposit(new BigNumber(amount).times(decimals).toString())
     .send({ from: account, gas: gasLimit, gasPrice:'5000000000' })
