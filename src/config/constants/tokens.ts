@@ -408,6 +408,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  pswamp: {
+    symbol: 'pSwamp',
+    coingeico: 'pswamp',
+    address: {
+      137: '0x5f1657896B38c4761dbc5484473c7A7C845910b6',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

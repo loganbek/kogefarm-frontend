@@ -281,6 +281,56 @@ const farms: FarmConfig[] = [
         underlyingWebsite: 'https://app.iron.finance/'
       },
 
+      {
+        pid: 91,
+        lpSymbol: 'pSwamp',
+        lpAddresses: {
+          80001: '',
+          137: '0x5f1657896B38c4761dbc5484473c7A7C845910b6',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x6Dbf28f426Be8Ea13a191A45D3A1E70579dAc1E2',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0xCc72AF943EF649B540021590fF349A454b5E2e9a',
+        },
+        token: tokens.pswamp,
+        quoteToken: tokens.pswamp,
+        rewardPerBlock: 0.107205733,
+        poolWeightDesignate: 1000/1950,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/'
+      },
+
+      {
+        pid: 92,
+        lpSymbol: 'pSwamp-Matic LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x1A477272f6030EAB135Cb3BA40646f3eb26b382a',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x7242f72Cc26ad52A0Dcac8d203D9983ec28aE342',
+        },
+        masterChefPid: 1,
+        jarAddresses: {
+          80001: '',
+          137: '0xf5bc9A2251A1Ae5AEeb0286CC9562608E8bDb824',
+        },
+        token: tokens.pswamp,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 0.107205733,
+        poolWeightDesignate: 500/1950,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/'
+      },
+
    {
      pid: 31,
      lpSymbol: 'MAI(miMatic)-USDC',
