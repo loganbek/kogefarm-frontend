@@ -282,6 +282,31 @@ const farms: FarmConfig[] = [
       },
 
       {
+        pid: 94,
+        lpSymbol: 'pSwamp',
+        lpAddresses: {
+          80001: '',
+          137: '0x5f1657896B38c4761dbc5484473c7A7C845910b6',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x6Dbf28f426Be8Ea13a191A45D3A1E70579dAc1E2',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0x5781135c882d4Fc8c61D0C826123761F20F67153',
+        },
+        token: tokens.pswamp,
+        quoteToken: tokens.pswamp,
+        rewardPerBlock: 0.107205733,
+        poolWeightDesignate: 1000/1950,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+      },
+
+      {
         pid: 91,
         lpSymbol: 'pSwamp',
         lpAddresses: {
@@ -303,7 +328,33 @@ const farms: FarmConfig[] = [
         poolWeightDesignate: 1000/1950,
         minutesPerCompound: 5,
         kogefarmFee: 0.01,
-        underlyingWebsite: 'https://swamp.finance/polygon/'
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+        kogefarmComment: ' (legacy)',
+      },
+
+      {
+        pid: 93,
+        lpSymbol: 'pSwamp-Matic LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x1A477272f6030EAB135Cb3BA40646f3eb26b382a',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x7242f72Cc26ad52A0Dcac8d203D9983ec28aE342',
+        },
+        masterChefPid: 1,
+        jarAddresses: {
+          80001: '',
+          137: '0x52fd74517b9728E4a8c6A44a6D5efeECB49e2aC5',
+        },
+        token: tokens.pswamp,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 0.107205733,
+        poolWeightDesignate: 500/1950,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
       },
 
       {
@@ -328,8 +379,10 @@ const farms: FarmConfig[] = [
         poolWeightDesignate: 500/1950,
         minutesPerCompound: 5,
         kogefarmFee: 0.01,
-        underlyingWebsite: 'https://swamp.finance/polygon/'
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+        kogefarmComment: ' (legacy)',
       },
+
 
    {
      pid: 31,
