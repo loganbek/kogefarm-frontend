@@ -850,7 +850,7 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://gravityfinance.io/',
    },
-
+/*
    {
      pid: 73,
      lpSymbol: 'GFI-USDC LP',
@@ -876,7 +876,7 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://gravityfinance.io/',
      kogefarmComment: ' (legacy)',
      multiplier: '0X',
-   },
+   }, */
 
    {
      pid: 88,
