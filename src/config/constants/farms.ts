@@ -358,6 +358,7 @@ const farms: FarmConfig[] = [
         depositFee: 0.001,
         kogefarmComment: ' (legacy)',
         underlyingWebsite: 'https://swamp.finance/polygon/',
+        multiplier: '0X',
       },
 
       {
@@ -413,6 +414,7 @@ const farms: FarmConfig[] = [
         kogefarmFee: 0.01,
         kogefarmComment: ' (legacy)',
         underlyingWebsite: 'https://swamp.finance/polygon/',
+        multiplier: '0X',
       },
 
       {
