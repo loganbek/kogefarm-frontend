@@ -496,7 +496,34 @@ const farms: FarmConfig[] = [
      depositFee: 0.005,
      underlyingWebsite: 'https://mai.finance'
    },
-/*
+
+   {
+     pid: 97,
+     lpSymbol: 'BTC-Eth',
+     lpAddresses: {
+       80001: '',
+       137: '0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x070D182EB7E9C3972664C959CE58C5fC6219A7ad',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0x2425b13B711c82E694237F852c3b1A3E50930c7C',
+     },
+     token: tokens.btc,
+     quoteToken: tokens.eth,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 0.000462962962962962*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://quickswap.exchange/',
+     kogefarmComment: ' (QuickSwap)',
+   },
+
    {
      pid: 95,
      lpSymbol: 'ETH-Matic',
@@ -538,13 +565,13 @@ const farms: FarmConfig[] = [
      masterChefPid: 2,
      jarAddresses: {
        80001: '',
-       137: '0xC17B1df8a5754D6383F13577dB4a8e20864Cc3d3',
+       137: '0xB364963Fd56D8A49a896E8c7BBB666b3159396fD',
      },
      token: tokens.eth,
      quoteToken: tokens.matic,
      rewardToken1: tokens.quick,
      rewardToken2: tokens.pswamp,
-     rewardPerBlock1: 0.000798611111111111*2*1.67/65.047, // 0.8064
+     rewardPerBlock1: 0.000798611111111111*2*1.7/65.047, // 0.8064
      rewardPerBlock2: 0.107205733*25/2050,
      depositFee: 0.001,
      poolWeightDesignate: 1,
@@ -554,33 +581,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (pSwamp)',
    },
 
-   {
-     pid: 97,
-     lpSymbol: 'BTC-Eth',
-     lpAddresses: {
-       80001: '',
-       137: '0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x070D182EB7E9C3972664C959CE58C5fC6219A7ad',
-     },
-     masterChefPid: 2,
-     jarAddresses: {
-       80001: '',
-       137: '0x2425b13B711c82E694237F852c3b1A3E50930c7C',
-     },
-     token: tokens.btc,
-     quoteToken: tokens.eth,
-     rewardToken: tokens.quick,
-     rewardPerBlock: 0.000462962962962962*2,
-     poolWeightDesignate: 1,
-     minutesPerCompound: 5,
-     kogefarmFee: 0.01,
-     underlyingWebsite: 'https://quickswap.exchange/',
-     kogefarmComment: ' (QuickSwap)',
-   },
-
+/*
    {
      pid: 98,
      lpSymbol: 'BTC-Eth',
@@ -595,7 +596,7 @@ const farms: FarmConfig[] = [
      masterChefPid: 12,
      jarAddresses: {
        80001: '',
-       137: '0xa382cfB94Be7FB41a4872444D257fdFcfb2ac939',
+       137: '0xb7b5641442C1762586AA03Fdc4Fa4200CB57D4e5',
      },
      token: tokens.btc,
      quoteToken: tokens.eth,
