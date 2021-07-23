@@ -282,6 +282,58 @@ const farms: FarmConfig[] = [
       },
 
       {
+        pid: 99,
+        lpSymbol: 'pSwamp',
+        lpAddresses: {
+          80001: '',
+          137: '0x5f1657896B38c4761dbc5484473c7A7C845910b6',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x6Dbf28f426Be8Ea13a191A45D3A1E70579dAc1E2',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+            137: '0x5C3533B44d7c3e804C428A57C426577CA899A311',
+        },
+        token: tokens.pswamp,
+        quoteToken: tokens.pswamp,
+        rewardPerBlock: 0.107205733,
+        poolWeightDesignate: 1000/1950,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        depositFee: 0.001,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+      },
+
+      {
+        pid: 100,
+        lpSymbol: 'pSwamp-Matic LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x1A477272f6030EAB135Cb3BA40646f3eb26b382a',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x7242f72Cc26ad52A0Dcac8d203D9983ec28aE342',
+        },
+        masterChefPid: 1,
+        jarAddresses: {
+          80001: '',
+          137: '0x531222F9399fa37AFfeBE759174423C962620E66',
+        },
+        token: tokens.pswamp,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 0.107205733,
+        poolWeightDesignate: 500/1950,
+        minutesPerCompound: 5,
+        depositFee: 0.001,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+      },
+
+      {
         pid: 94,
         lpSymbol: 'pSwamp',
         lpAddresses: {
@@ -299,10 +351,12 @@ const farms: FarmConfig[] = [
         },
         token: tokens.pswamp,
         quoteToken: tokens.pswamp,
-        rewardPerBlock: 0.107205733,
+        rewardPerBlock: 0,
         poolWeightDesignate: 1000/1950,
         minutesPerCompound: 5,
         kogefarmFee: 0.01,
+        depositFee: 0.001,
+        kogefarmComment: ' (legacy)',
         underlyingWebsite: 'https://swamp.finance/polygon/',
       },
 
@@ -324,10 +378,11 @@ const farms: FarmConfig[] = [
         },
         token: tokens.pswamp,
         quoteToken: tokens.pswamp,
-        rewardPerBlock: 0.107205733,
+        rewardPerBlock: 0,
         poolWeightDesignate: 1000/1950,
         minutesPerCompound: 5,
         kogefarmFee: 0.01,
+        depositFee: 0.001,
         underlyingWebsite: 'https://swamp.finance/polygon/',
         kogefarmComment: ' (legacy)',
         multiplier: '0X',
@@ -351,10 +406,12 @@ const farms: FarmConfig[] = [
         },
         token: tokens.pswamp,
         quoteToken: tokens.matic,
-        rewardPerBlock: 0.107205733,
+        rewardPerBlock: 0,
         poolWeightDesignate: 500/1950,
         minutesPerCompound: 5,
+        depositFee: 0.001,
         kogefarmFee: 0.01,
+        kogefarmComment: ' (legacy)',
         underlyingWebsite: 'https://swamp.finance/polygon/',
       },
 
@@ -376,9 +433,10 @@ const farms: FarmConfig[] = [
         },
         token: tokens.pswamp,
         quoteToken: tokens.matic,
-        rewardPerBlock: 0.107205733,
+        rewardPerBlock: 0,
         poolWeightDesignate: 500/1950,
         minutesPerCompound: 5,
+        depositFee: 0.001,
         kogefarmFee: 0.01,
         underlyingWebsite: 'https://swamp.finance/polygon/',
         kogefarmComment: ' (legacy)',
@@ -438,7 +496,121 @@ const farms: FarmConfig[] = [
      depositFee: 0.005,
      underlyingWebsite: 'https://mai.finance'
    },
+/*
+   {
+     pid: 95,
+     lpSymbol: 'ETH-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x8FF56b5325446aAe6EfBf006a4C1D88e4935a914',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0xEA2A839abE3dd0fc8830B28706dF8d81FF3201eD',
+     },
+     token: tokens.eth,
+     quoteToken: tokens.matic,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 0.000798611111111111*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://quickswap.exchange',
+     kogefarmComment: ' (QuickSwap)',
+   },
 
+   {
+     pid: 96,
+     lpSymbol: 'ETH-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0xC17B1df8a5754D6383F13577dB4a8e20864Cc3d3',
+     },
+     token: tokens.eth,
+     quoteToken: tokens.matic,
+     rewardToken1: tokens.quick,
+     rewardToken2: tokens.pswamp,
+     rewardPerBlock1: 0.000798611111111111*2*1.67/65.047, // 0.8064
+     rewardPerBlock2: 0.107205733*25/2050,
+     depositFee: 0.001,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://swamp.finance/polygon/',
+     kogefarmComment: ' (pSwamp)',
+   },
+
+   {
+     pid: 97,
+     lpSymbol: 'BTC-Eth',
+     lpAddresses: {
+       80001: '',
+       137: '0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x070D182EB7E9C3972664C959CE58C5fC6219A7ad',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0x2425b13B711c82E694237F852c3b1A3E50930c7C',
+     },
+     token: tokens.btc,
+     quoteToken: tokens.eth,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 0.000462962962962962*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://quickswap.exchange/',
+     kogefarmComment: ' (QuickSwap)',
+   },
+
+   {
+     pid: 98,
+     lpSymbol: 'BTC-Eth',
+     lpAddresses: {
+       80001: '',
+       137: '0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381',
+     },
+     masterChefPid: 12,
+     jarAddresses: {
+       80001: '',
+       137: '0xa382cfB94Be7FB41a4872444D257fdFcfb2ac939',
+     },
+     token: tokens.btc,
+     quoteToken: tokens.eth,
+     rewardToken1: tokens.quick,
+     rewardToken2: tokens.pswamp,
+     rewardPerBlock1: 0.000462962962962962*2*1.49/61.543, // 0.8064
+     rewardPerBlock2: 0.107205733*25/2050,
+     poolWeightDesignate: 1,
+     depositFee: 0.001,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://swamp.finance/polygon',
+     kogefarmComment: ' (pSwamp)',
+   },
+*/
    {
      pid: 63,
      lpSymbol: 'DAI-USDC-USDT',

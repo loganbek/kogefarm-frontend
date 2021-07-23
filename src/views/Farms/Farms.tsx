@@ -225,6 +225,7 @@ const Farms: React.FC = () => {
         let rewardPerBlock = farm.rewardPerBlock
         if (farm.rewardToken1){
           rewardPerBlock = (farm.rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+          tokenPriceVsQuote = new BigNumber(1)
         }
 
         const apr = isActive

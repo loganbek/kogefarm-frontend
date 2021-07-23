@@ -10,7 +10,7 @@ import { FarmConfig } from 'config/constants/types'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { createClient } from 'urql'
 
-const quickGraphURL = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap'
+const quickGraphURL = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap03'
 const sushiGraphURL = 'https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange'
 const dfynGraphURL = 'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5'
 
@@ -38,6 +38,9 @@ export const fetchFarmsLpTokenBalanceMC = async (farmsToFetch: FarmConfig[]) => 
   const calls = farmsToFetch.map((farmConfig) => {
     const masterChefAddress = getAddress(farmConfig.masterChefAddresses)
     const lpAddress = getAddress(farmConfig.lpAddresses)
+    if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381') {
+      return { address: masterChefAddress, name: 'wantLockedTotal'}
+    }
     return { address: lpAddress, name: 'balanceOf', params: [masterChefAddress] }
   })
 
