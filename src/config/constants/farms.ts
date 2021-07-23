@@ -446,6 +446,36 @@ const farms: FarmConfig[] = [
       },
 
 
+       {
+         pid: 96,
+         lpSymbol: 'ETH-Matic',
+         lpAddresses: {
+           80001: '',
+           137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
+         },
+         masterChefAddresses: {
+           80001: '',
+           137: '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3',
+         },
+         masterChefPid: 2,
+         jarAddresses: {
+           80001: '',
+           137: '0xB364963Fd56D8A49a896E8c7BBB666b3159396fD',
+         },
+         token: tokens.eth,
+         quoteToken: tokens.matic,
+         rewardToken1: tokens.quick,
+         rewardToken2: tokens.pswamp,
+         rewardPerBlock1: 0.000798611111111111*2*1.7/65.047, // 0.8064
+         rewardPerBlock2: 0.107205733*25/2050,
+         depositFee: 0.001,
+         poolWeightDesignate: 1,
+         minutesPerCompound: 5,
+         kogefarmFee: 0.01,
+         underlyingWebsite: 'https://swamp.finance/polygon/',
+         kogefarmComment: ' (pSwamp)',
+       },
+
    {
      pid: 31,
      lpSymbol: 'MAI(miMatic)-USDC',
@@ -472,36 +502,7 @@ const farms: FarmConfig[] = [
      depositFee: 0.005,
      underlyingWebsite: 'https://mai.finance'
    },
-  
-   {
-     pid: 96,
-     lpSymbol: 'ETH-Matic',
-     lpAddresses: {
-       80001: '',
-       137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3',
-     },
-     masterChefPid: 2,
-     jarAddresses: {
-       80001: '',
-       137: '0xB364963Fd56D8A49a896E8c7BBB666b3159396fD',
-     },
-     token: tokens.eth,
-     quoteToken: tokens.matic,
-     rewardToken1: tokens.quick,
-     rewardToken2: tokens.pswamp,
-     rewardPerBlock1: 0.000798611111111111*2*1.7/65.047, // 0.8064
-     rewardPerBlock2: 0.107205733*25/2050,
-     depositFee: 0.001,
-     poolWeightDesignate: 1,
-     minutesPerCompound: 5,
-     kogefarmFee: 0.01,
-     underlyingWebsite: 'https://swamp.finance/polygon/',
-     kogefarmComment: ' (pSwamp)',
-   },
+
 
    {
      pid: 19,
