@@ -555,7 +555,7 @@ const Farms: React.FC = () => {
         <div ref={loadMoreRef} />
         <Text color="text" textAlign="center" fontSize="125%">
           {t(
-            'No more sleep deprived degens with KogeFarm! We compound your farming rewards every minute so you can play more.',
+            'No more sleep deprived degens with KogeFarm! We compound your farming rewards every 5 minutes so you can play more.',
           )}
         </Text>
         <Text color="text" textAlign="center" fontSize="125%">

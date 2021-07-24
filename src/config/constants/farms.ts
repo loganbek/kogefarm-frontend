@@ -1154,6 +1154,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 145/715,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
+     isSushi: true,
      underlyingWebsite: 'https://polyroll.org'
    },
 

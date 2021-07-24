@@ -203,6 +203,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     if (farm.isApe===true){
       liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
+    if (farm.isSushi===true){
+      liquidityurl = `https://app.sushi.com/swap?outputCurrency=${lpAddress}`
+    }
     if (farm.token.coingeico==='pwings'){
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
