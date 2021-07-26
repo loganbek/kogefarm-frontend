@@ -178,10 +178,10 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           }
         }
         if (farmConfig.token.coingeico==='curve3pool'){
-          tradingFeeRate = 0.1173/365*100
+          tradingFeeRate = 0.0745/365*100
         }
         if (farmConfig.token.coingeico==='atricrypto'){
-          tradingFeeRate = 0.14/365*100
+          tradingFeeRate = 0.1173/365*100
         }
         if (farmConfig.token.coingeico==='btcrenbtc'){
           tradingFeeRate = 0.0278/365*100
