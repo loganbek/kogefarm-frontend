@@ -38,7 +38,7 @@ export const fetchFarmsLpTokenBalanceMC = async (farmsToFetch: FarmConfig[]) => 
   const calls = farmsToFetch.map((farmConfig) => {
     const masterChefAddress = getAddress(farmConfig.masterChefAddresses)
     const lpAddress = getAddress(farmConfig.lpAddresses)
-    if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381') {
+    if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E') {
       return { address: masterChefAddress, name: 'wantLockedTotal'}
     }
     return { address: lpAddress, name: 'balanceOf', params: [masterChefAddress] }
