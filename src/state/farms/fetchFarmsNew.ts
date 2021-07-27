@@ -10,7 +10,7 @@ import { FarmConfig } from 'config/constants/types'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { createClient } from 'urql'
 
-const quickGraphURL = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap03'
+const quickGraphURL = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap05'
 const sushiGraphURL = 'https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange'
 const dfynGraphURL = 'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5'
 
