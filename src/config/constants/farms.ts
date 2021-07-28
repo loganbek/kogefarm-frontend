@@ -2223,10 +2223,11 @@ const farms: FarmConfig[] = [
      token: tokens.yeld,
      quoteToken: tokens.yeld,
      rewardPerBlock: 0.01,
-     poolWeightDesignate: 2500/28000,
+     poolWeightDesignate: 0/28000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://polyyeld.finance'
+     underlyingWebsite: 'https://polyyeld.finance',
+     multiplier: '0X',
    },
 
    {
@@ -2276,11 +2277,12 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.matic,
      isSushi: true,
      rewardPerBlock: 0.01,
-     poolWeightDesignate: 4000/28000,
+     poolWeightDesignate: 0/28000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Sushi)',
-     underlyingWebsite: 'https://polyyeld.finance'
+     underlyingWebsite: 'https://polyyeld.finance',
+     multiplier: '0X',
    },
 
    {
@@ -2307,7 +2309,8 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      kogefarmComment: ' (Ape)',
-     underlyingWebsite: 'https://polyyeld.finance'
+     underlyingWebsite: 'https://polyyeld.finance',
+     multiplier: '0X',
    },
 
    {
@@ -2332,7 +2335,8 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 4000/28000,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
-     underlyingWebsite: 'https://polyyeld.finance'
+     underlyingWebsite: 'https://polyyeld.finance',
+     multiplier: '0X',
    },
 
 
