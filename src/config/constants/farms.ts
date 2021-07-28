@@ -111,7 +111,7 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.eth,
      rewardToken: tokens.dino,
      rewardPerBlock: 14.1319444444445,
-     poolWeightDesignate: 14000/24500,
+     poolWeightDesignate: 2000/24500,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://dinoswap.exchange/',
