@@ -2440,7 +2440,8 @@ const farms: FarmConfig[] = [
     poolWeightDesignate: 0/31110,
     minutesPerCompound: 1,
     kogefarmFee: 0.000,
-    underlyingWebsite: 'https://polycat.finance'
+    underlyingWebsite: 'https://polycat.finance',
+    multiplier: '0X',
   },
 
   {
@@ -2466,7 +2467,8 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.000,
     kogefarmComment: ' (Quick)',
-    underlyingWebsite: 'https://polycat.finance'
+    underlyingWebsite: 'https://polycat.finance',
+    multiplier: '0X',
   },
 
   {
@@ -2493,7 +2495,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.000,
     isSushi: true,
     kogefarmComment: ' (Sushi)',
-    underlyingWebsite: 'https://polycat.finance'
+    underlyingWebsite: 'https://polycat.finance',
+    multiplier: '0X',
   },
 
   {
@@ -2520,7 +2523,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.000,
     isDfyn: true,
     kogefarmComment: ' (Dfyn)',
-    underlyingWebsite: 'https://polycat.finance'
+    underlyingWebsite: 'https://polycat.finance',
+    multiplier: '0X',
   },
 
   {
