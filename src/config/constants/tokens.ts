@@ -418,6 +418,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  lithium: {
+    symbol: 'Lithium',
+    coingeico: 'lithium',
+    address: {
+      137: '0xfE1a200637464FBC9B60Bc7AeCb9b86c0E1d486E',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

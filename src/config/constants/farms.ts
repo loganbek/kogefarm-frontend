@@ -92,6 +92,32 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 102,
+     lpSymbol: 'Dino-Weth',
+     lpAddresses: {
+       80001: '',
+       137: '0x9f03309A588e33A239Bf49ed8D68b2D45C7A1F11',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 11,
+     jarAddresses: {
+       80001: '',
+       137: '0xE4a966c8225BA2A5dd7B4861AB5fe3570E002629',
+     },
+     token: tokens.dino,
+     quoteToken: tokens.eth,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 14.1319444444445,
+     poolWeightDesignate: 14000/24500,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+   },
+
+   {
      pid: 82,
      lpSymbol: 'USDC-USDT',
      lpAddresses: {
@@ -783,6 +809,81 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.01,
      isSushi: true,
      underlyingWebsite: 'https://polyquity.org'
+   },
+
+   {
+     pid: 103,
+     lpSymbol: 'Lithium',
+     lpAddresses: {
+       80001: '',
+       137: '0xfE1a200637464FBC9B60Bc7AeCb9b86c0E1d486E',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xfcD73006121333C92D770662745146338E419556',
+     },
+     masterChefPid: 6,
+     jarAddresses: {
+       80001: '',
+       137: '0x759DCd61C021eDC0365882048C726462fA05F642',
+     },
+     token: tokens.lithium,
+     quoteToken: tokens.lithium,
+     rewardPerBlock: 0.1,
+     poolWeightDesignate: 7500/46500,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polywantsacracker.farm/',
+   },
+
+   {
+     pid: 104,
+     lpSymbol: 'Lithium-USDC LP',
+     lpAddresses: {
+       80001: '',
+       137: '0x1b9c6d8b372C410426CF803fd20a815aA7B454c2',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xfcD73006121333C92D770662745146338E419556',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xd6a9550Fe158b477bC12af882911CB5e89295D39',
+     },
+     token: tokens.lithium,
+     quoteToken: tokens.usdc,
+     rewardPerBlock: 0.1,
+     poolWeightDesignate: 10000/46500,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polywantsacracker.farm/',
+   },
+
+   {
+     pid: 105,
+     lpSymbol: 'Lithium-Matic LP',
+     lpAddresses: {
+       80001: '',
+       137: '0xF47553EB96b8665d9F258E3F4FC9A9e7811C3C2B',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xfcD73006121333C92D770662745146338E419556',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0x53197CBe1cBeb417089cAAb3B5fB16391EDe0a69',
+     },
+     token: tokens.lithium,
+     quoteToken: tokens.matic,
+     rewardPerBlock: 0.1,
+     poolWeightDesignate: 3500/46500,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://polywantsacracker.farm/',
    },
 
 

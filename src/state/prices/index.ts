@@ -76,6 +76,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const dinoUSDCLP = '0x3324af8417844e70b81555A6D1568d78f4D4Bf1f'
   const pswampAddr = '0x5f1657896B38c4761dbc5484473c7A7C845910b6'
   const pswampMaticLP = '0x1A477272f6030EAB135Cb3BA40646f3eb26b382a'
+  const lithiumAddr = '0xfE1a200637464FBC9B60Bc7AeCb9b86c0E1d486E'
+  const lithiumMaticLP = '0xF47553EB96b8665d9F258E3F4FC9A9e7811C3C2B'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
   const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
@@ -482,8 +484,19 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [pswampMaticLP],
     },
+    // Lithium
+    {
+      address: lithiumAddr,
+      name: 'balanceOf',
+      params: [lithiumMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [lithiumMaticLP],
+    },
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance] = await multicall(erc20, calls)
 
   const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto] = await multicall(erc20, curveCalls)
   // Curve ratio
@@ -518,6 +531,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const crvWETH = crvBalance/crvWETHBalance
   const dinoUSDC = dinoBalance/(dinoUSDCBalance*10**12)
   const pswampMatic = pswampBalance/pswampMaticBalance
+  const lithiumMatic = lithiumBalance/lithiumMaticBalance
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
@@ -549,6 +563,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const vertUSD = usdcUSD/vertUSDC
   const dinoUSD = usdcUSD/dinoUSDC
   const pswampUSD = maticUSD/pswampMatic
+  const lithiumUSD = maticUSD/lithiumMatic
   // Curve stuff
   const curve3poolUSD = curveRatio
   const curveBtcRenBtcUSD = curveBtcRenBtcRatio*btcUSD
@@ -592,6 +607,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.vert = {"usd":vertUSD.toString()}
   data.dino = {"usd":dinoUSD.toString()}
   data.pswamp = {"usd":pswampUSD.toString()}
+  data.lithium = {"usd":lithiumUSD.toString()}
   // Return normalized token names
   return {
 //    updated_at: data.updated_at,
