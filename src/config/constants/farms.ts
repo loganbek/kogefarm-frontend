@@ -225,6 +225,86 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (DinoSwap)',
    },
 
+   {
+     pid: 106,
+     lpSymbol: 'KogeCoin-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0x3885503aEF5E929fCB7035FBDcA87239651C8154',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0xDEb9d9D209687EC73488A89b68fE84B2364a8d86',
+     },
+     masterChefPid: 0,
+     jarAddresses: {
+       80001: '',
+       137: '0xb7D3e1C5cb26D088d619525c6fD5D8DDC1B543d1',
+     },
+     token: tokens.kogecoin,
+     quoteToken: tokens.matic,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 0.000023148148148148*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0,
+     underlyingWebsite: 'https://quickswap.exchange',
+     kogefarmComment: ' (QuickSwap)',
+   },
+
+   {
+     pid: 97,
+     lpSymbol: 'BTC-Eth',
+     lpAddresses: {
+       80001: '',
+       137: '0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x070D182EB7E9C3972664C959CE58C5fC6219A7ad',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0x2425b13B711c82E694237F852c3b1A3E50930c7C',
+     },
+     token: tokens.btc,
+     quoteToken: tokens.eth,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 0.000462962962962962*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://quickswap.exchange/',
+     kogefarmComment: ' (QuickSwap)',
+   },
+
+   {
+     pid: 95,
+     lpSymbol: 'ETH-Matic',
+     lpAddresses: {
+       80001: '',
+       137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x8FF56b5325446aAe6EfBf006a4C1D88e4935a914',
+     },
+     masterChefPid: 2,
+     jarAddresses: {
+       80001: '',
+       137: '0xEA2A839abE3dd0fc8830B28706dF8d81FF3201eD',
+     },
+     token: tokens.eth,
+     quoteToken: tokens.matic,
+     rewardToken: tokens.quick,
+     rewardPerBlock: 0.000798611111111111*2,
+     poolWeightDesignate: 1,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     underlyingWebsite: 'https://quickswap.exchange',
+     kogefarmComment: ' (QuickSwap)',
+   },
 
       {
         pid: 75,
@@ -471,6 +551,122 @@ const farms: FarmConfig[] = [
         multiplier: '0X',
       },
 
+      {
+        pid: 107,
+        lpSymbol: 'MAI(miMatic)-USDC',
+        lpAddresses: {
+          80001: '',
+          137: '0x160532D2536175d65C03B97b0630A9802c274daD',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x7d39705Cc041111275317f55B3A406ACC83615Bc',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0xc67DEEA5195a55FB19876AB3cB31F6d44a771946',
+        },
+        token: tokens.mimatic,
+        quoteToken: tokens.usdc,
+        rewardToken1: tokens.dino,
+        rewardToken2: tokens.pswamp,
+        rewardPerBlock1: 14.1319444444445*500/24500*1.71/53.52, // 0.8064
+        rewardPerBlock2: 0.107205733*25/2375,
+        poolWeightDesignate: 1,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+        kogefarmComment: ' (pSwamp, Dino)',
+      },
+
+      {
+        pid: 108,
+        lpSymbol: 'WEth-WMatic',
+        lpAddresses: {
+          80001: '',
+          137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0xD3dAdEAF5355Ca23150b037b2229Fd16A37004ae',
+        },
+        token: tokens.eth,
+        quoteToken: tokens.matic,
+        rewardToken1: tokens.dino,
+        rewardToken2: tokens.pswamp,
+        rewardPerBlock1: 14.1319444444445*500/24500*0.904/32.772, // 0.8064
+        rewardPerBlock2: 0.107205733*25/2375,
+        poolWeightDesignate: 1,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+        kogefarmComment: ' (pSwamp, Dino)',
+      },
+
+      {
+        pid: 109,
+        lpSymbol: 'WEth-USDC',
+        lpAddresses: {
+          80001: '',
+          137: '0x853Ee4b2A13f8a742d64C8F088bE7bA2131f670d',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x9C515E2489749E2befA0B054EfCb3b34B2c7F432',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0x9A547d7c5359cd19C95A0c88C0967B715Cd19601',
+        },
+        token: tokens.eth,
+        quoteToken: tokens.usdc,
+        rewardToken1: tokens.dino,
+        rewardToken2: tokens.pswamp,
+        rewardPerBlock1: 14.1319444444445*500/24500*0.532/44.383, // 0.8064
+        rewardPerBlock2: 0.107205733*25/2375,
+        poolWeightDesignate: 1,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+        kogefarmComment: ' (pSwamp, Dino)',
+      },
+
+      {
+        pid: 110,
+        lpSymbol: 'USDC-USDT',
+        lpAddresses: {
+          80001: '',
+          137: '0x2cF7252e74036d1Da831d11089D326296e64a728',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0x94BE6A449a5c286734522FC6047484ac763c595C',
+        },
+        masterChefPid: 0,
+        jarAddresses: {
+          80001: '',
+          137: '0xF58B6E2A1187f3a4cf6494E75f047D268ee80dcA',
+        },
+        token: tokens.usdt,
+        quoteToken: tokens.usdc,
+        rewardToken1: tokens.dino,
+        rewardToken2: tokens.pswamp,
+        rewardPerBlock1: 14.1319444444445*1000/24500*2.64/182.183, // 0.8064
+        rewardPerBlock2: 0.107205733*25/2375,
+        poolWeightDesignate: 1,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://swamp.finance/polygon/',
+        kogefarmComment: ' (pSwamp, Dino)',
+      },
+
 
        {
          pid: 96,
@@ -493,7 +689,7 @@ const farms: FarmConfig[] = [
          rewardToken1: tokens.quick,
          rewardToken2: tokens.pswamp,
          rewardPerBlock1: 0.000798611111111111*2*1.7/65.047, // 0.8064
-         rewardPerBlock2: 0.107205733*25/2125,
+         rewardPerBlock2: 0.107205733*25/2375,
          depositFee: 0.001,
          poolWeightDesignate: 1,
          minutesPerCompound: 5,
@@ -523,7 +719,7 @@ const farms: FarmConfig[] = [
          rewardToken1: tokens.quick,
          rewardToken2: tokens.pswamp,
          rewardPerBlock1: 0.000462962962962962*2*2.84/65.7, // 0.8064
-         rewardPerBlock2: 0.107205733*25/2125,
+         rewardPerBlock2: 0.107205733*25/2375,
          poolWeightDesignate: 1,
          depositFee: 0.001,
          minutesPerCompound: 5,
@@ -553,7 +749,7 @@ const farms: FarmConfig[] = [
          rewardToken1: tokens.quick,
          rewardToken2: tokens.pswamp,
          rewardPerBlock1: 0.00011574074074074*2*4.73/27.912, // 0.8064
-         rewardPerBlock2: 0.107205733*50/2125,
+         rewardPerBlock2: 0.107205733*50/2375,
          poolWeightDesignate: 1,
          depositFee: 0.001,
          minutesPerCompound: 5,
@@ -586,7 +782,8 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.005,
      depositFee: 0.005,
-     underlyingWebsite: 'https://mai.finance'
+     underlyingWebsite: 'https://mai.finance',
+     kogefarmComment: ' (Qi)',
    },
 
 
@@ -613,61 +810,8 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 1,
      kogefarmFee: 0.01+0.005,
      depositFee: 0.005,
-     underlyingWebsite: 'https://mai.finance'
-   },
-
-   {
-     pid: 97,
-     lpSymbol: 'BTC-Eth',
-     lpAddresses: {
-       80001: '',
-       137: '0xdC9232E2Df177d7a12FdFf6EcBAb114E2231198D',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x070D182EB7E9C3972664C959CE58C5fC6219A7ad',
-     },
-     masterChefPid: 2,
-     jarAddresses: {
-       80001: '',
-       137: '0x2425b13B711c82E694237F852c3b1A3E50930c7C',
-     },
-     token: tokens.btc,
-     quoteToken: tokens.eth,
-     rewardToken: tokens.quick,
-     rewardPerBlock: 0.000462962962962962*2,
-     poolWeightDesignate: 1,
-     minutesPerCompound: 5,
-     kogefarmFee: 0.01,
-     underlyingWebsite: 'https://quickswap.exchange/',
-     kogefarmComment: ' (QuickSwap)',
-   },
-
-   {
-     pid: 95,
-     lpSymbol: 'ETH-Matic',
-     lpAddresses: {
-       80001: '',
-       137: '0xadbF1854e5883eB8aa7BAf50705338739e558E5b',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x8FF56b5325446aAe6EfBf006a4C1D88e4935a914',
-     },
-     masterChefPid: 2,
-     jarAddresses: {
-       80001: '',
-       137: '0xEA2A839abE3dd0fc8830B28706dF8d81FF3201eD',
-     },
-     token: tokens.eth,
-     quoteToken: tokens.matic,
-     rewardToken: tokens.quick,
-     rewardPerBlock: 0.000798611111111111*2,
-     poolWeightDesignate: 1,
-     minutesPerCompound: 5,
-     kogefarmFee: 0.01,
-     underlyingWebsite: 'https://quickswap.exchange',
-     kogefarmComment: ' (QuickSwap)',
+     underlyingWebsite: 'https://mai.finance',
+     kogefarmComment: ' (Qi)',
    },
 
 
