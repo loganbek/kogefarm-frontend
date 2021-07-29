@@ -18,7 +18,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 // import { getFarmApr } from 'utils/apr'
 import { getMetaFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
-// import { getAddress } from 'utils/addressHelpers'
+import { getAddress } from 'utils/addressHelpers'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 import PageHeader from 'components/PageHeader'
@@ -223,8 +223,15 @@ const Farms: React.FC = () => {
         }
         // If dual rewards: transform reward/block in terms of token price
         let rewardPerBlock = farm.rewardPerBlock
+        // Special case: pSwamp
+        const masterChefAddress = getAddress(farm.masterChefAddresses)
+        let rewardPerBlock1 = farm.rewardPerBlock1
+        if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+        }
+
         if (farm.rewardToken1){
-          rewardPerBlock = (farm.rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+          rewardPerBlock = (rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
           tokenPriceVsQuote = new BigNumber(1)
         }
 
