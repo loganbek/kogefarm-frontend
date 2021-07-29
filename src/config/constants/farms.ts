@@ -432,10 +432,11 @@ const farms: FarmConfig[] = [
         token: tokens.pswamp,
         quoteToken: tokens.matic,
         rewardPerBlock: 0.107205733*9.61/8.24,
-        poolWeightDesignate: 500/3075,
+        poolWeightDesignate: 0/3075,
         minutesPerCompound: 5,
         depositFee: 0.001,
         kogefarmFee: 0.01,
+        kogefarmComment: ' (paused by Swamp)',
         underlyingWebsite: 'https://swamp.finance/polygon/',
       },
 
