@@ -600,7 +600,7 @@ const farms: FarmConfig[] = [
         quoteToken: tokens.matic,
         rewardToken1: tokens.dino,
         rewardToken2: tokens.pswamp,
-        rewardPerBlock1: 14.1319444444445*500/24500*0.904/32.772, // 0.8064
+        rewardPerBlock1: 14.1319444444445*500/24500*0.928811/32.772, // 0.8064
         rewardPerBlock2: 0.107205733*25/2375,
         poolWeightDesignate: 1,
         minutesPerCompound: 5,
@@ -629,7 +629,7 @@ const farms: FarmConfig[] = [
         quoteToken: tokens.usdc,
         rewardToken1: tokens.dino,
         rewardToken2: tokens.pswamp,
-        rewardPerBlock1: 14.1319444444445*500/24500*0.533/44.383, // 0.8064
+        rewardPerBlock1: 14.1319444444445*500/24500*0.545345/44.383, // 0.8064
         rewardPerBlock2: 0.107205733*25/2375,
         poolWeightDesignate: 1,
         minutesPerCompound: 5,
