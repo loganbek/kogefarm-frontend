@@ -688,7 +688,7 @@ const farms: FarmConfig[] = [
          quoteToken: tokens.matic,
          rewardToken1: tokens.quick,
          rewardToken2: tokens.pswamp,
-         rewardPerBlock1: 0.000798611111111111*2*1.7/65.047, // 0.8064
+         rewardPerBlock1: 0.000798611111111111*2*1/528695.606013627528615634, // 0.8064
          rewardPerBlock2: 0.107205733*25/2375,
          depositFee: 0.001,
          poolWeightDesignate: 1,
@@ -718,7 +718,7 @@ const farms: FarmConfig[] = [
          quoteToken: tokens.eth,
          rewardToken1: tokens.quick,
          rewardToken2: tokens.pswamp,
-         rewardPerBlock1: 0.000462962962962962*2*2.84/65.7, // 0.8064
+         rewardPerBlock1: 0.000462962962962962*2*1/0.000077412061200256, // 0.8064
          rewardPerBlock2: 0.107205733*25/2375,
          poolWeightDesignate: 1,
          depositFee: 0.001,
@@ -748,7 +748,7 @@ const farms: FarmConfig[] = [
          quoteToken: tokens.dai,
          rewardToken1: tokens.quick,
          rewardToken2: tokens.pswamp,
-         rewardPerBlock1: 0.00011574074074074*2*4.73/27.912, // 0.8064
+         rewardPerBlock1: 0.00011574074074074*2*1/0.328472542024626154, // 0.8064
          rewardPerBlock2: 0.107205733*50/2375,
          poolWeightDesignate: 1,
          depositFee: 0.001,
