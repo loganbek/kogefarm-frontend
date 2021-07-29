@@ -226,6 +226,34 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 111,
+     lpSymbol: 'Dfyn-WEth',
+     lpAddresses: {
+       80001: '',
+       137: '0x6fA867BBFDd025780a8CFE988475220AfF51FB8b',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x1948abC5400Aa1d72223882958Da3bec643fb4E5',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0x1173c353e93342B337098b63B0B64226645Fb79d',
+     },
+     token: tokens.dfyn,
+     quoteToken: tokens.eth,
+     rewardToken: tokens.dino,
+     rewardPerBlock: 14.1319444444445,
+     poolWeightDesignate: 1000/24500,
+     minutesPerCompound: 5,
+     kogefarmFee: 0.01,
+     isDfyn: true,
+     underlyingWebsite: 'https://dinoswap.exchange/',
+     kogefarmComment: ' (DinoSwap)',
+   },
+
+   {
      pid: 106,
      lpSymbol: 'KogeCoin-Matic',
      lpAddresses: {
