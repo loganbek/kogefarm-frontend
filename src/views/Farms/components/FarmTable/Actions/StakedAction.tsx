@@ -118,7 +118,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} depositFee={depositFee} />,
   )
-  const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} />)
+  const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} depositFee={depositFee} />)
 
   const lpContract = getBep20Contract(lpAddress, web3)
 //  const jarContract = getBep20Contract(jarAddress, web3)
