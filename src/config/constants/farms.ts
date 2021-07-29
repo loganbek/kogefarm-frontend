@@ -571,7 +571,7 @@ const farms: FarmConfig[] = [
         quoteToken: tokens.usdc,
         rewardToken1: tokens.dino,
         rewardToken2: tokens.pswamp,
-        rewardPerBlock1: 14.1319444444445*500/24500*1.71/53.52, // 0.8064
+        rewardPerBlock1: 14.1319444444445*500/24500*1.91/53.52, // 0.8064
         rewardPerBlock2: 0.107205733*25/2375,
         poolWeightDesignate: 1,
         minutesPerCompound: 5,
@@ -629,7 +629,7 @@ const farms: FarmConfig[] = [
         quoteToken: tokens.usdc,
         rewardToken1: tokens.dino,
         rewardToken2: tokens.pswamp,
-        rewardPerBlock1: 14.1319444444445*500/24500*0.532/44.383, // 0.8064
+        rewardPerBlock1: 14.1319444444445*500/24500*0.533/44.383, // 0.8064
         rewardPerBlock2: 0.107205733*25/2375,
         poolWeightDesignate: 1,
         minutesPerCompound: 5,
@@ -658,7 +658,7 @@ const farms: FarmConfig[] = [
         quoteToken: tokens.usdc,
         rewardToken1: tokens.dino,
         rewardToken2: tokens.pswamp,
-        rewardPerBlock1: 14.1319444444445*1000/24500*2.64/182.183, // 0.8064
+        rewardPerBlock1: 14.1319444444445*1000/24500*2.84/182.183, // 0.8064
         rewardPerBlock2: 0.107205733*25/2375,
         poolWeightDesignate: 1,
         minutesPerCompound: 5,
@@ -1424,8 +1424,8 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.roll,
-     rewardPerBlock: 32.058534803679637546,
-     poolWeightDesignate: 145/715,
+     rewardPerBlock: 27.830832621552917411,
+     poolWeightDesignate: 145/735,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isSushi: true,
@@ -1450,8 +1450,8 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.matic,
-     rewardPerBlock: 32.058534803679637546,
-     poolWeightDesignate: 280/720,
+     rewardPerBlock: 27.830832621552917411,
+     poolWeightDesignate: 280/735,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isSushi: true,
@@ -1476,8 +1476,8 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.matic,
-     rewardPerBlock: 32.058534803679637546,
-     poolWeightDesignate: 120/720,
+     rewardPerBlock: 27.830832621552917411,
+     poolWeightDesignate: 120/735,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      isApe: true,
