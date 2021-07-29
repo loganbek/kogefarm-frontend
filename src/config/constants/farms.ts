@@ -249,7 +249,7 @@ const farms: FarmConfig[] = [
      minutesPerCompound: 5,
      kogefarmFee: 0,
      underlyingWebsite: 'https://quickswap.exchange',
-     kogefarmComment: ' (QuickSwap)',
+     kogefarmComment: ' (Quick)',
    },
 
    {
