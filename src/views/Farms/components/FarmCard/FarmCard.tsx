@@ -103,6 +103,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   if (farmAPYNum>10**18){
     farmAPYNum = Number.POSITIVE_INFINITY
   }
+  if (farm.apr===0){
+    farmAPYNum = 0
+  }
   const farmAPY = farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYD = (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
   const farmAPYDRaw = (((1+(farm.apr)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
@@ -200,7 +203,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center', textDecoration: 'line-through' }}>
-            {farm.apr ? (
+            {farm.apr>=0 ? (
               <>
                 {farmAPR}%
               </>
@@ -213,7 +216,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
       <Flex justifyContent="space-between" alignItems="center">
         <Text style={{textAlign: 'left'}}>{t('APY')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-          {farm.apr ? (
+          {farm.apr>=0 ? (
             <>
             {/*  <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apr={farm.apr} /> */}
               {farmAPY}%
