@@ -428,6 +428,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  dfyn: {
+    symbol: 'Dfyn',
+    coingeico: 'dfyn',
+    address: {
+      137: '0xC168E40227E4ebD8C1caE80F7a55a4F0e6D66C97',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
