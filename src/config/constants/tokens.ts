@@ -438,6 +438,16 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  ust: {
+    symbol: 'UST',
+    coingeico: 'ust',
+    address: {
+      137: '0x692597b009d13C4049a947CAB2239b7d6517875F',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens
