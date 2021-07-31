@@ -599,6 +599,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.gfi = {"usd":gfiUSD.toString()}
   data.ice = {"usd":iceUSD.toString()}
   data.usdt = {"usd":"1.0"}
+  data.ust = {"usd":"1.0"}
   data.crv = {"usd":crvUSD.toString()}
   data.curve3pool = {"usd":curve3poolUSD.toString()}
   data.btcrenbtc = {"usd":curveBtcRenBtcUSD.toString()}
