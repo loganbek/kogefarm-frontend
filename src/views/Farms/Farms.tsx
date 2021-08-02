@@ -576,7 +576,7 @@ const Farms: React.FC = () => {
         </Text>
         <Text color="text" textAlign="center" fontSize="125%">
           {'\n'}
-          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees. We do charge a 0-1% ')}{' '}
+          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees, and only a 1% ')}{' '}
           <u>
             <a href="https://koge.gitbook.io/kogefarm/fees">fee</a>
           </u>
