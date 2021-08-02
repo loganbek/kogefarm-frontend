@@ -2304,6 +2304,34 @@ const farms: FarmConfig[] = [
       },
 
       {
+        pid: 33,
+        lpSymbol: 'Fish-Matic LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x64d1393b53E3C4A8B04fB1ddE2C7B40bc0897222',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0xeBCC84D2A73f0c9E23066089C6C24F4629Ef1e6d',
+        },
+        masterChefPid: 15,
+        jarAddresses: {
+          80001: '',
+          137: '0x58FE96934a595Df1C03BddA09F0fdba38063770B',
+        },
+        token: tokens.fish,
+        quoteToken: tokens.matic,
+        rewardPerBlock: 3,
+        poolWeightDesignate: 250/21155,
+        minutesPerCompound: 1,
+        kogefarmFee: 0.01,
+        isApe: true,
+        rewardToken: tokens.crystl,
+        kogefarmComment: ' (Crystl)',
+        underlyingWebsite: 'https://polycat.finance'
+      },
+
+      {
         pid: 29,
         lpSymbol: 'BANANA-ETH LP',
         lpAddresses: {
@@ -2783,34 +2811,6 @@ const farms: FarmConfig[] = [
     kogefarmComment: ' (Dfyn)',
     underlyingWebsite: 'https://polycat.finance',
     multiplier: '0X',
-  },
-
-  {
-    pid: 33,
-    lpSymbol: 'Fish-Matic LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x64d1393b53E3C4A8B04fB1ddE2C7B40bc0897222',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xeBCC84D2A73f0c9E23066089C6C24F4629Ef1e6d',
-    },
-    masterChefPid: 15,
-    jarAddresses: {
-      80001: '',
-      137: '0x58FE96934a595Df1C03BddA09F0fdba38063770B',
-    },
-    token: tokens.fish,
-    quoteToken: tokens.matic,
-    rewardPerBlock: 3,
-    poolWeightDesignate: 250/23005,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    isApe: true,
-    rewardToken: tokens.crystl,
-    kogefarmComment: ' (Crystl)',
-    underlyingWebsite: 'https://polycat.finance'
   },
 
   {
