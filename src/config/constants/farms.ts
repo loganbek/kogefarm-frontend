@@ -1088,7 +1088,7 @@ const farms: FarmConfig[] = [
      token: tokens.lithium,
      quoteToken: tokens.lithium,
      rewardPerBlock: 0.1,
-     poolWeightDesignate: 17500/63900,
+     poolWeightDesignate: 18500/65400,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
      underlyingWebsite: 'https://polywantsacracker.farm/',
