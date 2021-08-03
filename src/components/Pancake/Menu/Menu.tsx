@@ -1,6 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
+import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
+import { Skeleton } from 'components/Pancake'
+import { useTranslation } from 'contexts/Localization'
+import { latinise } from 'utils/latinise'
+import { getAddress } from 'utils/addressHelpers'
+import { getMetaFarmApr } from 'utils/apr'
+import { Farm } from 'state/types'
+import { useFarms, useGetApiPrices } from 'state/hooks'
+import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
 import Overlay from "../Overlay/Overlay";
 import { useMatchBreakpoints } from "../hooks";
 import Logo from "./components/Logo";
@@ -13,20 +23,37 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+const LogoContainer = styled.div`
+  width: 240px;
+  flex-shrink: 0;
+`
+
+const TVL = styled.div`
+  span {
+    color: #1EA306;
+  }
+`
+
+const InfoContainer = styled.div`
+  width: 100%;
+  padding-left: 24px;
+`
+
 const StyledNav = styled.nav<{ showMenu: boolean }>`
   position: fixed;
   top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
   left: 0;
   transition: top 0.2s;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding-left: 8px;
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
   background-color: ${({ theme }) => theme.nav.background};
-  border-bottom: solid 2px rgba(133, 133, 133, 0.1);
+  background-image: url('/images/header-bg.png');
+  background-repeat: no-repeat;
+  background-position: center top;
   z-index: 20;
   transform: translate3d(0, 0, 0);
 `;
@@ -70,10 +97,104 @@ const Menu: React.FC<NavProps> = ({
   children,
 }) => {
   const { isXl } = useMatchBreakpoints();
+  const { pathname } = useLocation()
   const isMobile = isXl === false;
   const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState(true);
+  const [query] = useState('')
   const refPrevOffset = useRef(window.pageYOffset);
+  const { t } = useTranslation()
+  const { data: farmsLP } = useFarms()
+  const prices = useGetApiPrices()
+
+  const isArchived = pathname.includes('archived')
+  const isInactive = pathname.includes('history')
+  const isActive = !isInactive && !isArchived
+  const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
+
+  const farmsList = useCallback(
+    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+        /* DZ Hack
+        if (!farm.lpTotalInQuoteToken || !prices) {
+          return farm
+        }
+
+        const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
+        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
+        const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
+*/
+        let decimals = 18
+        if (farm.token === farm.quoteToken) {
+          decimals = farm.token.decimals
+        }
+        if (!farm.tokenPriceVsQuote || !prices) {
+          return farm
+        }
+        const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
+        let tokenPriceVsQuote = farm.rewardToken
+          ? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]).div(
+              new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()]),
+            )
+          : new BigNumber(farm.tokenPriceVsQuote)
+        if (!farm.rewardToken && farm.token === farm.quoteToken) {
+          tokenPriceVsQuote = new BigNumber(1)
+        }
+        //        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken)
+        let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
+        if (farm.token === farm.quoteToken) {
+          totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
+          totalLiquidity = totalLiquidity.times(10 ** (18-decimals))
+        }
+        const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
+        //        const jarRatioNum = new BigNumber(farm.jarRatio)
+        let totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
+        if (farm.token === farm.quoteToken) {
+          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10 ** decimals).times(new BigNumber(quoteTokenPriceUsd))
+        }
+        const farmRatio = new BigNumber(farm.jarRatio).div(10 ** 18)
+        let userDeposits
+        if (jarLPDeposits > new BigNumber(0)) {
+          userDeposits = new BigNumber(farm.userData.stakedBalance)
+            .times(farmRatio)
+            .times(totalDeposits)
+            .div(jarLPDeposits)
+        } else {
+          userDeposits = new BigNumber(0)
+        }
+        // If dual rewards: transform reward/block in terms of token price
+        let rewardPerBlock = farm.rewardPerBlock
+        // Special case: pSwamp
+        const masterChefAddress = getAddress(farm.masterChefAddresses)
+        let rewardPerBlock1 = farm.rewardPerBlock1
+        if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+        }
+
+        if (farm.rewardToken1){
+          rewardPerBlock = (rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+          tokenPriceVsQuote = new BigNumber(1)
+        }
+
+        const apr = isActive
+          ? getMetaFarmApr(farm.poolWeightDesignate, rewardPerBlock, totalLiquidity, tokenPriceVsQuote)
+          : 0
+        const tradingFeeRate = isActive ? new BigNumber(farm.tradingFeeRate).toNumber() : 0
+
+        return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits }
+      })
+
+      if (query) {
+        const lowercaseQuery = latinise(query.toLowerCase())
+        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
+          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
+        })
+      }
+      return farmsToDisplayWithAPR
+    },
+    [query, prices, isActive],
+  )
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,15 +228,36 @@ const Menu: React.FC<NavProps> = ({
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
+  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
+  const displayTVL = tvl ? (
+    `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  ) : (
+    <Skeleton width={60} />
+  )
+
+
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
-        <Logo
-          isPushed={isPushed}
-          togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
-          isDark={isDark}
-          href={homeLink?.href ?? "/"}
-        />
+        <LogoContainer>
+          <Logo
+            isPushed={isPushed}
+            togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+            isDark={isDark}
+            href={homeLink?.href ?? "/"}
+          />
+        </LogoContainer>
+        <InfoContainer>
+          <TVL>
+            {t('Vault TVL ')}
+            {" "}
+            <span>{displayTVL !== '$NaN' && displayTVL}</span>
+          </TVL>
+        </InfoContainer>
+        <div>
+          knneth
+        </div>
+
         {userMenu}
       </StyledNav>
       <BodyWrapper>

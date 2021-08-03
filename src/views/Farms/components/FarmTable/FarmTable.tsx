@@ -13,7 +13,6 @@ export interface ITableProps {
 }
 
 const Container = styled.div`
-  filter: ${({ theme }) => theme.card.dropShadow};
   width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
@@ -44,6 +43,10 @@ const TableBody = styled.tbody`
       vertical-align: middle;
     }
   }
+  tr:first-child td:first-child { border-top-left-radius: 10px; }
+  tr:first-child td:last-child { border-top-right-radius: 10px; }
+  tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+  tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 `
 
 const TableContainer = styled.div`

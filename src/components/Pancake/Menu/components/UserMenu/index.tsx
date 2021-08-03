@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePopper } from "react-popper";
 import styled from "styled-components";
-import Flex from "../../Box/Flex";
-import { ChevronDownIcon } from "../../Svg";
-import isTouchDevice from "../../../../utils/isTouchDevice";
+import Flex from "../../../Box/Flex";
+import { ChevronDownIcon } from "../../../Svg";
+import isTouchDevice from "../../../../../utils/isTouchDevice";
 import { UserMenuProps, variants } from "./types";
 import MenuIcon from "./MenuIcon";
 import { UserMenuItem } from "./styles";

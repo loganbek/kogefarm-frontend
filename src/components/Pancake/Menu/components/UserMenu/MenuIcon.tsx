@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Variant, variants } from "./types";
-import { Image } from "../../Image";
-import { RefreshIcon, WalletFilledIcon, WarningIcon } from "../../Svg";
-import { Colors } from "../../theme/types";
+import { Image } from "../../../Image";
+import { RefreshIcon, WalletFilledIcon, WarningIcon } from "../../../Svg";
+import { Colors } from "../../../theme/types";
 
 const MenuIconWrapper = styled.div<{ borderColor: keyof Colors }>`
   align-items: center;

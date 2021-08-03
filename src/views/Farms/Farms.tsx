@@ -3,7 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Skeleton } from 'components/Pancake'
+import { Image, Heading, RowType, Toggle, Text } from 'components/Pancake'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -21,7 +21,6 @@ import { orderBy } from 'lodash'
 import { getAddress } from 'utils/addressHelpers'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
-import PageHeader from 'components/PageHeader'
 import { fetchFarmsPublicDataAsync, setLoadArchivedFarmsData } from 'state/farms'
 import Select, { OptionProps } from 'components/Select/Select'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
@@ -30,7 +29,6 @@ import Table from './components/FarmTable/FarmTable'
 // import FarmTabButtons from './components/FarmTabButtons'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
-import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 
 const ControlContainer = styled.div`
@@ -46,7 +44,6 @@ const ControlContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px 32px;
     margin-bottom: 0;
   }
 `
@@ -54,10 +51,16 @@ const ControlContainer = styled.div`
 const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 10px;
 
   ${Text} {
-    margin-left: 8px;
+    margin-right: 8px;
+  }
+`
+
+const Hero = styled.div`
+  a {
+    color: #1EA306;
+    text-decoration: underline;
   }
 `
 
@@ -112,9 +115,8 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-  //  const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
+  const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
@@ -156,7 +158,6 @@ const Farms: React.FC = () => {
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -485,41 +486,29 @@ const Farms: React.FC = () => {
     setSortOption(option.value)
   }
 
-  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
-  const displayTVL = tvl ? (
-    `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-  ) : (
-    <Skeleton width={60} />
-  )
-
   return (
     <>
-      <PageHeader>
-        {/*        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
-        </Heading> */}
-        <Heading scale="lg" color="text" textAlign="center">
-          {t('KogeFarm helps you earn more yield by ')}{' '}
-          <u>
-            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
-          </u>
-          .{' '}
-          <u>
-            <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
-          </u>{' '}
-          by Obelisk.
-        </Heading>
-        <Heading scale="lg" color="brown" textAlign="center">
-          {t('Vault TVL: ')} {displayTVL !== '$NaN' && displayTVL}
-        </Heading>
-      </PageHeader>
       <Page>
+        <Hero>
+          <Heading scale="lg" mb="16px">
+            Vaults to stake
+          </Heading>
+
+          <Text mb="16px">
+            {t('KogeFarm helps you earn more yield by ')}
+            {' '}
+            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
+            {' '}
+            <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
+            {' '}
+            by Obelisk.
+          </Text>
+        </Hero>
         <ControlContainer>
           <ViewControls>
-            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <ToggleWrapper>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
               <Text> {t('Staked only')}</Text>
+              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
             </ToggleWrapper>
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
           </ViewControls>
@@ -540,14 +529,6 @@ const Farms: React.FC = () => {
                     label: 'APY',
                     value: 'apr',
                   },
-                  //                  {
-                  //                    label: 'Multiplier',
-                  //                    value: 'multiplier',
-                  //                  },
-                  //                  {
-                  //                    label: 'Earned',
-                  //                    value: 'earned',
-                  //                  },
                 ]}
                 onChange={handleSortOptionChange}
               />

@@ -2,7 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { LogoIcon } from "../../Svg";
-import Flex from "../../Flex";
+import Flex from "../../Box/Flex";
 import { HamburgerIcon, HamburgerCloseIcon, LogoIcon as LogoWithText } from "../icons";
 import MenuButton from "./MenuButton";
 
@@ -28,7 +28,7 @@ const StyledLink = styled(Link)`
     }
   }
   .desktop-icon {
-    width: 160px;
+    // width: 160px;
     display: none;
     ${({ theme }) => theme.mediaQueries.nav} {
       display: block;
@@ -46,6 +46,10 @@ const StyledLink = styled(Link)`
       animation-iteration-count: 1;
     }
   }
+
+svg {
+  width: 100%;
+}
 `;
 
 const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
@@ -67,11 +71,11 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
         )}
       </MenuButton>
       {isAbsoluteUrl ? (
-        <StyledLink as="a" href={href} aria-label="Pancake home page">
+        <StyledLink as="a" href={href} aria-label="KogeFarm home page">
           {innerLogo}
         </StyledLink>
       ) : (
-        <StyledLink to={href} aria-label="Pancake home page">
+        <StyledLink to={href} aria-label="KogeFarm home page">
           {innerLogo}
         </StyledLink>
       )}

@@ -9,7 +9,7 @@ interface StyledButtonMenuProps extends ButtonMenuProps {
 }
 
 const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "input" : "tertiary"];
+  return theme.colors[variant === variants.SUBTLE ? "inputTertiary" : "tertiary"];
 };
 
 const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
@@ -18,14 +18,13 @@ const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   background-color: ${getBackgroundColor};
-  border-radius: 16px;
+  border-radius: 4px;
   display: ${({ fullWidth }) => (fullWidth ? "flex" : "inline-flex")};
   border: 1px solid ${getBorderColor};
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
 
   & > button,
   & > a {
-    margin-left: ${({ fullWidth }) => (fullWidth ? "0px" : "2px")}; // To avoid focus shadow overlap
     flex: ${({ fullWidth }) => (fullWidth ? 1 : "auto")};
   }
 

@@ -61,7 +61,7 @@ const CellInner = styled.div`
 
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.borderColor};
+  background-color: rgba(244, 244, 244, 1);
 `
 
 // const EarnedMobileCell = styled.td`
