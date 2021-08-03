@@ -4,7 +4,7 @@ import {
   Toggle,
   Text,
   Flex,
-} from '@pancakeswap/uikit'
+} from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 
 

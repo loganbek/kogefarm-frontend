@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { Tag, Flex, Heading, Image } from '@pancakeswap/uikit'
-import { Flex, Heading, Image } from '@pancakeswap/uikit'
+// import { Tag, Flex, Heading, Image } from 'components/Pancake'
+import { Flex, Heading, Image } from 'components/Pancake'
 import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, ApeTag, JetSwapTag } from 'components/Tags'
 
 export interface ExpandableSectionProps {

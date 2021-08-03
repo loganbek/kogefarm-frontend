@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 // import styled from 'styled-components'
-import { Modal, Text, Button } from '@pancakeswap/uikit'
+import { Modal, Text, Button } from 'components/Pancake'
 import { BASE_EXCHANGE_URL } from 'config'
 import useTheme from 'hooks/useTheme'
 import { Token } from 'config/constants/types'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from '@pancakeswap/uikit'
+import { Box } from 'components/Pancake'
 import Container from '../layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`

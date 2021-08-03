@@ -8,7 +8,7 @@ import {
   Text,
   LinkExternal,
   Skeleton,
-} from '@pancakeswap/uikit'
+} from 'components/Pancake'
 import { BASE_BSC_SCAN_URL, BASE_EXCHANGE_URL } from 'config'
 import { useGetApiPrice } from 'state/hooks'
 import { Pool } from 'state/types'

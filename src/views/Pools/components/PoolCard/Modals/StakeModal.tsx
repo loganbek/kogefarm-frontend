@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@pancakeswap/uikit'
+import {
+  Modal,
+  Text,
+  Flex,
+  Button,
+  Slider,
+  BalanceInput,
+  AutoRenewIcon,
+  Link,
+} from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { BASE_EXCHANGE_URL } from 'config'
 import { useMasterChefStake } from 'hooks/useStake'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@pancakeswap/uikit'
+import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'

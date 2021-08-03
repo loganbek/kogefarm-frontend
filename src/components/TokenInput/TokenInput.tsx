@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, Text, Input, InputProps } from '@pancakeswap/uikit'
+import { Box, Button, Flex, Text, Input, InputProps } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 
 interface TokenInputProps extends InputProps {

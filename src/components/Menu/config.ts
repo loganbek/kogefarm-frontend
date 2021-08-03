@@ -1,13 +1,13 @@
-import { MenuEntry } from '@pancakeswap/uikit'
+import { MenuEntry } from 'components/Pancake'
 
 export const config: MenuEntry[] = [
   {
-    label: 'Vaults',
+    label: 'Vaults to stake',
     icon: 'HomeIcon',
     href: '/',
   },
   {
-    label: 'KogeCoin Farms',
+    label: 'Farms to invest',
     icon: 'PoolIcon',
     href: 'farms',
   },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, ExpandableLabel, Flex } from '@pancakeswap/uikit'
+import { Box, ExpandableLabel, Flex } from 'components/Pancake'
 import styled from 'styled-components'
 import usePersistState from 'hooks/usePersistState'
 

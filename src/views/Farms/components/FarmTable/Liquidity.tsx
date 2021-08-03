@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Skeleton } from '@pancakeswap/uikit'
+import { Text, Skeleton } from 'components/Pancake'
 import BigNumber from 'bignumber.js'
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text } from '@pancakeswap/uikit'
+import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'

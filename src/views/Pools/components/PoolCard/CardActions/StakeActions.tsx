@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip } from '@pancakeswap/uikit'
+import { Flex, Text, Button, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip } from 'components/Pancake'
 import BigNumber from 'bignumber.js'
 import { useGetApiPrice } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
