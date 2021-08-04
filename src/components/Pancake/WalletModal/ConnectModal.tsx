@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import getExternalLinkProps from "../../../utils/getExternalLinkProps";
 import Grid from "../Box/Grid";
 import Box from "../Box/Box";
-import getThemeValue from "../../../utils/getThemeValue";
 import Text from "../Text/Text";
 import Heading from "../Heading/Heading";
 import { Button } from "../Button";
-import { ModalBody, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../Modal";
+import { ModalBody, ModalContainer, ModalHeader, ModalTitle } from "../Modal";
 import WalletCard, { MoreWalletCard } from "./WalletCard";
 import config, { walletLocalStorageKey } from "./config";
 import { Config, Login } from "./types";
@@ -50,17 +49,15 @@ const getPreferredConfig = (walletConfig: Config[]) => {
 
 const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayCount = 3 }) => {
   const [showMore, setShowMore] = useState(false);
-  const theme = useTheme();
   const sortedConfig = getPreferredConfig(config);
   const displayListConfig = showMore ? sortedConfig : sortedConfig.slice(0, displayCount);
 
   return (
-    <ModalContainer minWidth="320px">
-      <ModalHeader background={getThemeValue("colors.gradients.bubblegum")(theme)}>
+    <ModalContainer minWidth="328px">
+      <ModalHeader>
         <ModalTitle>
           <Heading>Connect Wallet</Heading>
         </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
       <ModalBody width={["320px", null, "340px"]}>
         <WalletWrapper py="24px" maxHeight="453px" overflowY="auto">

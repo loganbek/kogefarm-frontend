@@ -10,9 +10,11 @@ const DropDownHeader = styled.div`
   justify-content: space-between;
   padding: 0px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  // border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  border: 1px solid #A8A8A8; 
   border-radius: 4px;
-  background: ${({ theme }) => theme.colors.input};
+  // background: ${({ theme }) => theme.colors.input};
+  background: #ffffff;
   transition: border-radius 0.15s;
 `
 

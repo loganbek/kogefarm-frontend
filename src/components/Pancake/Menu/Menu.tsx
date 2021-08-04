@@ -15,6 +15,8 @@ import Overlay from "../Overlay/Overlay";
 import { useMatchBreakpoints } from "../hooks";
 import Logo from "./components/Logo";
 import Panel from "./components/Panel";
+import Avatar from "./components/Avatar";
+import UserBlock from "./components/UserBlock";
 import { NavProps } from "./types";
 import { MENU_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 
@@ -35,7 +37,6 @@ const TVL = styled.div`
 `
 
 const InfoContainer = styled.div`
-  width: 100%;
   padding-left: 24px;
 `
 
@@ -85,8 +86,17 @@ const MobileOnlyOverlay = styled(Overlay)`
   }
 `;
 
+const Flex = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+`;
+
 const Menu: React.FC<NavProps> = ({
-  userMenu,
+  account,
+  profile,
+  login,
+  logout,
   isDark,
   toggleTheme,
   langs,
@@ -247,6 +257,7 @@ const Menu: React.FC<NavProps> = ({
             href={homeLink?.href ?? "/"}
           />
         </LogoContainer>
+
         <InfoContainer>
           <TVL>
             {t('Vault TVL ')}
@@ -254,11 +265,12 @@ const Menu: React.FC<NavProps> = ({
             <span>{displayTVL !== '$NaN' && displayTVL}</span>
           </TVL>
         </InfoContainer>
-        <div>
-          knneth
-        </div>
 
-        {userMenu}
+        <Flex>
+          <UserBlock account={account} login={login} logout={logout} />
+          {profile && <Avatar profile={profile} />}
+        </Flex>
+
       </StyledNav>
       <BodyWrapper>
         <Panel
