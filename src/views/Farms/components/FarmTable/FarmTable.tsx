@@ -49,6 +49,19 @@ const TableBody = styled.tbody`
   tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 `
 
+const TableHeader = styled.thead`
+  background-color: #E0E0E0;
+
+  tr:first-child th:first-child { border-top-left-radius: 10px; }
+  tr:first-child th:last-child { border-top-right-radius: 10px; }
+  tr:last-child th:first-child { border-bottom-left-radius: 10px; }
+  tr:last-child th:last-child { border-bottom-right-radius: 10px; }
+
+  th {
+    padding: 18px;
+  }
+`
+
 const TableContainer = styled.div`
   position: relative;
 `
@@ -78,6 +91,16 @@ const FarmTable: React.FC<ITableProps> = (props) => {
       <TableContainer>
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
+            <TableHeader>
+              <tr>
+                <th>Asset</th>
+                <th>APY</th>
+                <th>Total Staked</th>
+                <th>User Staked</th>
+                <th>Platform</th>
+                <th>Actions</th>
+              </tr>
+            </TableHeader>
             <TableBody>
               {rows.map((row) => {
                 return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
