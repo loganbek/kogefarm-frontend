@@ -1,36 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { CogIcon } from "../../Svg";
+
+import ButtonMenu from "../../ButtonMenu/ButtonMenu"
+import ButtonMenuItem from "../../ButtonMenu/ButtonMenuItem"
 import IconButton from "../../Button/IconButton";
-import { MENU_ENTRY_HEIGHT } from "../config";
 import { PanelProps, PushedProps } from "../types";
-import ThemeSwitcher from "./ThemeSwitcher";
-import LangSelector from "./LangSelector";
+import { SvgProps, CogIcon } from "../../Svg";
+import * as IconModule from "../icons";
 
 interface Props extends PanelProps, PushedProps {}
+
+const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
+const { MoonIcon, SunIcon } = Icons;
 
 const Container = styled.div`
   flex: none;
   padding: 8px 4px;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const SettingsEntry = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: ${MENU_ENTRY_HEIGHT}px;
+  height: 94px;
   padding: 0 8px;
+  align-items: flex-start;
+  flex-direction: column;
 `;
+
+const Links = styled.div`
+  display: flex;
+`
+
 
 const PanelFooter: React.FC<Props> = ({
   isPushed,
   pushNav,
   toggleTheme,
   isDark,
-  currentLang,
-  langs,
-  setLang,
+  // currentLang,
+  // langs,
+  // setLang,
 }) => {
+  const [activeIndex, setActiveIndex] = useState(isDark ? 1 : 0)
+
   if (!isPushed) {
     return (
       <Container>
@@ -41,11 +58,30 @@ const PanelFooter: React.FC<Props> = ({
     );
   }
 
+  const ken = index => {
+    setActiveIndex(index)
+    toggleTheme(!isDark)
+  }
+
   return (
     <Container>
       <SettingsEntry>
-        <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-        <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
+        <Wrapper>
+          <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle" onItemClick={ken}>
+            <ButtonMenuItem>
+              <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
+              Dark
+            </ButtonMenuItem>
+            <ButtonMenuItem>
+              <SunIcon color={isDark ? "textDisabled" : "text"} width="24px" />
+              Light
+            </ButtonMenuItem>
+          </ButtonMenu>
+        </Wrapper>
+        <Links>
+          <a href="example.com">Privacy Policy</a>
+          <a href="example.com">Terms of Use</a>
+        </Links>
       </SettingsEntry>
     </Container>
   );

@@ -58,7 +58,6 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
 `
 
 const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.borderColor};
   height: 1px;
   margin: 28px auto;
   width: 100%;

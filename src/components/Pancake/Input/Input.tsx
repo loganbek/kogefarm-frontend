@@ -33,8 +33,7 @@ const getHeight = ({ scale = scales.MD }: StyledInputProps) => {
 };
 
 const Input = styled.input<InputProps>`
-  // background-color: ${({ theme }) => theme.colors.input};
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.inputAlt};
   border: 0;
   border-radius: 16px;
   box-shadow: ${getBoxShadow};
@@ -45,8 +44,7 @@ const Input = styled.input<InputProps>`
   outline: 0;
   padding: 0 16px;
   width: 100%;
-  // border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-  border: 1px solid #A8A8A8; 
+  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.textSubtle};

@@ -52,12 +52,16 @@ export type Colors = {
   dropdownDeep: string;
   invertedContrast: string;
   input: string;
+  inputAlt: string;
   inputSecondary: string;
   background: string;
   backgroundDisabled: string;
   backgroundAlt: string;
   text: string;
   textDisabled: string;
+  row: string;
+  rowHeader: string;
+  rowHeaderText: string;
   textSubtle: string;
   inputTertiary: string,
   disabled: string;

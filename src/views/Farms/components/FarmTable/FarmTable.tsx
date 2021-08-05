@@ -50,7 +50,7 @@ const TableBody = styled.tbody`
 `
 
 const TableHeader = styled.thead`
-  background-color: #E0E0E0;
+  background: ${({ theme }) => theme.colors.rowHeader};
 
   tr:first-child th:first-child { border-top-left-radius: 10px; }
   tr:first-child th:last-child { border-top-right-radius: 10px; }
@@ -58,6 +58,7 @@ const TableHeader = styled.thead`
   tr:last-child th:last-child { border-bottom-right-radius: 10px; }
 
   th {
+    color: ${({ theme }) => theme.colors.rowHeaderText};
     padding: 18px;
   }
 `

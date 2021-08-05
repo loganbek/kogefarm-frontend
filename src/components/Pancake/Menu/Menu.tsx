@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
-import { Skeleton } from 'components/Pancake'
+import { Skeleton, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
@@ -30,7 +30,7 @@ const LogoContainer = styled.div`
   flex-shrink: 0;
 `
 
-const TVL = styled.div`
+const TVL = styled(Text)`
   span {
     color: #1EA306;
   }
