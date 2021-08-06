@@ -22,20 +22,40 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `
 
 const SettingsEntry = styled.div`
   display: flex;
-  height: 94px;
+  height: 114px;
   padding: 0 8px;
   align-items: flex-start;
   flex-direction: column;
+  text-align: center;
 `;
 
 const Links = styled.div`
   display: flex;
+  justify-content: space-between;
+  margin-top: 26px;
+  width: 100%;
+
+  a {
+    color: #167505;
+    font-size: 14px;
+  }
 `
 
+const StyledButtonMenu = styled(ButtonMenu)`
+  width: 100%;
+`
+
+const Copyright = styled.small`
+  font-size: 14px;
+  width: 100%;
+  margin-top: 12px;
+  color: ${({ theme }) => theme.colors.rowHeaderText};
+`
 
 const PanelFooter: React.FC<Props> = ({
   isPushed,
@@ -67,7 +87,7 @@ const PanelFooter: React.FC<Props> = ({
     <Container>
       <SettingsEntry>
         <Wrapper>
-          <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle" onItemClick={ken}>
+          <StyledButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle" onItemClick={ken}>
             <ButtonMenuItem>
               <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
               Dark
@@ -76,12 +96,13 @@ const PanelFooter: React.FC<Props> = ({
               <SunIcon color={isDark ? "textDisabled" : "text"} width="24px" />
               Light
             </ButtonMenuItem>
-          </ButtonMenu>
+          </StyledButtonMenu>
         </Wrapper>
         <Links>
           <a href="example.com">Privacy Policy</a>
           <a href="example.com">Terms of Use</a>
         </Links>
+        <Copyright>© kogecoin. All rights reserved</Copyright>
       </SettingsEntry>
     </Container>
   );

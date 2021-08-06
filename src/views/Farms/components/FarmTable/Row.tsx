@@ -134,7 +134,6 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                     </CellInner>
                   </td>
                 )
-                return null
               default:
                 return (
                   <td key={key}>

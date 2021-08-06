@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { groupBy } from 'lodash'
 import { useLocation } from "react-router-dom";
 import { SvgProps } from "../../Svg";
 import * as IconModule from "../icons";
@@ -20,67 +21,84 @@ const Container = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
+
+  > div:first-child {
+    display: none;
+  }
 `;
+
+const Title = styled.div`
+  padding: 0 16px;
+  margin-bottom: 16px;
+  margin-top: 32px;
+  color: ${({ theme }) => theme.colors.menuHeader};
+`
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   const location = useLocation();
+  const groupedLinks = groupBy(links, 'group')
 
   // Close the menu when a user clicks a link on mobile
   const handleClick = isMobile ? () => pushNav(false) : undefined;
 
   return (
     <Container>
-      {links.map((entry) => {
-        const Icon = Icons[entry.icon];
-        const iconElement = <Icon width="24px" mr="8px" />;
-        const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
+      {Object.entries(groupedLinks).map(([label, items]) => (
+        <>
+          <Title>{label}</Title>
+          { items.map(entry => {
+            const Icon = Icons[entry.icon];
+            const iconElement = <Icon width="24px" mr="8px" />;
+            const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
 
-        if (entry.items) {
-          const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
-          const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
+            if (entry.items) {
+              const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
+              const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
 
-          return (
-            <Accordion
-              key={entry.label}
-              isPushed={isPushed}
-              pushNav={pushNav}
-              icon={iconElement}
-              label={entry.label}
-              status={entry.status}
-              initialOpenState={initialOpenState}
-              className={calloutClass}
-              isActive={entry.items.some((item) => item.href === location.pathname)}
-            >
-              {isPushed &&
-                entry.items.map((item) => (
-                  <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
-                    <MenuLink href={item.href}>
-                      <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
-                      {item.status && (
-                        <LinkStatus color="primary" fontSize="14px">
-                          {item.status.text}
-                        </LinkStatus>
-                      )}
-                    </MenuLink>
-                  </MenuEntry>
-                ))}
-            </Accordion>
-          );
-        }
-        return (
-          <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
-            <MenuLink href={entry.href} onClick={handleClick}>
-              {iconElement}
-              <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
-              {entry.status && (
-                <LinkStatus color="primary" fontSize="14px">
-                  {entry.status.text}
-                </LinkStatus>
-              )}
-            </MenuLink>
-          </MenuEntry>
-        );
-      })}
+              return (
+                <Accordion
+                  key={entry.label}
+                  isPushed={isPushed}
+                  pushNav={pushNav}
+                  icon={iconElement}
+                  label={entry.label}
+                  status={entry.status}
+                  initialOpenState={initialOpenState}
+                  className={calloutClass}
+                  isActive={entry.items.some((item) => item.href === location.pathname)}
+                >
+                  {isPushed &&
+                    entry.items.map((item) => (
+                      <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
+                        <MenuLink href={item.href}>
+                          <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
+                          {item.status && (
+                            <LinkStatus color="primary" fontSize="14px">
+                              {item.status.text}
+                            </LinkStatus>
+                          )}
+                        </MenuLink>
+                      </MenuEntry>
+                    ))}
+                </Accordion>
+              );
+            }
+            return (
+              <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
+                <MenuLink href={entry.href} onClick={handleClick}>
+                  {iconElement}
+                  <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
+                  {entry.status && (
+                    <LinkStatus color="primary" fontSize="14px">
+                      {entry.status.text}
+                    </LinkStatus>
+                  )}
+                </MenuLink>
+              </MenuEntry>
+            );
+          })}
+        </>
+      ))}
     </Container>
   );
 };

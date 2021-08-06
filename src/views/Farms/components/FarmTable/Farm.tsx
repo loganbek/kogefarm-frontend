@@ -24,7 +24,7 @@ const IconImage = styled(Image)`
 const Container = styled.div`
   padding-left: 16px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-left: 32px;
