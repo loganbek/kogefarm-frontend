@@ -355,6 +355,7 @@ const Farms: React.FC = () => {
     }
 
     const row: RowProps = {
+      details: farm,
       apr: {
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
         //        multiplier: farm.multiplier,
@@ -414,10 +415,7 @@ const Farms: React.FC = () => {
       userValue: {
         userValue: farm.userValue,
       },
-      /*      multiplier: {
-        multiplier: farm.multiplier,
-      }, */
-      details: farm,
+      actions: <div>e</div>
     }
 
     return row

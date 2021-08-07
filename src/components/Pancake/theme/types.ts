@@ -62,8 +62,14 @@ export type Colors = {
   textDisabled: string;
   row: string;
   rowHeader: string;
+  buttonToggleColor: string;
+  infoContainer: string;
+  linkHighlight: string;
   rowHeaderText: string;
   textSubtle: string;
+  toggle: string,
+  buttonSubtle: string,
+  toggleActive: string,
   inputTertiary: string,
   disabled: string;
 

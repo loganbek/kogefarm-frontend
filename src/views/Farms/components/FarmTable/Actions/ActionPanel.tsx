@@ -55,15 +55,33 @@ const Container = styled.div<{ expanded }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.row};
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
   padding: 24px;
+  margin-top: -7px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
     padding: 16px 32px;
+  }
+`
+
+const ContainerWrapper = styled.div`
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  ${ContainerWrapper}:last-of-type {
+    margin-left: 200px;
+    flex-grow: 1;
   }
 `
 
@@ -119,6 +137,15 @@ const ActionContainer = styled.div`
 
 const InfoContainer = styled.div`
   min-width: 200px;
+  padding-left: 98px;
+
+  a {
+    font-weight: 600;
+    font-size: 14px;
+  }
+`
+
+const InfoWrapper = styled.div`
 `
 
 const ValueContainer = styled.div`
@@ -134,6 +161,55 @@ const ValueWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 4px 0px;
+`
+
+const Info = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-areas: 
+    "staked staked underlying"
+    "apr return fee";
+  
+  > div {
+    padding: 24px;
+    border-radius: 4px;
+    background: ${({ theme }) => theme.colors.infoContainer}; 
+  }
+`
+
+const Staked = styled.div`
+  grid-area: staked;
+`
+
+const Underlying = styled.div`
+  grid-area: underlying;
+`
+
+const APR = styled.div`
+  grid-area: apr;
+`
+
+const Return = styled.div`
+  grid-area: return;
+`
+
+const Fee = styled.div`
+  grid-area: fee;
+`
+
+const Title = styled.div`
+  font-size: 12px;
+`
+
+const Stat = styled.div`
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 600;
 `
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
@@ -162,25 +238,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://polygonscan.com/address/${jarAddress}`
   const info = farm.underlyingWebsite
-/*  let info = `https://info.quickswap.exchange/pair/${lpAddress}`
-  if (farm.isSushi===true){
-    info = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
-  }
-  if (farm.isWault===true){
-    info =  `https://polygonscan.com/address/${lpAddress}`
-  }
-  if (farm.isDfyn===true){
-    info = `https://info.dfyn.network/pair/${lpAddress}`
-  }
-  if (farm.isApe===true){
-    info = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
-  }
-  if (farm.token===farm.quoteToken){
-    info = `https://info.quickswap.exchange/address/${lpAddress}`
-    if (farm.isApe===true){
-      info = `https://polygon.info.apeswap.finance/address/${lpAddress}`
-    }
-  } */
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   if (farm.isSushi===true){
@@ -232,55 +289,77 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
   return (
     <Container expanded={expanded}>
-      <InfoContainer>
-        {isActive && (
-          <StakeContainer>
-            <StyledLinkExternal href={liquidityurl} color={theme.colors.textSubtle}>
-              {t(`Get ${lpLabel}`, { name: lpLabel })}
-            </StyledLinkExternal>
-          </StakeContainer>
-        )}
-        <StyledLinkExternal href={bsc} color={theme.colors.textSubtle}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Underlying Project')}</StyledLinkExternal>
-        <TagsContainer>
-          {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-          {farm.isSushi && <SushiTag />}
-          {farm.isWault && <WaultTag />}
-          {farm.isApe && <ApeTag />}
-          {farm.isJetSwap && <JetSwapTag />}
-          {dual ? <DualTag /> : null}
-        </TagsContainer>
-      </InfoContainer>
-      <ValueContainer>
-         <ValueWrapper>
-          <Text>{t('APR')}</Text>
-          <Apr {...apr} />
-        </ValueWrapper>
-        <ValueWrapper>
-          <Text>{t('APY')}</Text>
-          <Apy {...apy} />
-        </ValueWrapper>
-  {/*        <ValueWrapper>
-          <Text>{t('Daily')}</Text>
-          <Apy {...apyd} />
-        </ValueWrapper>
-      <ValueWrapper>
-          <Text>{t('Multiplier')}</Text>
-          <Multiplier {...multiplier} />
-        </ValueWrapper> */}
-        <ValueWrapper>
-          <Text>{t('Total Staked')}</Text>
-          <Liquidity {...liquidity} />
-        </ValueWrapper>
-        <ValueWrapper>
-          <Text>{t('User Staked')}</Text>
-          <UserValue {...userValue} />
-        </ValueWrapper>
-      </ValueContainer>
-      <ActionContainer>
-  {/*      <HarvestAction {...farm} userDataReady={userDataReady} /> */}
-        <StakedAction {...farm} userDataReady={userDataReady} />
-      </ActionContainer>
+      <Wrapper>
+        <ContainerWrapper>
+          <InfoContainer>
+            {isActive && (
+              <StakeContainer>
+                <StyledLinkExternal href={liquidityurl} color={theme.colors.textSubtle}>
+                  {t(`Get ${lpLabel}`, { name: lpLabel })}
+                </StyledLinkExternal>
+              </StakeContainer>
+            )}
+            <StyledLinkExternal href={bsc} color={theme.colors.textSubtle}>{t('View Contract')}</StyledLinkExternal>
+            <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Underlying Project')}</StyledLinkExternal>
+            <TagsContainer>
+              {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
+              {farm.isSushi && <SushiTag />}
+              {farm.isWault && <WaultTag />}
+              {farm.isApe && <ApeTag />}
+              {farm.isJetSwap && <JetSwapTag />}
+              {dual ? <DualTag /> : null}
+            </TagsContainer>
+          </InfoContainer>
+          <ValueContainer>
+            <ValueWrapper>
+              <Text>{t('APR')}</Text>
+              <Apr {...apr} />
+            </ValueWrapper>
+            <ValueWrapper>
+              <Text>{t('APY')}</Text>
+              <Apy {...apy} />
+            </ValueWrapper>
+            <ValueWrapper>
+              <Text>{t('Total Staked')}</Text>
+              <Liquidity {...liquidity} />
+            </ValueWrapper>
+            <ValueWrapper>
+              <Text>{t('User Staked')}</Text>
+              <UserValue {...userValue} />
+            </ValueWrapper>
+          </ValueContainer>
+        </ContainerWrapper>
+        <ContainerWrapper>
+          <InfoWrapper>
+            <Info>
+              <Staked>
+                <Title>LPs Staked</Title>
+                <Stat>697,896.00</Stat>
+              </Staked>
+              <Underlying>
+                <Title>Underlying APR</Title>
+                <Stat>423.56%</Stat>
+              </Underlying>
+              <APR>
+                <Title>Underlying APR</Title>
+                <Stat>423.56%</Stat>
+              </APR>
+              <Return>
+                <Title>Daily Return</Title>
+                <Stat>1.17%</Stat>
+              </Return>
+              <Fee>
+                <Title>Deposit Fee (Third-Party)</Title>
+                <Stat>3%</Stat>
+              </Fee>
+
+            </Info>
+            {/* <ActionContainer>
+              <StakedAction {...farm} userDataReady={userDataReady} />
+            </ActionContainer> */}
+          </InfoWrapper>
+        </ContainerWrapper>
+      </Wrapper>
     </Container>
   )
 }

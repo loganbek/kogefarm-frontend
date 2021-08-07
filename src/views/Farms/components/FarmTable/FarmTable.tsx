@@ -28,7 +28,8 @@ const TableWrapper = styled.div`
 `
 
 const StyledTable = styled.table`
-  border-collapse: collapse;
+  border-collapse: separate; 
+  border-spacing: 0 12px;
   font-size: 14px;
   border-radius: 4px;
   margin-left: auto;
@@ -43,10 +44,16 @@ const TableBody = styled.tbody`
       vertical-align: middle;
     }
   }
-  tr:first-child td:first-child { border-top-left-radius: 10px; }
-  tr:first-child td:last-child { border-top-right-radius: 10px; }
-  tr:last-child td:first-child { border-bottom-left-radius: 10px; }
-  tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+
+  tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 `
 
 const TableHeader = styled.thead`
@@ -59,7 +66,7 @@ const TableHeader = styled.thead`
 
   th {
     color: ${({ theme }) => theme.colors.rowHeaderText};
-    padding: 18px;
+    padding: 22px;
   }
 `
 
@@ -94,6 +101,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <StyledTable>
             <TableHeader>
               <tr>
+                <th>k</th>
                 <th>Asset</th>
                 <th>APY</th>
                 <th>Total Staked</th>

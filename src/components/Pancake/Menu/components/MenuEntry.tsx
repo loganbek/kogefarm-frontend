@@ -34,6 +34,7 @@ const MenuEntry = styled.div<Props>`
   padding: ${({ secondary }) => (secondary ? "0 32px" : "0 16px")};
   font-size: ${({ secondary }) => (secondary ? "14px" : "16px")};
   color: ${({ theme }) => theme.colors.textSubtle};
+  font-weight: 600;
 
   a {
     display: flex;
@@ -47,7 +48,7 @@ const MenuEntry = styled.div<Props>`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.tertiary};
+    background-color: ${({ theme }) => theme.colors.linkHighlight};
   }
 
   // Safari fix

@@ -33,6 +33,7 @@ const LogoContainer = styled.div`
 const TVL = styled(Text)`
   span {
     color: #1EA306;
+    font-weight: 600;
   }
 `
 

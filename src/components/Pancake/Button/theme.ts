@@ -34,11 +34,11 @@ export const styleVariants = {
   [variants.TERTIARY]: {
     backgroundColor: "tertiary",
     boxShadow: "none",
-    color: "primary",
+    color: "textSubtle",
   },
   [variants.SUBTLE]: {
-    backgroundColor: "textSubtle",
-    color: "backgroundAlt",
+    backgroundColor: "buttonSubtle",
+    color: "buttonToggleColor",
   },
   [variants.DANGER]: {
     backgroundColor: "failure",

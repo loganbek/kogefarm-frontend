@@ -20,6 +20,7 @@ import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
 export interface RowProps {
+  details: FarmWithStakedValue
   apr: AprProps
   farm: FarmProps
   earned: EarnedProps
@@ -28,7 +29,7 @@ export interface RowProps {
   apyd: ApyProps
   liquidity: LiquidityProps
   userValue: UserValueProps
-  details: FarmWithStakedValue
+  actions: any
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -48,7 +49,7 @@ const cells = {
 }
 
 const CellInner = styled.div`
-  padding: 24px 0px;
+  padding: 24px;
   display: flex;
   width: 100%;
   align-items: center;
@@ -63,15 +64,6 @@ const StyledTr = styled.tr`
   cursor: pointer;
   background: ${({ theme }) => theme.colors.row};
 `
-
-// const EarnedMobileCell = styled.td`
-//  padding: 16px 0 24px 16px;
-// `
-
-// const AprMobileCell = styled.td`
-//  padding-top: 16px;
-//  padding-bottom: 24px;
-// `
 
 const ApyMobileCell = styled.td`
   padding-top: 16px;
@@ -114,6 +106,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             }
 
             switch (key) {
+              case 'actions':
+                return (
+                  <td key={key}>
+                    <CellInner>
+                      <CellLayout>
+                        ken
+                      </CellLayout>
+                    </CellInner>
+                  </td>
+                )
               case 'details':
                 return (
                   <td key={key}>
@@ -153,6 +155,13 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
     return (
       <StyledTr onClick={toggleActionPanel}>
         <td>
+          <CellInner>
+            <CellLayout>
+              <Details actionPanelToggled={actionPanelExpanded} />
+            </CellLayout>
+          </CellInner>
+        </td>
+        <td>
           <tr>
             <FarmMobileCell>
               <CellLayout>
@@ -186,13 +195,6 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             </ApyMobileCell> */}
           </tr>
         </td>
-        <td>
-          <CellInner>
-            <CellLayout>
-              <Details actionPanelToggled={actionPanelExpanded} />
-            </CellLayout>
-          </CellInner>
-        </td>
       </StyledTr>
     )
   }
@@ -202,7 +204,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
       {handleRenderRow()}
       {shouldRenderChild && (
         <tr>
-          <td colSpan={6}>
+          <td colSpan={7}>
             <ActionPanel {...props} expanded={actionPanelExpanded} />
           </td>
         </tr>
