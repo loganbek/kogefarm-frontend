@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 // import { useEffect } from 'react'
 import BigNumber from 'bignumber.js'
+import axios from 'axios'
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
@@ -127,6 +128,13 @@ export const usePriceCakeBusd = (): BigNumber => {
   //  const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? cakeBnbFarm.tokenPriceVsQuote : BIG_ZERO
   const cakeBusdPrice = new BigNumber(100)
   return cakeBusdPrice
+}
+
+
+export const usePriceKoge = async () => {
+  return axios
+    .get('https://api.coingecko.com/api/v3/simple/price?ids=kogecoin&vs_currencies=usd')
+    .then(({ data }: any) => new BigNumber(data.kogecoin.usd))
 }
 
 // Block

@@ -63,15 +63,15 @@ export const config: MenuEntry[] = [
     items: [
       {
         label: "Main Chat",
-        href: "https://t.me/kogecoin",
+        href: "https://t.me/kogecoina",
       },
       {
         label: "Price Chat",
-        href: "https://t.me/kogecoin",
+        href: "https://t.me/kogecoinb",
       },
       {
         label: "Announcement Channel",
-        href: "https://t.me/kogecoin",
+        href: "https://t.me/kogecoinc",
       }
     ]
   },

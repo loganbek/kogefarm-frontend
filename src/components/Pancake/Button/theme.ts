@@ -36,6 +36,12 @@ export const styleVariants = {
     boxShadow: "none",
     color: "textSubtle",
   },
+  [variants.OUTLINE]: {
+    backgroundColor: "outline",
+    border: "2px solid",
+    borderColor: "inputSecondary",
+    color: "textSubtle",
+  },
   [variants.SUBTLE]: {
     backgroundColor: "buttonSubtle",
     color: "buttonToggleColor",

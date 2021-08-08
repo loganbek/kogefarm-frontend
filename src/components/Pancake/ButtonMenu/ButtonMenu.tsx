@@ -36,6 +36,7 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   & > button,
   & a {
     box-shadow: none;
+    border-radius: 0;
   }
 
   ${({ disabled, theme, variant }) => {

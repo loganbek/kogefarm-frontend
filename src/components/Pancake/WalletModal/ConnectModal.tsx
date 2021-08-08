@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import getExternalLinkProps from "../../../utils/getExternalLinkProps";
-import Grid from "../Box/Grid";
+import Flex from '../Box/Flex'
 import Box from "../Box/Box";
-import Text from "../Text/Text";
 import Heading from "../Heading/Heading";
 import { Button } from "../Button";
 import { ModalBody, ModalContainer, ModalHeader, ModalTitle } from "../Modal";
-import WalletCard, { MoreWalletCard } from "./WalletCard";
+import WalletCard from "./WalletCard";
 import config, { walletLocalStorageKey } from "./config";
 import { Config, Login } from "./types";
 
@@ -18,7 +17,11 @@ interface Props {
 }
 
 const WalletWrapper = styled(Box)`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  padding: 0 32px;
+`;
+
+const StyledHeading = styled(Heading)`
+  font-weight: 600;
 `;
 
 /**
@@ -47,41 +50,34 @@ const getPreferredConfig = (walletConfig: Config[]) => {
   ];
 };
 
-const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayCount = 3 }) => {
-  const [showMore, setShowMore] = useState(false);
+const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null }) => {
   const sortedConfig = getPreferredConfig(config);
-  const displayListConfig = showMore ? sortedConfig : sortedConfig.slice(0, displayCount);
 
   return (
     <ModalContainer minWidth="328px">
       <ModalHeader>
         <ModalTitle>
-          <Heading>Connect Wallet</Heading>
+          <StyledHeading>Connect Wallet</StyledHeading>
         </ModalTitle>
       </ModalHeader>
       <ModalBody width={["320px", null, "340px"]}>
         <WalletWrapper py="24px" maxHeight="453px" overflowY="auto">
-          <Grid gridTemplateColumns="1fr 1fr">
-            {displayListConfig.map((wallet) => (
+          <Flex flexDirection="column">
+            {sortedConfig.map((wallet) => (
               <Box key={wallet.title}>
                 <WalletCard walletConfig={wallet} login={login} onDismiss={onDismiss} />
               </Box>
             ))}
-            {!showMore && <MoreWalletCard onClick={() => setShowMore(true)} />}
-          </Grid>
+          </Flex>
         </WalletWrapper>
         <Box p="24px">
-          <Text textAlign="center" color="textSubtle" as="p" mb="16px">
-            Haven&#39;t got a crypto wallet yet?
-          </Text>
           <Button
-            as="a"
-            href="https://docs.pancakeswap.finance/get-started/connection-guide"
-            variant="subtle"
+            variant="outline"
+            onClick={onDismiss}
             width="100%"
             {...getExternalLinkProps()}
           >
-            Learn How to Connect
+            Cancel
           </Button>
         </Box>
       </ModalBody>

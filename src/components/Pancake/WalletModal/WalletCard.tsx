@@ -13,14 +13,29 @@ interface Props {
   onDismiss: () => void;
 }
 
-const WalletButton = styled(Button).attrs({ width: "100%", variant: "text", py: "16px" })`
+type IconWrapperProps = {
+  bg: string;
+}
+
+const WalletButton = styled(Button).attrs({ width: "100%", variant: "text" })`
+  background-color: ${({ theme }) => theme.colors.tertiary};
   align-items: center;
   display: flex;
-  flex-direction: column;
   height: auto;
+  margin-bottom: 8px;
+  justify-content: flex-start;
+  padding: 6px 20px;
+`;
+
+const IconWrapper = styled.div<IconWrapperProps>`
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: ${props => props.bg};
 `;
 
 export const MoreWalletCard: React.FC<ButtonProps> = (props) => {
@@ -33,7 +48,7 @@ export const MoreWalletCard: React.FC<ButtonProps> = (props) => {
 };
 
 const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss }) => {
-  const { title, icon: Icon } = walletConfig;
+  const { title, icon: Icon, bg } = walletConfig;
 
   return (
     <WalletButton
@@ -54,7 +69,9 @@ const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss }) => {
       }}
       id={`wallet-connect-${title.toLocaleLowerCase()}`}
     >
-      <Icon width="40px" mb="8px" />
+      <IconWrapper bg={bg}>
+        <Icon width="16px" />
+      </IconWrapper>
       <Text fontSize="14px">{title}</Text>
     </WalletButton>
   );

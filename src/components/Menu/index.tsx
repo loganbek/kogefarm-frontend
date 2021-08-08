@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Menu as UikitMenu } from 'components/Pancake'
 // import { Menu as UikitMenu } from '../../pancake-uikit-fork/packages/pancake-uikit/src/widgets/menu'
 import { useWeb3React } from '@web3-react/core'
@@ -6,17 +6,28 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
-// import { usePriceCakeBusd, useProfile } from 'state/hooks'
-// import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceKoge } from 'state/hooks'
 import { config } from './config'
 
 const Menu = (props) => {
+  const [price, setPrice] = useState('')
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-//  const cakePriceUsd = usePriceCakeBusd()
-//  const { profile } = useProfile()
+  const cakePriceUsd = usePriceKoge()
+  //  const { profile } = useProfile()
   const { currentLanguage, setLanguage } = useTranslation()
+
+  useEffect(() => {
+    const getPrice = async () => {
+      const kogecoinPrice = await cakePriceUsd
+      setPrice(kogecoinPrice.toFixed())
+    }
+
+    if (!price) {
+      getPrice()
+    }
+  }, [ price, cakePriceUsd ])
 
   return (
     <UikitMenu
@@ -28,7 +39,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={100}
+      kogePriceUSD={price}
       links={config}
 //      profile={{
 //        username: profile?.username,

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, cloneElement, Children, ReactElement } from "react";
 import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
-import { Skeleton, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
@@ -13,6 +12,8 @@ import { useFarms, useGetApiPrices } from 'state/hooks'
 import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
 import Overlay from "../Overlay/Overlay";
 import { useMatchBreakpoints } from "../hooks";
+import Skeleton from '../Skeleton/Skeleton'
+import Text from '../Text/Text'
 import Logo from "./components/Logo";
 import Panel from "./components/Panel";
 import Avatar from "./components/Avatar";
@@ -30,7 +31,7 @@ const LogoContainer = styled.div`
   flex-shrink: 0;
 `
 
-const TVL = styled(Text)`
+const Stat = styled(Text)`
   span {
     color: #1EA306;
     font-weight: 600;
@@ -38,7 +39,12 @@ const TVL = styled(Text)`
 `
 
 const InfoContainer = styled.div`
+  display: flex;
   padding-left: 24px;
+
+  > div:first-of-type {
+    margin-right: 24px;
+  }
 `
 
 const StyledNav = styled.nav<{ showMenu: boolean }>`
@@ -103,7 +109,7 @@ const Menu: React.FC<NavProps> = ({
   langs,
   setLang,
   currentLang,
-  cakePriceUsd,
+  kogePriceUSD,
   links,
   children,
 }) => {
@@ -260,11 +266,16 @@ const Menu: React.FC<NavProps> = ({
         </LogoContainer>
 
         <InfoContainer>
-          <TVL>
+          <Stat>
+            KogeCoin Price
+            {" "}
+            <span>${ kogePriceUSD }</span>
+          </Stat>
+          <Stat>
             {t('Vault TVL ')}
             {" "}
             <span>{displayTVL !== '$NaN' && displayTVL}</span>
-          </TVL>
+          </Stat>
         </InfoContainer>
 
         <Flex>
@@ -283,7 +294,7 @@ const Menu: React.FC<NavProps> = ({
           langs={langs}
           setLang={setLang}
           currentLang={currentLang}
-          cakePriceUsd={cakePriceUsd}
+          cakePriceUsd={kogePriceUSD}
           pushNav={setIsPushed}
           links={links}
         />

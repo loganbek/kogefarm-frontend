@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 // import { useFarms, usePriceCakeBusd, useGetApiPrices } from 'state/hooks'
-import { useFarms, useGetApiPrices } from 'state/hooks'
+import { useFarms, useGetApiPrices, usePriceKoge } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import usePersistState from 'hooks/usePersistState'
@@ -108,8 +108,20 @@ const StyledImage = styled(Image)`
   margin-right: auto;
   margin-top: 58px;
 `
+
+const InfoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 26px;
+
+  b {
+    margin-left: 8px;
+  }
+`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
+// @ts-ignore
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
@@ -117,6 +129,8 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
   const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
+  const [price, setPrice] = useState('')
+  const kogePrice = usePriceKoge()
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
@@ -141,6 +155,18 @@ const Farms: React.FC = () => {
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
+
+  useEffect(() => {
+    const getPrice = async () => {
+      const kogecoinPrice = await kogePrice
+      setPrice(kogecoinPrice.toFixed())
+    }
+
+    if (!price) {
+      getPrice()
+    }
+  }, [ price, kogePrice ])
+
 
   useEffect(() => {
     // Makes the main scheduled fetching to request archived farms data
@@ -537,6 +563,10 @@ const Farms: React.FC = () => {
             </LabelWrapper>
           </FilterContainer>
         </ControlContainer>
+        <InfoContainer>
+          KogeCoin Price
+          <b>${price}</b>
+        </InfoContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
         <Text color="text" textAlign="center" fontSize="125%">
