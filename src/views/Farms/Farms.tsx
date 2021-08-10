@@ -511,89 +511,87 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <>
-      <Page>
-        <Hero>
-          <Heading scale="lg" mb="16px">
-            Vaults to stake
-          </Heading>
+    <Page>
+      <Hero>
+        <Heading scale="lg" mb="16px">
+          Vaults to stake
+        </Heading>
 
-          <Text mb="16px">
-            {t('KogeFarm helps you earn more yield by ')}
-            {' '}
-            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
-            {' '}
-            <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
-            {' '}
-            by Obelisk.
-          </Text>
-        </Hero>
-        <ControlContainer>
-          <ViewControls>
-            <ToggleWrapper>
-              <Text> {t('Staked only')}</Text>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-            </ToggleWrapper>
-            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-          </ViewControls>
-          <FilterContainer>
-            <LabelWrapper>
-              <Text>SORT BY</Text>
-              <Select
-                options={[
-                  {
-                    label: 'Hot',
-                    value: 'hot',
-                  },
-                  {
-                    label: 'Total Staked',
-                    value: 'liquidity',
-                  },
-                  {
-                    label: 'APY',
-                    value: 'apr',
-                  },
-                ]}
-                onChange={handleSortOptionChange}
-              />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text>SEARCH</Text>
-              <SearchInput onChange={handleChangeQuery} />
-            </LabelWrapper>
-          </FilterContainer>
-        </ControlContainer>
-        <InfoContainer>
-          KogeCoin Price
-          <b>${price}</b>
-        </InfoContainer>
-        {renderContent()}
-        <div ref={loadMoreRef} />
-        <Text color="text" textAlign="center" fontSize="125%">
-          {t(
-            'No more sleep deprived degens with KogeFarm! We compound your farming rewards every 5 minutes so you can play more.',
-          )}
+        <Text mb="16px">
+          {t('KogeFarm helps you earn more yield by ')}
+          {' '}
+          <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
+          {' '}
+          <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
+          {' '}
+          by Obelisk.
         </Text>
-        <Text color="text" textAlign="center" fontSize="125%">
-          {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')}{' '}
-          <u>
-            <a href="https://koge.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks">
-              risky
-            </a>
-          </u>
-          {t('. Always DYOR.')}
-        </Text>
-        <Text color="text" textAlign="center" fontSize="125%">
-          {'\n'}
-          {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees, and only a 1% ')}{' '}
-          <u>
-            <a href="https://koge.gitbook.io/kogefarm/fees">fee</a>
-          </u>
-          {t(' on rewards.')}
-        </Text>
-        <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
-      </Page>
-    </>
+      </Hero>
+      <ControlContainer>
+        <ViewControls>
+          <ToggleWrapper>
+            <Text> {t('Staked only')}</Text>
+            <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+          </ToggleWrapper>
+          <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
+        </ViewControls>
+        <FilterContainer>
+          <LabelWrapper>
+            <Text>SORT BY</Text>
+            <Select
+              options={[
+                {
+                  label: 'Hot',
+                  value: 'hot',
+                },
+                {
+                  label: 'Total Staked',
+                  value: 'liquidity',
+                },
+                {
+                  label: 'APY',
+                  value: 'apr',
+                },
+              ]}
+              onChange={handleSortOptionChange}
+            />
+          </LabelWrapper>
+          <LabelWrapper style={{ marginLeft: 16 }}>
+            <Text>SEARCH</Text>
+            <SearchInput onChange={handleChangeQuery} />
+          </LabelWrapper>
+        </FilterContainer>
+      </ControlContainer>
+      <InfoContainer>
+        KogeCoin Price
+        <b>${price}</b>
+      </InfoContainer>
+      {renderContent()}
+      <div ref={loadMoreRef} />
+      <Text color="text" textAlign="center" fontSize="125%">
+        {t(
+          'No more sleep deprived degens with KogeFarm! We compound your farming rewards every 5 minutes so you can play more.',
+        )}
+      </Text>
+      <Text color="text" textAlign="center" fontSize="125%">
+        {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')}{' '}
+        <u>
+          <a href="https://koge.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks">
+            risky
+          </a>
+        </u>
+        {t('. Always DYOR.')}
+      </Text>
+      <Text color="text" textAlign="center" fontSize="125%">
+        {'\n'}
+        {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees, and only a 1% ')}{' '}
+        <u>
+          <a href="https://koge.gitbook.io/kogefarm/fees">fee</a>
+        </u>
+        {t(' on rewards.')}
+      </Text>
+      <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
+    </Page>
   )
 }
 

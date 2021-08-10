@@ -1,14 +1,12 @@
 import styled from 'styled-components'
 
 const FlexLayout = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+
   & > * {
-    min-width: 280px;
-    max-width: 31.5%;
     width: 100%;
-    margin: 0 8px;
     margin-bottom: 32px;
   }
 `

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image } from 'components/Pancake'
+import { Heading, Flex, Text } from 'components/Pancake'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -11,7 +11,6 @@ import usePersistState from 'hooks/usePersistState'
 import { usePools, useBlock, useFetchCakeVault, useGetApiPrice } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import PageHeader from 'components/PageHeader'
 // import Balance from 'components/Balance'
 import PoolCard from './components/PoolCard'
 // import CakeVaultCard from './components/CakeVaultCard'
@@ -66,67 +65,44 @@ const Pools: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [observerIsSet])
-//  const Completionist = () => <span>now</span>;
-
-  const kogePrice = useGetApiPrice('kogecoin');
 
   return (
-    <>
-      <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
-          <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('KogeCoin Farms')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply are being distributed to holders through this farm.')}
-            </Heading>
-            <Heading scale="md" color="brown">
-            {t('KogeCoin Price: $')}{kogePrice && kogePrice.toFixed(4)}
-            </Heading>
-          </Flex>
+    <Page>
+      <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
+        <Flex flexDirection="column" mr={['8px', 0]}>
+          <Heading scale="lg" mb="16px">
+            {t('Farms to invest')}
+          </Heading>
+          <Text mb="16px">
+            {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply are being distributed to holders through this farm.')}
+          </Text>
         </Flex>
-      </PageHeader>
-      <Page>
-        <PoolTabButtons
-          stakedOnly={stakedOnly}
-          setStakedOnly={setStakedOnly}
-//          hasStakeInFinishedPools={hasStakeInFinishedPools}
-        />
-        <FlexLayout>
-          <Route exact path={`${path}`}>
-            <>
-              {stakedOnly
-                ? orderBy(stakedOnlyOpenPools, ['sortOrder'])
-                    .slice(0, numberOfPoolsVisible)
-                    .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
-                : orderBy(openPools, ['sortOrder'])
-                    .slice(0, numberOfPoolsVisible)
-                    .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
-{/*                    <CakeVaultCard pool={cakePoolData} showStakedOnly={stakedOnly} /> */}
-            </>
-          </Route>
-          <Route path={`${path}/history`}>
+      </Flex>
+      <FlexLayout>
+        <Route exact path={`${path}`}>
+          <>
             {stakedOnly
-              ? orderBy(stakedOnlyFinishedPools, ['sortOrder'])
+              ? orderBy(stakedOnlyOpenPools, ['sortOrder'])
                   .slice(0, numberOfPoolsVisible)
                   .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
-              : orderBy(finishedPools, ['sortOrder'])
+              : orderBy(openPools, ['sortOrder'])
                   .slice(0, numberOfPoolsVisible)
                   .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
-          </Route>
-        </FlexLayout>
-        <div ref={loadMoreRef} />
-        <Image
-          mx="auto"
-          mt="12px"
-          src="/images/koalaGold-sm.png"
-          alt="KogeCoin Illustration"
-          width={150}
-          height={150}
-        />
-      </Page>
-    </>
+                   {/* <CakeVaultCard pool={cakePoolData} showStakedOnly={stakedOnly} /> */}
+          </>
+        </Route>
+        <Route path={`${path}/history`}>
+          {stakedOnly
+            ? orderBy(stakedOnlyFinishedPools, ['sortOrder'])
+                .slice(0, numberOfPoolsVisible)
+                .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
+            : orderBy(finishedPools, ['sortOrder'])
+                .slice(0, numberOfPoolsVisible)
+                .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
+        </Route>
+      </FlexLayout>
+      <div ref={loadMoreRef} />
+    </Page>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, cloneElement, Children, ReactElement } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
 import BigNumber from 'bignumber.js'
@@ -8,7 +8,7 @@ import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
 import { getMetaFarmApr } from 'utils/apr'
 import { Farm } from 'state/types'
-import { useFarms, useGetApiPrices } from 'state/hooks'
+import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
 import Overlay from "../Overlay/Overlay";
 import { useMatchBreakpoints } from "../hooks";
@@ -128,6 +128,8 @@ const Menu: React.FC<NavProps> = ({
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
+  const kogePrice = useGetApiPrice('kogecoin');
+
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
@@ -269,7 +271,7 @@ const Menu: React.FC<NavProps> = ({
           <Stat>
             KogeCoin Price
             {" "}
-            <span>${ kogePriceUSD }</span>
+            <span>${ kogePrice.toFixed(2) }</span>
           </Stat>
           <Stat>
             {t('Vault TVL ')}
@@ -282,8 +284,8 @@ const Menu: React.FC<NavProps> = ({
           <UserBlock account={account} login={login} logout={logout} />
           {profile && <Avatar profile={profile} />}
         </Flex>
-
       </StyledNav>
+
       <BodyWrapper>
         <Panel
           isPushed={isPushed}

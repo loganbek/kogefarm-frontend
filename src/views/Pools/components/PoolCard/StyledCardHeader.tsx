@@ -4,10 +4,12 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string; isPromotedPool?: boolean }>`
-  background: ${({ isFinished, background, theme }) =>
-    isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
-  border-radius: ${({ theme, isPromotedPool }) =>
-    isPromotedPool ? '31px 31px 0 0' : `${theme.radii.card} ${theme.radii.card} 0 0`};
+  border-radius: 8px 8px 0 0;
+  background: #E0E0E0;;
+`
+
+const StyledText = styled(Text)`
+  font-weight: 600;
 `
 
 const StyledCardHeader: React.FC<{
@@ -22,7 +24,6 @@ const StyledCardHeader: React.FC<{
   stakingTokenSymbol,
   isFinished = false,
   isAutoVault = false,
-  isStaking = false,
   isPromotedPool = false,
 }) => {
   const { t } = useTranslation()
@@ -30,7 +31,6 @@ const StyledCardHeader: React.FC<{
     ? `cake-cakevault.svg`
     : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase() */
   const isCakePool = earningTokenSymbol === 'CAKE' && stakingTokenSymbol === 'CAKE'
-  const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
@@ -56,12 +56,12 @@ const StyledCardHeader: React.FC<{
   }
 
   return (
-    <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished} background={background}>
+    <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
+          <StyledText>
             {`${getHeadingPrefix()} ${stakingTokenSymbol}`}
-          </Heading>
+          </StyledText>
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}><span>&nbsp;&nbsp;</span>{getSubHeading()}</Text>
         </Flex>
 {/*        <Image src={`/images/pools/${poolImageSrc}`} alt={stakingTokenSymbol} width={64} height={64} /> */}
