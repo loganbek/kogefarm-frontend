@@ -11,11 +11,11 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
   align-self: baseline;
   position: relative;
   color: ${({ isFinished, theme }) => theme.colors[isFinished ? 'textDisabled' : 'secondary']};
-  box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
 `
 
 export const StyledCardInner = styled(Box)<{ isPromotedPool?: boolean }>`
   background: ${({ theme }) => theme.card.background};
+  background: linear-gradient(90deg, #F4F4F4 54.07%, rgba(244, 244, 244, 0) 100%);
   border-radius: ${({ isPromotedPool, theme }) => (isPromotedPool ? '31px' : theme.radii.card)};
 `
 

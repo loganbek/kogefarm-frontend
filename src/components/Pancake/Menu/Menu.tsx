@@ -8,6 +8,7 @@ import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
 import { getMetaFarmApr } from 'utils/apr'
 import { Farm } from 'state/types'
+import useToast from 'hooks/useToast'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
 import Overlay from "../Overlay/Overlay";
@@ -123,6 +124,7 @@ const Menu: React.FC<NavProps> = ({
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
   const prices = useGetApiPrices()
+  const { toastSuccess, toastError } = useToast()
 
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
@@ -130,6 +132,10 @@ const Menu: React.FC<NavProps> = ({
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const kogePrice = useGetApiPrice('kogecoin');
 
+  useEffect(() => {
+    toastError(t('Error'), t('%error% - Please try again.', { error: 'kenneth' }))
+    // toastSuccess('Contract Enabled', 'You can now stake in this vault!')
+  }, [t, toastError, toastSuccess])
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
@@ -271,7 +277,7 @@ const Menu: React.FC<NavProps> = ({
           <Stat>
             KogeCoin Price
             {" "}
-            <span>${ kogePrice.toFixed(2) }</span>
+            <span>${ kogePrice?.toFixed(4) ?? 0}</span>
           </Stat>
           <Stat>
             {t('Vault TVL ')}

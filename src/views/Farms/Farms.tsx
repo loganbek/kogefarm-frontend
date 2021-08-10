@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 // import { useFarms, usePriceCakeBusd, useGetApiPrices } from 'state/hooks'
-import { useFarms, useGetApiPrices, usePriceKoge } from 'state/hooks'
+import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import usePersistState from 'hooks/usePersistState'
@@ -129,11 +129,10 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
   const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
-  const [price, setPrice] = useState('')
-  const kogePrice = usePriceKoge()
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
+  const kogePrice = useGetApiPrice('kogecoin');
 
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
@@ -155,18 +154,6 @@ const Farms: React.FC = () => {
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
-
-  useEffect(() => {
-    const getPrice = async () => {
-      const kogecoinPrice = await kogePrice
-      setPrice(kogecoinPrice.toFixed())
-    }
-
-    if (!price) {
-      getPrice()
-    }
-  }, [ price, kogePrice ])
-
 
   useEffect(() => {
     // Makes the main scheduled fetching to request archived farms data
@@ -564,7 +551,7 @@ const Farms: React.FC = () => {
       </ControlContainer>
       <InfoContainer>
         KogeCoin Price
-        <b>${price}</b>
+        <b>${kogePrice?.toFixed(4) ?? 0}</b>
       </InfoContainer>
       {renderContent()}
       <div ref={loadMoreRef} />
