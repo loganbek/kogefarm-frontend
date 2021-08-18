@@ -20,6 +20,10 @@ export const styleVariants = {
   [variants.SECONDARY]: {
     backgroundColor: "secondary",
   },
+  [variants.TERTIARY]: {
+    color: "harvesting",
+    backgroundColor: "harvestingBg",
+  },
   [variants.SUCCESS]: {
     backgroundColor: "success",
   },

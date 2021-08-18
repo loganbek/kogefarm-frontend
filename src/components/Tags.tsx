@@ -2,9 +2,8 @@ import React from 'react'
 import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon, RefreshIcon, AutoRenewIcon } from 'components/Pancake'
 
 const CoreTag = (props) => (
-//  <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
-  <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
-    Auto-Compounding
+  <Tag variant="tertiary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    Harvesting for all
   </Tag>
 )
 

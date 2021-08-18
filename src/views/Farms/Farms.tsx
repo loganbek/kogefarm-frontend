@@ -7,6 +7,7 @@ import { Image, Heading, RowType, Toggle, Text } from 'components/Pancake'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
+import { AutoCompound } from 'components/Pancake/Svg'
 // import { useFarms, usePriceCakeBusd, useGetApiPrices } from 'state/hooks'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
@@ -48,6 +49,18 @@ const ControlContainer = styled.div`
   }
 `
 
+const StyledText = styled(Text)`
+  div {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    position: relative;
+    top: 7px;
+    left: -2px;
+    margin: 0 4px;
+  }
+`
+
 const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -66,7 +79,14 @@ const Hero = styled.div`
 
 const LabelWrapper = styled.div`
   > ${Text} {
-    font-size: 12px;
+    font-size: 10px;
+    position: relative;
+    top: 8px;
+    z-index: 1;
+    background: #ffffff;
+    display: inline-block;
+    left: 10px;
+    padding: 2px 6px;
   }
 `
 
@@ -119,6 +139,16 @@ const InfoContainer = styled.div`
     margin-left: 8px;
   }
 `
+
+const StyledInput = styled.div`
+  position: relative;
+
+  div:first-child {
+    position: absolute;
+    top: 10px;
+  }
+`
+
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 // @ts-ignore
@@ -504,15 +534,18 @@ const Farms: React.FC = () => {
           Vaults to stake
         </Heading>
 
-        <Text mb="16px">
+        <StyledText mb="16px">
           {t('KogeFarm helps you earn more yield by ')}
           {' '}
+          <div>
+            <AutoCompound />
+          </div>
           <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
           {' '}
           <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
           {' '}
           by Obelisk.
-        </Text>
+        </StyledText>
       </Hero>
       <ControlContainer>
         <ViewControls>
@@ -544,7 +577,7 @@ const Farms: React.FC = () => {
             />
           </LabelWrapper>
           <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text>SEARCH</Text>
+            <Text fontSize="10px">SEARCH</Text>
             <SearchInput onChange={handleChangeQuery} />
           </LabelWrapper>
         </FilterContainer>

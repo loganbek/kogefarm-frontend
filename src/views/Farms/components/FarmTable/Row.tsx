@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints } from 'components/Pancake'
+import { Deposit, Withdraw} from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/hooks'
 // import BigNumber from 'bignumber.js'
+
+import ButtonMenu from "components/Pancake/ButtonMenu/ButtonMenu"
+import ButtonMenuItem from "components/Pancake/ButtonMenu/ButtonMenuItem"
 
 import Apr, { AprProps } from './Apr'
 import Apy, { ApyProps } from './Apy'
@@ -54,10 +58,6 @@ const CellInner = styled.div`
   width: 100%;
   align-items: center;
   padding-right: 8px;
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    padding-right: 32px;
-  }
 `
 
 const StyledTr = styled.tr`
@@ -72,6 +72,27 @@ const ApyMobileCell = styled.td`
 
 const FarmMobileCell = styled.td`
   padding-top: 24px;
+`
+
+const StyledButtonMenu = styled(ButtonMenu)`
+  width: 100%;
+
+  button {
+    display: flex;
+    padding: 20px;
+
+    svg {
+      margin-right: 10px;
+    }
+
+    &:first-of-type {
+      padding-right: 10px;
+    }
+
+    &:last-of-type {
+      padding-left: 10px;
+    }
+  }
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
@@ -95,6 +116,11 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
+  const vaultAction = () => {
+    console.log('hit')
+  }
+
+
   const handleRenderRow = () => {
     if (!isXs) {
       return (
@@ -111,7 +137,20 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout>
-                        ken
+                        <StyledButtonMenu
+                          scale="sm"
+                          variant="outline"
+                          onItemClick={vaultAction}
+                        >
+                          <ButtonMenuItem>
+                            <Deposit />
+                            Deposit
+                          </ButtonMenuItem>
+                          <ButtonMenuItem>
+                            <Withdraw />
+                            Withdraw
+                          </ButtonMenuItem>
+                        </StyledButtonMenu>
                       </CellLayout>
                     </CellInner>
                   </td>

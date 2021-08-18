@@ -7,9 +7,10 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 import AprRow from './AprRow'
 import { StyledCard, StyledCardInner } from './StyledCard'
-import CardFooter from './CardFooter'
+import ExpandedFooter from './CardFooter/ExpandedFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
+import ApyRow from './ApyRow'
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
   const { sousId, stakingToken, earningToken, isFinished, userData } = pool
@@ -30,12 +31,14 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
           earningTokenSymbol={earningToken.symbol}
           stakingTokenSymbol={stakingToken.symbol}
           isFinished={isFinished && sousId !== 0}
+          account={account}
         />
         <CardBody>
           <AprRow pool={pool} />
           <Flex mt="24px" flexDirection="column">
             {account ? (
-              <CardActions pool={pool} stakedBalance={stakedBalance} />
+              // <CardActions pool={pool} stakedBalance={stakedBalance} />
+              <ExpandedFooter pool={pool} account={account} />
             ) : (
               <>
                 <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
@@ -45,8 +48,8 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
               </>
             )}
           </Flex>
+          <ApyRow pool={pool} />
         </CardBody>
-        <CardFooter pool={pool} account={account} />
       </StyledCardInner>
     </StyledCard>
   )

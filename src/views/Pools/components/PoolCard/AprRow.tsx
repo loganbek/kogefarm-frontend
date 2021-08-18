@@ -1,15 +1,12 @@
 import React from 'react'
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from 'components/Pancake'
+import { Flex, TooltipText, Skeleton, useTooltip } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
-// import { getAddress } from 'utils/addressHelpers'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
 import { useGetApiPrice } from 'state/hooks'
 import Balance from 'components/Balance'
-import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { Pool } from 'state/types'
-import { BASE_EXCHANGE_URL } from 'config'
 
 interface AprRowProps {
   pool: Pool
@@ -66,24 +63,8 @@ const AprRow: React.FC<AprRowProps> = ({
     return apr
   }
 
-  const apyModalLink =
-    stakingToken.address &&
-    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
-
-  const [onPresentApyModal] = useModal(
-    <ApyCalculatorModal
-      tokenPrice={earningTokenPrice}
-      apr={apr}
-      linkLabel={`${t('Get')} ${stakingToken.symbol}`}
-      linkHref={apyModalLink || BASE_EXCHANGE_URL}
-      roundingDecimals={isHighValueToken ? 4 : 2}
-      compoundFrequency={compoundFrequency}
-      performanceFee={performanceFee}
-    />,
-  )
-
   return (
-    <Flex alignItems="center" justifyContent="space-between">
+    <Flex justifyContent="space-between" flexDirection="column">
       {tooltipVisible && tooltip}
       <TooltipText ref={targetRef}>{isAutoVault ? t('APY') : t('APR')}:</TooltipText>
       {isFinished || !apr ? (
@@ -91,16 +72,13 @@ const AprRow: React.FC<AprRowProps> = ({
       ) : (
         <Flex alignItems="center">
           <Balance
-            fontSize="16px"
+            fontSize="32px"
             isDisabled={isFinished}
             value={earningsPercentageToDisplay()}
             decimals={2}
             unit="%"
             bold
           />
-          <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
-          </IconButton>
         </Flex>
       )}
     </Flex>

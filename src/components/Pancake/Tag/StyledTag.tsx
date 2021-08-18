@@ -10,12 +10,16 @@ interface ThemedProps extends TagProps {
 
 const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMARY }: ThemedProps) => {
   if (outline) {
-    const themeColorKey = styleVariants[variantKey].backgroundColor as keyof Colors;
+    // @ts-ignore
+    const themeColorKey = styleVariants[variantKey].color as keyof Colors;
+    const themeBGColorKey = styleVariants[variantKey].backgroundColor as keyof Colors;
+
     const color = theme.colors[themeColorKey];
+    const background = theme.colors[themeBGColorKey];
 
     return `
       color: ${color};
-      background: transparent;
+      background: ${background};
       border: 2px solid ${color};
     `;
   }
@@ -25,7 +29,7 @@ const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMA
 
 export const StyledTag = styled.div<ThemedProps>`
   align-items: center;
-  border-radius: 16px;
+  border-radius: 4px;
   color: #ffffff;
   display: inline-flex;
   font-weight: 400;

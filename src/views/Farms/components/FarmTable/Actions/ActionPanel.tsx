@@ -112,8 +112,8 @@ const TagsContainer = styled.div`
   }
 
   > div {
-    height: 24px;
-    padding: 0 6px;
+    height: auto;
+    padding: 12px;
     font-size: 14px;
     margin-right: 4px;
 
@@ -303,7 +303,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Underlying Project')}</StyledLinkExternal>
             <TagsContainer>
               {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-              {farm.isSushi && <SushiTag />}
               {farm.isWault && <WaultTag />}
               {farm.isApe && <ApeTag />}
               {farm.isJetSwap && <JetSwapTag />}

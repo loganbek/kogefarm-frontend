@@ -4,12 +4,12 @@ import { ToggleProps, HandleProps, InputProps, ScaleKeys } from "./types";
 
 const scaleKeyValues = {
   sm: {
-    handleHeight: "16px",
-    handleWidth: "16px",
-    handleLeft: "2px",
-    handleTop: "2px",
-    checkedLeft: "calc(100% - 18px)",
-    toggleHeight: "20px",
+    handleHeight: "18px",
+    handleWidth: "18px",
+    handleLeft: "-2px",
+    handleTop: "-3px",
+    checkedLeft: "calc(100% - 14px)",
+    toggleHeight: "12px",
     toggleWidth: "36px",
   },
   md: {
@@ -30,7 +30,7 @@ const getScale =
   };
 
 export const Handle = styled.div<HandleProps>`
-  background-color: ${({ theme }) => theme.toggle.handleBackground};
+  background-color: ${({ theme }) => theme.colors.handleBackground};
   border-radius: 50%;
   cursor: pointer;
   height: ${getScale("handleHeight")};

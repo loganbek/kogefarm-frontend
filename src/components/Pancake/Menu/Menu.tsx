@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
+import { Box } from "components/Pancake";
 import { useTranslation } from 'contexts/Localization'
 import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
 import { getMetaFarmApr } from 'utils/apr'
 import { Farm } from 'state/types'
-import useToast from 'hooks/useToast'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
 import Overlay from "../Overlay/Overlay";
@@ -16,6 +16,7 @@ import { useMatchBreakpoints } from "../hooks";
 import Skeleton from '../Skeleton/Skeleton'
 import Text from '../Text/Text'
 import Logo from "./components/Logo";
+import { Wordmark } from "./icons";
 import Panel from "./components/Panel";
 import Avatar from "./components/Avatar";
 import UserBlock from "./components/UserBlock";
@@ -28,7 +29,9 @@ const Wrapper = styled.div`
 `;
 
 const LogoContainer = styled.div`
+  display: flex;
   width: 240px;
+  align-items: center;
   flex-shrink: 0;
 `
 
@@ -124,18 +127,12 @@ const Menu: React.FC<NavProps> = ({
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
   const prices = useGetApiPrices()
-  const { toastSuccess, toastError } = useToast()
 
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const kogePrice = useGetApiPrice('kogecoin');
-
-  useEffect(() => {
-    toastError(t('Error'), t('%error% - Please try again.', { error: 'kenneth' }))
-    // toastSuccess('Contract Enabled', 'You can now stake in this vault!')
-  }, [t, toastError, toastSuccess])
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
@@ -271,6 +268,9 @@ const Menu: React.FC<NavProps> = ({
             isDark={isDark}
             href={homeLink?.href ?? "/"}
           />
+          <Box ml="10px">
+            <Wordmark isDark={isDark} />
+          </Box>
         </LogoContainer>
 
         <InfoContainer>

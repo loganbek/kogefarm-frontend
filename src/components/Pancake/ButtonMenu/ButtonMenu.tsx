@@ -9,18 +9,30 @@ interface StyledButtonMenuProps extends ButtonMenuProps {
 }
 
 const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "inputTertiary" : "tertiary"];
+  console.log(variant)
+
+  if (variant === 'outline') {
+    return theme.colors.bronze;
+  }
+
+  return theme.colors.toggle
 };
 
 const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "inputSecondary" : "disabled"];
+  switch(variant) {
+    case 'primary':
+    case 'outline':
+    default:
+      return theme.colors.toggleActive
+  }
+  // return theme.colors[variant === variants.SUBTLE ? "inputSecondary" : "disabled"];
 };
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
-  background-color: ${({ theme }) => theme.colors.toggle};
+  background-color: ${getBackgroundColor};
   border-radius: 4px;
   display: ${({ fullWidth }) => (fullWidth ? "flex" : "inline-flex")};
-  border: 2px solid ${({ theme }) => theme.colors.toggleActive };
+  border: 2px solid ${getBorderColor};
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
 
   & > button,
@@ -40,6 +52,30 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   }
 
   ${({ disabled, theme, variant }) => {
+    if (variant === 'outline') {
+      return `
+        border: none;
+        background: transparent;
+
+        button {
+          background-color: transparent;
+          border: none;
+          border: 1px solid #A8A8A8;
+
+          &:first-of-type {
+            border-radius: 4px 0 0 4px;
+            border-right: none;
+          }
+
+          &:last-of-type {
+            border-radius: 0 4px 4px 0;
+            border-left: none;
+            margin-left: 0px;
+          }
+        }
+      `
+    }
+
     if (disabled) {
       return `
         opacity: 0.5;

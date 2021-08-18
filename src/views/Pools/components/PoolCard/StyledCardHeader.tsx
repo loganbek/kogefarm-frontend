@@ -1,6 +1,7 @@
 import React from 'react'
-import { CardHeader, Heading, Text, Flex } from 'components/Pancake'
+import { CardHeader, Text, Flex } from 'components/Pancake'
 import styled from 'styled-components'
+import UnlockButton from 'components/UnlockButton'
 import { useTranslation } from 'contexts/Localization'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string; isPromotedPool?: boolean }>`
@@ -19,12 +20,14 @@ const StyledCardHeader: React.FC<{
   isFinished?: boolean
   isStaking?: boolean
   isPromotedPool?: boolean
+  account?: string
 }> = ({
   earningTokenSymbol,
   stakingTokenSymbol,
   isFinished = false,
   isAutoVault = false,
   isPromotedPool = false,
+  account,
 }) => {
   const { t } = useTranslation()
 /*  const poolImageSrc = isAutoVault
@@ -45,15 +48,15 @@ const StyledCardHeader: React.FC<{
     return t('')
   }
 
-  const getSubHeading = () => {
-    if (isAutoVault) {
-      return t('Automatic restaking')
-    }
-    if (isCakePool) {
-      return t('Earn CAKE, stake CAKE')
-    }
-    return (t(''))
-  }
+  // const getSubHeading = () => {
+  //   if (isAutoVault) {
+  //     return t('Automatic restaking')
+  //   }
+  //   if (isCakePool) {
+  //     return t('Earn CAKE, stake CAKE')
+  //   }
+  //   return (t(''))
+  // }
 
   return (
     <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished}>
@@ -62,9 +65,11 @@ const StyledCardHeader: React.FC<{
           <StyledText>
             {`${getHeadingPrefix()} ${stakingTokenSymbol}`}
           </StyledText>
-          <Text color={isFinished ? 'textDisabled' : 'textSubtle'}><span>&nbsp;&nbsp;</span>{getSubHeading()}</Text>
+          {!account ? (
+            <UnlockButton />
+          ) : null}
+          {/* <Text color={isFinished ? 'textDisabled' : 'textSubtle'}><span>&nbsp;&nbsp;</span>{getSubHeading()}</Text> */}
         </Flex>
-{/*        <Image src={`/images/pools/${poolImageSrc}`} alt={stakingTokenSymbol} width={64} height={64} /> */}
       </Flex>
     </Wrapper>
   )
