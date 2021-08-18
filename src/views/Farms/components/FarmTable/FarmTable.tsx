@@ -81,12 +81,12 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
-const FarmTable: React.FC<ITableProps> = (props) => {
+const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const { data, columns, userDataReady } = props
 
-  const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
+  const { rows, toggleSort, headers } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
@@ -94,20 +94,28 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     })
   }
 
+  const sort = ({ name }) => {
+    toggleSort(name)
+  }
+
   return (
     <Container>
       <TableContainer>
+
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
             <TableHeader>
               <tr>
-                <th>k</th>
-                <th>Asset</th>
-                <th>APY</th>
-                <th>Total Staked</th>
-                <th>User Staked</th>
-                <th>Platform</th>
-                <th>Actions</th>
+                {headers.map(header => (
+                  <th key={header.name} onClick={() => sort(header)}>
+                    {header.label}
+                    { header.sorted.on &&
+                      <span>
+                        {header.sorted.asc ? 'up' : 'd'}
+                      </span>
+                    }
+                  </th>
+                ))}
               </tr>
             </TableHeader>
             <TableBody>
