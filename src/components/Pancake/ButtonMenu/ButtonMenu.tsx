@@ -9,8 +9,6 @@ interface StyledButtonMenuProps extends ButtonMenuProps {
 }
 
 const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  console.log(variant)
-
   if (variant === 'outline') {
     return theme.colors.bronze;
   }
