@@ -2,6 +2,7 @@ export type ColumnType<T> = {
   name: string;
   label?: string;
   hidden?: boolean;
+  align?: string;
   sort?: ((a: RowType<T>, b: RowType<T>) => number) | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render?: ({ value, row }: { value: any; row: T }) => React.ReactNode;
@@ -12,6 +13,7 @@ export type ColumnStateType<T> = {
   name: string;
   label: string;
   hidden: boolean;
+  align?: string;
   sort?: ((a: RowType<T>, b: RowType<T>) => number) | undefined;
   sorted: {
     on: boolean;
@@ -27,6 +29,7 @@ export type HeaderType<T> = {
   name: string;
   label?: string;
   hidden?: boolean;
+  align?: string;
   sorted: {
     on: boolean;
     asc?: boolean;

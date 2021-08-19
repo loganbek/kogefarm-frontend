@@ -319,6 +319,7 @@ export const useTable = <T extends DataType>(
           label: column.label ? column.label : column.name,
           hidden: column.hidden ? column.hidden : false,
           sort: column.sort,
+          align: column.align,
           sorted: {
             on: false,
             asc: false,

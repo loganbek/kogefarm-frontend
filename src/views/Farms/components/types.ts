@@ -12,6 +12,7 @@ export type ColumnsDefTypes = {
   name: string
   translationId: number
   sortable: boolean
+  align?: string
 }
 
 export type ScrollBarProps = {
@@ -89,6 +90,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 736,
     sortable: true,
     label: 'Apr',
+    align: 'right'
   },
   {
     id: 4,
@@ -96,6 +98,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 1072,
     sortable: true,
     label: 'APY',
+    align: 'right'
   },
   {
     id: 5,
@@ -103,6 +106,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 99,
     sortable: true,
     label: 'User Staked',
+    align: 'right'
   },
   {
     id: 6,
@@ -110,6 +114,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: true,
     label: 'Total Staked',
+    align: 'right'
   },
   {
     id: 7,

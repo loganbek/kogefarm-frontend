@@ -82,6 +82,7 @@ export { default as StarLineIcon } from "./Icons/StarLine";
 export { default as SwapIcon } from "./Icons/Swap";
 export { default as SwapVertIcon } from "./Icons/SwapVert";
 export { default as SyncAltIcon } from "./Icons/SyncAlt";
+export { default as Sort } from "./Icons/Sort";
 export { default as TeamPlayerIcon } from "./Icons/TeamPlayer";
 export { default as TestnetIcon } from "./Icons/Testnet";
 export { default as Ticket } from "./Icons/Ticket";

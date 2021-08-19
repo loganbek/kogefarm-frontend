@@ -53,11 +53,10 @@ const cells = {
 }
 
 const CellInner = styled.div`
-  padding: 24px;
+  padding: 24px 0;
   display: flex;
   width: 100%;
-  align-items: center;
-  padding-right: 8px;
+  align-items: flex-end;
 `
 
 const StyledTr = styled.tr`
@@ -209,29 +208,11 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             </FarmMobileCell>
           </tr>
           <tr>
-{/*            <EarnedMobileCell>
-              <CellLayout label={t('Earned')}>
-                <Earned {...props.earned} userDataReady={userDataReady} />
-              </CellLayout>
-            </EarnedMobileCell>
-            value,
-            lpLabel,
-            tokenAddress,
-            quoteTokenAddress,
-            originalValue,{...props.apy}
-            <Apy value={props.apr.value} lpLabel={props.apr.lpLabel} tokenAddress={props.apr.tokenAddress} quoteTokenAddress={props.apr.quoteTokenAddress} originalValue={props.apr.originalValue} hideButton />
- */}
             <ApyMobileCell>
               <CellLayout label={t('APY')}>
               <Apy {...props.apy} hideButton />
               </CellLayout>
             </ApyMobileCell>
-{/*
-            <ApyMobileCell>
-              <CellLayout label={t('Daily')}>
-              <Apy {...props.apyd} hideButton />
-              </CellLayout>
-            </ApyMobileCell> */}
           </tr>
         </td>
       </StyledTr>

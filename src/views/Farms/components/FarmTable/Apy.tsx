@@ -37,7 +37,7 @@ const Container = styled.div`
 
 const ApyWrapper = styled.div`
   min-width: 60px;
-  text-align: left;
+  text-align: right;
 `
 
 const Apy: React.FC<ApyProps> = ({

@@ -37,20 +37,14 @@ const Container = styled.div`
 
 const AprWrapper = styled.div`
   min-width: 60px;
-  text-align: left;
+  text-align: right;
   text-decoration: line-through;
 `
 
 const Apr: React.FC<AprProps> = ({
   value,
-//  lpLabel,
-//  tokenAddress,
-//  quoteTokenAddress,
   originalValue,
 }) => {
-//  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
-//  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-
   return originalValue !== 0 ? (
     <Container>
       {originalValue ? (

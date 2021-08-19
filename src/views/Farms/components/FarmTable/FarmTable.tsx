@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from 'components/Pancake'
+import { useTable, Button, ChevronUpIcon, ColumnType, Flex } from 'components/Pancake'
+import { Sort } from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 
 import Row, { RowProps } from './Row'
@@ -66,7 +67,7 @@ const TableHeader = styled.thead`
 
   th {
     color: ${({ theme }) => theme.colors.rowHeaderText};
-    padding: 22px;
+    padding: 22px 0;
   }
 `
 
@@ -79,6 +80,20 @@ const ScrollButtonContainer = styled.div`
   justify-content: center;
   padding-top: 5px;
   padding-bottom: 5px;
+`
+
+const Header = styled.th`
+  cursor: pointer;
+`
+
+const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+
+  span {
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
 `
 
 const FarmTable: React.FC<ITableProps> = props => {
@@ -98,6 +113,7 @@ const FarmTable: React.FC<ITableProps> = props => {
     toggleSort(name)
   }
 
+  console.log(headers)
   return (
     <Container>
       <TableContainer>
@@ -107,21 +123,26 @@ const FarmTable: React.FC<ITableProps> = props => {
             <TableHeader>
               <tr>
                 {headers.map(header => (
-                  <th key={header.name} onClick={() => sort(header)}>
-                    {header.label}
-                    { header.sorted.on &&
-                      <span>
-                        {header.sorted.asc ? 'up' : 'd'}
-                      </span>
-                    }
-                  </th>
+                  <Header key={header.name} onClick={() => sort(header)}>
+                    {/* @ts-ignore */}
+                    <Flex 
+                      // justifyContent={header.align === 'right' ? 'flex-end' : 'flex-start'} 
+                      alignItems="center"
+                    >
+                      <span>{header.label}</span>
+                      {/* @ts-ignore */}
+                      { header.sortable && (
+                        <Sort asc={header.sorted.asc} on={header.sorted.on} />
+                      )}
+                  </Flex>
+                </Header>
                 ))}
               </tr>
             </TableHeader>
             <TableBody>
-              {rows.map((row) => {
-                return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
-              })}
+              {rows.map((row) => (
+                <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
+              ))}
             </TableBody>
           </StyledTable>
         </TableWrapper>

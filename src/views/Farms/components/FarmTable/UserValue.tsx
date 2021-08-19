@@ -10,13 +10,12 @@ export interface UserValueProps {
 }
 
 const UserValueWrapper = styled.div`
-  min-width: 110px;
   font-weight: 600;
   text-align: right;
   margin-right: 14px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    text-align: left;
+    text-align: right;
     margin-right: 0;
   }
 `
@@ -32,17 +31,12 @@ const UserValue: React.FunctionComponent<UserValueProps> = ({ userValue }) => {
   ) : (
     <Skeleton width={60} />
   )
-//  const { t } = useTranslation()
 
   return (
     <Container>
       <UserValueWrapper>
         <Text>{displayUserValue}</Text>
       </UserValueWrapper>
-{/*      <ReferenceElement ref={targetRef}>
-        <HelpIcon color="textSubtle" />
-      </ReferenceElement>
-      {tooltipVisible && tooltip} */}
     </Container>
   )
 }

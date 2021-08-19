@@ -25,10 +25,6 @@ const Container = styled.div`
   padding-left: 16px;
   display: flex;
   flex-direction: column;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    padding-left: 32px;
-  }
 `
 
 const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
