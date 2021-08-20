@@ -132,7 +132,6 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               return null
             }
 
-            console.log(props.actions.align)
             switch (key) {
               case 'actions':
                 return (
