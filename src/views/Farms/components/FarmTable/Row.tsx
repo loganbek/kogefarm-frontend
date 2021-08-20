@@ -132,12 +132,13 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               return null
             }
 
+            console.log(props.actions.align)
             switch (key) {
               case 'actions':
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
+                      <CellLayout align={props.actions.align}>
                         <StyledButtonMenu
                           scale="sm"
                           variant="outline"

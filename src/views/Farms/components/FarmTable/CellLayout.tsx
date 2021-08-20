@@ -8,7 +8,7 @@ const ContentContainer = styled.div<{ align: string}>`
   font-weight: 600;
   width: 100%;
 
-  justify-content: ${({ align }) => align === 'right' ? 'flex-end' : 'flex-start'}
+  justify-content: ${({ align }) => align};
 `
 
 interface CellLayoutProps {

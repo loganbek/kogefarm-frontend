@@ -115,7 +115,7 @@ const FarmTable: React.FC<ITableProps> = props => {
                   <Header key={header.name} onClick={() => sort(header)}>
                     {/* @ts-ignore */}
                     <Flex 
-                      justifyContent={header.align === 'right' ? 'flex-end' : 'flex-start'} 
+                      justifyContent={header.align} 
                       alignItems="center"
                     >
                       { header.display ? (

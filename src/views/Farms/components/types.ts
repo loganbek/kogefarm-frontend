@@ -86,6 +86,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     sortable: true,
     label: 'Asset',
     display: true,
+    align: 'flex-start',
   },
   {
     id: 3,
@@ -93,7 +94,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 736,
     sortable: true,
     label: 'Apr',
-    align: 'right',
+    align: 'flex-end',
     display: true,
   },
   {
@@ -102,7 +103,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 1072,
     sortable: true,
     label: 'APY',
-    align: 'right',
+    align: 'flex-end',
     display: true,
   },
   {
@@ -111,7 +112,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 99,
     sortable: true,
     label: 'User Staked',
-    align: 'right',
+    align: 'flex-end',
     display: true,
   },
   {
@@ -120,7 +121,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: true,
     label: 'Total Staked',
-    align: 'right',
+    align: 'flex-end',
     display: true,
   },
   {
@@ -129,7 +130,8 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: false,
     label: 'Actions',
-    display: false,
+    align: 'center',
+    display: true,
   },
 ]
 

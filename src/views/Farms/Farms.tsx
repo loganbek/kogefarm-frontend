@@ -402,17 +402,17 @@ const Farms: React.FC = () => {
         ...farm,
       },
       apr: {
-        align: 'right',
+        align: 'flex-end',
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
         originalValue: farm.apr,
       },
       apy: {
-        align: 'right',
+        align: 'flex-end',
         value: farm.apr && farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 }),
         originalValue: farmAPYNum,
       },
       apyd: {
-        align: 'right',
+        align: 'flex-end',
         value:
           farm.apr &&
           (
@@ -441,14 +441,16 @@ const Farms: React.FC = () => {
         pid: farm.pid,
       },
       liquidity: {
-        align: 'right',
+        align: 'flex-end',
         liquidity: farm.liquidity,
       },
       userValue: {
-        align: 'right',
+        align: 'flex-end',
         userValue: farm.userValue,
       },
-      actions: <div>e</div>
+      actions: {
+        align: 'center'
+      }
     }
 
     return row
