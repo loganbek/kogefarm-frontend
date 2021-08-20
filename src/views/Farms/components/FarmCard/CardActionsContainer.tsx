@@ -18,6 +18,7 @@ const Action = styled.div`
 `
 export interface FarmWithStakedValue extends Farm {
   apr?: number
+  align?: string
 }
 
 interface FarmCardActionsProps {

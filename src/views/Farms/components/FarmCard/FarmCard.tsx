@@ -17,6 +17,7 @@ export interface FarmWithStakedValue extends Farm {
   apr?: number
   liquidity?: BigNumber
   userValue?: BigNumber
+  align?: string
 }
 
 const AccentGradient = keyframes`

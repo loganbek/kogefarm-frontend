@@ -1,26 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-// import ApyButton from 'views/Farms/components/FarmCard/ApyButton'
-// import { Address } from 'config/constants/types'
-// import BigNumber from 'bignumber.js'
-// import { BASE_ADD_LIQUIDITY_URL } from 'config'
-// import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { Skeleton } from 'components/Pancake'
 
 export interface AprProps {
   value: string
-//  multiplier: string
-//  lpLabel: string
-//  tokenAddress?: Address
-//  quoteTokenAddress?: Address
-//  cakePrice: BigNumber
   originalValue: number
   hideButton?: boolean
+  align?: string
 }
 
 const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   color: ${({ theme }) => theme.colors.text};
 
   button {

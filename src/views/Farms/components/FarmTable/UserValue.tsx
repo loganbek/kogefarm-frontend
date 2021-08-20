@@ -7,6 +7,7 @@ import BigNumber from 'bignumber.js'
 
 export interface UserValueProps {
   userValue: BigNumber
+  align?: string
 }
 
 const UserValueWrapper = styled.div`

@@ -86,16 +86,6 @@ const Header = styled.th`
   cursor: pointer;
 `
 
-const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-
-  span {
-    flex-shrink: 0;
-    margin-right: 8px;
-  }
-`
-
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
@@ -113,7 +103,6 @@ const FarmTable: React.FC<ITableProps> = props => {
     toggleSort(name)
   }
 
-  console.log(headers)
   return (
     <Container>
       <TableContainer>
@@ -126,14 +115,18 @@ const FarmTable: React.FC<ITableProps> = props => {
                   <Header key={header.name} onClick={() => sort(header)}>
                     {/* @ts-ignore */}
                     <Flex 
-                      // justifyContent={header.align === 'right' ? 'flex-end' : 'flex-start'} 
+                      justifyContent={header.align === 'right' ? 'flex-end' : 'flex-start'} 
                       alignItems="center"
                     >
-                      <span>{header.label}</span>
-                      {/* @ts-ignore */}
-                      { header.sortable && (
-                        <Sort asc={header.sorted.asc} on={header.sorted.on} />
-                      )}
+                      { header.display ? (
+                        <>
+                          <span>{header.label}</span>
+                          {/* @ts-ignore */}
+                          { header.sortable && (
+                            <Sort asc={header.sorted.asc} on={header.sorted.on} />
+                          )}
+                        </>
+                      ) : null}
                   </Flex>
                 </Header>
                 ))}

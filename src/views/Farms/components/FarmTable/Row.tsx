@@ -34,6 +34,7 @@ export interface RowProps {
   liquidity: LiquidityProps
   userValue: UserValueProps
   actions: any
+  align?: string
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -56,7 +57,8 @@ const CellInner = styled.div`
   padding: 24px 0;
   display: flex;
   width: 100%;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: flex-end;
 `
 
 const StyledTr = styled.tr`
@@ -158,7 +160,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
+                      <CellLayout align={props.details.align}>
                         <Details actionPanelToggled={actionPanelExpanded} />
                       </CellLayout>
                     </CellInner>
@@ -168,7 +170,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
+                      <CellLayout align={props.apr.align}>
                         <Apr {...props.apr} hideButton={isMobile} />
                       </CellLayout>
                     </CellInner>
@@ -178,7 +180,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
+                      <CellLayout align={props[key].align}>
                         {React.createElement(cells[key], { ...props[key], userDataReady })}
                       </CellLayout>
                     </CellInner>

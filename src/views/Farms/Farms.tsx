@@ -398,28 +398,21 @@ const Farms: React.FC = () => {
     }
 
     const row: RowProps = {
-      details: farm,
+      details: {
+        ...farm,
+      },
       apr: {
+        align: 'right',
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        //        multiplier: farm.multiplier,
-        //        lpLabel,
-        //        tokenAddress,
-        //        quoteTokenAddress,
-        //        cakePrice,
         originalValue: farm.apr,
       },
       apy: {
-        // (1+800/(100*365*24*60))^(365*24*60)-1
+        align: 'right',
         value: farm.apr && farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        //        multiplier: farm.multiplier,
-        //        lpLabel,
-        //        tokenAddress,
-        //        quoteTokenAddress,
-        //        cakePrice,
         originalValue: farmAPYNum,
       },
       apyd: {
-        // (1+800/(100*365*24*60))^(365*24*60)-1
+        align: 'right',
         value:
           farm.apr &&
           (
@@ -430,11 +423,6 @@ const Farms: React.FC = () => {
               1) *
             100
           ).toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        //        multiplier: farm.multiplier,
-        //        lpLabel,
-        //        tokenAddress,
-        //        quoteTokenAddress,
-        //        cakePrice,
         originalValue:
           ((1 +
             ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
@@ -453,9 +441,11 @@ const Farms: React.FC = () => {
         pid: farm.pid,
       },
       liquidity: {
+        align: 'right',
         liquidity: farm.liquidity,
       },
       userValue: {
+        align: 'right',
         userValue: farm.userValue,
       },
       actions: <div>e</div>
@@ -472,6 +462,8 @@ const Farms: React.FC = () => {
         id: column.id,
         name: column.name,
         label: column.label,
+        display: column.display,
+        align: column.align,
         sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
           switch (column.name) {
             case 'farm':

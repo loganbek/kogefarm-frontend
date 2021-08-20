@@ -13,6 +13,7 @@ export type ColumnsDefTypes = {
   translationId: number
   sortable: boolean
   align?: string
+  display?: boolean
 }
 
 export type ScrollBarProps = {
@@ -76,6 +77,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: false,
     label: '',
+    display: false,
   },
   {
     id: 2,
@@ -83,6 +85,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: true,
     label: 'Asset',
+    display: true,
   },
   {
     id: 3,
@@ -90,7 +93,8 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 736,
     sortable: true,
     label: 'Apr',
-    align: 'right'
+    align: 'right',
+    display: true,
   },
   {
     id: 4,
@@ -98,7 +102,8 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 1072,
     sortable: true,
     label: 'APY',
-    align: 'right'
+    align: 'right',
+    display: true,
   },
   {
     id: 5,
@@ -106,7 +111,8 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 99,
     sortable: true,
     label: 'User Staked',
-    align: 'right'
+    align: 'right',
+    display: true,
   },
   {
     id: 6,
@@ -114,7 +120,8 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: true,
     label: 'Total Staked',
-    align: 'right'
+    align: 'right',
+    display: true,
   },
   {
     id: 7,
@@ -122,6 +129,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: false,
     label: 'Actions',
+    display: false,
   },
 ]
 

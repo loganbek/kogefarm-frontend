@@ -19,7 +19,6 @@ export interface ActionPanelProps {
   apr: AprProps
   apy: ApyProps
   apyd: ApyProps
-//  multiplier: MultiplierProps
   liquidity: LiquidityProps
   userValue: UserValueProps
   details: FarmWithStakedValue

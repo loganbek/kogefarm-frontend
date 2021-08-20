@@ -6,6 +6,7 @@ import BigNumber from 'bignumber.js'
 
 export interface LiquidityProps {
   liquidity: BigNumber
+  align?: string
 }
 
 const LiquidityWrapper = styled.div`
