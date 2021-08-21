@@ -9,14 +9,32 @@ import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compound
 
 const StyledTable = styled.table`
 	margin-top: 64px;
+	table-layout: fixed;
 
 	th {
 		text-align: left;
 		padding-bottom: 10px;
+
+		&:nth-of-type(2) {
+			text-align: center;
+		}
+
+		&:last-of-type {
+			text-align: right;
+		}
 	}
 
 	td {
+		text-align: left;
 		padding: 6px 0;
+
+		&:nth-of-type(2) {
+			text-align: center;
+		}
+
+		&:last-of-type {
+			text-align: right;
+		}
 	}
 
 	tbody {
@@ -56,6 +74,7 @@ const ApyCalculatorModal = ({
     compoundFrequency,
     performanceFee,
   })
+
   const tokenEarnedPerThousand7D = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 7,
     farmApr: apr,
@@ -64,6 +83,7 @@ const ApyCalculatorModal = ({
     compoundFrequency,
     performanceFee,
   })
+
   const tokenEarnedPerThousand30D = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 30,
     farmApr: apr,
@@ -72,6 +92,7 @@ const ApyCalculatorModal = ({
     compoundFrequency,
     performanceFee,
   })
+
   const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 365,
     farmApr: apr,
@@ -80,6 +101,8 @@ const ApyCalculatorModal = ({
     compoundFrequency,
     performanceFee,
   })
+
+	const oneDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
 
   return (
 		<>
@@ -97,8 +120,8 @@ const ApyCalculatorModal = ({
 							</Text>
 						</th>
 						<th>
-							<Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-								{t('Total Stacked x ROI')}
+							<Text fontSize="12px" bold color="textSubtle">
+								{t('TOTAL STACKED x ROI')}
 							</Text>
 						</th>
 					</tr>
@@ -110,10 +133,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px">
-								{getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
-									roundingDecimals,
-								)}
-								%
+								{ oneDayRoi }%
 							</Text>
 						</td>
 						<td>

@@ -1,5 +1,19 @@
-import React from 'react'
-import { Flex, Text, Button, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip } from 'components/Pancake'
+import React, { ReactNode } from 'react'
+import styled from 'styled-components'
+import { BIG_ZERO } from 'utils/bigNumber'
+import { 
+  Flex,
+  Text,
+  Button,
+  IconButton,
+  AddIcon,
+  MinusIcon,
+  useModal,
+  Skeleton,
+  useTooltip,
+  Box,
+} from 'components/Pancake'
+import { Tooltip } from 'react-tippy'
 import BigNumber from 'bignumber.js'
 import { useGetApiPrice } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
@@ -8,14 +22,30 @@ import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
+import HarvestActions from './HarvestActions'
 
 interface StakeActionsProps {
   pool: Pool
+  harvest?: any,
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
   isStaked: ConstrainBoolean
   isLoading?: boolean
+  content?: ReactNode
 }
+
+const InlineText = styled(Text)`
+  display: inline;
+`
+
+const Tip = styled.div`
+  background: #F4F4F4;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 360px;
+  padding: 24px;
+  margin-top: 5px;
+  border-radius: 4px;
+`
 
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
@@ -24,10 +54,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
-  const { stakingToken, stakingLimit, isFinished, userData } = pool
+  const { sousId, pid, stakingToken, harvest, stakingLimit, isFinished, userData, earningToken } = pool
   const { t } = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
+  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
+  const earningTokenPrice = useGetApiPrice(earningToken.coingeico)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
     stakingToken.decimals,
@@ -65,18 +97,16 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         <Flex flexDirection="column">
           <>
             <Balance bold fontSize="20px" decimals={3} value={stakedTokenBalance} />
-{/*            {stakingTokenPrice !== 0 && ( */}
-              <Text fontSize="12px" color="textSubtle">
-                <Balance
-                  fontSize="12px"
-                  color="textSubtle"
-                  decimals={2}
-                  value={stakedTokenDollarBalance}
-                  prefix="~"
-                  unit=" USD"
-                />
-              </Text>
-{/*            )} */}
+            <Text fontSize="12px" color="textSubtle">
+              <Balance
+                fontSize="12px"
+                color="textSubtle"
+                decimals={2}
+                value={stakedTokenDollarBalance}
+                prefix="~"
+                unit=" USD"
+              />
+            </Text>
           </>
         </Flex>
         <Flex>
@@ -102,13 +132,59 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
-        {t('Stake')}
-      </Button>
+      <Tooltip
+        trigger="click"
+        interactive
+        useContext
+        position="bottom-end"
+        html={(
+          <Tip>
+            {harvest ? (
+              <>
+                <Box display="inline">
+                  <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
+                    {`${earningToken.symbol} `}
+                  </InlineText>
+                  <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+                    Earned
+                  </InlineText>
+                </Box>
+                <HarvestActions
+                  earnings={earnings}
+                  earningToken={earningToken}
+                  sousId={sousId}
+                  pid={pid}
+                  earningTokenPrice={earningTokenPrice}
+                  isLoading={isLoading}
+                />
+              </>
+            ) : null}
+            <Box display="inline">
+              <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
+                {isStaked ? stakingToken.symbol : t('Stake')}{' '}
+              </InlineText>
+              <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
+                {isStaked ? t('Staked') : `${stakingToken.symbol}`}
+              </InlineText>
+            </Box>
+          </Tip>
+        )}
+      >
+        <Button 
+          // disabled={isFinished}
+          // onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
+        >
+          {t('Stake')}
+        </Button>
+      </Tooltip>
     )
   }
 
-  return <Flex flexDirection="column">{isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}</Flex>
+  return (
+    <Flex flexDirection="column">
+      {isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}
+    </Flex>
+  )
 }
 
 export default StakeAction

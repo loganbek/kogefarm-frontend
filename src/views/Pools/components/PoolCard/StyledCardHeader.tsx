@@ -1,8 +1,10 @@
 import React from 'react'
 import { CardHeader, Text, Flex } from 'components/Pancake'
 import styled from 'styled-components'
+import { Pool } from 'state/types'
 import UnlockButton from 'components/UnlockButton'
 import { useTranslation } from 'contexts/Localization'
+import CardActions from './CardActions'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string; isPromotedPool?: boolean }>`
   border-radius: 8px 8px 0 0;
@@ -20,6 +22,8 @@ const StyledCardHeader: React.FC<{
   isFinished?: boolean
   isStaking?: boolean
   isPromotedPool?: boolean
+  pool?: Pool
+  stakedBalance?: any
   account?: string
 }> = ({
   earningTokenSymbol,
@@ -28,11 +32,10 @@ const StyledCardHeader: React.FC<{
   isAutoVault = false,
   isPromotedPool = false,
   account,
+  pool,
+  stakedBalance,
 }) => {
   const { t } = useTranslation()
-/*  const poolImageSrc = isAutoVault
-    ? `cake-cakevault.svg`
-    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase() */
   const isCakePool = earningTokenSymbol === 'CAKE' && stakingTokenSymbol === 'CAKE'
 
   const getHeadingPrefix = () => {
@@ -48,26 +51,26 @@ const StyledCardHeader: React.FC<{
     return t('')
   }
 
-  // const getSubHeading = () => {
-  //   if (isAutoVault) {
-  //     return t('Automatic restaking')
-  //   }
-  //   if (isCakePool) {
-  //     return t('Earn CAKE, stake CAKE')
-  //   }
-  //   return (t(''))
-  // }
-
   return (
     <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished}>
       <Flex alignItems="center" justifyContent="space-between">
-        <Flex flexDirection="column">
+        <Flex
+          flexDirection="row"
+          justifyContent="space-between"
+          width="100%"
+          alignItems="center"
+        >
           <StyledText>
             {`${getHeadingPrefix()} ${stakingTokenSymbol}`}
           </StyledText>
           {!account ? (
             <UnlockButton />
-          ) : null}
+          ) : (
+            <CardActions
+              pool={pool} 
+              stakedBalance={stakedBalance} 
+            />
+          )}
           {/* <Text color={isFinished ? 'textDisabled' : 'textSubtle'}><span>&nbsp;&nbsp;</span>{getSubHeading()}</Text> */}
         </Flex>
       </Flex>
