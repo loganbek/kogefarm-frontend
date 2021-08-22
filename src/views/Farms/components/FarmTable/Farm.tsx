@@ -46,10 +46,16 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
 
   return (
     <Container>
-      <IconImage src={`/images/farms/${image}.svg`} alt="icon" width={40} height={40} mr="8px" />
+      <IconImage
+        src={`/images/farms/${image}.svg`}
+        alt="icon" 
+        width={40} 
+        height={40}
+        mr="8px" 
+      />
       <div>
         {handleRenderFarming()}
-        <Text bold>{label}</Text>
+        <Text fontSize="14px" bold>{label}</Text>
       </div>
     </Container>
   )

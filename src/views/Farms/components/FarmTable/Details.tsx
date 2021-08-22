@@ -19,6 +19,7 @@ const Container = styled.div`
 `
 
 const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
+  margin-left: 28px;
   transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
   height: 20px;
 `

@@ -77,24 +77,28 @@ const FarmMobileCell = styled.td`
 `
 
 const StyledButtonMenu = styled(ButtonMenu)`
-  width: 100%;
-
   button {
     display: flex;
-    padding: 20px;
+    padding: 19px 0;
 
     svg {
       margin-right: 10px;
     }
 
     &:first-of-type {
+      padding-left: 18px;
       padding-right: 10px;
     }
 
     &:last-of-type {
+      padding-right: 18px;
       padding-left: 10px;
     }
   }
+`
+
+const StyledButtonMenuItem = styled(ButtonMenuItem)`
+  font-size: 14px;
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
@@ -145,14 +149,14 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                           variant="outline"
                           onItemClick={vaultAction}
                         >
-                          <ButtonMenuItem>
+                          <StyledButtonMenuItem>
                             <Deposit isDark={isDark} />
                             Deposit
-                          </ButtonMenuItem>
-                          <ButtonMenuItem>
+                          </StyledButtonMenuItem>
+                          <StyledButtonMenuItem>
                             <Withdraw isDark={isDark} />
                             Withdraw
-                          </ButtonMenuItem>
+                          </StyledButtonMenuItem>
                         </StyledButtonMenu>
                       </CellLayout>
                     </CellInner>
@@ -214,7 +218,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
           <tr>
             <ApyMobileCell>
               <CellLayout label={t('APY')}>
-              <Apy {...props.apy} hideButton />
+                <Apy {...props.apy} hideButton />
               </CellLayout>
             </ApyMobileCell>
           </tr>

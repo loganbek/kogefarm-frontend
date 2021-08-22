@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Menu as UikitMenu } from 'components/Pancake'
 // import { Menu as UikitMenu } from '../../pancake-uikit-fork/packages/pancake-uikit/src/widgets/menu'
 import { useWeb3React } from '@web3-react/core'

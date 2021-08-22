@@ -12,7 +12,6 @@ export interface LiquidityProps {
 const LiquidityWrapper = styled.div`
   font-weight: 600;
   text-align: right;
-  margin-right: 14px;
   width: 100%;
 `
 
@@ -32,7 +31,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   return (
     <Container>
       <LiquidityWrapper>
-        <Text>{displayLiquidity}</Text>
+        <Text fontSize="14px">{displayLiquidity}</Text>
       </LiquidityWrapper>
     </Container>
   )
