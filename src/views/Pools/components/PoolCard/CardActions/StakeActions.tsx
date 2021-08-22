@@ -171,6 +171,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         )}
       >
         <Button 
+          variant="secondary"
+          height="32px"
           // disabled={isFinished}
           // onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
         >

@@ -81,9 +81,9 @@ const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 10px;
     position: relative;
-    top: 8px;
+    top: 9px;
     z-index: 1;
-    background: #ffffff;
+    background: ${({ theme }) => theme.colors.background};
     display: inline-block;
     left: 10px;
     padding: 2px 6px;

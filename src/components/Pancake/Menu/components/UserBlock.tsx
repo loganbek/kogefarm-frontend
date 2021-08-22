@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Tip = styled.div`
-  background: #F4F4F4;
+  background: ${({ theme }) => theme.colors.gradients.cardHeader};
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   padding: 24px;

@@ -14,7 +14,8 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
 `
 
 export const StyledCardInner = styled(Box)<{ isPromotedPool?: boolean }>`
-  background: #F4F4F4 url('/images/farm.png');
+  background-color: ${({ theme }) => theme.colors.cardBackground};
+  background-image: url('/images/farm.png');
   background-repeat: no-repeat;
   background-position: bottom right;
   border-radius: ${({ isPromotedPool, theme }) => (isPromotedPool ? '31px' : theme.radii.card)};

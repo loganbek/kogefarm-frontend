@@ -3,7 +3,7 @@ import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon, RefreshIcon, AutoRenewIc
 
 const CoreTag = (props) => (
   <Tag variant="tertiary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
-    Harvesting for all
+    Harvest for all
   </Tag>
 )
 

@@ -5,6 +5,7 @@ import { useMatchBreakpoints } from 'components/Pancake'
 import { Deposit, Withdraw} from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
+import useTheme from 'hooks/useTheme'
 import { useFarmUser } from 'state/hooks'
 // import BigNumber from 'bignumber.js'
 
@@ -97,6 +98,7 @@ const StyledButtonMenu = styled(ButtonMenu)`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
+  const { isDark } = useTheme()
   const { details, userDataReady } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
@@ -144,11 +146,11 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                           onItemClick={vaultAction}
                         >
                           <ButtonMenuItem>
-                            <Deposit />
+                            <Deposit isDark={isDark} />
                             Deposit
                           </ButtonMenuItem>
                           <ButtonMenuItem>
-                            <Withdraw />
+                            <Withdraw isDark={isDark} />
                             Withdraw
                           </ButtonMenuItem>
                         </StyledButtonMenu>

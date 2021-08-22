@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { CommunityTag, CoreTag, SushiTag, WaultTag, DfynTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
+import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
 import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL } from 'config'
 
 // import HarvestAction from './HarvestAction'
@@ -189,11 +189,11 @@ const Fee = styled.div`
   grid-area: fee;
 `
 
-const Title = styled.div`
+const Title = styled(Text)`
   font-size: 12px;
 `
 
-const Stat = styled.div`
+const Stat = styled(Text)`
   margin-top: 4px;
   font-size: 16px;
   font-weight: 600;

@@ -8,7 +8,7 @@ import CardActions from './CardActions'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string; isPromotedPool?: boolean }>`
   border-radius: 8px 8px 0 0;
-  background: #E0E0E0;;
+  background: ${({ theme }) => theme.colors.rowHeader};
 `
 
 const StyledText = styled(Text)`
