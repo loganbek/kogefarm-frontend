@@ -18,7 +18,7 @@ import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 // import { getFarmApr } from 'utils/apr'
 import { getMetaFarmApr } from 'utils/apr'
-import { orderBy } from 'lodash'
+import { filter, orderBy } from 'lodash'
 import { getAddress } from 'utils/addressHelpers'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
@@ -158,6 +158,7 @@ const Farms: React.FC = () => {
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
+  const [platform, setPlatform] = useState('')
   const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
@@ -327,6 +328,8 @@ const Farms: React.FC = () => {
             (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
             'desc',
           )
+        case 'platform':
+          return filter(farms, { platform })
         case 'liquidity':
           return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
         default:
@@ -346,6 +349,7 @@ const Farms: React.FC = () => {
 
     return sortFarms(farmsStaked).slice(0, numberOfFarmsVisible)
   }, [
+    platform,
     sortOption,
     activeFarms,
     farmsList,
@@ -448,6 +452,10 @@ const Farms: React.FC = () => {
         align: 'flex-end',
         userValue: farm.userValue,
       },
+      platform: {
+        align: 'flex-start',
+        userValue: farm?.platform
+      },
       actions: {
         align: 'center'
       }
@@ -466,6 +474,7 @@ const Farms: React.FC = () => {
         label: column.label,
         display: column.display,
         align: column.align,
+        platform: column.platform,
         sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
           switch (column.name) {
             case 'farm':
@@ -521,6 +530,16 @@ const Farms: React.FC = () => {
     setSortOption(option.value)
   }
 
+  const handleSortOptionChangeAlt = (option: OptionProps): void => {
+    setPlatform(option.value)
+    setSortOption('platform')
+  }
+
+  const options = activeFarms.map(farm => ({
+    label: farm.platform,
+    value: farm.platform
+  }))
+
   return (
     <Page>
       <Hero>
@@ -550,7 +569,11 @@ const Farms: React.FC = () => {
           <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
         </ViewControls>
         <FilterContainer>
-          <LabelWrapper>
+          <LabelWrapper style={{ marginLeft: 16 }}>
+            <Text fontSize="10px">Search by asset</Text>
+            <SearchInput onChange={handleChangeQuery} />
+          </LabelWrapper>
+          <LabelWrapper style={{ marginLeft: 24 }}>
             <Text>SORT BY</Text>
             <Select
               options={[
@@ -570,9 +593,18 @@ const Farms: React.FC = () => {
               onChange={handleSortOptionChange}
             />
           </LabelWrapper>
-          <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text fontSize="10px">SEARCH</Text>
-            <SearchInput onChange={handleChangeQuery} />
+          <LabelWrapper style={{ marginLeft: 24 }}>
+            <Text>Platform</Text>
+            <Select
+              options={[
+                {
+                  label: '',
+                  value: '',
+                },
+                ...options
+              ]}
+              onChange={(e) => handleSortOptionChangeAlt(e)}
+            />
           </LabelWrapper>
         </FilterContainer>
       </ControlContainer>

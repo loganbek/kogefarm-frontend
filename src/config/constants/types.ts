@@ -62,6 +62,7 @@ export interface FarmConfig {
   rewardPerBlock?: number
   poolWeightDesignate: number
   underlyingWebsite: string
+  platform?: string
   multiplier?: string
   isSushi?: boolean
   isDfyn?: boolean

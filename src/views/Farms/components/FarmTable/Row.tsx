@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Tooltip } from 'react-tippy'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints, Text } from 'components/Pancake'
-import { Deposit, Withdraw} from 'components/Pancake/Svg'
+import { useMatchBreakpoints } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import useTheme from 'hooks/useTheme'
 import { useFarmUser } from 'state/hooks'
-// import BigNumber from 'bignumber.js'
-
-import ButtonMenu from "components/Pancake/ButtonMenu/ButtonMenu"
-import ButtonMenuItem from "components/Pancake/ButtonMenu/ButtonMenuItem"
 
 import StakedAction from './Actions/StakedAction'
 
@@ -20,7 +14,6 @@ import Apy, { ApyProps } from './Apy'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
-// import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
 import UserValue, { UserValueProps } from './UserValue'
 import ActionPanel from './Actions/ActionPanel'
@@ -32,12 +25,12 @@ export interface RowProps {
   apr: AprProps
   farm: FarmProps
   earned: EarnedProps
-//  multiplier: MultiplierProps
   apy: ApyProps
   apyd: ApyProps
   liquidity: LiquidityProps
   userValue: UserValueProps
   actions: any
+  platform?: any
   align?: string
 }
 
@@ -52,7 +45,6 @@ const cells = {
   farm: Farm,
   earned: Earned,
   details: Details,
-//  multiplier: Multiplier,
   liquidity: Liquidity,
   userValue: UserValue,
 }
@@ -79,17 +71,7 @@ const FarmMobileCell = styled.td`
   padding-top: 24px;
 `
 
-const Tip = styled.div`
-  background: #F4F4F4;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  width: 360px;
-  padding: 24px;
-  margin-top: 5px;
-  border-radius: 4px;
-`
-
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
-  const { isDark } = useTheme()
   const { details, userDataReady } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
@@ -109,11 +91,6 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const isMobile = !isXl
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
-
-  const vaultAction = () => {
-    console.log('hit')
-  }
-
 
   const handleRenderRow = () => {
     if (!isXs) {
@@ -136,58 +113,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                           {...details}
                           userDataReady={userDataReady} 
                         />
-                        {/* <ButtonMenu
-                          scale="sm"
-                          variant="outline"
-                          onItemClick={vaultAction}
-                        >
-                          <Tooltip 
-                            trigger="click"
-                            interactive
-                            useContext
-                            position="bottom-end"
-                            html={(
-                              <Tip>
-                                <div>ken</div>
-                              </Tip>
-                            )}
-                          >
-                            <ButtonMenuItem onClick={(e) => {
-                              e.stopPropagation()
-                            }}>
-                              <Deposit isDark={isDark} />
-                              <Text
-                                fontSize="14px"
-                                fontWeight="bold"
-                              >
-                                Deposit
-                              </Text>
-                            </ButtonMenuItem>
-                          </Tooltip>
-                          <Tooltip 
-                            trigger="click"
-                            interactive
-                            useContext
-                            position="bottom-end"
-                            html={(
-                              <Tip>
-                                <div>ken</div>
-                              </Tip>
-                            )}
-                          >
-                            <ButtonMenuItem onClick={(e) => {
-                              e.stopPropagation()
-                            }}>
-                              <Withdraw isDark={isDark} />
-                              <Text
-                                fontSize="14px"
-                                fontWeight="bold"
-                              >
-                                Withdraw
-                              </Text>
-                            </ButtonMenuItem>
-                          </Tooltip>
-                        </ButtonMenu> */}
+                        
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -208,6 +134,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                     <CellInner>
                       <CellLayout align={props.apr.align}>
                         <Apr {...props.apr} hideButton={isMobile} />
+                      </CellLayout>
+                    </CellInner>
+                  </td>
+                )
+              case 'platform':
+                return (
+                  <td key={key}>
+                    <CellInner>
+                      <CellLayout align={props.platform.align}>
+                        {props.platform.userValue}
                       </CellLayout>
                     </CellInner>
                   </td>

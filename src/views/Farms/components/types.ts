@@ -14,6 +14,7 @@ export type ColumnsDefTypes = {
   sortable: boolean
   align?: string
   display?: boolean
+  platform?: any
 }
 
 export type ScrollBarProps = {
@@ -111,6 +112,15 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
   },
   {
     id: 7,
+    name: 'platform',
+    translationId: 999,
+    sortable: true,
+    label: 'Platform',
+    align: 'flex-start',
+    display: true,
+  },
+  {
+    id: 8,
     name: 'actions',
     translationId: 999,
     sortable: false,

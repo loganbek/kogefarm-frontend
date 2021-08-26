@@ -1,7 +1,19 @@
 import React, { useState, useCallback } from 'react'
 import { Tooltip } from 'react-tippy'
 import styled from 'styled-components'
-import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton } from 'components/Pancake'
+import {
+  Button,
+  ButtonMenu,
+  ButtonMenuItem,
+  useModal,
+  IconButton,
+  AddIcon,
+  MinusIcon,
+  Skeleton,
+  Text,
+  useMatchBreakpoints
+} from 'components/Pancake'
+import { Deposit, Withdraw} from 'components/Pancake/Svg'
 import { useLocation } from 'react-router-dom'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
@@ -16,6 +28,7 @@ import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
+import useTheme from 'hooks/useTheme'
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
@@ -53,8 +66,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   depositFee,
   userDataReady,
 }) => {
+  const { isDark } = useTheme()
   const { t } = useTranslation()
   const { account } = useWeb3React()
+
+  const [depositIsOpen, setDepositIsOpen] = useState(false)
+  const [withdrawIsOpen, setWithdrawIsOpen] = useState(false)
+
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const jarAddress = jarAddresses[process.env.REACT_APP_CHAIN_ID]
@@ -70,7 +88,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-//  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   if (isSushi===true){
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
@@ -120,18 +137,19 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
       return getFullDisplayBalance(displayBalanceNumber,decimals,decimals).toLocaleString()
     }
-//    return stakedBalanceNumber.toLocaleString()
   return getFullDisplayBalance(displayBalanceNumber,decimals,decimals).toLocaleString()
 
 }, [stakedBalance, displayBalanceNumber, decimals])
 
-  const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} depositFee={depositFee} />,
+  const [onPresentDeposit] = useModal(<div>ken</div>)
+  const [onPresentWithdraw] = useModal(
+  <WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} depositFee={depositFee} />
   )
-  const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} depositFee={depositFee} />)
+
+  const onDepositClose = () => setDepositIsOpen(false)
+  const onWithdrawClose = () => setWithdrawIsOpen(false)
 
   const lpContract = getBep20Contract(lpAddress, web3)
-//  const jarContract = getBep20Contract(jarAddress, web3)
 
   const { onApprove } = useApprove(lpContract, jarAddress)
 
@@ -159,61 +177,73 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }
 
   if (isApproved) {
-    if (stakedBalance.gt(0)) {
-      return (
-        <ActionContainer>
-          <ActionTitles>
-            <Title>{lpSymbol}</Title>
-            <Subtle>{t('STAKED')}</Subtle>
-          </ActionTitles>
-          <ActionContent>
-            <div>
-              <Earned>{displayBalance()}</Earned>
-            </div>
-            <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="primary" width="14px" />
-              </IconButton>
-              <IconButton
-                variant="secondary"
-                onClick={onPresentDeposit}
-                disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
-              >
-                <AddIcon color="primary" width="14px" />
-              </IconButton>
-            </IconButtonWrapper>
-          </ActionContent>
-        </ActionContainer>
-      )
-    }
-
     return (
-      <Tooltip 
-        trigger="click"
-        interactive
-        useContext
-        position="bottom-end"
-        html={(
-          <Tip>
-            <DepositModal
-              max={tokenBalance} 
-              onConfirm={onStake}
-              tokenName={lpSymbol}
-              addLiquidityUrl={addLiquidityUrl}
-              depositFee={depositFee} 
-            />
-          </Tip>
-        )}
-      >
-        <Button
-          width="100%"
-          onClick={(e) => e.stopPropagation()}
-          variant="secondary"
-          disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+      <ButtonMenu scale="sm" variant="outline">
+        <Tooltip 
+          trigger="click"
+          open={depositIsOpen}
+          interactive
+          useContext
+          position="bottom-end"
+          html={(
+            <Tip>
+              <DepositModal
+                max={tokenBalance} 
+                onConfirm={onStake}
+                onClose={onDepositClose}
+                tokenName={lpSymbol}
+                addLiquidityUrl={addLiquidityUrl}
+                depositFee={depositFee} 
+              />
+            </Tip>
+          )}
         >
-          {t('Stake')}
-        </Button>
-      </Tooltip>
+          <ButtonMenuItem onClick={(e) => {
+            e.stopPropagation()
+            setDepositIsOpen(true)
+          }}>
+            <Deposit isDark={isDark} />
+            <Text
+              fontSize="14px"
+              fontWeight="bold"
+            >
+              Deposit
+            </Text>
+          </ButtonMenuItem>
+        </Tooltip>
+        <Tooltip 
+          trigger="click"
+          open={withdrawIsOpen}
+          interactive
+          useContext
+          position="bottom-end"
+          html={(
+            <Tip>
+              <WithdrawModal
+                max={stakedBalance}
+                displayMax={displayBalanceNumber}
+                onConfirm={onUnstake}
+                onClose={onWithdrawClose}
+                tokenName={lpSymbol}
+                depositFee={depositFee} 
+              />
+            </Tip>
+          )}
+        >
+          <ButtonMenuItem onClick={(e) => {
+            e.stopPropagation()
+            setWithdrawIsOpen(true)
+          }}>
+            <Withdraw isDark={isDark} />
+            <Text
+              fontSize="14px"
+              fontWeight="bold"
+            >
+              Withdraw
+            </Text>
+          </ButtonMenuItem>
+        </Tooltip>
+      </ButtonMenu>
     )
   }
 
@@ -234,7 +264,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     <ActionContainer>
       <ActionContent>
         <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
-          {t('Enable')}
+          {t('Enable Vault')}
         </Button>
       </ActionContent>
     </ActionContainer>

@@ -321,6 +321,7 @@ export const useTable = <T extends DataType>(
           display: column.display,
           sort: column.sort,
           align: column.align,
+          platform: column.platform,
           sorted: {
             on: false,
             asc: false,

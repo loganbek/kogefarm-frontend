@@ -4,6 +4,7 @@ export type ColumnType<T> = {
   hidden?: boolean;
   align?: string;
   display?: boolean;
+  platform?: any;
   sort?: ((a: RowType<T>, b: RowType<T>) => number) | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render?: ({ value, row }: { value: any; row: T }) => React.ReactNode;

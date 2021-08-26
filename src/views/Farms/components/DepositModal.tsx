@@ -8,13 +8,20 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 interface DepositModalProps {
   max: BigNumber
   onConfirm: (amount: string) => void
-  onDismiss?: () => void
+  onClose?: () => void
   tokenName?: string
   addLiquidityUrl?: string
   depositFee?: number
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl, depositFee }) => {
+const DepositModal: React.FC<DepositModalProps> = ({
+  max,
+  onConfirm,
+  onClose,
+  tokenName = '',
+  addLiquidityUrl,
+  depositFee
+}) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -71,12 +78,12 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             setPendingTx(true)
             await onConfirm(val)
             setPendingTx(false)
-            onDismiss()
+            onClose()
           }}
         >
-          {pendingTx ? t('Pending Confirmation') : t('Deposit')}
+          {pendingTx ? t('Pending...') : t('Deposit')}
         </Button>
-        <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
+        <Button variant="secondary" onClick={onClose} width="100%" disabled={pendingTx}>
           {t('Cancel')}
         </Button>
       </Flex>
