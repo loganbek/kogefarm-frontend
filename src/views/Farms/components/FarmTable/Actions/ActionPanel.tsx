@@ -7,11 +7,9 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
 import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL } from 'config'
 
-// import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
-// import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
 
@@ -159,7 +157,7 @@ const Info = styled.div`
   column-gap: 10px;
   row-gap: 10px;
   grid-template-areas: 
-    "staked staked underlying"
+    "staked staked staked"
     "apr return fee";
   
   > div {
@@ -171,6 +169,10 @@ const Info = styled.div`
 
 const Staked = styled.div`
   grid-area: staked;
+
+  small {
+
+  }
 `
 
 const Underlying = styled.div`
@@ -203,8 +205,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apr,
   apy,
-//  apyd,
-//  multiplier,
   liquidity,
   userValue,
   userDataReady,
@@ -274,6 +274,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   }
 
 
+  console.log(farm)
   return (
     <Container expanded={expanded}>
       <Wrapper>
@@ -298,10 +299,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </InfoContainer>
           <ValueContainer>
             <ValueWrapper>
-              <Text>{t('APR')}</Text>
-              <Apr {...apr} />
-            </ValueWrapper>
-            <ValueWrapper>
               <Text>{t('APY')}</Text>
               <Apy {...apy} />
             </ValueWrapper>
@@ -321,28 +318,27 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Staked>
                 <Title>LPs Staked</Title>
                 <Stat>697,896.00</Stat>
+                <Text
+                  fontSize="10px"
+                  textTransform="uppercase"
+                  mt="5px"
+                >
+                  {farm.lpSymbol}
+                </Text>
               </Staked>
-              <Underlying>
-                <Title>Underlying APR</Title>
-                <Stat>423.56%</Stat>
-              </Underlying>
               <APR>
                 <Title>Underlying APR</Title>
-                <Stat>423.56%</Stat>
+                <Stat>{(farm.apr ?? 0).toFixed(2)}%</Stat>
               </APR>
               <Return>
                 <Title>Daily Return</Title>
                 <Stat>1.17%</Stat>
               </Return>
               <Fee>
-                <Title>Deposit Fee (Third-Party)</Title>
+                <Title>Daily LP Return</Title>
                 <Stat>3%</Stat>
               </Fee>
-
             </Info>
-            {/* <ActionContainer>
-              <StakedAction {...farm} userDataReady={userDataReady} />
-            </ActionContainer> */}
           </InfoWrapper>
         </ContainerWrapper>
       </Wrapper>

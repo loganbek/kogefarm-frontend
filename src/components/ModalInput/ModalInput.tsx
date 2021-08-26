@@ -15,38 +15,32 @@ interface ModalInputProps {
   depositFee?: number
 }
 
-const getBoxShadow = ({ isWarning = false, theme }) => {
-  if (isWarning) {
-    return theme.shadows.warning
-  }
-
-  return theme.shadows.inset
-}
-
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
-  box-shadow: ${getBoxShadow};
   color: ${({ theme }) => theme.colors.text};
-  padding: 8px 16px 8px 0;
   width: 100%;
 `
 
+const StyledInputWrapper = styled.div`
+  position: relative;
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 2px;
+
+  }
+`
+
 const StyledInput = styled(Input)`
-  box-shadow: none;
-  width: 60px;
-  margin: 0 8px;
-  padding: 0 8px;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    width: 80px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-  }
+  background-color: transparent;
+  width: 100%;
+  margin: 0;
+  border: 2px solid #1EA306;
+  box-sizing: border-box;
+  border-radius: 4px;
 `
 
 const StyledErrorMessage = styled(Text)`
@@ -64,7 +58,6 @@ const ModalInput: React.FC<ModalInputProps> = ({
   onSelectMax,
   value,
   addLiquidityUrl,
-  inputTitle,
   depositFee,
 }) => {
   const { t } = useTranslation()
@@ -84,40 +77,40 @@ const ModalInput: React.FC<ModalInputProps> = ({
   return (
     <div style={{ position: 'relative' }}>
       <StyledTokenInput isWarning={isBalanceZero}>
-        <Flex justifyContent="space-between" pl="16px">
-          <Text fontSize="14px">{inputTitle}</Text>
-          <Text fontSize="14px">
-            {t('Balance')}: {displayBalance(max)}
-          </Text>
-        </Flex>
-        <Flex alignItems="flex-end" justifyContent="space-around">
+        <StyledInputWrapper>
           <StyledInput
             pattern="^[0-9]*[.,]?[0-9]*$"
             inputMode="decimal"
             step="any"
             min="0"
             onChange={onChange}
-            placeholder="0"
+            placeholder="0.00"
             value={value}
           />
-          <Button scale="sm" onClick={onSelectMax} mr="8px">
+          <Button
+            scale="xs"
+            onClick={onSelectMax}
+          >
             {t('Max')}
           </Button>
-          <Text fontSize="16px">{symbol}</Text>
-        </Flex>
+        </StyledInputWrapper>
       </StyledTokenInput>
-      {isBalanceZero && (
+      {isBalanceZero ? (
         <StyledErrorMessage fontSize="14px" color="failure">
           No tokens to stake:{' '}
           <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
             {t('get')} {symbol}
           </Link>
         </StyledErrorMessage>
+      ) : (
+        <Text fontSize="10px" mt="5px">
+          {t('Balance')}: {displayBalance(max)} {symbol}
+        </Text>
       )}
       {depositFee && (
-          <Text fontSize="14px" bold={false} color="failure">
-            {t('Note: this vault has a ') + (depositFee*100).toString() + t('% third party deposit fee.')}
-          </Text>
+        <Text fontSize="10px" bold={false} color="failure">
+          {t('Note: this vault has a ') + (depositFee*100).toString() + t('% third party deposit fee.')}
+        </Text>
       )}
     </div>
   )

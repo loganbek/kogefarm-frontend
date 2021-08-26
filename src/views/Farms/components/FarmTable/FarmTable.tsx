@@ -86,6 +86,10 @@ const Header = styled.th`
   cursor: pointer;
 `
 
+const Collapsible = styled.div`
+  margin: 0 28px;
+`
+
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
@@ -113,11 +117,12 @@ const FarmTable: React.FC<ITableProps> = props => {
               <tr>
                 {headers.map(header => (
                   <Header key={header.name} onClick={() => sort(header)}>
-                    {/* @ts-ignore */}
-                    <Flex 
-                      justifyContent={header.align} 
-                      alignItems="center"
-                    >
+                    <Flex justifyContent={header.align} alignItems="center">
+
+                      {header.name === 'details' && (
+                        <Collapsible>ken</Collapsible>
+                      )}
+
                       { header.display ? (
                         <>
                           <span>{header.label}</span>
@@ -134,7 +139,11 @@ const FarmTable: React.FC<ITableProps> = props => {
             </TableHeader>
             <TableBody>
               {rows.map((row) => (
-                <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
+                <Row
+                  {...row.original}
+                  userDataReady={userDataReady}
+                  key={`table-row-${row.id}`} 
+                />
               ))}
             </TableBody>
           </StyledTable>

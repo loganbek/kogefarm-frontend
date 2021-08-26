@@ -22,7 +22,6 @@ const IconImage = styled(Image)`
 `
 
 const Container = styled.div`
-  padding-left: 16px;
   display: flex;
   flex-direction: column;
 `

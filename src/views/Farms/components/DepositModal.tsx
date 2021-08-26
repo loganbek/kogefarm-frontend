@@ -1,7 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, LinkExternal } from 'components/Pancake'
-import ModalActions from 'components/ModalActions'
+import { Button, Flex } from 'components/Pancake'
 import ModalInput from 'components/ModalInput'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -53,7 +52,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Stake tokens')} onDismiss={onDismiss}>
+    <div>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -64,10 +63,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         inputTitle={t('Stake')}
         depositFee = {depositFee}
       />
-      <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
-          {t('Cancel')}
-        </Button>
+      <Flex>
         <Button
           width="100%"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
@@ -78,13 +74,13 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Deposit')}
         </Button>
-      </ModalActions>
-      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
-        {t('Get')} {tokenName}
-      </LinkExternal>
-    </Modal>
+        <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
+          {t('Cancel')}
+        </Button>
+      </Flex>
+    </div>
   )
 }
 

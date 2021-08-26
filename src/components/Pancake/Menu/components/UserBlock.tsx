@@ -43,25 +43,18 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
           html={(
             <Tip>
               <Flex mb="32px" flexDirection="column">
-                <LinkExternal 
-                  small 
-                  href={`https://bscscan.com/address/${account}`} 
-                  mr="16px"
-                >
-                  View on BscScan
-                </LinkExternal>
                 <CopyToClipboard toCopy={account}>Copy Address</CopyToClipboard>
               </Flex>
               <Flex justifyContent="center">
                 <Button
                   scale="sm"
-                  variant="secondary"
+                  variant="danger"
                   onClick={() => {
                     logout();
                     window.localStorage.removeItem(connectorLocalStorageKey);
                   }}
                 >
-                  Logout
+                  Disconnect Wallet
                 </Button>
               </Flex>
             </Tip>

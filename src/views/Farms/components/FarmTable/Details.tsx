@@ -9,7 +9,7 @@ interface DetailsProps {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: center;
   padding-right: 8px;
   color: ${({ theme }) => theme.colors.primary};
 
@@ -19,7 +19,6 @@ const Container = styled.div`
 `
 
 const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
-  margin-left: 28px;
   transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
   height: 20px;
 `

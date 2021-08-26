@@ -52,24 +52,34 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   ${({ disabled, theme, variant }) => {
     if (variant === 'outline') {
       return `
-        border: none;
-        background: transparent;
+        border: 1px solid #A8A8A8;
+        background-color: transparent;
+        border-radius: 4px;
 
-        button {
-          background-color: transparent;
-          border: none;
-          border: 1px solid #A8A8A8;
+        svg {
+          margin-right: 10px;
+        }
 
+        div {
           &:first-of-type {
-            border-radius: 4px 0 0 4px;
-            border-right: none;
+            button {
+              padding-left: 20px;
+              padding-right: 10px;
+            }
           }
 
           &:last-of-type {
-            border-radius: 0 4px 4px 0;
-            border-left: none;
-            margin-left: 0px;
+            button {
+              padding-left: 10px;
+              padding-right: 20px;
+            }
           }
+        }
+
+        button {
+          color: red;
+          font-size: 14px;
+
         }
       `
     }

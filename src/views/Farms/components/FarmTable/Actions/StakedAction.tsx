@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react'
+import { Tooltip } from 'react-tippy'
 import styled from 'styled-components'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton } from 'components/Pancake'
 import { useLocation } from 'react-router-dom'
@@ -22,6 +23,15 @@ import { ActionContainer, ActionTitles, ActionContent, Earned, Title, Subtle } f
 
 const IconButtonWrapper = styled.div`
   display: flex;
+`
+
+const Tip = styled.div`
+  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 360px;
+  padding: 24px;
+  margin-top: 15px;
+  border-radius: 4px;
 `
 
 interface StackedActionProps extends FarmWithStakedValue {
@@ -178,22 +188,32 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
 
     return (
-      <ActionContainer>
-        <ActionTitles>
-          <Subtle>{t('STAKE')} </Subtle>
-          <Title>{lpSymbol}</Title>
-        </ActionTitles>
-        <ActionContent>
-          <Button
-            width="100%"
-            onClick={onPresentDeposit}
-            variant="secondary"
-            disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
-          >
-            {t('Stake')}
-          </Button>
-        </ActionContent>
-      </ActionContainer>
+      <Tooltip 
+        trigger="click"
+        interactive
+        useContext
+        position="bottom-end"
+        html={(
+          <Tip>
+            <DepositModal
+              max={tokenBalance} 
+              onConfirm={onStake}
+              tokenName={lpSymbol}
+              addLiquidityUrl={addLiquidityUrl}
+              depositFee={depositFee} 
+            />
+          </Tip>
+        )}
+      >
+        <Button
+          width="100%"
+          onClick={(e) => e.stopPropagation()}
+          variant="secondary"
+          disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+        >
+          {t('Stake')}
+        </Button>
+      </Tooltip>
     )
   }
 
@@ -212,9 +232,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   return (
     <ActionContainer>
-      <ActionTitles>
-        <Subtle>{t('ENABLE VAULT')}</Subtle>
-      </ActionTitles>
       <ActionContent>
         <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
           {t('Enable')}

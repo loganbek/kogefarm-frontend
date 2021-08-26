@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { Tooltip } from 'react-tippy'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints } from 'components/Pancake'
+import { useMatchBreakpoints, Text } from 'components/Pancake'
 import { Deposit, Withdraw} from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
@@ -11,6 +12,8 @@ import { useFarmUser } from 'state/hooks'
 
 import ButtonMenu from "components/Pancake/ButtonMenu/ButtonMenu"
 import ButtonMenuItem from "components/Pancake/ButtonMenu/ButtonMenuItem"
+
+import StakedAction from './Actions/StakedAction'
 
 import Apr, { AprProps } from './Apr'
 import Apy, { ApyProps } from './Apy'
@@ -76,29 +79,13 @@ const FarmMobileCell = styled.td`
   padding-top: 24px;
 `
 
-const StyledButtonMenu = styled(ButtonMenu)`
-  button {
-    display: flex;
-    padding: 19px 0;
-
-    svg {
-      margin-right: 10px;
-    }
-
-    &:first-of-type {
-      padding-left: 18px;
-      padding-right: 10px;
-    }
-
-    &:last-of-type {
-      padding-right: 18px;
-      padding-left: 10px;
-    }
-  }
-`
-
-const StyledButtonMenuItem = styled(ButtonMenuItem)`
-  font-size: 14px;
+const Tip = styled.div`
+  background: #F4F4F4;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 360px;
+  padding: 24px;
+  margin-top: 5px;
+  border-radius: 4px;
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
@@ -144,20 +131,63 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout align={props.actions.align}>
-                        <StyledButtonMenu
+                        {/* @ts-ignore */}
+                        <StakedAction
+                          {...details}
+                          userDataReady={userDataReady} 
+                        />
+                        {/* <ButtonMenu
                           scale="sm"
                           variant="outline"
                           onItemClick={vaultAction}
                         >
-                          <StyledButtonMenuItem>
-                            <Deposit isDark={isDark} />
-                            Deposit
-                          </StyledButtonMenuItem>
-                          <StyledButtonMenuItem>
-                            <Withdraw isDark={isDark} />
-                            Withdraw
-                          </StyledButtonMenuItem>
-                        </StyledButtonMenu>
+                          <Tooltip 
+                            trigger="click"
+                            interactive
+                            useContext
+                            position="bottom-end"
+                            html={(
+                              <Tip>
+                                <div>ken</div>
+                              </Tip>
+                            )}
+                          >
+                            <ButtonMenuItem onClick={(e) => {
+                              e.stopPropagation()
+                            }}>
+                              <Deposit isDark={isDark} />
+                              <Text
+                                fontSize="14px"
+                                fontWeight="bold"
+                              >
+                                Deposit
+                              </Text>
+                            </ButtonMenuItem>
+                          </Tooltip>
+                          <Tooltip 
+                            trigger="click"
+                            interactive
+                            useContext
+                            position="bottom-end"
+                            html={(
+                              <Tip>
+                                <div>ken</div>
+                              </Tip>
+                            )}
+                          >
+                            <ButtonMenuItem onClick={(e) => {
+                              e.stopPropagation()
+                            }}>
+                              <Withdraw isDark={isDark} />
+                              <Text
+                                fontSize="14px"
+                                fontWeight="bold"
+                              >
+                                Withdraw
+                              </Text>
+                            </ButtonMenuItem>
+                          </Tooltip>
+                        </ButtonMenu> */}
                       </CellLayout>
                     </CellInner>
                   </td>
