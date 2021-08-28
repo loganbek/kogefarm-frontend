@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { AutoCompound } from 'components/Pancake/Svg'
-// import { useFarms, usePriceCakeBusd, useGetApiPrices } from 'state/hooks'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
@@ -17,9 +16,8 @@ import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
-// import { getFarmApr } from 'utils/apr'
 import { getMetaFarmApr } from 'utils/apr'
-import { filter, orderBy } from 'lodash'
+import { filter, orderBy, uniqBy } from 'lodash'
 import { getAddress } from 'utils/addressHelpers'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
@@ -28,7 +26,6 @@ import Select, { OptionProps } from 'components/Select/Select'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
-// import FarmTabButtons from './components/FarmTabButtons'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
@@ -148,15 +145,6 @@ const InfoContainer = styled.div`
 const Price = styled.div`
   b {
     margin-left: 8px;
-  }
-`
-
-const StyledInput = styled.div`
-  position: relative;
-
-  div:first-child {
-    position: absolute;
-    top: 10px;
   }
 `
 
@@ -555,10 +543,10 @@ const Farms: React.FC = () => {
     setSortOption('platform')
   }
 
-  const options = activeFarms.map(farm => ({
+  const options = uniqBy(activeFarms.map(farm => ({
     label: farm.platform,
     value: farm.platform
-  }))
+  })), 'label')
 
   return (
     <Page>

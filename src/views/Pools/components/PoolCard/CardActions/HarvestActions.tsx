@@ -48,7 +48,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   )
 
   return (
-    <Flex flexDirection="column" mb="16px">
+    <div>
       <Flex justifyContent="space-between" alignItems="center">
         <Flex flexDirection="column">
           {isLoading ? (
@@ -80,13 +80,23 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             </>
           )}
         </Flex>
-        <Flex>
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
-            {isCompoundPool ? t('Collect') : t('Harvest')}
-          </Button>
-        </Flex>
       </Flex>
-    </Flex>
+      <Flex mt="12px">
+        <Button
+          width="100%"
+          disabled={!hasEarnings}
+          onClick={onPresentCollect}
+        >
+          {isCompoundPool ? t('Collect') : t('Harvest')}
+        </Button>
+        <Button
+          variant="tertiary"
+          width="50%"
+        >
+          {t('Cancel')}
+        </Button>
+      </Flex>
+    </div>
   )
 }
 
