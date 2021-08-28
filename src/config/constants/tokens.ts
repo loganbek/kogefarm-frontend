@@ -298,6 +298,16 @@ const tokens = {
     decimals: 8,
     projectLink: '',
   },
+  renbtc: {
+    symbol: 'RENBTC',
+    coingeico: 'renbtc',
+    address: {
+      137: '0xDBf31dF14B66535aF65AaC99C32e9eA844e14501',
+      80001: '',
+    },
+    decimals: 8,
+    projectLink: '',
+  },
   curve3pool: {
     symbol: 'USDC/USDT/DAI',
     coingeico: 'curve3pool',
@@ -348,11 +358,41 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  iron4pool: {
+    symbol: 'Iron/USDC/USDT/DAI',
+    coingeico: 'iron4pool',
+    address: {
+      137: '0x985D40feDAA3208DAbaCDFDCA00CbeAAc9543949',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
   atricrypto: {
     symbol: 'atricrypto',
     coingeico: 'atricrypto',
     address: {
       137: '0x8096ac61db23291252574D49f036f0f9ed8ab390',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  atricrypto2: {
+    symbol: 'atricrypto2',
+    coingeico: 'atricrypto2',
+    address: {
+      137: '0xbece5d20A8a104c54183CC316C8286E3F00ffC71',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  atricrypto3: {
+    symbol: 'atricrypto3',
+    coingeico: 'atricrypto3',
+    address: {
+      137: '0xdAD97F7713Ae9437fa9249920eC8507e5FbB23d3',
       80001: '',
     },
     decimals: 18,
@@ -447,6 +487,198 @@ const tokens = {
     },
     decimals: 18,
     projectLink: '',
+  },
+  ghst: {
+    symbol: 'GHST',
+    coingeico: 'ghst',
+    address: {
+      137: '0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  link: {
+    symbol: 'LINK',
+    coingeico: 'link',
+    address: {
+      137: '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  sushi: {
+    symbol: 'Sushi',
+    coingeico: 'sushi',
+    address: {
+      137: '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  ball: {
+    symbol: 'Ball',
+    coingeico: 'ball',
+    address: {
+      137: '0x883aBe4168705d2e5dA925d28538B7a6AA9d8419',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  bnb: {
+    symbol: 'Bnb',
+    coingeico: 'bnb',
+    address: {
+      137: '0xA649325Aa7C5093d12D6F98EB4378deAe68CE23F',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  bel: {
+    symbol: 'Bel',
+    coingeico: 'bel',
+    address: {
+      137: '0x28C388FB1F4fa9F9eB445f0579666849EE5eeb42',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  xmark: {
+    symbol: 'xMark',
+    coingeico: 'xmark',
+    address: {
+      137: '0xf153EfF70DC0bf3b085134928daeEA248d9B30d0',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  cgg: {
+    symbol: 'CGG',
+    coingeico: 'cgg',
+    address: {
+      137: '0x2Ab4f9aC80F33071211729e45Cfc346C1f8446d5',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  arpa: {
+    symbol: 'Arpa',
+    coingeico: 'arpa',
+    address: {
+      137: '0xEE800B277A96B0f490a1A732e1D6395FAD960A26',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  sx: {
+    symbol: 'Sx',
+    coingeico: 'sx',
+    address: {
+      137: '0x840195888Db4D6A99ED9F73FcD3B225Bb3cB1A79',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  sfi: {
+    symbol: 'Sfi',
+    coingeico: 'sfi',
+    address: {
+      137: '0x35b937583F04A24963eb685F728a542240f28Dd8',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  route: {
+    symbol: 'Route',
+    coingeico: 'route',
+    address: {
+      137: '0x16ECCfDbb4eE1A85A33f3A9B21175Cd7Ae753dB4',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  dg: {
+    symbol: 'Dg',
+    coingeico: 'dg',
+    address: {
+      137: '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  myfriends: {
+    symbol: 'myFriends',
+    coingeico: 'myfriends',
+    address: {
+      137: '0xa509Da749745Ac07E9Ae47E7a092eAd2648B47f2',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  arcadium: {
+    symbol: 'Arcadium',
+    coingeico: 'arcadium',
+    address: {
+      137: '0x3F374ed3C8e61A0d250f275609be2219005c021e',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  for: {
+    symbol: 'For',
+    coingeico: 'for',
+    address: {
+      137: '0x546b4c391520E6652897c65153074088BFC0A909',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  dnxc: {
+    symbol: 'DNXC',
+    coingeico: 'dnxc',
+    address: {
+      137: '0xcaF5191fc480F43e4DF80106c7695ECA56E48B18',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  orbs: {
+    symbol: 'Orbs',
+    coingeico: 'orbs',
+    address: {
+      137: '0x614389EaAE0A6821DC49062D56BDA3d9d45Fa2ff',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  kogeremaining: {
+    symbol: 'kogeremaining',
+    coingeico: 'kogeremaining',
+    address: {
+      137: '0x6A82FdE3033a969cf1ECe48D76aA942E9Fc567Db',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  shield: {
+    symbol: 'shield',
+    coingeico: 'shield',
+    address: {
+      137: '0xF239E69ce434c7Fb408b05a0Da416b14917d934e',
+      80001: '',
+    },
+    decimals: 18,
   },
 }
 

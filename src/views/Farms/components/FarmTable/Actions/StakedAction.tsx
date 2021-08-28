@@ -257,8 +257,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   return (
     <ActionContainer>
       <ActionContent>
-        <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
-          {t('Enable Vault')}
+        <Button
+          width="100%"
+          disabled={requestedApproval}
+          onClick={handleApprove}
+          variant="outline"
+        >
+          {t('Enable vault')}
         </Button>
       </ActionContent>
     </ActionContainer>

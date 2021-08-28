@@ -140,33 +140,15 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         html={(
           <Tip>
             {harvest ? (
-              <>
-                <Box display="inline">
-                  <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
-                    {`${earningToken.symbol} `}
-                  </InlineText>
-                  <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-                    Earned
-                  </InlineText>
-                </Box>
-                <HarvestActions
-                  earnings={earnings}
-                  earningToken={earningToken}
-                  sousId={sousId}
-                  pid={pid}
-                  earningTokenPrice={earningTokenPrice}
-                  isLoading={isLoading}
-                />
-              </>
+              <HarvestActions
+                earnings={earnings}
+                earningToken={earningToken}
+                sousId={sousId}
+                pid={pid}
+                earningTokenPrice={earningTokenPrice}
+                isLoading={isLoading}
+              />
             ) : null}
-            <Box display="inline">
-              <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
-                {isStaked ? stakingToken.symbol : t('Stake')}{' '}
-              </InlineText>
-              <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
-                {isStaked ? t('Staked') : `${stakingToken.symbol}`}
-              </InlineText>
-            </Box>
           </Tip>
         )}
       >

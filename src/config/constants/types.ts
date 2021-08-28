@@ -79,6 +79,7 @@ export interface FarmConfig {
   minutesPerCompound: number
   kogefarmFee: number
   kogefarmComment?: string
+  isGravity?: boolean
   rewardToken?: Token
   rewardToken1?: Token
   rewardToken2?: Token

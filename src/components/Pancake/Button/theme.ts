@@ -23,7 +23,7 @@ export const styleVariants = {
   },
   [variants.SECONDARY]: {
     backgroundColor: "transparent",
-    border: "2px solid",
+    border: "1px solid",
     borderColor: "primary",
     boxShadow: "none",
     color: "primary",
@@ -37,8 +37,8 @@ export const styleVariants = {
     color: "textSubtle",
   },
   [variants.OUTLINE]: {
-    backgroundColor: "outline",
-    border: "2px solid",
+    backgroundColor: "transparent",
+    border: "1px solid",
     borderColor: "inputSecondary",
     color: "textSubtle",
   },

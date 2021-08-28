@@ -169,6 +169,7 @@ const Farms: React.FC = () => {
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
+  const [current, setCurrent] = useState(0)
   const [platform, setPlatform] = useState('')
   const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
   const { account } = useWeb3React()
@@ -316,6 +317,7 @@ const Farms: React.FC = () => {
   }
 
   const loadMoreRef = useRef<HTMLDivElement>(null)
+  const handleCurrent = c => setCurrent(c)
 
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -511,7 +513,14 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
+      return (
+        <Table
+          data={rowData}
+          columns={columns}
+          userDataReady={userDataReady}
+          handleCurrent={handleCurrent}
+        />
+      )
     }
 
     return (
@@ -634,7 +643,7 @@ const Farms: React.FC = () => {
     
       <InfoContainer>
         <Text fontSize="12px">
-          Showing 18 of {activeFarms.length} vaults
+          Showing {current} of {activeFarms.length} vaults
         </Text>
         <Price>
           KogeCoin Price

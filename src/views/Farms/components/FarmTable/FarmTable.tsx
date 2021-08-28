@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { useTable, Button, ChevronUpIcon, ColumnType, Flex } from 'components/Pancake'
 import { Sort } from 'components/Pancake/Svg'
@@ -11,6 +11,7 @@ export interface ITableProps {
   columns: ColumnType<RowProps>[]
   userDataReady: boolean
   sortColumn?: string
+  handleCurrent?: (count: number) => void
 }
 
 const Container = styled.div`
@@ -93,7 +94,7 @@ const Collapsible = styled.div`
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
-  const { data, columns, userDataReady } = props
+  const { data, columns, userDataReady, handleCurrent } = props
 
   const { rows, toggleSort, headers } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
@@ -106,6 +107,10 @@ const FarmTable: React.FC<ITableProps> = props => {
   const sort = ({ name }) => {
     toggleSort(name)
   }
+
+  useEffect(() => {
+    handleCurrent(rows.length)
+  }, [rows, handleCurrent])
 
   return (
     <Container>
