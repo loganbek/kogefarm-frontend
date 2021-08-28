@@ -114,7 +114,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     id: 7,
     name: 'platform',
     translationId: 999,
-    sortable: true,
+    sortable: false,
     label: 'Platform',
     align: 'flex-start',
     display: true,

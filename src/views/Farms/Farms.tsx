@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
+import { Tooltip } from 'react-tippy'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -49,15 +50,23 @@ const ControlContainer = styled.div`
   }
 `
 
+const Tip = styled.div`
+  background: ${({ theme }) => theme.colors.tertiary};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 24px;
+  margin-top: 15px;
+  border-radius: 4px;
+  width: 300px;
+`
+
 const StyledText = styled(Text)`
-  div {
-    display: inline-block;
-    height: 24px;
-    width: 24px;
+  svg {
     position: relative;
     top: 7px;
     left: -2px;
     margin: 0 4px;
+
   }
 `
 
@@ -131,10 +140,12 @@ const StyledImage = styled(Image)`
 
 const InfoContainer = styled.div`
   width: 100%;
+  justify-content: space-between;
   display: flex;
-  justify-content: flex-end;
   margin-top: 26px;
+`
 
+const Price = styled.div`
   b {
     margin-left: 8px;
   }
@@ -550,15 +561,27 @@ const Farms: React.FC = () => {
         <StyledText mb="16px">
           {t('KogeFarm helps you earn more yield by ')}
           {' '}
-          <div>
-            <AutoCompound />
-          </div>
-          <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>
+          <AutoCompound />
+          {' '}
+          <Tooltip
+            trigger="mouseenter"
+            position="bottom"
+            useContext
+            html={(
+              <Tip>
+                <Text fontSize="14px">
+                  Auto-compounding means that rather than having to manually re-stake your token every so often in order to get the best APY, it will be done for you.
+                </Text>
+              </Tip>
+          )}>
+            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>.
+          </Tooltip>
           {' '}
           <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
           {' '}
           by Obelisk.
         </StyledText>
+  
       </Hero>
       <ControlContainer>
         <ViewControls>
@@ -608,10 +631,17 @@ const Farms: React.FC = () => {
           </LabelWrapper>
         </FilterContainer>
       </ControlContainer>
+    
       <InfoContainer>
-        KogeCoin Price
-        <b>${kogePrice?.toFixed(4) ?? 0}</b>
+        <Text fontSize="12px">
+          Showing 18 of {activeFarms.length} vaults
+        </Text>
+        <Price>
+          KogeCoin Price
+          <b>${kogePrice?.toFixed(4) ?? 0}</b>
+        </Price>
       </InfoContainer>
+
       {renderContent()}
       <div ref={loadMoreRef} />
       <Text color="text" textAlign="center" fontSize="125%">

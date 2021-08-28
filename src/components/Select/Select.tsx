@@ -20,8 +20,10 @@ const DropDownListContainer = styled.div`
   min-width: 136px;
   height: 0;
   position: absolute;
+  top: 45px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.input};
+  background: ${({ theme }) => theme.colors.tertiary};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);
@@ -50,18 +52,14 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
     props.isOpen &&
     css`
       ${DropDownHeader} {
-        border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-        box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
-        border-radius: 4px 4px 0 0;
+        border-radius: 4px;
       }
 
       ${DropDownListContainer} {
         height: auto;
         transform: scaleY(1);
         opacity: 1;
-        border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-        border-top-width: 0;
-        border-radius: 0 0 4px 4px;
+        border-radius: 4px;
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
       }
     `}
@@ -83,7 +81,8 @@ const DropDownList = styled.ul`
 
 const ListItem = styled.li`
   list-style: none;
-  padding: 8px 16px;
+  padding: 12px 24px;
+
   &:hover {
     background: ${({ theme }) => theme.colors.inputSecondary};
   }
@@ -137,7 +136,12 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
           {options.map((option) =>
             option.label !== selectedOption.label ? (
               <ListItem onClick={onOptionClicked(option)} key={option.label}>
-                <Text>{option.label}</Text>
+                <Text
+                  fontSize="14px"
+                  fontWeight="bold"
+                >
+                  {option.label}
+                </Text>
               </ListItem>
             ) : null,
           )}

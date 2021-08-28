@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useFarmUser } from 'state/hooks'
-import { useTranslation } from 'contexts/Localization'
 import { Text, Image } from 'components/Pancake'
-import { getBalanceNumber } from 'utils/formatBalance'
 
 export interface FarmProps {
   label: string
@@ -26,23 +23,7 @@ const Container = styled.div`
   flex-direction: column;
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
-  const { stakedBalance } = useFarmUser(pid)
-  const { t } = useTranslation()
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
-
-  const handleRenderFarming = (): JSX.Element => {
-    if (rawStakedBalance) {
-      return (
-        <Text color="secondary" fontSize="12px" bold>
-          {t('FARMING')}
-        </Text>
-      )
-    }
-
-    return null
-  }
-
+const Farm: React.FunctionComponent<FarmProps> = ({ image, label }) => {
   return (
     <Container>
       <IconImage
@@ -53,7 +34,6 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
         mr="8px" 
       />
       <div>
-        {handleRenderFarming()}
         <Text fontSize="14px" bold>{label}</Text>
       </div>
     </Container>

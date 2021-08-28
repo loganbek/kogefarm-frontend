@@ -17,7 +17,7 @@ const Container = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
-  margin: 16px 0px;
+  margin-bottom: 16px;
 `
 
 const TableWrapper = styled.div`
@@ -117,7 +117,11 @@ const FarmTable: React.FC<ITableProps> = props => {
               <tr>
                 {headers.map(header => (
                   <Header key={header.name} onClick={() => sort(header)}>
-                    <Flex justifyContent={header.align} alignItems="center">
+                    <Flex
+                      justifyContent={header.align}
+                      alignItems="center"
+                      padding="0 24px"
+                    >
 
                       {header.name === 'details' && (
                         <Collapsible>ken</Collapsible>

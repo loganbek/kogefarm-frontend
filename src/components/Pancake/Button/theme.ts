@@ -47,8 +47,8 @@ export const styleVariants = {
     color: "buttonToggleColor",
   },
   [variants.DANGER]: {
-    backgroundColor: "failure",
-    color: "white",
+    backgroundColor: "transparent",
+    color: "failure",
   },
   [variants.SUCCESS]: {
     backgroundColor: "success",

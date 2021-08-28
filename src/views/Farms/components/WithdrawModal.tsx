@@ -72,7 +72,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         inputTitle={t('LP share')}
         depositFee = {depositFee}
       />
-      <Flex>
+      <Flex mt="12px">
         <Button
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullDisplayBalanceNumber)}
           onClick={async () => {
@@ -89,7 +89,12 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         >
           {pendingTx ? t('Pending...') : t('Withdraw')}
         </Button>
-        <Button variant="secondary" onClick={onClose} width="100%" disabled={pendingTx}>
+        <Button
+          variant="tertiary"
+          onClick={onClose}
+          width="50%"
+          disabled={pendingTx}
+        >
           {t('Cancel')}
         </Button>
       </Flex>

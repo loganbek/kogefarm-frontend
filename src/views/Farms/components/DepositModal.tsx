@@ -70,7 +70,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         inputTitle={t('Stake')}
         depositFee = {depositFee}
       />
-      <Flex>
+      <Flex mt="12px">
         <Button
           width="100%"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
@@ -83,7 +83,12 @@ const DepositModal: React.FC<DepositModalProps> = ({
         >
           {pendingTx ? t('Pending...') : t('Deposit')}
         </Button>
-        <Button variant="secondary" onClick={onClose} width="100%" disabled={pendingTx}>
+        <Button
+          variant="tertiary"
+          onClick={onClose}
+          width="50%"
+          disabled={pendingTx}
+        >
           {t('Cancel')}
         </Button>
       </Flex>

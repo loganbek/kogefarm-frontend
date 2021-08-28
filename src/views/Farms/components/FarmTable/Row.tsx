@@ -50,7 +50,7 @@ const cells = {
 }
 
 const CellInner = styled.div`
-  padding: 24px 0;
+  padding: 24px;
   display: flex;
   width: 100%;
   align-items: center;

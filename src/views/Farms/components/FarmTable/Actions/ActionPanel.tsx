@@ -274,7 +274,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   }
 
 
-  console.log(farm)
   return (
     <Container expanded={expanded}>
       <Wrapper>

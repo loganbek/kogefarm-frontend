@@ -39,7 +39,7 @@ const IconButtonWrapper = styled.div`
 `
 
 const Tip = styled.div`
-  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  background: ${({ theme }) => theme.colors.tertiary};
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   width: 360px;
   padding: 24px;
@@ -166,9 +166,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (!account) {
     return (
       <ActionContainer>
-        <ActionTitles>
-          <Subtle>{t('START FARMING')}</Subtle>
-        </ActionTitles>
         <ActionContent>
           <UnlockButton width="100%" />
         </ActionContent>
@@ -250,9 +247,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (!userDataReady) {
     return (
       <ActionContainer>
-        <ActionTitles>
-          <Subtle>{t('START FARMING')}</Subtle>
-        </ActionTitles>
         <ActionContent>
           <Skeleton width={180} marginBottom={28} marginTop={14} />
         </ActionContent>
