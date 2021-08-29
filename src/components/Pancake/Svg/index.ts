@@ -34,6 +34,7 @@ export { default as Coin98Icon } from "./Icons/Coin98";
 export { default as CommunityIcon } from "./Icons/Community";
 export { default as CopyIcon } from "./Icons/Copy";
 export { default as CrownIcon } from "./Icons/Crown";
+export { default as Collapsible } from "./Icons/Collapsible";
 export { default as Deposit } from "./Icons/Deposit";
 export { default as ErrorIcon } from "./Icons/Error";
 export { default as HelpIcon } from "./Icons/Help";

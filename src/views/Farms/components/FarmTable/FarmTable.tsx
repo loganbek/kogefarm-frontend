@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useRef, useEffect, useState } from 'react'
+import styled, { css } from 'styled-components'
 import { useTable, Button, ChevronUpIcon, ColumnType, Flex } from 'components/Pancake'
-import { Sort } from 'components/Pancake/Svg'
+import { Sort, Collapsible } from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 
 import Row, { RowProps } from './Row'
@@ -87,13 +87,22 @@ const Header = styled.th`
   cursor: pointer;
 `
 
-const Collapsible = styled.div`
+const CollapsibleContainer = styled.div`
   margin: 0 28px;
+`
+
+const StyledCollapsible = styled(Collapsible)<{ open?: boolean }>`
+  ${({ open }) => open ? css`
+    transform: rotate(180deg);
+  ` : css`
+    transform: rotate(0deg);
+  `}
 `
 
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
+  const [open, setOpen] = useState(false)
   const { data, columns, userDataReady, handleCurrent } = props
 
   const { rows, toggleSort, headers } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
@@ -104,9 +113,8 @@ const FarmTable: React.FC<ITableProps> = props => {
     })
   }
 
-  const sort = ({ name }) => {
-    toggleSort(name)
-  }
+  const sort = ({ name }) => toggleSort(name)
+  const handleOpen = () => setOpen(!open)
 
   useEffect(() => {
     handleCurrent(rows.length)
@@ -129,7 +137,13 @@ const FarmTable: React.FC<ITableProps> = props => {
                     >
 
                       {header.name === 'details' && (
-                        <Collapsible>ken</Collapsible>
+                        <CollapsibleContainer>
+                          <StyledCollapsible
+                            open={open}
+                            color="transparent"
+                            onClick={handleOpen} 
+                          />
+                        </CollapsibleContainer>
                       )}
 
                       { header.display ? (
@@ -150,6 +164,7 @@ const FarmTable: React.FC<ITableProps> = props => {
               {rows.map((row) => (
                 <Row
                   {...row.original}
+                  open={open}
                   userDataReady={userDataReady}
                   key={`table-row-${row.id}`} 
                 />

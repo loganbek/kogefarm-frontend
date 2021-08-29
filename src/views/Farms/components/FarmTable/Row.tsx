@@ -32,6 +32,7 @@ export interface RowProps {
   actions: any
   platform?: any
   align?: string
+  open?: boolean
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -71,8 +72,8 @@ const FarmMobileCell = styled.td`
   padding-top: 24px;
 `
 
-const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
-  const { details, userDataReady } = props
+const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
+  const { details, userDataReady, open } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
   const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
@@ -85,6 +86,14 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   useEffect(() => {
     setActionPanelExpanded(hasStakedAmount)
   }, [hasStakedAmount])
+
+  useEffect(() => {
+    if (open) {
+      setActionPanelExpanded(true)
+    } else {
+      setActionPanelExpanded(false)
+    }
+  }, [open])
 
   const { isXl, isXs } = useMatchBreakpoints()
 
