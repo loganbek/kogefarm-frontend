@@ -1,5 +1,7 @@
 import React from 'react'
-import { Flex, TooltipText, Skeleton, useTooltip } from 'components/Pancake'
+import { Tooltip } from 'react-tippy'
+import styled from 'styled-components'
+import { Flex, Skeleton, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
@@ -15,6 +17,15 @@ interface AprRowProps {
   performanceFee?: number
 }
 
+const Tip = styled.div`
+  background: ${({ theme }) => theme.colors.tertiary};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  padding: 24px;
+  margin-top: 15px;
+  border-radius: 4px;
+`
+
 const AprRow: React.FC<AprRowProps> = ({
   pool,
   isAutoVault = false,
@@ -23,12 +34,6 @@ const AprRow: React.FC<AprRowProps> = ({
 }) => {
   const { t } = useTranslation()
   const { stakingToken, earningToken, totalStaked, isFinished, tokenPerBlock } = pool
-
-  const tooltipContent = isAutoVault
-    ? t('APY includes compounding, APR doesn’t. This farm is compounded automatically, so we show APY.')
-    : t('This farm\'s rewards aren’t compounded automatically, so we show APR')
-
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
 
   const earningTokenPrice = useGetApiPrice(earningToken.coingeico)
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
@@ -65,8 +70,27 @@ const AprRow: React.FC<AprRowProps> = ({
 
   return (
     <Flex justifyContent="space-between" flexDirection="column">
-      {tooltipVisible && tooltip}
-      <TooltipText ref={targetRef}>{isAutoVault ? t('APY') : t('APR')}:</TooltipText>
+      <div>
+        <Tooltip
+          trigger="mouseenter"
+          interactive
+          useContext
+          position="bottom"
+          html={(
+            <Tip>
+              { isAutoVault 
+                ? t('APY includes compounding, APR doesn’t. This farm is compounded automatically, so we show APY.')
+                : t('This farm\'s rewards aren’t compounded automatically, so we show APR')
+              }
+            </Tip>
+          )}
+        >
+          <Text fontSize="14px" fontWeight="600">
+            {isAutoVault ? t('APY') : t('APR')}
+          </Text>
+        </Tooltip>
+      </div>
+
       {isFinished || !apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (

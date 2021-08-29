@@ -131,7 +131,7 @@ const ApyCalculatorModal = ({
 						</th>
 						<th>
 							<Text fontSize="12px" bold color="textSubtle">
-								{t('TOTAL STACKED x ROI')}
+								{t('Total Staked x ROI')}
 							</Text>
 						</th>
 					</tr>
@@ -139,7 +139,9 @@ const ApyCalculatorModal = ({
 				<tbody>
 					<tr>
 						<td>
-							<Text fontSize="12px">1d</Text>
+							<Text fontSize="12px">
+								1d
+							</Text>
 						</td>
 						<td>
 							<Text fontSize="12px">
@@ -147,53 +149,59 @@ const ApyCalculatorModal = ({
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
-								{ (getTotalStakedBalance() * Number(oneDayRoi ?? 0) / 100).toFixed(2) }
+							<Text fontSize="12px" fontWeight="bold">
+								${ (getTotalStakedBalance() * Number(oneDayRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<Text fontSize="12px">7d</Text>
+							<Text fontSize="12px">
+								7d
+							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
+							<Text fontSize="12px" fontWeight="bold">
 								{ sevenDayRoi }%
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
-								{ (getTotalStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toFixed(2) }
+							<Text fontSize="12px" fontWeight="bold">
+								${ (getTotalStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<Text fontSize="12px">30d</Text>
+							<Text fontSize="12px">
+								30d
+							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
+							<Text fontSize="12px" fontWeight="bold">
 								{thirtyDayRoi}%
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
-								{ (getTotalStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toFixed(2) }
+							<Text fontSize="12px" fontWeight="bold">
+								${ (getTotalStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<Text fontSize="12px">365d</Text>
+							<Text fontSize="12px">
+								365d
+							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
+							<Text fontSize="12px" fontWeight="bold">
 								{threeSixtyFiveRoi}%
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
-								{ (getTotalStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toFixed(2) }
+							<Text fontSize="12px" fontWeight="bold">
+								${ (getTotalStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
