@@ -1,4 +1,5 @@
 import React from 'react'
+import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useGetApiPrice } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -59,6 +60,12 @@ const ApyCalculatorModal = ({
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
   const oneThousandDollarsWorthOfToken = 1000 / earningTokenPrice
 
+  const totalLiquidity = totalStaked.times(new BigNumber(stakingTokenPrice))
+
+  const getTotalStakedBalance = () => {
+    return getBalanceNumber(totalLiquidity, stakingToken.decimals)
+  }
+
   const apr = getPoolApr(
     stakingTokenPrice,
     earningTokenPrice,
@@ -103,6 +110,9 @@ const ApyCalculatorModal = ({
   })
 
 	const oneDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
+	const sevenDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
+	const thirtyDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
+	const threeSixtyFiveRoi = getRoi({ amountEarned: tokenEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
 
   return (
 		<>
@@ -137,7 +147,9 @@ const ApyCalculatorModal = ({
 							</Text>
 						</td>
 						<td>
-							ken
+							<Text fontSize="12px">
+								{ (getTotalStakedBalance() * Number(oneDayRoi ?? 0) / 100).toFixed(2) }
+							</Text>
 						</td>
 					</tr>
 					<tr>
@@ -146,14 +158,13 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px">
-								{getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
-									roundingDecimals,
-								)}
-								%
+								{ sevenDayRoi }%
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">ken</Text>
+							<Text fontSize="12px">
+								{ (getTotalStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toFixed(2) }
+							</Text>
 						</td>
 					</tr>
 					<tr>
@@ -162,15 +173,13 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px">
-								{getRoi({
-									amountEarned: tokenEarnedPerThousand30D,
-									amountInvested: oneThousandDollarsWorthOfToken,
-								}).toFixed(roundingDecimals)}
-								%
+								{thirtyDayRoi}%
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">ken</Text>
+							<Text fontSize="12px">
+								{ (getTotalStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toFixed(2) }
+							</Text>
 						</td>
 					</tr>
 					<tr>
@@ -179,15 +188,13 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px">
-								{getRoi({
-									amountEarned: tokenEarnedPerThousand365D,
-									amountInvested: oneThousandDollarsWorthOfToken,
-								}).toFixed(roundingDecimals)}
-								%
+								{threeSixtyFiveRoi}%
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">ken</Text>
+							<Text fontSize="12px">
+								{ (getTotalStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toFixed(2) }
+							</Text>
 						</td>
 					</tr>
 				</tbody>
