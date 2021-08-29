@@ -51,7 +51,6 @@ const cells = {
 }
 
 const CellInner = styled.div`
-  padding: 24px;
   display: flex;
   width: 100%;
   align-items: center;
@@ -61,6 +60,10 @@ const CellInner = styled.div`
 const StyledTr = styled.tr`
   cursor: pointer;
   background: ${({ theme }) => theme.colors.row};
+
+  td {
+    padding: 24px;
+  }
 `
 
 const ApyMobileCell = styled.td`

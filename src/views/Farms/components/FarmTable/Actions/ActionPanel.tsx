@@ -51,16 +51,16 @@ const Container = styled.div<{ expanded }>`
       : css`
           ${collapseAnimation} 300ms linear forwards
         `};
-  overflow: hidden;
   background: ${({ theme }) => theme.colors.row};
   display: flex;
   width: 100%;
+  overflow: hidden;
   flex-direction: column-reverse;
   padding: 24px;
-  margin-top: -7px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  margin-bottom: 12px;
+  position: relative;
+  top: -16px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
@@ -102,10 +102,10 @@ const StakeContainer = styled.div`
 const TagsContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 35px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-top: 16px;
+    margin-top: 40px;
   }
 
   > div {
@@ -121,8 +121,7 @@ const TagsContainer = styled.div`
 `
 
 const InfoContainer = styled.div`
-  min-width: 200px;
-  padding-left: 98px;
+  padding-left: 112px;
 
   a {
     font-weight: 600;
@@ -153,7 +152,6 @@ const Info = styled.div`
   height: 100%;
 
   display: grid;
-  grid-template-columns: 33% 33% 33%;
   column-gap: 10px;
   row-gap: 10px;
   grid-template-areas: 
@@ -169,14 +167,6 @@ const Info = styled.div`
 
 const Staked = styled.div`
   grid-area: staked;
-
-  small {
-
-  }
-`
-
-const Underlying = styled.div`
-  grid-area: underlying;
 `
 
 const APR = styled.div`

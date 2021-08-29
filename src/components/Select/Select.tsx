@@ -127,7 +127,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling}>
-          <Text>{selectedOption.label}</Text>
+          <Text fontSize="14px">{selectedOption.label}</Text>
         </DropDownHeader>
       )}
       <ArrowDropDownIcon color="text" onClick={toggling} />

@@ -4,7 +4,7 @@ import { Tooltip } from 'react-tippy'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from 'components/Pancake'
+import { Image, Heading, RowType, Toggle, Text, Flex, Box } from 'components/Pancake'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -76,7 +76,7 @@ const ToggleWrapper = styled.div`
   }
 `
 
-const Hero = styled.div`
+const Hero = styled(Flex)`
   a {
     color: #1EA306;
     text-decoration: underline;
@@ -142,7 +142,7 @@ const InfoContainer = styled.div`
   margin-top: 26px;
 `
 
-const Price = styled.div`
+const Price = styled(Flex)`
   b {
     margin-left: 8px;
   }
@@ -551,34 +551,46 @@ const Farms: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading scale="lg" mb="16px">
-          Vaults to stake
-        </Heading>
-
-        <StyledText mb="16px">
-          {t('KogeFarm helps you earn more yield by ')}
-          {' '}
-          <AutoCompound />
-          {' '}
-          <Tooltip
-            trigger="mouseenter"
-            position="bottom"
-            useContext
-            html={(
-              <Tip>
-                <Text fontSize="14px">
-                  Auto-compounding means that rather than having to manually re-stake your token every so often in order to get the best APY, it will be done for you.
-                </Text>
-              </Tip>
-          )}>
-            <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>.
-          </Tooltip>
-          {' '}
-          <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
-          {' '}
-          by Obelisk.
-        </StyledText>
-  
+        <Flex width="70%" flexDirection="column" mb="30px">
+          <Heading scale="lg" mb="16px">
+            Vaults to stake
+          </Heading>
+          <StyledText mb="16px">
+            {t('KogeFarm helps you earn more yield by ')}
+            {' '}
+            <AutoCompound />
+            {' '}
+            <Tooltip
+              trigger="mouseenter"
+              position="bottom"
+              useContext
+              html={(
+                <Tip>
+                  <Text fontSize="14px">
+                    Auto-compounding means that rather than having to manually re-stake your token every so often in order to get the best APY, it will be done for you.
+                  </Text>
+                </Tip>
+            )}>
+              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>.
+            </Tooltip>
+            {' '}
+            <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
+            {' '}
+            by Obelisk.
+          </StyledText>
+        </Flex>
+        <Flex width="30%" justifyContent="flex-end">
+          <Flex flexDirection="column" width="100%">
+            <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px">
+              <Text fontSize="14px" fontWeight="bold">KogeCoin Price</Text>
+              <Text fontSize="14px" fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
+            </Price>
+            <Price alignItems="center" width="100%" justifyContent="space-between">
+              <Text fontSize="14px" fontWeight="bold">Vault TVL</Text>
+              <Text fontSize="14px" fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
+            </Price>
+          </Flex>
+        </Flex>
       </Hero>
       <ControlContainer>
         <ViewControls>
@@ -594,7 +606,7 @@ const Farms: React.FC = () => {
             <SearchInput onChange={handleChangeQuery} />
           </LabelWrapper>
           <LabelWrapper style={{ marginLeft: 24 }}>
-            <Text>SORT BY</Text>
+            <Text fontSize="10px">Sort By</Text>
             <Select
               options={[
                 {
@@ -633,10 +645,6 @@ const Farms: React.FC = () => {
         <Text fontSize="12px">
           Showing {current} of {activeFarms.length} vaults
         </Text>
-        <Price>
-          KogeCoin Price
-          <b>${kogePrice?.toFixed(4) ?? 0}</b>
-        </Price>
       </InfoContainer>
 
       {renderContent()}

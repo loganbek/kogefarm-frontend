@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { Tooltip } from 'react-tippy'
 import styled, { css } from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType, Flex } from 'components/Pancake'
+import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'components/Pancake'
 import { Sort, Collapsible } from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 
@@ -30,13 +31,22 @@ const TableWrapper = styled.div`
 `
 
 const StyledTable = styled.table`
-  border-collapse: separate; 
+  border-collapse: separate;
   border-spacing: 0 12px;
   font-size: 14px;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+`
+
+const Tip = styled.div`
+  background: ${({ theme }) => theme.colors.tertiary};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 24px;
+  margin-top: 15px;
+  border-radius: 4px;
 `
 
 const TableBody = styled.tbody`
@@ -68,7 +78,7 @@ const TableHeader = styled.thead`
 
   th {
     color: ${({ theme }) => theme.colors.rowHeaderText};
-    padding: 22px 0;
+    padding: 24px;
   }
 `
 
@@ -85,6 +95,7 @@ const ScrollButtonContainer = styled.div`
 
 const Header = styled.th`
   cursor: pointer;
+  vertical-align: middle;
 `
 
 const CollapsibleContainer = styled.div`
@@ -97,6 +108,10 @@ const StyledCollapsible = styled(Collapsible)<{ open?: boolean }>`
   ` : css`
     transform: rotate(0deg);
   `}
+`
+
+const Label = styled(Text)`
+  display: inline-block;
 `
 
 const FarmTable: React.FC<ITableProps> = props => {
@@ -133,22 +148,39 @@ const FarmTable: React.FC<ITableProps> = props => {
                     <Flex
                       justifyContent={header.align}
                       alignItems="center"
-                      padding="0 24px"
                     >
 
                       {header.name === 'details' && (
-                        <CollapsibleContainer>
-                          <StyledCollapsible
-                            open={open}
-                            color="transparent"
-                            onClick={handleOpen} 
-                          />
-                        </CollapsibleContainer>
+                        <Tooltip
+                          trigger="mouseenter"
+                          interactive
+                          useContext
+                          position="bottom"
+                          html={(
+                            <Tip>
+                              { open ? "Collapse all" : "Open all"}
+                            </Tip>
+                          )}
+                        >
+
+                          <CollapsibleContainer>
+                            <StyledCollapsible
+                              open={open}
+                              color="transparent"
+                              onClick={handleOpen} 
+                            />
+                          </CollapsibleContainer>
+                        </Tooltip>
                       )}
 
                       { header.display ? (
                         <>
-                          <span>{header.label}</span>
+                          <Label
+                            fontSize="14px"
+                            fontWeight="bold"
+                          >
+                            {header.label}
+                          </Label>
                           {/* @ts-ignore */}
                           { header.sortable && (
                             <Sort asc={header.sorted.asc} on={header.sorted.on} />
