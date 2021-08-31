@@ -38,6 +38,22 @@ const Progress = styled.div<{ progress: number}>`
   }
 `
 
+const StyledFlex = styled(Flex)`
+  @media screen and (max-width: 576px) {
+    width: 100%;
+    padding: 0;
+
+    .info {
+      order: 1;
+    }
+
+    .progress {
+      order: 0;
+      margin-bottom: 20px;
+    }
+  }
+`
+
 const MINTED = 100000;
 const TOTAL_SUPPLY = 800000;
 
@@ -100,15 +116,16 @@ const Pools: React.FC = () => {
 
   return (
     <Page>
-      <Flex
+      <StyledFlex
         justifyContent="space-between" 
         flexDirection={['column', null, 'row']}
       >
-        <Flex 
+        <StyledFlex 
           flexDirection="column"
           mr={['8px', 0]}
           width="70%"
           pr="20%"
+          className="info"
         >
           <Heading scale="lg" mb="16px">
             {t('Farms to invest')}
@@ -116,11 +133,12 @@ const Pools: React.FC = () => {
           <Text mb="32px" fontSize="16px">
             {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply are being distributed to holders through this farm.')}
           </Text>
-        </Flex>
-        <Flex
+        </StyledFlex>
+        <StyledFlex
           alignItems="center"
           flexDirection="column" 
           width="30%"
+          className="progress"
         >
           <Flex
             justifyContent="space-between"
@@ -152,8 +170,8 @@ const Pools: React.FC = () => {
               100,000
             </Text>
           </Flex>
-        </Flex>
-      </Flex>
+        </StyledFlex>
+      </StyledFlex>
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>

@@ -9,6 +9,10 @@ const FlexLayout = styled.div`
     width: 100%;
     margin-bottom: 32px;
   }
+
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export default FlexLayout

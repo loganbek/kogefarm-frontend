@@ -70,6 +70,10 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
     top: 50%;
     transform: translateY(-50%);
   }
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
 `
 
 const DropDownList = styled.ul`

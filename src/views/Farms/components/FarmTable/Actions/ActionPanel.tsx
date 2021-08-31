@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { useTheme, keyframes, css } from 'styled-components'
+import { isDesktop, isMobile } from "react-device-detect";
 import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
@@ -79,6 +80,14 @@ const Wrapper = styled.div`
   ${ContainerWrapper}:last-of-type {
     margin-left: 200px;
     flex-grow: 1;
+
+    @media screen and (max-width: 576px) {
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
   }
 `
 
@@ -117,6 +126,11 @@ const TagsContainer = styled.div`
     svg {
       width: 14px;
     }
+
+    @media screen and (max-width: 576px) {
+      width: 100%;
+      justify-content: center;
+    }
   }
 `
 
@@ -126,6 +140,10 @@ const InfoContainer = styled.div`
   a {
     font-weight: 600;
     font-size: 14px;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding-left: 0;
   }
 `
 
@@ -145,6 +163,15 @@ const ValueWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 4px 0px;
+
+  @media screen and (max-width: 576px) {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  div:first-of-type {
+    flex-shrink: 0;
+  }
 `
 
 const Info = styled.div`
@@ -201,7 +228,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   expanded,
 }) => {
   const farm = details
-
   const { t } = useTranslation()
   const theme = useTheme();
   const isActive = true
@@ -263,7 +289,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     liquidityurl = `https://polygon.curve.fi/ren/deposit`
   }
 
-
   return (
     <Container expanded={expanded}>
       <Wrapper>
@@ -286,50 +311,57 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               {dual ? <DualTag /> : null}
             </TagsContainer>
           </InfoContainer>
+
           <ValueContainer>
             <ValueWrapper>
-              <Text>{t('APY')}</Text>
+              <Text fontSize="14px">{t('APY')}</Text>
               <Apy {...apy} />
             </ValueWrapper>
             <ValueWrapper>
-              <Text>{t('Total Staked')}</Text>
+              <Text fontSize="14px">{t('Total Staked')}</Text>
               <Liquidity {...liquidity} />
             </ValueWrapper>
             <ValueWrapper>
-              <Text>{t('User Staked')}</Text>
+              <Text fontSize="14px">{t('User Staked')}</Text>
               <UserValue {...userValue} />
             </ValueWrapper>
           </ValueContainer>
+
         </ContainerWrapper>
-        <ContainerWrapper>
-          <InfoWrapper>
-            <Info>
-              <Staked>
-                <Title>LPs Staked</Title>
-                <Stat>697,896.00</Stat>
-                <Text
-                  fontSize="10px"
-                  textTransform="uppercase"
-                  mt="5px"
-                >
-                  {farm.lpSymbol}
-                </Text>
-              </Staked>
-              <APR>
-                <Title>Underlying APR</Title>
-                <Stat>{(farm.apr ?? 0).toFixed(2)}%</Stat>
-              </APR>
-              <Return>
-                <Title>Daily Return</Title>
-                <Stat>1.17%</Stat>
-              </Return>
-              <Fee>
-                <Title>Daily LP Return</Title>
-                <Stat>3%</Stat>
-              </Fee>
-            </Info>
-          </InfoWrapper>
-        </ContainerWrapper>
+
+        { isDesktop ? (
+          <ContainerWrapper>
+            <InfoWrapper>
+              <Info>
+                <Staked>
+                  <Title>LPs Staked</Title>
+                  <Stat>697,896.00</Stat>
+                  <Text
+                    fontSize="10px"
+                    textTransform="uppercase"
+                    mt="5px"
+                  >
+                    {farm.lpSymbol}
+                  </Text>
+                </Staked>
+                <APR>
+                  <Title>Underlying APR</Title>
+                  <Stat>{(farm.apr ?? 0).toFixed(2)}%</Stat>
+                </APR>
+                <Return>
+                  <Title>Daily Return</Title>
+                  <Stat>${liquidity.liquidity.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
+                </Return>
+                <Fee>
+                  <Title>Daily LP Return</Title>
+                  <Stat>${userValue.userValue.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
+                </Fee>
+              </Info>
+            </InfoWrapper>
+          </ContainerWrapper>
+        ) : null}
+  
+        {isMobile ? <StakedAction {...details} userDataReady={userDataReady} /> : null }
       </Wrapper>
     </Container>
   )

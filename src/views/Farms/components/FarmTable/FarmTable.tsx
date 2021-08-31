@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Tooltip } from 'react-tippy'
+import { isDesktop } from "react-device-detect";
 import styled, { css } from 'styled-components'
 import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'components/Pancake'
 import { Sort, Collapsible } from 'components/Pancake/Svg'
@@ -141,57 +142,60 @@ const FarmTable: React.FC<ITableProps> = props => {
 
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
-            <TableHeader>
-              <tr>
-                {headers.map(header => (
-                  <Header key={header.name} onClick={() => sort(header)}>
-                    <Flex
-                      justifyContent={header.align}
-                      alignItems="center"
-                    >
+            {isDesktop ? (
+              <TableHeader>
+                <tr>
+                  {headers.map(header => (
+                    <Header key={header.name} onClick={() => sort(header)}>
+                      <Flex
+                        justifyContent={header.align}
+                        alignItems="center"
+                      >
 
-                      {header.name === 'details' && (
-                        <Tooltip
-                          trigger="mouseenter"
-                          interactive
-                          useContext
-                          position="bottom"
-                          html={(
-                            <Tip>
-                              { open ? "Collapse all" : "Expand all"}
-                            </Tip>
-                          )}
-                        >
-
-                          <CollapsibleContainer>
-                            <StyledCollapsible
-                              open={open}
-                              color="transparent"
-                              onClick={handleOpen} 
-                            />
-                          </CollapsibleContainer>
-                        </Tooltip>
-                      )}
-
-                      { header.display ? (
-                        <>
-                          <Label
-                            fontSize="14px"
-                            fontWeight="bold"
+                        {header.name === 'details' && (
+                          <Tooltip
+                            trigger="mouseenter"
+                            interactive
+                            useContext
+                            position="bottom"
+                            html={(
+                              <Tip>
+                                { open ? "Collapse all" : "Expand all"}
+                              </Tip>
+                            )}
                           >
-                            {header.label}
-                          </Label>
-                          {/* @ts-ignore */}
-                          { header.sortable && (
-                            <Sort asc={header.sorted.asc} on={header.sorted.on} />
-                          )}
-                        </>
-                      ) : null}
-                  </Flex>
-                </Header>
-                ))}
-              </tr>
-            </TableHeader>
+
+                            <CollapsibleContainer>
+                              <StyledCollapsible
+                                open={open}
+                                color="transparent"
+                                onClick={handleOpen} 
+                              />
+                            </CollapsibleContainer>
+                          </Tooltip>
+                        )}
+
+                        { header.display ? (
+                          <>
+                            <Label
+                              fontSize="14px"
+                              fontWeight="bold"
+                            >
+                              {header.label}
+                            </Label>
+                            {/* @ts-ignore */}
+                            { header.sortable && (
+                              <Sort asc={header.sorted.asc} on={header.sorted.on} />
+                            )}
+                          </>
+                        ) : null}
+                    </Flex>
+                  </Header>
+                  ))}
+                </tr>
+              </TableHeader>
+            ) : null}
+            
             <TableBody>
               {rows.map((row) => (
                 <Row

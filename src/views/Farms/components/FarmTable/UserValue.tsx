@@ -19,6 +19,10 @@ const UserValueWrapper = styled.div`
     text-align: right;
     margin-right: 0;
   }
+
+  @media screen and (max-width: 576px) {
+    margin-right: 0;
+  }
 `
 
 const Container = styled.div`

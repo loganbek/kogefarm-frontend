@@ -11,7 +11,6 @@ import { getMetaFarmApr } from 'utils/apr'
 import { Farm } from 'state/types'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
-import Overlay from "../Overlay/Overlay";
 import { useMatchBreakpoints } from "../hooks";
 import Skeleton from '../Skeleton/Skeleton'
 import Text from '../Text/Text'
@@ -33,6 +32,10 @@ const LogoContainer = styled.div`
   width: 240px;
   align-items: center;
   flex-shrink: 0;
+
+  @media screen and (max-width: 576px) {
+    width: auto;
+  }
 `
 
 const Stat = styled(Text)`
@@ -68,6 +71,10 @@ const StyledNav = styled.nav<{ showMenu: boolean }>`
   background-position: center top;
   z-index: 20;
   transform: translate3d(0, 0, 0);
+
+  @media screen and (max-width: 576px) {
+    background-image: none;
+  }
 `;
 
 const BodyWrapper = styled.div`
@@ -85,15 +92,6 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   ${({ theme }) => theme.mediaQueries.nav} {
     margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
     max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
-  }
-`;
-
-const MobileOnlyOverlay = styled(Overlay)`
-  position: fixed;
-  height: 100%;
-
-  ${({ theme }) => theme.mediaQueries.nav} {
-    display: none;
   }
 `;
 
@@ -273,18 +271,20 @@ const Menu: React.FC<NavProps> = ({
           </Box>
         </LogoContainer>
 
-        <InfoContainer>
-          <Stat>
-            KogeCoin Price
-            {" "}
-            <span>${ kogePrice?.toFixed(4) ?? 0}</span>
-          </Stat>
-          <Stat>
-            {t('Vault TVL ')}
-            {" "}
-            <span>{displayTVL !== '$NaN' && displayTVL}</span>
-          </Stat>
-        </InfoContainer>
+        { !isMobile ? (
+          <InfoContainer>
+            <Stat>
+              KogeCoin Price
+              {" "}
+              <span>${ kogePrice?.toFixed(4) ?? 0}</span>
+            </Stat>
+            <Stat>
+              {t('Vault TVL ')}
+              {" "}
+              <span>{displayTVL !== '$NaN' && displayTVL}</span>
+            </Stat>
+          </InfoContainer>
+        ) : null}
 
         <Flex>
           <UserBlock account={account} login={login} logout={logout} />
@@ -309,7 +309,6 @@ const Menu: React.FC<NavProps> = ({
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>
-        <MobileOnlyOverlay show={isPushed} onClick={() => setIsPushed(false)} role="presentation" />
       </BodyWrapper>
     </Wrapper>
   );

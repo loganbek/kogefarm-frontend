@@ -24,6 +24,11 @@ export const ModalBody = styled(Flex)`
   flex-direction: column;
   max-height: 90vh;
   overflow-y: auto;
+
+  @media screen and (max-width: 576px) {
+    margin: 0 auto;
+    width: 100%;
+  }
 `;
 
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
@@ -56,5 +61,14 @@ export const ModalContainer = styled(Box)<{ minWidth: string }>`
     width: auto;
     min-width: ${({ minWidth }) => minWidth};
     max-width: 100%;
+  }
+
+  @media screen and (max-width: 576px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
   }
 `;

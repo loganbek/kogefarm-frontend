@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { Tooltip } from 'react-tippy'
+import { isMobile } from "react-device-detect";
 import styled from 'styled-components'
 import {
   Button,
@@ -47,6 +48,21 @@ const Tip = styled.div`
   border-radius: 4px;
 `
 
+const StyledButtonMenu = styled(ButtonMenu)`
+  display: flex;
+  margin-top: 30px;
+
+  > div {
+    flex: 1;
+
+    button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+`
+
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
@@ -79,7 +95,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { onStake } = useStake(jarAddress)
   const { onUnstake } = useUnstake(jarAddress)
   const web3 = useWeb3()
-  const location = useLocation()
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
@@ -141,11 +156,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
 }, [stakedBalance, displayBalanceNumber, decimals])
 
-  const [onPresentDeposit] = useModal(<div>ken</div>)
-  const [onPresentWithdraw] = useModal(
-  <WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={lpSymbol} depositFee={depositFee} />
-  )
-
   const onDepositClose = () => setDepositIsOpen(false)
   const onWithdrawClose = () => setWithdrawIsOpen(false)
 
@@ -175,13 +185,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   if (isApproved) {
     return (
-      <ButtonMenu scale="sm" variant="outline">
+      <StyledButtonMenu scale="sm" variant="outline">
         <Tooltip 
           trigger="click"
           open={depositIsOpen}
           interactive
           useContext
-          position="bottom-end"
+          position={isMobile ? "bottom" : "bottom-end"}
           html={(
             <Tip>
               <DepositModal
@@ -213,7 +223,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           open={withdrawIsOpen}
           interactive
           useContext
-          position="bottom-end"
+          position={isMobile ? "bottom" : "bottom-end"}
           html={(
             <Tip>
               <WithdrawModal
@@ -240,7 +250,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </Text>
           </ButtonMenuItem>
         </Tooltip>
-      </ButtonMenu>
+      </StyledButtonMenu>
     )
   }
 

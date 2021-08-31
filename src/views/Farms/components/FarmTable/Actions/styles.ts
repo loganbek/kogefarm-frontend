@@ -16,6 +16,12 @@ export const ActionContainer = styled.div`
     margin-bottom: 0;
     max-height: 100px;
   }
+
+  @media screen and (max-width: 576px) {
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 32px;
+  }
 `
 
 export const ActionTitles = styled.div`

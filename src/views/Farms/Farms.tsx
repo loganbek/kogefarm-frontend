@@ -3,6 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { Tooltip } from 'react-tippy'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
+import { isDesktop } from "react-device-detect";
 import { useWeb3React } from '@web3-react/core'
 import { Image, Heading, RowType, Toggle, Text, Flex, Box } from 'components/Pancake'
 import styled from 'styled-components'
@@ -81,6 +82,18 @@ const Hero = styled(Flex)`
     color: #1EA306;
     text-decoration: underline;
   }
+
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
+    .stats {
+      order: 0;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      order: 1;
+    }
+  }
 `
 
 const LabelWrapper = styled.div`
@@ -94,6 +107,10 @@ const LabelWrapper = styled.div`
     left: 10px;
     padding: 2px 6px;
   }
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
 `
 
 const FilterContainer = styled.div`
@@ -105,6 +122,10 @@ const FilterContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
     padding: 0;
+  }
+
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
   }
 `
 
@@ -127,12 +148,6 @@ const ViewControls = styled.div`
       padding: 0;
     }
   }
-`
-
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
 `
 
 const InfoContainer = styled.div`
@@ -550,15 +565,16 @@ const Farms: React.FC = () => {
 
   return (
     <Page>
+  
       <Hero>
-        <Flex width="70%" flexDirection="column" mb="30px">
+        <Flex width={isDesktop ? "70%" : "100%"} flexDirection="column" mb="30px" className="info">
           <Heading scale="lg" mb="16px">
             Vaults to stake
           </Heading>
           <StyledText mb="16px">
             {t('KogeFarm helps you earn more yield by ')}
             {' '}
-            <AutoCompound />
+            { isDesktop ? <AutoCompound /> : null }
             {' '}
             <Tooltip
               trigger="mouseenter"
@@ -579,7 +595,7 @@ const Farms: React.FC = () => {
             by Obelisk.
           </StyledText>
         </Flex>
-        <Flex width="30%" justifyContent="flex-end">
+        <Flex width={isDesktop ? "30%" : "100%"} justifyContent="flex-end" className="stats">
           <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px">
               <Text fontSize="14px" fontWeight="bold">KogeCoin Price</Text>
@@ -592,6 +608,7 @@ const Farms: React.FC = () => {
           </Flex>
         </Flex>
       </Hero>
+  
       <ControlContainer>
         <ViewControls>
           <ToggleWrapper>
@@ -601,11 +618,11 @@ const Farms: React.FC = () => {
           <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
         </ViewControls>
         <FilterContainer>
-          <LabelWrapper style={{ marginLeft: 16 }}>
+          <LabelWrapper style={isDesktop ? { marginLeft: 16 } : {}}>
             <Text fontSize="10px">Search by asset</Text>
             <SearchInput onChange={handleChangeQuery} />
           </LabelWrapper>
-          <LabelWrapper style={{ marginLeft: 24 }}>
+          <LabelWrapper style={isDesktop ? { marginLeft: 16 } : {}}>
             <Text fontSize="10px">Sort By</Text>
             <Select
               options={[
@@ -625,7 +642,7 @@ const Farms: React.FC = () => {
               onChange={handleSortOptionChange}
             />
           </LabelWrapper>
-          <LabelWrapper style={{ marginLeft: 24 }}>
+          <LabelWrapper style={isDesktop ? { marginLeft: 16 } : {}}>
             <Text>Platform</Text>
             <Select
               options={[
@@ -649,29 +666,6 @@ const Farms: React.FC = () => {
 
       {renderContent()}
       <div ref={loadMoreRef} />
-      <Text color="text" textAlign="center" fontSize="125%">
-        {t(
-          'No more sleep deprived degens with KogeFarm! We compound your farming rewards every 5 minutes so you can play more.',
-        )}
-      </Text>
-      <Text color="text" textAlign="center" fontSize="125%">
-        {t('Please Note: Farms with a high annual percentage yield (APY) are inherently ')}{' '}
-        <u>
-          <a href="https://koge.gitbook.io/kogefarm/faqs/why-is-the-apy-so-high-and-what-are-its-risks">
-            risky
-          </a>
-        </u>
-        {t('. Always DYOR.')}
-      </Text>
-      <Text color="text" textAlign="center" fontSize="125%">
-        {'\n'}
-        {t('Fee Disclosure: Our vaults have NO deposit or withdrawal fees, and only a 1% ')}{' '}
-        <u>
-          <a href="https://koge.gitbook.io/kogefarm/fees">fee</a>
-        </u>
-        {t(' on rewards.')}
-      </Text>
-      <StyledImage src="/images/koalaGold-sm.png" alt="KogeCoin Illustration" width={150} height={150} />
     </Page>
   )
 }

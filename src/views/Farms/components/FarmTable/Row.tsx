@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints } from 'components/Pancake'
+import { useMatchBreakpoints, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import useTheme from 'hooks/useTheme'
@@ -63,6 +63,12 @@ const StyledTr = styled.tr`
 
   td {
     padding: 24px;
+  }
+
+  .details {
+    @media screen and (max-width: 576px) {
+      padding-right: 0;
+    }
   }
 `
 
@@ -132,7 +138,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
                 )
               case 'details':
                 return (
-                  <td key={key}>
+                  <td key={key} className="details">
                     <CellInner>
                       <CellLayout align={props.details.align}>
                         <Details actionPanelToggled={actionPanelExpanded} />
@@ -155,7 +161,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout align={props.platform.align}>
-                        {props.platform.userValue}
+                        <Text fontSize="14px" fontWeight="bold">{props.platform.userValue}</Text>
                       </CellLayout>
                     </CellInner>
                   </td>
