@@ -9,7 +9,7 @@ import {
   Skeleton,
   Text,
 } from 'components/Pancake'
-import { Deposit, Withdraw} from 'components/Pancake/Svg'
+import { Deposit, Withdraw } from 'components/Pancake/Svg'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
 import { useFarmUser } from 'state/hooks'

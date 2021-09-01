@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useGetApiPrice } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
-import { Text } from 'components/Pancake'
+import { Flex, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
 
@@ -120,17 +120,19 @@ const ApyCalculatorModal = ({
 				<thead>
 					<tr>
 						<th>
-							<Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+							<Text fontSize="12px" color="textSubtle" textTransform="uppercase">
 								{t('Timeframe')}
 							</Text>
 						</th>
 						<th>
-							<Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-								{t('ROI')}
-							</Text>
+							<Flex alignItems="center">
+								<Text fontSize="12px" color="textSubtle" textTransform="uppercase">
+									{t('ROI')}
+								</Text>
+							</Flex>
 						</th>
 						<th>
-							<Text fontSize="12px" bold color="textSubtle">
+							<Text fontSize="12px" color="textSubtle">
 								{t('Total Staked x ROI')}
 							</Text>
 						</th>
@@ -144,7 +146,7 @@ const ApyCalculatorModal = ({
 							</Text>
 						</td>
 						<td>
-							<Text fontSize="12px">
+							<Text fontSize="12px" bold>
 								{ oneDayRoi }%
 							</Text>
 						</td>

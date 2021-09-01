@@ -70,6 +70,9 @@ const TableBody = styled.tbody`
 `
 
 const TableHeader = styled.thead`
+  position: sticky;
+  top: 64px;
+  z-index: 10;
   background: ${({ theme }) => theme.colors.rowHeader};
 
   tr:first-child th:first-child { border-top-left-radius: 10px; }

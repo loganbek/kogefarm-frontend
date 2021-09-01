@@ -2,6 +2,7 @@ import React from 'react'
 import { Tooltip } from 'react-tippy'
 import styled from 'styled-components'
 import { Flex, Skeleton, Text } from 'components/Pancake'
+import { TooltipIcon } from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
@@ -71,24 +72,27 @@ const AprRow: React.FC<AprRowProps> = ({
   return (
     <Flex justifyContent="space-between" flexDirection="column">
       <div>
-        <Tooltip
-          trigger="mouseenter"
-          interactive
-          useContext
-          position="bottom"
-          html={(
-            <Tip>
-              { isAutoVault 
-                ? t('APY includes compounding, APR doesn’t. This farm is compounded automatically, so we show APY.')
-                : t('This farm\'s rewards aren’t compounded automatically, so we show APR')
-              }
-            </Tip>
-          )}
-        >
+        <Flex alignItems="center">
           <Text fontSize="14px" fontWeight="600">
             {isAutoVault ? t('APY') : t('APR')}
           </Text>
-        </Tooltip>
+          <Tooltip
+            trigger="mouseenter"
+            interactive
+            useContext
+            position="bottom"
+            html={(
+              <Tip>
+                { isAutoVault 
+                  ? t('APY includes compounding, APR doesn’t. This farm is compounded automatically, so we show APY.')
+                  : t('This farm\'s rewards aren’t compounded automatically, so we show APR')
+                }
+              </Tip>
+            )}
+          >
+            <TooltipIcon ml="8px" />
+          </Tooltip>
+        </Flex>
       </div>
 
       {isFinished || !apr ? (

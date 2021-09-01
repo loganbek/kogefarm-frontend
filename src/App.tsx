@@ -1,7 +1,9 @@
 import React, { lazy } from 'react'
+import ScrollToTop from "react-scroll-to-top";
 // import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import { ResetCSS } from 'components/Pancake'
+import { ArrowUpIcon } from 'components/Pancake/Svg'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 // import { useFetchPriceList, useFetchProfile, useFetchPublicData } from 'state/hooks'
@@ -38,7 +40,6 @@ BigNumber.config({
 const App: React.FC = () => {
   useEagerConnect()
   useFetchPublicData()
-//  useFetchProfile()
   useFetchPriceList()
 
   return (
@@ -55,50 +56,20 @@ const App: React.FC = () => {
             <Route path="/farms">
                <Pools />
              </Route>
-{/*             <Route path="/farms">
-              <Farms />
-            </Route>
-            <Route path="/lottery">
-              <Lottery />
-            </Route>
-            <Route path="/ifo">
-              <Ifos />
-            </Route>
-            <Route path="/collectibles">
-              <Collectibles />
-            </Route>
-            <Route exact path="/teams">
-              <Teams />
-            </Route>
-            <Route path="/teams/:id">
-              <Team />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/competition">
-              <TradingCompetition />
-            </Route>
-            <Route path="/prediction">
-              <Predictions />
-            </Route> */}
-            {/* Redirect */}
-  {/*          <Route path="/staking">
-              <Redirect to="/pools" />
-            </Route>
-            <Route path="/syrup">
-              <Redirect to="/pools" />
-            </Route>
-            <Route path="/nft">
-              <Redirect to="/collectibles" />
-            </Route> */}
-            {/* 404 */}
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>
       </Menu>
-{/*      <EasterEgg iterations={2} /> */}
       <ToastListener />
+      <ScrollToTop
+        smooth 
+        color="#ffffff"
+        style={{
+          backgroundColor: "#1EA306",
+          borderRadius: "4px",
+        }}
+        component={<ArrowUpIcon color="white" />}
+      />
     </Router>
   )
 }

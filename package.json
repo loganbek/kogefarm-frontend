@@ -70,6 +70,7 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "react-scroll-to-top": "^1.0.5",
     "react-tippy": "^1.4.0",
     "react-transition-group": "^4.4.1",
     "split-grid": "^1.0.11",

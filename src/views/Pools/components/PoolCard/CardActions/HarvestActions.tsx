@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Flex, Text, Button, Heading, useModal, Skeleton } from 'components/Pancake'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
@@ -10,15 +11,28 @@ import CollectModal from '../Modals/CollectModal'
 interface HarvestActionsProps {
   earnings: BigNumber
   earningToken: Token
+  onClose?: () => void
   sousId: number
   pid: number
   earningTokenPrice: number
   isLoading?: boolean
 }
 
+const Wrapper = styled.div`
+  background-color: transparent;
+  width: 100%;
+  margin: 0;
+  border: 2px solid #1EA306;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 4px 16px;
+`
+
 const HarvestActions: React.FC<HarvestActionsProps> = ({
   earnings,
   earningToken,
+  onClose,
   sousId,
   pid,
   earningTokenPrice,
@@ -49,38 +63,44 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
 
   return (
     <div>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Flex flexDirection="column">
-          {isLoading ? (
-            <Skeleton width="80px" height="48px" />
-          ) : (
-            <>
-              {hasEarnings ? (
-                <Balance bold fontSize="20px" decimals={5} value={earningTokenBalance} />
-              ) : (
-                <Heading color="textDisabled">0</Heading>
-              )}
-              {earningTokenPrice !== 0 && (
-                <Text fontSize="12px" color={hasEarnings ? 'textSubtle' : 'textDisabled'}>
-                  ~
-                  {hasEarnings ? (
-                    <Balance
-                      display="inline"
-                      fontSize="12px"
-                      color="textSubtle"
-                      decimals={2}
-                      value={earningTokenDollarBalance}
-                      unit=" USD"
-                    />
-                  ) : (
-                    '0 USD'
-                  )}
-                </Text>
-              )}
-            </>
-          )}
-        </Flex>
-      </Flex>
+      <Wrapper>
+        {isLoading ? (
+          <Skeleton width="80px" height="48px" />
+        ) : (
+          <>
+            {hasEarnings ? (
+              <Balance
+                bold
+                fontSize="20px"
+                decimals={5} 
+                value={earningTokenBalance} 
+              />
+            ) : (
+              <Heading color="textDisabled">0</Heading>
+            )}
+            {earningTokenPrice !== 0 && (
+              <Text
+                fontSize="12px"
+                color={hasEarnings ? 'textSubtle' : 'textDisabled'}
+              >
+                ~
+                {hasEarnings ? (
+                  <Balance
+                    display="inline"
+                    fontSize="12px"
+                    color="textSubtle"
+                    decimals={2}
+                    value={earningTokenDollarBalance}
+                    unit=" USD"
+                  />
+                ) : (
+                  '0 USD'
+                )}
+              </Text>
+            )}
+          </>
+        )}
+      </Wrapper>
       <Flex mt="12px">
         <Button
           width="100%"
@@ -91,6 +111,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
         </Button>
         <Button
           variant="tertiary"
+          onClick={onClose}
           width="50%"
         >
           {t('Cancel')}

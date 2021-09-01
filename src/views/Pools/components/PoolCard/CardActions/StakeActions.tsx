@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { 
@@ -11,7 +11,6 @@ import {
   useModal,
   Skeleton,
   useTooltip,
-  Box,
 } from 'components/Pancake'
 import { Tooltip } from 'react-tippy'
 import BigNumber from 'bignumber.js'
@@ -34,10 +33,6 @@ interface StakeActionsProps {
   content?: ReactNode
 }
 
-const InlineText = styled(Text)`
-  display: inline;
-`
-
 const Tip = styled.div`
   background: #F4F4F4;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
@@ -56,6 +51,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 }) => {
   const { sousId, pid, stakingToken, harvest, stakingLimit, isFinished, userData, earningToken } = pool
   const { t } = useTranslation()
+  const [open, setOpen] = useState(false)
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
@@ -90,6 +86,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   )
 
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
+
+  const handleOpen = () => setOpen(!open)
 
   const renderStakeAction = () => {
     return isStaked ? (
@@ -133,6 +131,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       </Flex>
     ) : (
       <Tooltip
+        open={open}
         trigger="click"
         interactive
         useContext
@@ -143,6 +142,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               <HarvestActions
                 earnings={earnings}
                 earningToken={earningToken}
+                onClose={handleOpen}
                 sousId={sousId}
                 pid={pid}
                 earningTokenPrice={earningTokenPrice}
@@ -155,8 +155,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         <Button 
           variant="secondary"
           height="32px"
-          // disabled={isFinished}
-          // onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
         >
           {t('Stake')}
         </Button>

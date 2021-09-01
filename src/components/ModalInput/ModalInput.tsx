@@ -30,7 +30,6 @@ const StyledInputWrapper = styled.div`
     top: 5px;
     right: 5px;
     border-radius: 2px;
-
   }
 `
 
