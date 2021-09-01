@@ -41,6 +41,8 @@ export type Colors = {
   primary: string;
   primaryBright: string;
   primaryDark: string;
+  activeButtonItem: string;
+  inactiveButtonItem: string;
   secondary: string;
   tertiary: string;
   success: string;

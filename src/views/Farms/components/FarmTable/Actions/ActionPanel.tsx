@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { useTheme, keyframes, css } from 'styled-components'
+import numeral from 'numeral'
 import { isDesktop, isMobile } from "react-device-detect";
 import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from 'components/Pancake'
@@ -218,9 +219,10 @@ const Stat = styled(Text)`
   font-weight: 600;
 `
 
+const format = num => numeral(num).format('0,0.00')
+
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
-  apr,
   apy,
   liquidity,
   userValue,
@@ -335,7 +337,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Info>
                 <Staked>
                   <Title>LPs Staked</Title>
-                  <Stat>697,896.00</Stat>
+                  <Stat>{format(liquidity?.liquidity)}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
@@ -350,11 +352,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 </APR>
                 <Return>
                   <Title>Daily Return</Title>
-                  <Stat>${liquidity.liquidity.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
+                  <Stat>${liquidity?.liquidity?.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
                 </Return>
                 <Fee>
                   <Title>Daily LP Return</Title>
-                  <Stat>${userValue.userValue.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
+                  <Stat>${userValue?.userValue?.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
                 </Fee>
               </Info>
             </InfoWrapper>

@@ -5,7 +5,16 @@ import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { isDesktop } from "react-device-detect";
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Flex, Box } from 'components/Pancake'
+import {
+  ButtonMenu,
+  ButtonMenuItem,
+  Heading,
+  RowType,
+  Toggle,
+  Text,
+  Flex,
+} from 'components/Pancake'
+import tokens from 'config/constants/tokens'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -97,10 +106,12 @@ const Hero = styled(Flex)`
 `
 
 const LabelWrapper = styled.div`
+  position: relative;
+
   > ${Text} {
     font-size: 10px;
-    position: relative;
-    top: 9px;
+    position: absolute;
+    top: -8px;
     z-index: 1;
     background: ${({ theme }) => theme.colors.background};
     display: inline-block;
@@ -163,7 +174,12 @@ const Price = styled(Flex)`
   }
 `
 
+const StyledButtonMenuItem = styled(ButtonMenuItem)`
+  font-size: 12px;
+`
+
 const NUMBER_OF_FARMS_VISIBLE = 12
+const chainId = process.env.REACT_APP_CHAIN_ID;
 
 // @ts-ignore
 const Farms: React.FC = () => {
@@ -172,6 +188,7 @@ const Farms: React.FC = () => {
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
+  const [activeItem, setActiveItem] = useState(0)
   const [current, setCurrent] = useState(0)
   const [platform, setPlatform] = useState('')
   const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
@@ -330,6 +347,12 @@ const Farms: React.FC = () => {
 
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
+        case 'single':
+          return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId])
+        case 'stable':
+          return filter(farms, f => f.token.address[chainId] === tokens.usdc.address[chainId])
+        case 'feeless':
+          return filter(farms, f => f.depositFee === 0)
         case 'apr':
           return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
         case 'multiplier':
@@ -549,8 +572,26 @@ const Farms: React.FC = () => {
     )
   }
 
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
+
+  const handleItemClick = activeIndex => {
+    switch(activeIndex) {
+      case 0:
+        setSortOption('')
+        break;
+      case 1:
+        setSortOption('single')
+        break;
+      case 2:
+        setSortOption('stable')
+        break;
+      case 3:
+        setSortOption('feeless')
+        break;
+      default:
+        setSortOption('')
+    }
+  
+    setActiveItem(activeIndex)
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
@@ -598,11 +639,11 @@ const Farms: React.FC = () => {
         <Flex width={isDesktop ? "30%" : "100%"} justifyContent="flex-end" className="stats">
           <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px">
-              <Text fontSize="14px" fontWeight="bold">KogeCoin Price</Text>
+              <Text fontSize="14px">KogeCoin Price</Text>
               <Text fontSize="14px" fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
-              <Text fontSize="14px" fontWeight="bold">Vault TVL</Text>
+              <Text fontSize="14px">Vault TVL</Text>
               <Text fontSize="14px" fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
             </Price>
           </Flex>
@@ -610,52 +651,50 @@ const Farms: React.FC = () => {
       </Hero>
   
       <ControlContainer>
-        <ViewControls>
-          <ToggleWrapper>
-            <Text> {t('Staked only')}</Text>
-            <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-          </ToggleWrapper>
-          <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-        </ViewControls>
-        <FilterContainer>
-          <LabelWrapper style={isDesktop ? { marginLeft: 16 } : {}}>
-            <Text fontSize="10px">Search by asset</Text>
-            <SearchInput onChange={handleChangeQuery} />
-          </LabelWrapper>
-          <LabelWrapper style={isDesktop ? { marginLeft: 16 } : {}}>
-            <Text fontSize="10px">Sort By</Text>
-            <Select
-              options={[
-                {
-                  label: 'Hot',
-                  value: 'hot',
-                },
-                {
-                  label: 'Total Staked',
-                  value: 'liquidity',
-                },
-                {
-                  label: 'APY',
-                  value: 'apr',
-                },
-              ]}
-              onChange={handleSortOptionChange}
-            />
-          </LabelWrapper>
-          <LabelWrapper style={isDesktop ? { marginLeft: 16 } : {}}>
-            <Text>Platform</Text>
-            <Select
-              options={[
-                {
-                  label: '',
-                  value: '',
-                },
-                ...options
-              ]}
-              onChange={(e) => handleSortOptionChangeAlt(e)}
-            />
-          </LabelWrapper>
-        </FilterContainer>
+        <ToggleWrapper>
+          <Text> {t('Staked only')}</Text>
+          <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+        </ToggleWrapper>
+        <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
+  
+        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
+          <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
+        </LabelWrapper>
+
+        <ButtonMenu
+          activeIndex={activeItem}
+          scale="sm"
+          variant="subtle"
+          onItemClick={handleItemClick}
+        >
+          <StyledButtonMenuItem>
+            {t('All')}
+          </StyledButtonMenuItem>
+          <StyledButtonMenuItem>
+            {t('Single Assets')}
+          </StyledButtonMenuItem>
+          <StyledButtonMenuItem>
+            {t('Stable LPs')}
+          </StyledButtonMenuItem>
+          <StyledButtonMenuItem>
+            {t('No Deposit Fees')}
+          </StyledButtonMenuItem>
+        </ButtonMenu>
+
+          
+        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
+          <Text>Platform</Text>
+          <Select
+            options={[
+              {
+                label: '',
+                value: '',
+              },
+              ...options
+            ]}
+            onChange={(e) => handleSortOptionChangeAlt(e)}
+          />
+        </LabelWrapper>
       </ControlContainer>
     
       <InfoContainer>

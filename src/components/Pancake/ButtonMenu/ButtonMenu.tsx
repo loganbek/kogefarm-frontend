@@ -13,7 +13,7 @@ const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
     return theme.colors.bronze;
   }
 
-  return theme.colors.toggle
+  return theme.colors.inactiveButtonItem
 };
 
 const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
@@ -23,7 +23,6 @@ const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
     default:
       return theme.colors.toggleActive
   }
-  // return theme.colors[variant === variants.SUBTLE ? "inputSecondary" : "disabled"];
 };
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
@@ -46,7 +45,7 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   & > button,
   & a {
     box-shadow: none;
-    border-radius: 0;
+    border-radius: 2px;
   }
 
   ${({ disabled, theme, variant }) => {
@@ -78,8 +77,7 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
 
         button {
           color: red;
-          font-size: 14px;
-
+          font-size: 12px;
         }
       `
     }
@@ -110,7 +108,12 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
   ...props
 }) => {
   return (
-    <StyledButtonMenu disabled={disabled} variant={variant} fullWidth={fullWidth} {...props}>
+    <StyledButtonMenu 
+      disabled={disabled}
+      variant={variant}
+      fullWidth={fullWidth}
+      {...props}
+    >
       {Children.map(children, (child: ReactElement, index) => {
         return cloneElement(child, {
           isActive: activeIndex === index,

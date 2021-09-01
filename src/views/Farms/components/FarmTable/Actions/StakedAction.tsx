@@ -6,16 +6,10 @@ import {
   Button,
   ButtonMenu,
   ButtonMenuItem,
-  useModal,
-  IconButton,
-  AddIcon,
-  MinusIcon,
   Skeleton,
   Text,
-  useMatchBreakpoints
 } from 'components/Pancake'
 import { Deposit, Withdraw} from 'components/Pancake/Svg'
-import { useLocation } from 'react-router-dom'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
 import { useFarmUser } from 'state/hooks'
@@ -33,10 +27,10 @@ import useTheme from 'hooks/useTheme'
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-import { ActionContainer, ActionTitles, ActionContent, Earned, Title, Subtle } from './styles'
+import { ActionContainer, ActionContent } from './styles'
 
-const IconButtonWrapper = styled.div`
-  display: flex;
+const StyledButtonMenuItem = styled(ButtonMenuItem)`
+  background-color: transparent;
 `
 
 const Tip = styled.div`
@@ -50,7 +44,6 @@ const Tip = styled.div`
 
 const StyledButtonMenu = styled(ButtonMenu)`
   display: flex;
-  margin-top: 30px;
 
   > div {
     flex: 1;
@@ -205,10 +198,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </Tip>
           )}
         >
-          <ButtonMenuItem onClick={(e) => {
-            e.stopPropagation()
-            setDepositIsOpen(true)
-          }}>
+          <StyledButtonMenuItem 
+            onClick={(e) => {
+              e.stopPropagation()
+              setDepositIsOpen(true)
+            }}
+          >
             <Deposit isDark={isDark} />
             <Text
               fontSize="14px"
@@ -216,7 +211,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             >
               Deposit
             </Text>
-          </ButtonMenuItem>
+          </StyledButtonMenuItem>
         </Tooltip>
         <Tooltip 
           trigger="click"
@@ -237,10 +232,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </Tip>
           )}
         >
-          <ButtonMenuItem onClick={(e) => {
-            e.stopPropagation()
-            setWithdrawIsOpen(true)
-          }}>
+          <StyledButtonMenuItem 
+            onClick={(e) => {
+              e.stopPropagation()
+              setWithdrawIsOpen(true)
+            }}
+          >
             <Withdraw isDark={isDark} />
             <Text
               fontSize="14px"
@@ -248,7 +245,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             >
               Withdraw
             </Text>
-          </ButtonMenuItem>
+          </StyledButtonMenuItem>
         </Tooltip>
       </StyledButtonMenu>
     )

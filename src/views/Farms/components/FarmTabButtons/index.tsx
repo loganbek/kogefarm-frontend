@@ -3,9 +3,15 @@ import styled from 'styled-components'
 import { useLocation, Link, useRouteMatch } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, NotificationDot } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
+import { BaseButtonProps, PolymorphicComponent } from "components/Pancake/Button/types";
 
 interface FarmTabButtonsProps {
   hasStakeInFinishedFarms: boolean
+}
+
+interface ButtonProps extends BaseButtonProps {
+  forwardedAs: BaseButtonProps["as"];
+  to: string
 }
 
 const Wrapper = styled.div`
@@ -21,6 +27,10 @@ const Wrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 16px;
   }
+`
+
+const StyledButtonMenuItem: PolymorphicComponent<ButtonProps, "button"> = styled(ButtonMenuItem)<ButtonProps>`
+  font-size: 12px;
 `
 
 const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {
@@ -47,13 +57,13 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
   return (
     <Wrapper>
       <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+        <StyledButtonMenuItem forwardedAs={Link} to={`${url}`}>
           {t('Active')}
-        </ButtonMenuItem>
+        </StyledButtonMenuItem>
         <NotificationDot show={hasStakeInFinishedFarms}>
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
+          <StyledButtonMenuItem forwardedAs={Link} to={`${url}/history`}>
             {t('Inactive')}
-          </ButtonMenuItem>
+          </StyledButtonMenuItem>
         </NotificationDot>
       </ButtonMenu>
     </Wrapper>

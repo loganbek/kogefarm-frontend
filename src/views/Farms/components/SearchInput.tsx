@@ -6,6 +6,7 @@ import debounce from 'lodash/debounce'
 const StyledInput = styled(Input)`
   border-radius: 4px;
   margin-left: auto;
+  font-size: 14px;
 `
 
 const InputWrapper = styled.div`
@@ -20,9 +21,10 @@ const Container = styled.div<{ toggled: boolean }>``
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
 }
 
-const SearchInput: React.FC<Props> = ({ onChange: onChangeCallback }) => {
+const SearchInput: React.FC<Props> = ({ onChange: onChangeCallback, placeholder }) => {
   const [toggled, setToggled] = useState(false)
   const [searchText, setSearchText] = useState('')
 
@@ -41,6 +43,7 @@ const SearchInput: React.FC<Props> = ({ onChange: onChangeCallback }) => {
       <InputWrapper>
         <StyledInput
           value={searchText}
+          placeholder={placeholder}
           onChange={onChange}
           onBlur={() => setToggled(false)}
         />

@@ -62,11 +62,8 @@ const PanelFooter: React.FC<Props> = ({
   pushNav,
   toggleTheme,
   isDark,
-  // currentLang,
-  // langs,
-  // setLang,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(isDark ? 1 : 0)
+  const [activeIndex, setActiveIndex] = useState(isDark ? 0 : 1)
 
   if (!isPushed) {
     return (
