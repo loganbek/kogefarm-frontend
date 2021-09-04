@@ -62,7 +62,7 @@ const StyledTr = styled.tr`
   background: ${({ theme }) => theme.colors.row};
 
   td {
-    padding: 24px;
+    padding: 8px 24px;
   }
 
   .details {

@@ -81,7 +81,6 @@ const TableHeader = styled.thead`
   tr:last-child th:last-child { border-bottom-right-radius: 10px; }
 
   th {
-    color: ${({ theme }) => theme.colors.rowHeaderText};
     padding: 24px;
   }
 `
@@ -116,6 +115,7 @@ const StyledCollapsible = styled(Collapsible)<{ open?: boolean }>`
 
 const Label = styled(Text)`
   display: inline-block;
+  color: ${({ theme }) => theme.colors.rowHeaderText};
 `
 
 const FarmTable: React.FC<ITableProps> = props => {
@@ -180,10 +180,7 @@ const FarmTable: React.FC<ITableProps> = props => {
 
                         { header.display ? (
                           <>
-                            <Label
-                              fontSize="12px"
-                              fontWeight="bold"
-                            >
+                            <Label fontWeight="bold">
                               {header.label}
                             </Label>
                             {/* @ts-ignore */}

@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
     img {
       height: auto;
+      font-size: 12px;
       max-width: 100%;
     }
   }

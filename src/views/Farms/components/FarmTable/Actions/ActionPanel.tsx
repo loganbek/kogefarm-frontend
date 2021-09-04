@@ -136,7 +136,11 @@ const TagsContainer = styled.div`
 `
 
 const InfoContainer = styled.div`
-  padding-left: 112px;
+  padding-left: 126px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   a {
     font-weight: 600;
