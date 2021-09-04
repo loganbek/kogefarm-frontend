@@ -46,7 +46,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
     <Container>
       {Object.entries(groupedLinks).map(([label, items]) => (
         <>
-          <Title>{label}</Title>
+          { isPushed ? (
+            <Title>{label}</Title>
+          ) : null}
           { items.map(entry => {
             const Icon = Icons[entry.icon];
             const iconElement = <Icon width="24px" mr="8px" />;

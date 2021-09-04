@@ -56,6 +56,24 @@ export const config: MenuEntry[] = [
     group: 'Stay Tuned',
   },
   {
+    label: 'Reddit',
+    icon: 'TwitterIcon',
+    href: 'https://www.reddit.com/r/KogeCoin/',
+    group: 'Stay Tuned',
+  },
+  {
+    label: 'Discord',
+    icon: 'TwitterIcon',
+    href: 'https://discord.gg/xDsnS3TSVA',
+    group: 'Stay Tuned',
+  },
+  {
+    label: 'Medium',
+    icon: 'TwitterIcon',
+    href: 'https://medium.com/@kogecoin',
+    group: 'Stay Tuned',
+  },
+  {
     label: "Telegram",
     icon: "TelegramIcon",
     href: "https://t.me/kogecoin",
