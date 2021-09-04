@@ -18,6 +18,7 @@ import tokens from 'config/constants/tokens'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
+import CheckBoxMenu from 'components/CheckboxMenu'
 import { AutoCompound } from 'components/Pancake/Svg'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
@@ -27,7 +28,7 @@ import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getMetaFarmApr } from 'utils/apr'
-import { filter, orderBy, uniqBy } from 'lodash'
+import { chain, filter, orderBy, uniqBy } from 'lodash'
 import { getAddress } from 'utils/addressHelpers'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
@@ -188,12 +189,13 @@ const Farms: React.FC = () => {
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
-  const [activeItem, setActiveItem] = useState(0)
+  const [multiSearch, setMultiSearch] = useState(new Set())
+  const [isSearching, setIsSearching] = useState(false)
   const [current, setCurrent] = useState(0)
   const [platform, setPlatform] = useState('')
   const [viewMode] = usePersistState(ViewMode.TABLE, 'kogefarm_farm_view')
   const { account } = useWeb3React()
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('')
   const prices = useGetApiPrices()
   const kogePrice = useGetApiPrice('kogecoin');
 
@@ -347,6 +349,30 @@ const Farms: React.FC = () => {
 
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
+        case 'multi':
+          if (multiSearch.has('all')) {
+            return farms
+          }
+
+          if (multiSearch.size > 0 && isSearching) {
+            return filter(farms, f => {
+              if (multiSearch.has('single')) {
+                return f.token.address[chainId] === f.quoteToken.address[chainId]
+              }
+
+              if (multiSearch.has('stable')) {
+                return f.token.address[chainId] === tokens.usdc.address[chainId]
+              }
+
+              if (multiSearch.has('feeless')) {
+                return f.depositFee === 0
+              }
+
+              return false
+            })
+          }
+
+          return farms
         case 'single':
           return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId])
         case 'stable':
@@ -402,6 +428,8 @@ const Farms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     numberOfFarmsVisible,
+    multiSearch,
+    isSearching,
   ])
 
   useEffect(() => {
@@ -574,24 +602,10 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    switch(activeIndex) {
-      case 0:
-        setSortOption('')
-        break;
-      case 1:
-        setSortOption('single')
-        break;
-      case 2:
-        setSortOption('stable')
-        break;
-      case 3:
-        setSortOption('feeless')
-        break;
-      default:
-        setSortOption('')
-    }
-  
-    setActiveItem(activeIndex)
+    console.log(activeIndex)
+    setMultiSearch(activeIndex)
+    setIsSearching(!isSearching)
+    setSortOption('multi')
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
@@ -661,26 +675,7 @@ const Farms: React.FC = () => {
           <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
         </LabelWrapper>
 
-        <ButtonMenu
-          activeIndex={activeItem}
-          scale="sm"
-          variant="subtle"
-          onItemClick={handleItemClick}
-        >
-          <StyledButtonMenuItem>
-            {t('All')}
-          </StyledButtonMenuItem>
-          <StyledButtonMenuItem>
-            {t('Single Assets')}
-          </StyledButtonMenuItem>
-          <StyledButtonMenuItem>
-            {t('Stable LPs')}
-          </StyledButtonMenuItem>
-          <StyledButtonMenuItem>
-            {t('No Deposit Fees')}
-          </StyledButtonMenuItem>
-        </ButtonMenu>
-
+        <CheckBoxMenu onChange={handleItemClick} />
           
         <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
           <Text>Platform</Text>

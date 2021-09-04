@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from 'react-router-dom'
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
 import { Box } from "components/Pancake";

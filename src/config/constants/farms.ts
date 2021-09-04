@@ -295,8 +295,8 @@ const farms: FarmConfig[] = [
     },
     token: tokens.shield,
     quoteToken: tokens.shield,
-    rewardPerBlock: 0.52,
-    poolWeightDesignate: 4000/24500,
+    rewardPerBlock: 0.44,
+    poolWeightDesignate: 4000/30500,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polyshield.finance/#/vaults',
@@ -321,8 +321,8 @@ const farms: FarmConfig[] = [
     },
     token: tokens.shield,
     quoteToken: tokens.matic,
-    rewardPerBlock: 0.52,
-    poolWeightDesignate: 5500/24500,
+    rewardPerBlock: 0.44,
+    poolWeightDesignate: 5500/30500,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polyshield.finance/#/vaults',
@@ -347,8 +347,34 @@ const farms: FarmConfig[] = [
     },
     token: tokens.shield,
     quoteToken: tokens.usdc,
-    rewardPerBlock: 0.52,
-    poolWeightDesignate: 5500/24500,
+    rewardPerBlock: 0.44,
+    poolWeightDesignate: 5500/30500,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polyshield.finance/#/vaults',
+    platform: 'PolyShield'
+  },
+
+  {
+    pid: 186,
+    lpSymbol: 'Shi3ld-KogeCoin',
+    lpAddresses: {
+      80001: '',
+      137: '0x1A1Bf82669C8c1E703DAa2562Ec1EA9849259Ab0',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x0Ec74989E6f0014D269132267cd7c5B901303306',
+    },
+    masterChefPid: 13,
+    jarAddresses: {
+      80001: '',
+      137: '0x7a9be7CdF26C8311625ed97c174869fcA9b791eC',
+    },
+    token: tokens.shield,
+    quoteToken: tokens.kogecoin,
+    rewardPerBlock: 0.44,
+    poolWeightDesignate: 4000/30500,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polyshield.finance/#/vaults',
@@ -837,7 +863,7 @@ const farms: FarmConfig[] = [
           multiplier: '0X',
           platform: 'Gravity (legacy)'
         },
-
+/*
         {
           pid: 89,
           lpSymbol: 'GFI-ETH LP',
@@ -864,7 +890,7 @@ const farms: FarmConfig[] = [
           multiplier: '0X',
           platform: 'Gravity (legacy)'
         },
-
+*/
         {
           pid: 117,
           lpSymbol: 'Link',
@@ -1261,7 +1287,7 @@ const farms: FarmConfig[] = [
      multiplier: '0X',
      platform: 'DinoSwap'
    },
-
+/*
    {
      pid: 84,
      lpSymbol: 'WEth-USDC',
@@ -1290,7 +1316,7 @@ const farms: FarmConfig[] = [
      multiplier: '0X',
      platform: 'DinoSwap'
    },
-
+*/
    {
      pid: 111,
      lpSymbol: 'Dfyn-WEth',
@@ -1319,7 +1345,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (DinoSwap)',
      platform: 'DinoSwap'
    },
-
+/*
    {
      pid: 116,
      lpSymbol: 'stkGHST-WEth',
@@ -1348,7 +1374,7 @@ const farms: FarmConfig[] = [
      multiplier: '0X',
      platform: 'DinoSwap'
    },
-
+*/
    {
      pid: 143,
      lpSymbol: 'Bel-WEth LP',
@@ -2846,34 +2872,6 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (legacy)',
      multiplier: '0X',
    }, */
-
-   {
-     pid: 35,
-     lpSymbol: 'Roll',
-     lpAddresses: {
-       80001: '',
-       137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
-     },
-     masterChefAddresses: {
-       80001: '',
-       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
-     },
-     masterChefPid: 1,
-     jarAddresses: {
-       80001: '',
-       137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
-     },
-     token: tokens.roll,
-     quoteToken: tokens.roll,
-     rewardPerBlock: 18.959271141561696429,
-     poolWeightDesignate: 145/1090,
-     minutesPerCompound: 1,
-     kogefarmFee: 0.01,
-     isSushi: true,
-     underlyingWebsite: 'https://polyroll.org',
-     platform: 'PolyRoll'
-   },
-
    {
      pid: 164,
      lpSymbol: 'Roll',
@@ -2904,6 +2902,33 @@ const farms: FarmConfig[] = [
    },
 
    {
+     pid: 35,
+     lpSymbol: 'Roll',
+     lpAddresses: {
+       80001: '',
+       137: '0xC68e83a305b0FaD69E264A1769a0A070F190D2d6',
+     },
+     masterChefAddresses: {
+       80001: '',
+       137: '0x3C58EA8D37f4fc6882F678f822E383Df39260937',
+     },
+     masterChefPid: 1,
+     jarAddresses: {
+       80001: '',
+       137: '0xa32de2a04f68a17F6289105ce98baaA97f415309',
+     },
+     token: tokens.roll,
+     quoteToken: tokens.roll,
+     rewardPerBlock: 15.807249885895796596,
+     poolWeightDesignate: 145/1090,
+     minutesPerCompound: 1,
+     kogefarmFee: 0.01,
+     isSushi: true,
+     underlyingWebsite: 'https://polyroll.org',
+     platform: 'PolyRoll'
+   },
+
+   {
      pid: 36,
      lpSymbol: 'Roll-Matic LP',
      lpAddresses: {
@@ -2921,7 +2946,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.matic,
-     rewardPerBlock: 18.959271141561696429,
+     rewardPerBlock: 15.807249885895796596,
      poolWeightDesignate: 280/1090,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -2948,7 +2973,7 @@ const farms: FarmConfig[] = [
      },
      token: tokens.roll,
      quoteToken: tokens.matic,
-     rewardPerBlock: 18.959271141561696429,
+     rewardPerBlock: 15.807249885895796596,
      poolWeightDesignate: 120/1090,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -2980,7 +3005,7 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.myfriends,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.usdc,
-            rewardPerBlock1: 1.20*150000/344500, // 0.8064
+            rewardPerBlock1: 1.30*180000/398450, // 0.8064
             rewardPerBlock2: 0,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
@@ -3009,8 +3034,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.usdc,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*13500/344500, // 0.8064
-            rewardPerBlock2: 0.032*13500/344500,
+            rewardPerBlock1: 1.30*15000/398450, // 0.8064
+            rewardPerBlock2: 0.032*15000/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3038,8 +3063,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.matic,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*7000/344500, // 0.8064
-            rewardPerBlock2: 0.032*7000/344500,
+            rewardPerBlock1: 1.30*7000/398450, // 0.8064
+            rewardPerBlock2: 0.032*7000/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3067,8 +3092,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.usdc,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*24000/344500, // 0.8064
-            rewardPerBlock2: 0.032*24000/344500,
+            rewardPerBlock1: 1.30*24000/398450, // 0.8064
+            rewardPerBlock2: 0.032*24000/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3096,8 +3121,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.matic,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*9000/344500, // 0.8064
-            rewardPerBlock2: 0.032*9000/344500,
+            rewardPerBlock1: 1.30*10000/398450, // 0.8064
+            rewardPerBlock2: 0.032*10000/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3125,8 +3150,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.matic,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*6000/344500, // 0.8064
-            rewardPerBlock2: 0.032*6000/344500,
+            rewardPerBlock1: 1.30*6000/398450, // 0.8064
+            rewardPerBlock2: 0.032*6000/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3156,8 +3181,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.usdc,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*9200/344500, // 0.8064
-            rewardPerBlock2: 0.032*9200/344500,
+            rewardPerBlock1: 1.30*10000/344500, // 0.8064
+            rewardPerBlock2: 0.032*10000/344500,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3187,8 +3212,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.dai,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*8500/344500, // 0.8064
-            rewardPerBlock2: 0.032*8500/344500,
+            rewardPerBlock1: 1.30*8500/398450, // 0.8064
+            rewardPerBlock2: 0.032*8500/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3218,8 +3243,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.usdt,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*5500/344500, // 0.8064
-            rewardPerBlock2: 0.032*5500/344500,
+            rewardPerBlock1: 1.30*5500/398450, // 0.8064
+            rewardPerBlock2: 0.032*5500/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3249,8 +3274,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.eth,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*16000/344500, // 0.8064
-            rewardPerBlock2: 0.032*16000/344500,
+            rewardPerBlock1: 1.30*16000/398450, // 0.8064
+            rewardPerBlock2: 0.032*16000/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
@@ -3281,8 +3306,8 @@ const farms: FarmConfig[] = [
             quoteToken: tokens.btc,
             rewardToken1: tokens.arcadium,
             rewardToken2: tokens.myfriends,
-            rewardPerBlock1: 1.20*13500/344500, // 0.8064
-            rewardPerBlock2: 0.032*13500/344500,
+            rewardPerBlock1: 1.30*13500/398450, // 0.8064
+            rewardPerBlock2: 0.032*13500/398450,
             poolWeightDesignate: 1,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,

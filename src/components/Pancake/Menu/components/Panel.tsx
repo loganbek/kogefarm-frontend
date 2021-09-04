@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css, useTheme } from "styled-components";
 import PanelBody from "./PanelBody";
 import PanelFooter from "./PanelFooter";
 import { SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "../config";
@@ -10,7 +10,11 @@ interface Props extends PanelProps, PushedProps {
   isMobile: boolean;
 }
 
-const StyledPanel = styled.div<{ isPushed: boolean; showMenu: boolean }>`
+const StyledPanel = styled.div<{
+  isPushed: boolean; 
+  showMenu: boolean;
+  isDark: boolean
+}>`
   position: fixed;
   padding-top: ${({ showMenu }) => (showMenu ? "80px" : 0)};
   top: 0;
@@ -20,7 +24,6 @@ const StyledPanel = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   justify-content: space-between;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.nav.background};
-  background-image: url('/images/sidebar-bg.png');
   background-repeat: no-repeat;
   background-position: bottom left;
   width: ${({ isPushed }) => (isPushed ? `${SIDEBAR_WIDTH_FULL}px` : 0)};
@@ -31,15 +34,24 @@ const StyledPanel = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   transform: translate3d(0, 0, 0);
   ${({ isPushed }) => !isPushed && "white-space: nowrap;"};
 
+  ${({ isDark }) => isDark ? css`
+    background-image: url('/images/sidebar-bg-black.png');
+  ` : css`
+    background-image: url('/images/sidebar-bg-white.png');
+  `}
+
+  background-image: ${({ isPushed }) => !isPushed && "none"};
+
   ${({ theme }) => theme.mediaQueries.nav} {
     width: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
   }
 `;
 
 const Panel: React.FC<Props> = (props) => {
+  const theme = useTheme();
   const { isPushed, showMenu } = props;
   return (
-    <StyledPanel isPushed={isPushed} showMenu={showMenu}>
+    <StyledPanel isPushed={isPushed} showMenu={showMenu} isDark={theme.isDark}>
       <PanelBody {...props} />
       <PanelFooter {...props} />
     </StyledPanel>

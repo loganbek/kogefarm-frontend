@@ -31,6 +31,7 @@ const Title = styled.div`
   padding: 0 16px;
   margin-bottom: 16px;
   margin-top: 32px;
+  font-size: 14px;
   color: ${({ theme }) => theme.colors.menuHeader};
 `
 
