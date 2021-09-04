@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 
 const LogoContainer = styled.div`
   display: flex;
-  width: 240px;
+  width: 200px;
   align-items: center;
   flex-shrink: 0;
 

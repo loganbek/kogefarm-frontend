@@ -27,12 +27,12 @@ const CakeVaultCardActions: React.FC<{
   return (
   /*  <Box mt="24px" >
     <Flex >
-    <Text fontSize="14px"><span>&nbsp;&nbsp;</span></Text>
+    <Text><span>&nbsp;&nbsp;</span></Text>
     </Flex>
     </Box>
     <Box mt="8px" >
     <Flex>
-    <Text fontSize="14px"><span>&nbsp;&nbsp;</span></Text>
+    <Text><span>&nbsp;&nbsp;</span></Text>
     </Flex>
     </Box> */
 

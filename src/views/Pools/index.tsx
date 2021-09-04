@@ -123,7 +123,7 @@ const Pools: React.FC = () => {
         <StyledFlex 
           flexDirection="column"
           mr={['8px', 0]}
-          width="70%"
+          width="90%"
           pr="20%"
           className="info"
         >
@@ -145,16 +145,15 @@ const Pools: React.FC = () => {
             width="100%"
             mb="8px"
           >
-            <Text fontSize="14px" fontWeight="bold">Mined Kogecoin</Text>
+            <Text fontWeight="bold">Mined Kogecoin</Text>
 
             <Flex>
               <Text
                 fontWeight="bold"
-                fontSize="14px"
               >
                 100,000/
               </Text>
-              <Text fontSize="14px">
+              <Text>
                 800,000
               </Text>
             </Flex>
@@ -165,8 +164,8 @@ const Pools: React.FC = () => {
             width="100%"
             mt="20px"
           >
-            <Text fontSize="14px" fontWeight="bold">Vault TVL</Text>
-            <Text fontWeight="bold" fontSize="14px">
+            <Text fontWeight="bold">Vault TVL</Text>
+            <Text fontWeight="bold">
               100,000
             </Text>
           </Flex>

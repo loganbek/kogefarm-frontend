@@ -53,7 +53,6 @@ const CopyToClipboard: React.FC<Props> = ({ toCopy, children, ...props }) => {
       />
       { isTooltipDisplayed ? (
         <Text
-          fontSize="14px"
           fontWeight="bold"
           color="success"
         >

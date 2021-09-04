@@ -161,7 +161,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout align={props.platform.align}>
-                        <Text fontSize="14px" fontWeight="bold">{props.platform.userValue}</Text>
+                        <Text fontWeight="bold">{props.platform.userValue}</Text>
                       </CellLayout>
                     </CellInner>
                   </td>

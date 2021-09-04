@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
 const SettingsEntry = styled.div`
   display: flex;
-  height: 114px;
+  height: 100px;
   padding: 0 8px;
   align-items: flex-start;
   flex-direction: column;
@@ -37,23 +37,27 @@ const SettingsEntry = styled.div`
 const Links = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 26px;
+  margin-top: 18px;
   width: 100%;
 
   a {
     color: #167505;
-    font-size: 14px;
+    font-size: 10px;
   }
 `
 
 const StyledButtonMenu = styled(ButtonMenu)`
   width: 100%;
+
+  button {
+    font-size: 10px;
+  }
 `
 
 const Copyright = styled.small`
-  font-size: 14px;
+  font-size: 10px;
   width: 100%;
-  margin-top: 12px;
+  margin-top: 19px;
   color: ${({ theme }) => theme.colors.rowHeaderText};
 `
 

@@ -29,9 +29,9 @@ const Container = styled.div`
 
 const Title = styled.div`
   padding: 0 16px;
-  margin-bottom: 16px;
-  margin-top: 32px;
-  font-size: 14px;
+  margin-bottom: 13px;
+  margin-top: 25px;
+  font-size: 12px;
   color: ${({ theme }) => theme.colors.menuHeader};
 `
 
@@ -74,7 +74,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
                         <MenuLink href={item.href}>
                           <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
                           {item.status && (
-                            <LinkStatus color="primary" fontSize="14px">
+                            <LinkStatus color="primary">
                               {item.status.text}
                             </LinkStatus>
                           )}
@@ -90,7 +90,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
                   {iconElement}
                   <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
                   {entry.status && (
-                    <LinkStatus color="primary" fontSize="14px">
+                    <LinkStatus color="primary">
                       {entry.status.text}
                     </LinkStatus>
                   )}

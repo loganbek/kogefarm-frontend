@@ -42,7 +42,7 @@ export const MoreWalletCard: React.FC<ButtonProps> = (props) => {
   return (
     <WalletButton variant="tertiary" {...props}>
       <MoreHorizontal width="40px" mb="8px" color="textSubtle" />
-      <Text fontSize="14px">More</Text>
+      <Text>More</Text>
     </WalletButton>
   );
 };
@@ -72,7 +72,7 @@ const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss }) => {
       <IconWrapper bg={bg}>
         <Icon width="16px" />
       </IconWrapper>
-      <Text fontSize="14px">{title}</Text>
+      <Text>{title}</Text>
     </WalletButton>
   );
 };

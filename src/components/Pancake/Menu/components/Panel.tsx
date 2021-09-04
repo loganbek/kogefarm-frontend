@@ -16,7 +16,7 @@ const StyledPanel = styled.div<{
   isDark: boolean
 }>`
   position: fixed;
-  padding-top: ${({ showMenu }) => (showMenu ? "80px" : 0)};
+  padding-top: ${({ showMenu }) => (showMenu ? "71px" : 0)};
   top: 0;
   left: 0;
   display: flex;

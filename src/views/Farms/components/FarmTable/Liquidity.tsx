@@ -31,7 +31,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   return (
     <Container>
       <LiquidityWrapper>
-        <Text fontSize="14px">{displayLiquidity}</Text>
+        <Text>{displayLiquidity}</Text>
       </LiquidityWrapper>
     </Container>
   )

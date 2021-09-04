@@ -205,10 +205,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             }}
           >
             <Deposit isDark={isDark} />
-            <Text
-              fontSize="14px"
-              fontWeight="bold"
-            >
+            <Text fontWeight="bold">
               Deposit
             </Text>
           </StyledButtonMenuItem>
@@ -239,10 +236,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             }}
           >
             <Withdraw isDark={isDark} />
-            <Text
-              fontSize="14px"
-              fontWeight="bold"
-            >
+            <Text fontWeight="bold">
               Withdraw
             </Text>
           </StyledButtonMenuItem>

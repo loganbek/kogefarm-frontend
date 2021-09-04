@@ -34,7 +34,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label }) => {
         mr="8px" 
       />
       <div>
-        <Text fontSize="14px" bold>{label}</Text>
+        <Text bold>{label}</Text>
       </div>
     </Container>
   )

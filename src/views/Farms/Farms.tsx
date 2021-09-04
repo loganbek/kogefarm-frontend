@@ -350,27 +350,27 @@ const Farms: React.FC = () => {
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'multi':
-          if (multiSearch.has('all')) {
-            return farms
-          }
+          // if (multiSearch.has('all')) {
+          //   return farms
+          // }
 
-          if (multiSearch.size > 0 && isSearching) {
-            return filter(farms, f => {
-              if (multiSearch.has('single')) {
-                return f.token.address[chainId] === f.quoteToken.address[chainId]
-              }
+          // if (multiSearch.size > 0 && isSearching) {
+          //   return filter(farms, f => {
+          //     if (multiSearch.has('single')) {
+          //       return f.token.address[chainId] === f.quoteToken.address[chainId]
+          //     }
 
-              if (multiSearch.has('stable')) {
-                return f.token.address[chainId] === tokens.usdc.address[chainId]
-              }
+          //     if (multiSearch.has('stable')) {
+          //       return f.token.address[chainId] === tokens.usdc.address[chainId]
+          //     }
 
-              if (multiSearch.has('feeless')) {
-                return f.depositFee === 0
-              }
+          //     if (multiSearch.has('feeless')) {
+          //       return f.depositFee === 0
+          //     }
 
-              return false
-            })
-          }
+          //     return false
+          //   })
+          // }
 
           return farms
         case 'single':
@@ -428,8 +428,8 @@ const Farms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     numberOfFarmsVisible,
-    multiSearch,
-    isSearching,
+    // multiSearch,
+    // isSearching,
   ])
 
   useEffect(() => {
@@ -623,10 +623,10 @@ const Farms: React.FC = () => {
   
       <Hero>
         <Flex width={isDesktop ? "70%" : "100%"} flexDirection="column" mb="30px" className="info">
-          <Heading scale="lg" mb="16px">
+          <Heading scale="lg" mb="12px">
             Vaults to stake
           </Heading>
-          <StyledText mb="16px">
+          <StyledText fontSize="14px" mb="14px">
             {t('KogeFarm helps you earn more yield by ')}
             {' '}
             { isDesktop ? <AutoCompound /> : null }
@@ -653,12 +653,12 @@ const Farms: React.FC = () => {
         <Flex width={isDesktop ? "30%" : "100%"} justifyContent="flex-end" className="stats">
           <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px">
-              <Text fontSize="14px">KogeCoin Price</Text>
-              <Text fontSize="14px" fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
+              <Text>KogeCoin Price</Text>
+              <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
-              <Text fontSize="14px">Vault TVL</Text>
-              <Text fontSize="14px" fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
+              <Text>Vault TVL</Text>
+              <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
             </Price>
           </Flex>
         </Flex>
@@ -666,7 +666,7 @@ const Farms: React.FC = () => {
   
       <ControlContainer>
         <ToggleWrapper>
-          <Text> {t('Staked only')}</Text>
+          <Text fontSize="12px" bold>{t('Staked only')}</Text>
           <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
         </ToggleWrapper>
         <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />

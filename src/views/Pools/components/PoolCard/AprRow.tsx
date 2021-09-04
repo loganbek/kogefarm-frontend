@@ -73,7 +73,7 @@ const AprRow: React.FC<AprRowProps> = ({
     <Flex justifyContent="space-between" flexDirection="column">
       <div>
         <Flex alignItems="center">
-          <Text fontSize="14px" fontWeight="600">
+          <Text fontSize="12px" fontWeight="600">
             {isAutoVault ? t('APY') : t('APR')}
           </Text>
           <Tooltip

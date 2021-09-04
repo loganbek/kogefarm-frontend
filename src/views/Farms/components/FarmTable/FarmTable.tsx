@@ -34,7 +34,7 @@ const TableWrapper = styled.div`
 const StyledTable = styled.table`
   border-collapse: separate;
   border-spacing: 0 12px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
@@ -72,7 +72,7 @@ const TableBody = styled.tbody`
 const TableHeader = styled.thead`
   position: sticky;
   top: 64px;
-  z-index: 10;
+  z-index: 1;
   background: ${({ theme }) => theme.colors.rowHeader};
 
   tr:first-child th:first-child { border-top-left-radius: 10px; }
@@ -181,7 +181,7 @@ const FarmTable: React.FC<ITableProps> = props => {
                         { header.display ? (
                           <>
                             <Label
-                              fontSize="14px"
+                              fontSize="12px"
                               fontWeight="bold"
                             >
                               {header.label}

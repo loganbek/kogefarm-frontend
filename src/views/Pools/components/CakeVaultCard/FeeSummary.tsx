@@ -37,7 +37,7 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount
         <TooltipText ref={targetRef} small>
           {t('Unstaking Fee')}
         </TooltipText>
-        <Text fontSize="14px">
+        <Text>
           {stakeAmount ? feeInCake : '-'} {stakingTokenSymbol}
         </Text>
       </Flex>

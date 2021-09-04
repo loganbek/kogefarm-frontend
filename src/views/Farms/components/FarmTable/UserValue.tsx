@@ -40,7 +40,7 @@ const UserValue: React.FunctionComponent<UserValueProps> = ({ userValue }) => {
   return (
     <Container>
       <UserValueWrapper>
-        <Text fontSize="14px">{displayUserValue}</Text>
+        <Text>{displayUserValue}</Text>
       </UserValueWrapper>
     </Container>
   )

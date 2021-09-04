@@ -121,7 +121,7 @@ const TagsContainer = styled.div`
   > div {
     height: auto;
     padding: 12px;
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 4px;
 
     svg {
@@ -140,7 +140,7 @@ const InfoContainer = styled.div`
 
   a {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   @media screen and (max-width: 576px) {
@@ -316,15 +316,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
           <ValueContainer>
             <ValueWrapper>
-              <Text fontSize="14px">{t('APY')}</Text>
+              <Text>{t('APY')}</Text>
               <Apy {...apy} />
             </ValueWrapper>
             <ValueWrapper>
-              <Text fontSize="14px">{t('Total Staked')}</Text>
+              <Text>{t('Total Staked')}</Text>
               <Liquidity {...liquidity} />
             </ValueWrapper>
             <ValueWrapper>
-              <Text fontSize="14px">{t('User Staked')}</Text>
+              <Text>{t('User Staked')}</Text>
               <UserValue {...userValue} />
             </ValueWrapper>
           </ValueContainer>

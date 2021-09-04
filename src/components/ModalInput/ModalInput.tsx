@@ -40,7 +40,6 @@ const StyledInput = styled(Input)`
   border: 2px solid #1EA306;
   box-sizing: border-box;
   border-radius: 4px;
-  font-size: 14px;
 `
 
 const StyledErrorMessage = styled(Text)`
@@ -99,7 +98,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
         <div>
           <StyledErrorMessage fontSize="14px" color="failure">
             No tokens to stake:{' '}
-            <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
+            <Link bold={false} href={addLiquidityUrl} external color="failure">
               {t('get')} {symbol}
             </Link>
           </StyledErrorMessage>

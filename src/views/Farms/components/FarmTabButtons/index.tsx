@@ -23,14 +23,10 @@ const Wrapper = styled.div`
     padding-left: 12px;
     padding-right: 12px;
   }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 16px;
-  }
 `
 
 const StyledButtonMenuItem: PolymorphicComponent<ButtonProps, "button"> = styled(ButtonMenuItem)<ButtonProps>`
-  font-size: 12px;
+  font-size: 10px;
 `
 
 const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {

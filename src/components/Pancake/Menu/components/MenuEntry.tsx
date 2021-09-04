@@ -32,7 +32,7 @@ const MenuEntry = styled.div<Props>`
   align-items: center;
   height: ${MENU_ENTRY_HEIGHT}px;
   padding: ${({ secondary }) => (secondary ? "0 32px" : "0 16px")};
-  font-size: ${({ secondary }) => (secondary ? "14px" : "14px")};
+  font-size: ${({ secondary }) => (secondary ? "14px" : "12px")};
   color: ${({ theme }) => theme.colors.textSubtle};
   font-weight: 600;
 
@@ -45,6 +45,7 @@ const MenuEntry = styled.div<Props>`
 
   svg {
     fill: ${({ theme }) => theme.colors.menuHeader};
+    margin-right: 2px;
   }
 
   &:hover {
