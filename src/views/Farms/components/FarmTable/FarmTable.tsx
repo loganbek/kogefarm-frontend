@@ -163,7 +163,7 @@ const FarmTable: React.FC<ITableProps> = props => {
                             position="bottom"
                             html={(
                               <Tip>
-                                { open ? "Collapse all" : "Expand all"}
+                                <Text>{ open ? "Collapse all" : "Expand all"}</Text>
                               </Tip>
                             )}
                           >
