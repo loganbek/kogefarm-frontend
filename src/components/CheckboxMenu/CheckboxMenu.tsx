@@ -65,7 +65,7 @@ const CheckBoxMenu = ({
 }: {
 	onChange: any
 }) => {
-	const [checkedState, setCheckedState] = useState([]);
+	const [checkedState, setCheckedState] = useState(["all"]);
 	const currentTabs = new Set()
 
 	const handleOnChange = value => {
@@ -89,7 +89,7 @@ const CheckBoxMenu = ({
 		}
 
 
-    setCheckedState(Array.from(currentTabs));
+    setCheckedState(Array.from(currentTabs) as string[]);
 		onChange(currentTabs)
   };
 
