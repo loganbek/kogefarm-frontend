@@ -16,6 +16,8 @@ import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+// import PrivacyPolicy from './views/PrivacyPolicy'
+// import TermsOfUse from './views/TermsOfUse';
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -30,6 +32,9 @@ const NotFound = lazy(() => import('./views/NotFound'))
 // const Profile = lazy(() => import('./views/Profile'))
 // const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
 // const Predictions = lazy(() => import('./views/Predictions'))
+const PrivacyPolicy = lazy(() => import('./views/PrivacyPolicy'))
+const TermsOfUse = lazy(() => import('./views/TermsOfUse'))
+
 
 // This config is required for number formatting
 BigNumber.config({
@@ -55,7 +60,13 @@ const App: React.FC = () => {
             </Route>
             <Route path="/farms">
                <Pools />
-             </Route>
+            </Route>
+            <Route path="/privacy">
+              <PrivacyPolicy />
+              </Route>
+            <Route path="/terms" >
+              <TermsOfUse />
+            </Route>
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>

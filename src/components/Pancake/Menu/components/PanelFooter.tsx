@@ -100,8 +100,8 @@ const PanelFooter: React.FC<Props> = ({
           </StyledButtonMenu>
         </Wrapper>
         <Links>
-          <a href="example.com">Privacy Policy</a>
-          <a href="example.com">Terms of Use</a>
+          <a href="privacy">Privacy Policy</a>
+          <a href="terms">Terms of Use</a>
         </Links>
         <Copyright>© kogecoin. All rights reserved</Copyright>
       </SettingsEntry>
