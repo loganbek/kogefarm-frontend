@@ -339,7 +339,6 @@ const Farms: React.FC = () => {
   }
 
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const handleCurrent = c => setCurrent(c)
 
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -425,6 +424,8 @@ const Farms: React.FC = () => {
   ])
 
   useEffect(() => {
+    setCurrent(farmsStakedMemoized.length)
+
     const showMoreFarms = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
@@ -564,7 +565,6 @@ const Farms: React.FC = () => {
           data={rowData}
           columns={columns}
           userDataReady={userDataReady}
-          handleCurrent={handleCurrent}
         />
       )
     }

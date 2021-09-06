@@ -122,7 +122,7 @@ const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
-  const { data, columns, userDataReady, handleCurrent } = props
+  const { data, columns, userDataReady } = props
 
   const { rows, toggleSort, headers } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
@@ -134,10 +134,6 @@ const FarmTable: React.FC<ITableProps> = props => {
 
   const sort = ({ name }) => toggleSort(name)
   const handleOpen = () => setOpen(!open)
-
-  useEffect(() => {
-    handleCurrent(rows.length)
-  }, [rows, handleCurrent])
 
   return (
     <Container>
