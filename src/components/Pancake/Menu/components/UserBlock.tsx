@@ -120,7 +120,7 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
         >
           <Button
             variant="tertiary"
-            scale="md"
+            scale="sm"
           >
             <IconWrapper bg={wallet.bg}>
               {wallet.component()}

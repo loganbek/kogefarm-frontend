@@ -350,29 +350,21 @@ const Farms: React.FC = () => {
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'multi':
-          // if (multiSearch.has('all')) {
-          //   return farms
-          // }
+          return filter(farms, f => {
+            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId]
+            const stableFilter = f.token.address[chainId] === tokens.usdc.address[chainId]
+            const feelessFilter = f.depositFee === 0
 
-          // if (multiSearch.size > 0 && isSearching) {
-          //   return filter(farms, f => {
-          //     if (multiSearch.has('single')) {
-          //       return f.token.address[chainId] === f.quoteToken.address[chainId]
-          //     }
+            if (multiSearch.has('all') && isSearching) {
+              return true
+            }
 
-          //     if (multiSearch.has('stable')) {
-          //       return f.token.address[chainId] === tokens.usdc.address[chainId]
-          //     }
+            if (multiSearch.has('single')) return singleFilter
+            if (multiSearch.has('stable')) return stableFilter
+            if (multiSearch.has('feeless')) return feelessFilter
 
-          //     if (multiSearch.has('feeless')) {
-          //       return f.depositFee === 0
-          //     }
-
-          //     return false
-          //   })
-          // }
-
-          return farms
+            return false
+          })
         case 'single':
           return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId])
         case 'stable':
@@ -428,8 +420,8 @@ const Farms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     numberOfFarmsVisible,
-    // multiSearch,
-    // isSearching,
+    multiSearch,
+    isSearching,
   ])
 
   useEffect(() => {
@@ -602,7 +594,6 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    console.log(activeIndex)
     setMultiSearch(activeIndex)
     setIsSearching(!isSearching)
     setSortOption('multi')

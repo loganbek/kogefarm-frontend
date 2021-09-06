@@ -82,7 +82,6 @@ const CheckBoxMenu = ({
 
 		if (value !== 'all') {
 			if (currentTabs.has(value)) {
-				console.log(currentTabs)
 				currentTabs.delete(value)
 			} else {
 				currentTabs.add(value)
@@ -91,7 +90,7 @@ const CheckBoxMenu = ({
 
 
     setCheckedState(Array.from(currentTabs));
-		// onChange(checkedState)
+		onChange(currentTabs)
   };
 
 	return (
