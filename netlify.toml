@@ -17,9 +17,9 @@ minify = true
 [build.processing.images]
 compress = true
 
-[[redirects]]
-from = '/docs'
-to = 'https://koge.gitbook.io'
-status = 200
-force = true
+# [[redirects]]
+# from = '/docs'
+# to = 'https://koge.gitbook.io'
+# status = 200
+# force = true
 # headers = {X-From = "Netlify"}

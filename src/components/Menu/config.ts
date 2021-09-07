@@ -50,6 +50,12 @@ export const config: MenuEntry[] = [
     group: 'Help',
   },
   {
+    label: 'Github',
+    icon: 'GithubIcon',
+    href: 'https://github.com/kogecoin',
+    group: 'Stay Tuned',
+  },
+  {
     label: 'Twitter',
     icon: 'TwitterIcon',
     href: 'https://twitter.com/kogecoin',
@@ -57,19 +63,19 @@ export const config: MenuEntry[] = [
   },
   {
     label: 'Reddit',
-    icon: 'TwitterIcon',
+    icon: 'RedditIcon',
     href: 'https://www.reddit.com/r/KogeCoin/',
     group: 'Stay Tuned',
   },
   {
     label: 'Discord',
-    icon: 'TwitterIcon',
+    icon: 'DiscordIcon',
     href: 'https://discord.gg/xDsnS3TSVA',
     group: 'Stay Tuned',
   },
   {
     label: 'Medium',
-    icon: 'TwitterIcon',
+    icon: 'MediumIcon',
     href: 'https://medium.com/@kogecoin',
     group: 'Stay Tuned',
   },
