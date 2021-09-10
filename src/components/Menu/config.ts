@@ -14,6 +14,29 @@ export const config: MenuEntry[] = [
     group: '',
   },
   {
+    label: 'PolyRoll',
+    icon: 'TicketIcon',
+    items: [
+      {
+        label: 'Coin Flip',
+        href: 'https://polyroll.org/coinflip/KOGE?ref=0k4N170561126n1Q765N6O80n081qO639945n8o53o'
+      },
+      {
+        label: 'Dice Roll',
+        href: 'https://polyroll.org/diceroll/KOGE?ref=0k4N170561126n1Q765N6O80n081qO639945n8o53o'
+      },
+      {
+        label: 'Polyroll',
+        href: 'https://polyroll.org/polyroll/KOGE?ref=0k4N170561126n1Q765N6O80n081qO639945n8o53o'
+      },
+      {
+        label: 'Roulette',
+        href: 'https://polyroll.org/roulette/KOGE?ref=0k4N170561126n1Q765N6O80n081qO639945n8o53o'
+      }
+    ],
+    group: 'Games',
+  },
+  {
     label: 'Governance',
     icon: 'GroupsIcon',
     href: 'https://vote.kogecoin.io',
@@ -87,15 +110,19 @@ export const config: MenuEntry[] = [
     items: [
       {
         label: "Main Chat",
-        href: "https://t.me/kogecoina",
+        href: "https://t.me/kogecoin",
       },
       {
         label: "Price Chat",
-        href: "https://t.me/kogecoinb",
+        href: "https://t.me/kogecoinprice",
       },
       {
         label: "Announcement Channel",
-        href: "https://t.me/kogecoinc",
+        href: "https://t.me/kogecoincann",
+      },
+      {
+        label: "Spanish Chat",
+        href: "https://t.me/kogecoinspanish",
       }
     ]
   },

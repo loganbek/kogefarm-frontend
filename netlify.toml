@@ -23,3 +23,17 @@ compress = true
 # status = 200
 # force = true
 # headers = {X-From = "Netlify"}
+
+[context.deploy-preview.processing]
+skip-processing = true
+
+[context.deploy-preview.processing.css]
+bundle = false
+minify = false
+
+[context.deploy-preview.processing.js]
+bundle = false
+minify = false
+
+[context.deploy-preview.processing.images]
+compress = false
