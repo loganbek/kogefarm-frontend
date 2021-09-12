@@ -2,9 +2,10 @@ import React from 'react'
 import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon, RefreshIcon, AutoRenewIcon } from 'components/Pancake'
 
 const CoreTag = (props) => (
-  <Tag variant="tertiary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
-    Harvest for all
-  </Tag>
+  // <Tag variant="tertiary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+  //   Harvest for all
+  // </Tag>
+  <div>{null}</div>
 )
 
 const SushiTag = (props) => (

@@ -121,8 +121,12 @@ export const config: MenuEntry[] = [
         href: "https://t.me/kogecoincann",
       },
       {
-        label: "Spanish Chat",
+        label: "Español",
         href: "https://t.me/kogecoinspanish",
+      },
+      {
+        label: "Tiếng Việt",
+        href: "https://t.me/kogevietnamese"
       }
     ]
   },

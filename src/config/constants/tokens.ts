@@ -680,6 +680,51 @@ const tokens = {
     },
     decimals: 18,
   },
+  aave: {
+    symbol: 'AAVE',
+    coingeico: 'aave',
+    address: {
+      137: '0xD6DF932A45C0f255f85145f286eA0b292B21C90B',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  avax: {
+    symbol: 'AVAX',
+    coingeico: 'avax',
+    address: {
+      137: '0x2C89bbc92BD86F8075d1DEcc58C7F4E0107f286b',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  wusd: {
+    symbol: 'WUSD',
+    coingeico: 'wusd',
+    address: {
+      137: '0xb8ab048D6744a276b2772dC81e406a4b769A5c3D',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  iris: {
+    symbol: 'Iris',
+    coingeico: 'iris',
+    address: {
+      137: '0xdaB35042e63E93Cc8556c9bAE482E5415B5Ac4B1',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  elk: {
+    symbol: 'Elk',
+    coingeico: 'elk',
+    address: {
+      137: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
+      80001: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
