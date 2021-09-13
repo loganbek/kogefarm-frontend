@@ -54,9 +54,33 @@ const InfoContainer = styled.div`
   }
 `
 
+// const StyledNav = styled.nav<{ showMenu: boolean }>`
+//   position: fixed;
+//   top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
+//   left: 0;
+//   transition: top 0.2s;
+//   display: flex;
+//   align-items: center;
+//   padding-left: 8px;
+//   padding-right: 16px;
+//   width: 100%;
+//   height: ${MENU_HEIGHT}px;
+//   background-color: ${({ theme }) => theme.nav.background};
+//   background-image: url('/images/header-bg.png');
+//   background-repeat: no-repeat;
+//   background-position: center top;
+//   z-index: 20;
+//   transform: translate3d(0, 0, 0);
+
+//   @media screen and (max-width: 576px) {
+//     background-image: none;
+//   }
+// `;
+
+
 const StyledNav = styled.nav<{ showMenu: boolean }>`
   position: fixed;
-  top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
+  top: 0;
   left: 0;
   transition: top 0.2s;
   display: flex;
