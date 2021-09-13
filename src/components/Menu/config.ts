@@ -118,7 +118,7 @@ export const config: MenuEntry[] = [
       },
       {
         label: "Announcement Channel",
-        href: "https://t.me/kogecoincann",
+        href: "https://t.me/KogeAnn",
       },
       {
         label: "Español",
