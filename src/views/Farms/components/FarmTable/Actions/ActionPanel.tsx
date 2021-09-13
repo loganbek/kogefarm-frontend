@@ -225,6 +225,8 @@ const Stat = styled(Text)`
 
 const format = num => numeral(num).format('0,0.00')
 
+const format18 = num => numeral(num).format('0,0.000000000000000000')
+
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apy,
@@ -341,7 +343,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Info>
                 <Staked>
                   <Title>LPs Staked</Title>
-                  <Stat>{format(liquidity?.liquidity)}</Stat>
+                  <Stat>{format18(liquidity?.liquidity)}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
