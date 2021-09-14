@@ -23,7 +23,6 @@ import {
   fetchFarmsQuoteTokenDecimals,
   fetchFarmsTotalDepositsVal,
   fetchFarmsJarRatioBal,
-  fetchFarmsTradingFeeRate,
 } from './fetchFarmsNew'
 
 const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))

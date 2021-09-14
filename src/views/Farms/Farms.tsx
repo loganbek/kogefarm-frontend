@@ -6,8 +6,6 @@ import BigNumber from 'bignumber.js'
 import { isDesktop } from "react-device-detect";
 import { useWeb3React } from '@web3-react/core'
 import {
-  ButtonMenu,
-  ButtonMenuItem,
   Heading,
   RowType,
   Toggle,
@@ -28,7 +26,7 @@ import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getMetaFarmApr } from 'utils/apr'
-import { chain, filter, orderBy, uniqBy } from 'lodash'
+import { filter, orderBy, uniqBy } from 'lodash'
 import { getAddress } from 'utils/addressHelpers'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
@@ -125,43 +123,6 @@ const LabelWrapper = styled.div`
   }
 `
 
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-
-  @media screen and (max-width: 576px) {
-    flex-direction: column;
-  }
-`
-
-const ViewControls = styled.div`
-  flex-wrap: wrap;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  > div {
-    padding: 8px 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
-    width: auto;
-
-    > div {
-      padding: 0;
-    }
-  }
-`
-
 const InfoContainer = styled.div`
   width: 100%;
   justify-content: space-between;
@@ -173,10 +134,6 @@ const Price = styled(Flex)`
   b {
     margin-left: 8px;
   }
-`
-
-const StyledButtonMenuItem = styled(ButtonMenuItem)`
-  font-size: 12px;
 `
 
 const NUMBER_OF_FARMS_VISIBLE = 12
@@ -262,9 +219,9 @@ const Farms: React.FC = () => {
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
         const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
 */
-        let decimals = 18
+        let decimal = 18
         if (farm.token === farm.quoteToken) {
-          decimals = farm.token.decimals
+          decimal = farm.token.decimals
         }
         if (!farm.tokenPriceVsQuote || !prices) {
           return farm
@@ -282,13 +239,13 @@ const Farms: React.FC = () => {
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
         if (farm.token === farm.quoteToken) {
           totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
-          totalLiquidity = totalLiquidity.times(10 ** (18-decimals))
+          totalLiquidity = totalLiquidity.times(10 ** (18-decimal))
         }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
         //        const jarRatioNum = new BigNumber(farm.jarRatio)
         let totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
         if (farm.token === farm.quoteToken) {
-          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10 ** decimals).times(new BigNumber(quoteTokenPriceUsd))
+          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10 ** decimal).times(new BigNumber(quoteTokenPriceUsd))
         }
         const farmRatio = new BigNumber(farm.jarRatio).div(10 ** 18)
         let userDeposits
@@ -301,10 +258,9 @@ const Farms: React.FC = () => {
           userDeposits = new BigNumber(0)
         }
         // If dual rewards: transform reward/block in terms of token price
-        let rewardPerBlock = farm.rewardPerBlock
+        let { rewardPerBlock, rewardPerBlock1 } = farm
         // Special case: pSwamp
         const masterChefAddress = getAddress(farm.masterChefAddresses)
-        let rewardPerBlock1 = farm.rewardPerBlock1
         if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E'){
           rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
         }
@@ -349,14 +305,18 @@ const Farms: React.FC = () => {
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'multi':
+          if (multiSearch.has('all')) {
+            return farms
+          }
+
+          if (isSearching) {
+            console.log('Searching...')
+          }
+
           return filter(farms, f => {
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId]
             const stableFilter = f.token.address[chainId] === tokens.usdc.address[chainId]
             const feelessFilter = f.depositFee === 0
-
-            if (multiSearch.has('all') && isSearching) {
-              return true
-            }
 
             if (multiSearch.has('single')) return singleFilter
             if (multiSearch.has('stable')) return stableFilter
@@ -436,7 +396,7 @@ const Farms: React.FC = () => {
     if (!observerIsSet) {
       const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
         rootMargin: '0px',
-        threshold: 1,
+        threshold: 0.25,
       })
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
@@ -546,8 +506,8 @@ const Farms: React.FC = () => {
 
               return 0
             case 'apy':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
+              if (a.original.apy.value && b.original.apy.value) {
+                return Number(a.original.apy.value) - Number(b.original.apy.value)
               }
 
               return 0

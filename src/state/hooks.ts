@@ -1,13 +1,8 @@
 import { useEffect, useMemo } from 'react'
-// import { useEffect } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-// import { orderBy } from 'lodash'
-// import { Team } from 'config/constants/types'
-// import Nfts from 'config/constants/nfts'
-import { getWeb3NoAccount } from 'utils/web3'
 import { getAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -19,16 +14,9 @@ import {
   fetchCakeVaultPublicData,
   fetchCakeVaultUserData,
   fetchCakeVaultFees,
-  setBlock,
 } from './actions'
-// import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState } from './types'
 import { State, Farm, Pool, PriceState, FarmsState } from './types'
-// import { fetchProfile } from './profile'
-// import { fetchTeam, fetchTeams } from './teams'
-// import { fetchAchievements } from './achievements'
 import { fetchPrices } from './prices'
-// import { fetchWalletNfts } from './collectibles'
-// import { getCanClaim } from './predictions/helpers'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 
@@ -42,18 +30,7 @@ export const useFetchPublicData = () => {
     dispatch(fetchPoolsStakingLimitsAsync())
   }, [dispatch, slowRefresh])
 
-/*  useEffect(() => {
-    const web3 = getWeb3NoAccount()
-    const interval = setInterval(async () => {
-      const blockNumber = await web3.eth.getBlockNumber()
-      dispatch(setBlock(blockNumber))
-    }, 6000)
-
-    return () => clearInterval(interval)
-  }, [dispatch]) */
 }
-
-// Farms
 
 export const useFarms = (): FarmsState => {
   const farms = useSelector((state: State) => state.farms)
@@ -115,16 +92,7 @@ export const useGetApiPrice = (address: string) => {
   return prices[address.toLowerCase()]
 }
 
-// export const usePriceBnbBusd = (): BigNumber => {
-//  const bnbBusdFarm = useFarmFromPid(2)
-//  return bnbBusdFarm.tokenPriceVsQuote ? new BigNumber(1).div(bnbBusdFarm.tokenPriceVsQuote) : BIG_ZERO
-// }
-
 export const usePriceCakeBusd = (): BigNumber => {
-  //  const cakeBnbFarm = useFarmFromPid(1)
-  //  const bnbBusdPrice = usePriceBnbBusd()
-
-  //  const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? cakeBnbFarm.tokenPriceVsQuote : BIG_ZERO
   const cakeBusdPrice = new BigNumber(100)
   return cakeBusdPrice
 }

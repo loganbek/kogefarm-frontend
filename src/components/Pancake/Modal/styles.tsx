@@ -8,9 +8,9 @@ import { ModalProps } from "./types";
 
 export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
-  background: ${({ background }) => background || "transparent"};
   display: flex;
-  padding: 32px;
+  padding: 0;
+  padding-top: 32px;
   text-align: center;
 `;
 
@@ -33,7 +33,11 @@ export const ModalBody = styled(Flex)`
 
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
   return (
-    <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
+    <IconButton
+      variant="text"
+      onClick={onDismiss}
+      aria-label="Close the dialog"
+    >
       <CloseIcon color="primary" />
     </IconButton>
   );

@@ -19,9 +19,6 @@ import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
 import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import useStake from 'hooks/useStake'
-import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
 import useTheme from 'hooks/useTheme'
 
@@ -85,8 +82,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const jarAddress = jarAddresses[process.env.REACT_APP_CHAIN_ID]
-  const { onStake } = useStake(jarAddress)
-  const { onUnstake } = useUnstake(jarAddress)
   const web3 = useWeb3()
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
@@ -128,26 +123,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
   }
 
-  let decimals = 18
-  if (lpSymbol==="KogeCoin"){
-    decimals = 9
-  }
-  if (lpSymbol.toUpperCase()==="USDC" || lpSymbol.toUpperCase()==="USDT"){
-    decimals = 6
-  }
-  if (lpSymbol.toUpperCase()==="BTC"){
-    decimals = 8
-  }
-
   const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
-  const displayBalance = useCallback(() => {
-    const stakedBalanceNumber = getBalanceNumber(stakedBalance)
-    if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
-      return getFullDisplayBalance(displayBalanceNumber,decimals,decimals).toLocaleString()
-    }
-  return getFullDisplayBalance(displayBalanceNumber,decimals,decimals).toLocaleString()
-
-}, [stakedBalance, displayBalanceNumber, decimals])
 
   const onDepositClose = () => setDepositIsOpen(false)
   const onWithdrawClose = () => setWithdrawIsOpen(false)
@@ -189,7 +165,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             <Tip>
               <DepositModal
                 max={tokenBalance} 
-                onConfirm={onStake}
+                onConfirm={() => null}
                 onClose={onDepositClose}
                 tokenName={lpSymbol}
                 addLiquidityUrl={addLiquidityUrl}
@@ -221,7 +197,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               <WithdrawModal
                 max={stakedBalance}
                 displayMax={displayBalanceNumber}
-                onConfirm={onUnstake}
+                onConfirm={() => null}
                 onClose={onWithdrawClose}
                 tokenName={lpSymbol}
                 depositFee={depositFee} 

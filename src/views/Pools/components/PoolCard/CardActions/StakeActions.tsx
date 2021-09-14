@@ -1,18 +1,5 @@
-import React, { ReactNode, useState } from 'react'
-import styled from 'styled-components'
-import { BIG_ZERO } from 'utils/bigNumber'
-import { 
-  Flex,
-  Text,
-  Button,
-  IconButton,
-  AddIcon,
-  MinusIcon,
-  useModal,
-  Skeleton,
-  useTooltip,
-} from 'components/Pancake'
-import { Tooltip } from 'react-tippy'
+import React from 'react'
+import { Flex, Text, Button, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip } from 'components/Pancake'
 import BigNumber from 'bignumber.js'
 import { useGetApiPrice } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
@@ -21,26 +8,15 @@ import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
-import HarvestActions from './HarvestActions'
 
 interface StakeActionsProps {
   pool: Pool
-  harvest?: any,
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
   isStaked: ConstrainBoolean
   isLoading?: boolean
-  content?: ReactNode
+  handleOpen: () => void
 }
-
-const Tip = styled.div`
-  background: #F4F4F4;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  width: 360px;
-  padding: 24px;
-  margin-top: 5px;
-  border-radius: 4px;
-`
 
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
@@ -48,14 +24,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakedBalance,
   isStaked,
   isLoading = false,
+  handleOpen,
 }) => {
-  const { sousId, pid, stakingToken, harvest, stakingLimit, isFinished, userData, earningToken } = pool
+  const { stakingToken, stakingLimit, isFinished, userData } = pool
   const { t } = useTranslation()
-  const [open, setOpen] = useState(false)
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
-  const earningTokenPrice = useGetApiPrice(earningToken.coingeico)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
     stakingToken.decimals,
@@ -87,7 +61,16 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
-  const handleOpen = () => setOpen(!open)
+  const onClick = () => {
+    if (stakingTokenBalance.gt(0)) {
+      onPresentStake()
+
+    } else {
+      onPresentTokenRequired()
+    }
+
+    handleOpen()
+  }
 
   const renderStakeAction = () => {
     return isStaked ? (
@@ -95,20 +78,27 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         <Flex flexDirection="column">
           <>
             <Balance bold fontSize="20px" decimals={3} value={stakedTokenBalance} />
-            <Text fontSize="12px" color="textSubtle">
-              <Balance
-                fontSize="12px"
-                color="textSubtle"
-                decimals={2}
-                value={stakedTokenDollarBalance}
-                prefix="~"
-                unit=" USD"
-              />
-            </Text>
+              <Text fontSize="12px" color="textSubtle">
+                <Balance
+                  fontSize="12px"
+                  color="textSubtle"
+                  decimals={2}
+                  value={stakedTokenDollarBalance}
+                  prefix="~"
+                  unit=" USD"
+                />
+              </Text>
           </>
         </Flex>
         <Flex>
-          <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
+          <IconButton
+            variant="secondary"
+            onClick={() => {
+              handleOpen()
+              onPresentUnstake()
+            }}
+            mr="6px"
+          >
             <MinusIcon color="primary" width="24px" />
           </IconButton>
           {reachStakingLimit ? (
@@ -120,8 +110,16 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           ) : (
             <IconButton
               variant="secondary"
-              onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
               disabled={isFinished}
+              onClick={() => {
+                handleOpen()
+
+                if (stakingTokenBalance.gt(0)) {
+                  onPresentStake()
+                } else {
+                 onPresentTokenRequired()
+                }
+              }}
             >
               <AddIcon color="primary" width="24px" height="24px" />
             </IconButton>
@@ -130,43 +128,16 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Tooltip
-        open={open}
-        trigger="click"
-        interactive
-        useContext
-        position="bottom-end"
-        html={(
-          <Tip>
-            {harvest ? (
-              <HarvestActions
-                earnings={earnings}
-                earningToken={earningToken}
-                onClose={handleOpen}
-                sousId={sousId}
-                pid={pid}
-                earningTokenPrice={earningTokenPrice}
-                isLoading={isLoading}
-              />
-            ) : null}
-          </Tip>
-        )}
+      <Button
+        disabled={isFinished}
+        onClick={onClick}
       >
-        <Button 
-          variant="secondary"
-          height="32px"
-        >
-          {t('Stake')}
-        </Button>
-      </Tooltip>
+        {t('Stake')}
+      </Button>
     )
   }
 
-  return (
-    <Flex flexDirection="column">
-      {isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}
-    </Flex>
-  )
+  return <Flex flexDirection="column">{isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}</Flex>
 }
 
 export default StakeAction

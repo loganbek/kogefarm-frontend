@@ -4,7 +4,6 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
-import useTheme from 'hooks/useTheme'
 import { useFarmUser } from 'state/hooks'
 
 import StakedAction from './Actions/StakedAction'
@@ -126,12 +125,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout align={props.actions.align}>
-                        {/* @ts-ignore */}
-                        <StakedAction
-                          {...details}
-                          userDataReady={userDataReady} 
-                        />
-                        
+                        <StakedAction {...details} userDataReady={userDataReady} />
                       </CellLayout>
                     </CellInner>
                   </td>

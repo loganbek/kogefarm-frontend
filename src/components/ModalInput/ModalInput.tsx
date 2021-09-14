@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Button, Input, InputProps, Flex, Link } from 'components/Pancake'
+import { Text, Button, Input, InputProps, Link } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 
 interface ModalInputProps {

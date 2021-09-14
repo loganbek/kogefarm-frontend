@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { groupBy } from 'lodash'
+import { groupBy, uniqueId } from 'lodash'
 import { useLocation } from "react-router-dom";
 import { SvgProps } from "../../Svg";
 import * as IconModule from "../icons";
@@ -45,9 +45,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   return (
     <Container>
       {Object.entries(groupedLinks).map(([label, items]) => (
-        <>
+        <React.Fragment key={uniqueId('frag-')}>
           { isPushed ? (
-            <Title>{label}</Title>
+            <Title key={uniqueId('title_')}>{label}</Title>
           ) : null}
           { items.map(entry => {
             const Icon = Icons[entry.icon];
@@ -100,7 +100,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
               </MenuEntry>
             );
           })}
-        </>
+        </React.Fragment>
       ))}
     </Container>
   );

@@ -1,13 +1,8 @@
-import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import jarAbi from 'config/abi/GenericJar.json'
-// import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
-import { BIG_TEN } from 'utils/bigNumber'
-// import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
 import { getAddress } from 'utils/addressHelpers'
 import { FarmConfig } from 'config/constants/types'
-import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { createClient } from 'urql'
 
 const quickGraphURL = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap05'
@@ -156,25 +151,24 @@ export const fetchFarmsTradingFeeRate = async (farmsToFetch: FarmConfig[]) => {
           url: APIURL,
         })
 
-        const responseData = await client.query(subgraphQuery).toPromise()
         let volume0 = 0
         let volume1 = 0
-        let volumeUSD = 0
+        let volumeInUSD = 0
         try {
+          const responseData = await client.query(subgraphQuery).toPromise()
+
           if (farmConfig.isSushi) {
             volume0 = responseData.data.pairDayDatas[0].volumeToken0
             volume1 = responseData.data.pairDayDatas[0].volumeToken1
-            volumeUSD = responseData.data.pairDayDatas[0].volumeUSD
+            volumeInUSD = responseData.data.pairDayDatas[0].volumeUSD
           } else {
-            volume0 = responseData.data.pairDayDatas[0].dailyVolumeToken0
-            volume1 = responseData.data.pairDayDatas[0].dailyVolumeToken1
-            volumeUSD = responseData.data.pairDayDatas[0].dailyVolumeUSD
+            volume0 = responseData.data.pairDayDatas[0]?.dailyVolumeToken0
+            volume1 = responseData.data.pairDayDatas[0]?.dailyVolumeToken1
+            volumeInUSD = responseData.data.pairDayDatas[0]?.dailyVolumeUSD
           }
-          const reserve0 = responseData.data.pairDayDatas[0].reserve0
-          const reserve1 = responseData.data.pairDayDatas[0].reserve1
-          const reserveUSD = responseData.data.pairDayDatas[0].reserveUSD
-          tradingFeeRate = (0.003 * 100 * volumeUSD) / reserveUSD
-          if (volumeUSD <= 1000) {
+          const { reserve0, reserve1, reserveUSD } = responseData.data?.pairDayDatas[0]
+          tradingFeeRate = (0.003 * 100 * volumeInUSD) / reserveUSD
+          if (volumeInUSD <= 1000) {
             tradingFeeRate = 0.003 * 100 * (((1 / 2) * volume0) / reserve0 + ((1 / 2) * volume1) / reserve1)
           }
           if (tradingFeeRate >= 2) {

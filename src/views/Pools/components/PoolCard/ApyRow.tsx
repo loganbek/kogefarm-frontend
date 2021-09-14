@@ -125,7 +125,7 @@ const ApyCalculatorModal = ({
 							</Text>
 						</th>
 						<th>
-							<Flex alignItems="center">
+							<Flex justifyContent="center">
 								<Text fontSize="12px" color="textSubtle" textTransform="uppercase">
 									{t('ROI')}
 								</Text>

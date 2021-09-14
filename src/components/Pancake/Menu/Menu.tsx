@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from 'react-router-dom'
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
 import { Box } from "components/Pancake";
@@ -168,9 +168,9 @@ const Menu: React.FC<NavProps> = ({
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
         const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
 */
-        let decimals = 18
+        let decimal = 18
         if (farm.token === farm.quoteToken) {
-          decimals = farm.token.decimals
+          decimal = farm.token.decimals
         }
         if (!farm.tokenPriceVsQuote || !prices) {
           return farm
@@ -188,13 +188,13 @@ const Menu: React.FC<NavProps> = ({
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
         if (farm.token === farm.quoteToken) {
           totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
-          totalLiquidity = totalLiquidity.times(10 ** (18-decimals))
+          totalLiquidity = totalLiquidity.times(10 ** (18-decimal))
         }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
         //        const jarRatioNum = new BigNumber(farm.jarRatio)
         let totalDeposits = new BigNumber(farm.totalDeposits).times(new BigNumber(quoteTokenPriceUsd))
         if (farm.token === farm.quoteToken) {
-          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10 ** decimals).times(new BigNumber(quoteTokenPriceUsd))
+          totalDeposits = new BigNumber(farm.jarLPDeposits).div(10 ** decimal).times(new BigNumber(quoteTokenPriceUsd))
         }
         const farmRatio = new BigNumber(farm.jarRatio).div(10 ** 18)
         let userDeposits
@@ -207,10 +207,9 @@ const Menu: React.FC<NavProps> = ({
           userDeposits = new BigNumber(0)
         }
         // If dual rewards: transform reward/block in terms of token price
-        let rewardPerBlock = farm.rewardPerBlock
+        let { rewardPerBlock, rewardPerBlock1 } = farm
         // Special case: pSwamp
         const masterChefAddress = getAddress(farm.masterChefAddresses)
-        let rewardPerBlock1 = farm.rewardPerBlock1
         if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E'){
           rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
         }
@@ -272,7 +271,8 @@ const Menu: React.FC<NavProps> = ({
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
-  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
+  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity ?? 0), new BigNumber(0))
+
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (

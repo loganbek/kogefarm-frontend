@@ -10,7 +10,7 @@ import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'co
 import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL } from 'config'
 
 import StakedAction from './StakedAction'
-import Apr, { AprProps } from '../Apr'
+import { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'

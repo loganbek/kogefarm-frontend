@@ -160,14 +160,25 @@ const StakeModal: React.FC<StakeModalProps> = ({
         isWarning={hasReachedStakeLimit}
       />
       {hasReachedStakeLimit && (
-        <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="4px">
+        <Text
+          color="failure"
+          fontSize="12px"
+          style={{ textAlign: 'right' }}
+          mt="8px"
+        >
           {t('Maximum total stake: %amount% %token%', {
             amount: getFullDisplayBalance(new BigNumber(stakingLimit), stakingToken.decimals, 0),
             token: stakingToken.symbol,
           })}
         </Text>
       )}
-      <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
+      <Text
+        ml="auto"
+        color="textSubtle"
+        fontSize="12px"
+        mt="8px"
+        mb="8px"
+      >
         {t('Balance: %balance%', {
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
         })}

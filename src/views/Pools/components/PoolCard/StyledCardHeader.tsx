@@ -1,5 +1,6 @@
-import React from 'react'
-import { CardHeader, Text, Flex } from 'components/Pancake'
+import React, { useState } from 'react'
+import { Tooltip } from 'react-tippy'
+import { CardHeader, Text, Flex, Button } from 'components/Pancake'
 import styled from 'styled-components'
 import { Pool } from 'state/types'
 import UnlockButton from 'components/UnlockButton'
@@ -13,6 +14,16 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string; 
 
 const StyledText = styled(Text)`
   font-weight: 600;
+  flex: 1;
+`
+
+const Tip = styled.div`
+  background: ${({ theme }) => theme.colors.tertiary};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 340px;
+  padding: 24px;
+  margin-top: 15px;
+  border-radius: 4px;
 `
 
 const StyledCardHeader: React.FC<{
@@ -37,6 +48,7 @@ const StyledCardHeader: React.FC<{
 }) => {
   const { t } = useTranslation()
   const isCakePool = earningTokenSymbol === 'CAKE' && stakingTokenSymbol === 'CAKE'
+  const [open, setOpen] = useState(false)
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
@@ -50,6 +62,8 @@ const StyledCardHeader: React.FC<{
     // all other pools
     return t('')
   }
+
+  const handleOpen = () => setOpen(!open)
 
   return (
     <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished}>
@@ -66,10 +80,35 @@ const StyledCardHeader: React.FC<{
           {!account ? (
             <UnlockButton />
           ) : (
-            <CardActions
-              pool={pool} 
-              stakedBalance={stakedBalance} 
-            />
+            <Tooltip
+              open={open}
+              trigger="click"
+              interactive
+              useContext
+              position="bottom-end"
+              html={(
+                <Tip>
+                  <CardActions
+                    pool={pool}
+                    stakedBalance={stakedBalance} 
+                    handleOpen={handleOpen}
+                  />
+                </Tip>
+              )}
+            >
+              <Button
+                variant="tertiary"
+                scale="sm"
+                onClick={() => setOpen(true)}
+              >
+                <Text
+                  fontWeight="bold"
+                  fontSize="12px"
+                >
+                  Stake
+                </Text>
+              </Button>
+            </Tooltip>
           )}
           {/* <Text color={isFinished ? 'textDisabled' : 'textSubtle'}><span>&nbsp;&nbsp;</span>{getSubHeading()}</Text> */}
         </Flex>

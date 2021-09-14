@@ -1,21 +1,17 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-// import Countdown from 'react-countdown';
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Text, Skeleton } from 'components/Pancake'
+import { Heading, Flex, Text } from 'components/Pancake'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useBlock, useFetchCakeVault, useGetApiPrice } from 'state/hooks'
+import { usePools, useBlock, useFetchCakeVault } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-// import Balance from 'components/Balance'
 import PoolCard from './components/PoolCard'
-// import CakeVaultCard from './components/CakeVaultCard'
-// import BountyCard from './components/BountyCard'
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
@@ -64,8 +60,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const pools = usePools(account)
   const { currentBlock } = useBlock()
-  const kogeRemaining = useGetApiPrice('kogeremaining');
-  const [stakedOnly, setStakedOnly] = usePersistState(false, 'pancake_pool_staked')
+  const [stakedOnly] = usePersistState(false, 'pancake_pool_staked')
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -82,17 +77,6 @@ const Pools: React.FC = () => {
     () => openPools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
     [openPools],
   )
-
-  // const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
-  // const displayTVL = tvl ? (
-  //   `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-  // ) : (
-  //   <Skeleton width={60} />
-  // )
-//  const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
-
-  // This pool is passed explicitly to the cake vault
-//  const cakePoolData = useMemo(() => openPools.find((pool) => pool.sousId === 0), [openPools])
 
   useEffect(() => {
     const showMorePools = (entries) => {

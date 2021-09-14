@@ -11,7 +11,6 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
-// import ApyButton from './ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: number
@@ -83,7 +82,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
-  const depositFee = farm.depositFee
+  const { depositFee } = farm
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()

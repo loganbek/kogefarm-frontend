@@ -4,7 +4,6 @@ import {
   BunnySlider,
   BarBackground,
   BarProgress,
-  BunnyButt,
   StyledInput,
   SliderLabel,
   SliderLabelContainer,
@@ -42,7 +41,6 @@ const Slider: React.FC<SliderProps> = ({
   const displayValueLabel = isMax ? "MAX" : valueLabel;
   return (
     <Box position="relative" height="48px" {...props}>
-      <BunnyButt disabled={disabled} />
       <BunnySlider>
         <BarBackground disabled={disabled} />
         <BarProgress style={{ width: progressWidth }} disabled={disabled} />

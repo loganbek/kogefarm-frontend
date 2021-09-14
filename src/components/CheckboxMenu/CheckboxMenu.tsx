@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
-import { remove } from 'lodash'
+import styled from 'styled-components'
 
 import { Text } from "components/Pancake";
 
@@ -15,6 +14,7 @@ const TabWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.inactiveButtonItem};
   border: 2px solid ${({ theme }) => theme.colors.inactiveButtonItem};
 	border-radius: 4px;
+	overview: hidden;
 
 	input[type=checkbox] {
 		display: none;
@@ -23,6 +23,11 @@ const TabWrapper = styled.div`
 
 const Tabs = styled.div`
 	display: flex;
+
+  &:first-of-type {
+		overview: hidden;
+		border-radius: 4px 0 0 4px;
+	}
 `
 
 const Input = styled.input`
@@ -69,25 +74,11 @@ const CheckBoxMenu = ({
 	const currentTabs = new Set()
 
 	const handleOnChange = value => {
-		if (value === 'all') {
-			if (currentTabs.has('all')) {
-				currentTabs.clear()
-			} else {
-				currentTabs.add("all")
-				currentTabs.add("single")
-				currentTabs.add("stable")
-				currentTabs.add("feeless")
-			}
+		if (currentTabs.has(value)) {
+			currentTabs.delete(value)
+		} else {
+			currentTabs.add(value)
 		}
-
-		if (value !== 'all') {
-			if (currentTabs.has(value)) {
-				currentTabs.delete(value)
-			} else {
-				currentTabs.add(value)
-			}
-		}
-
 
     setCheckedState(Array.from(currentTabs) as string[]);
 		onChange(currentTabs)
@@ -100,6 +91,7 @@ const CheckBoxMenu = ({
 				<Tabs>
 					{ tabs.map(({ value }) => (
 						<Input
+							key={value}
 							type="checkbox"
 							id={value}
 							name={value}
