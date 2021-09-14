@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Heading, Text, LogoIcon } from 'components/Pancake'
+import { Heading, Text, LogoIcon } from 'components/Pancake'
 import Page from 'components/layout/Page'
-import { useTranslation } from 'contexts/Localization'
 
 const StyledTermsOfUse = styled.div`
 align-items: left;
@@ -31,8 +30,6 @@ align-items: left;
 
 
 const TermsOfUse = () => {
-    const { t } = useTranslation()
-
     return (
         <Page>
             <StyledTermsOfUse>

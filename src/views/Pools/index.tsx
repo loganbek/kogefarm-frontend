@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
+import numeral from 'numeral'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
@@ -8,7 +9,7 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useBlock, useFetchCakeVault } from 'state/hooks'
+import { usePools, useBlock, useFetchCakeVault, useGetApiPrice } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PoolCard from './components/PoolCard'
@@ -30,7 +31,7 @@ const Progress = styled.div<{ progress: number}>`
     background-color: ${({ theme }) => theme.colors.success};
     left: 0;
     top: 0;
-    width: 30%;
+    width: ${({ progress }) => progress ?? 0}%;
   }
 `
 
@@ -50,10 +51,10 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-const MINTED = 100000;
-const TOTAL_SUPPLY = 800000;
+const format = num => numeral(num).format('0,0.00')
 
-const Pools: React.FC = () => {
+// @ts-ignore
+const Pools: React.FC = ({ ...rest }) => {
   useFetchCakeVault()
   const { path } = useRouteMatch()
   const { t } = useTranslation()
@@ -64,6 +65,8 @@ const Pools: React.FC = () => {
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
+  const kogeRemaining = useGetApiPrice('kogeremaining') ?? 0;
+  const kogeInitial = 45101793;
 
   const [finishedPools, openPools] = useMemo(
     () => partition(pools, (pool) => pool.isFinished || currentBlock > pool.endBlock),
@@ -96,7 +99,7 @@ const Pools: React.FC = () => {
     }
   }, [observerIsSet])
 
-  const percent = (TOTAL_SUPPLY / MINTED) * 10
+  const percent = (kogeRemaining / kogeInitial) * 10
 
   return (
     <Page>
@@ -107,8 +110,7 @@ const Pools: React.FC = () => {
         <StyledFlex 
           flexDirection="column"
           mr={['8px', 0]}
-          width="90%"
-          pr="20%"
+          width="50%"
           className="info"
         >
           <Heading scale="lg" mb="16px">
@@ -135,10 +137,10 @@ const Pools: React.FC = () => {
               <Text
                 fontWeight="bold"
               >
-                100,000/
+                {format(kogeRemaining)} /
               </Text>
               <Text>
-                800,000
+                 {format(kogeInitial)}
               </Text>
             </Flex>
           </Flex>
@@ -149,9 +151,6 @@ const Pools: React.FC = () => {
             mt="20px"
           >
             <Text fontWeight="bold">Vault TVL</Text>
-            <Text fontWeight="bold">
-              100,000
-            </Text>
           </Flex>
         </StyledFlex>
       </StyledFlex>

@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Heading, Text, LogoIcon } from 'components/Pancake'
+import { Heading, Text, LogoIcon } from 'components/Pancake'
 import Page from 'components/layout/Page'
 import Container from 'components/layout/Container'
-import { useTranslation } from 'contexts/Localization'
 
 const StyledPrivacyPolicy = styled.div`
   align-items: left;
@@ -31,8 +30,6 @@ const StyledPrivacyPolicy = styled.div`
 `
 
 const PrivacyPolicy = () => {
-    // const { t } = useTranslation()
-
     return (
         <Container>
         <Page>

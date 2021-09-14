@@ -78,6 +78,26 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const pswampMaticLP = '0x1A477272f6030EAB135Cb3BA40646f3eb26b382a'
   const lithiumAddr = '0xfE1a200637464FBC9B60Bc7AeCb9b86c0E1d486E'
   const lithiumMaticLP = '0xF47553EB96b8665d9F258E3F4FC9A9e7811C3C2B'
+  const linkAddr = '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39'
+  const linkEthLP = '0x5cA6CA6c3709E1E6CFe74a50Cf6B2B6BA2Dadd67'
+  const sushiAddr = '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a'
+  const sushiEthLP = '0xb5846453B67d0B4b4Ce655930Cf6E4129F4416D7'
+  const ballAddr = '0x883aBe4168705d2e5dA925d28538B7a6AA9d8419'
+  const ballMaticLP = '0xe11eb426206960e9533828031cDFED0B4B61749C'
+  const bananaAddr = '0x5d47bAbA0d66083C52009271faF3F50DCc01023C'
+  const bananaMaticLP = '0x034293F21F1cCE5908BC605CE5850dF2b1059aC0'
+  const myfriendsAddr = '0xa509Da749745Ac07E9Ae47E7a092eAd2648B47f2'
+  const myfriendsUSDCLP = '0xf66502FAbC81e64AD6E3A8Fd60bDA4a705A72BD0'
+  const arcadiumAddr = '0x3F374ed3C8e61A0d250f275609be2219005c021e'
+  const arcadiumUSDCLP = '0xB5DB659c561Dc84ec9D42d4277a5e01F3B69537b'
+  const shieldAddr = '0xF239E69ce434c7Fb408b05a0Da416b14917d934e'
+  const shieldMaticLP = '0x982c1F90381e31e7b7dbbA8708126532B7cb7dF6'
+  const irisAddr = '0xdaB35042e63E93Cc8556c9bAE482E5415B5Ac4B1'
+  const irisMaticLP = '0x86ad6271809f350522085F95F5A67d46ff7ed3AB'
+  const alphaAddr = '0x0B048D6e01a6b9002C291060bF2179938fd8264c'
+  const alphaMaticLP = '0x79b368B3Aa34fF2044F7869024b5367A284D3b0E'
+  const spadeAddr = '0xf5EA626334037a2cf0155D49eA6462fDdC6Eff19'
+  const spadeUSDCLP = '0x8f2172568Ad3b2024b8CB29b03279E4b3d4849c8'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
   const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
@@ -89,6 +109,9 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const iron3poolLP = '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17'
   const ironSwap = '0x837503e8A8753ae17fB8C8151B8e6f586defCb57'
+  const ironToken = '0xD86b5923F3AD7b585eD81B448170ae026c65ae9a'
+  const ironMetaPoolSwap = '0xCaEb732167aF742032D13A9e76881026f91Cd087'
+  const ironMetaPoolLP = '0x985D40feDAA3208DAbaCDFDCA00CbeAAc9543949'
   // btcrenbtc
   const amWBTC = '0x5c2ed810328349100A66B82b78a1791B101C9D61'
   const renBTC = '0xDBf31dF14B66535aF65AaC99C32e9eA844e14501'
@@ -99,6 +122,12 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const am3CRV = '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171'
   const poolATriCrypto = '0x751B1e21756bDbc307CBcC5085c042a0e9AaEf36'
   const atricryptoLP = '0x8096ac61db23291252574D49f036f0f9ed8ab390'
+  const poolATriCrypto2 = '0x92577943c7aC4accb35288aB2CC84D75feC330aF'
+  const atricrypto2LP = '0xbece5d20A8a104c54183CC316C8286E3F00ffC71'
+  const poolATriCrypto3 = '0x92215849c439E1f8612b6646060B4E3E5ef822cC'
+  const atricrypto3LP = '0xdAD97F7713Ae9437fa9249920eC8507e5FbB23d3'
+  // kogeremaining
+  const kogeFund = '0x6A82FdE3033a969cf1ECe48D76aA942E9Fc567Db'
 /*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
 */
@@ -143,6 +172,20 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [ironSwap],
     },
+    {
+      address: ironMetaPoolLP,
+      name: 'totalSupply'
+    },
+    {
+      address: iron3poolLP,
+      name: 'balanceOf',
+      params: [ironMetaPoolSwap],
+    },
+    {
+      address: ironToken,
+      name: 'balanceOf',
+      params: [ironMetaPoolSwap],
+    },
     // BTC
     {
       address: btcrenbtcLP,
@@ -177,6 +220,52 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: am3CRV,
       name: 'balanceOf',
       params: [poolATriCrypto],
+    },
+    // atriCrypto 2
+    {
+      address: atricrypto2LP,
+      name: 'totalSupply'
+    },
+    {
+      address: amWBTC,
+      name: 'balanceOf',
+      params: [poolATriCrypto2],
+    },
+    {
+      address: amWETH,
+      name: 'balanceOf',
+      params: [poolATriCrypto2],
+    },
+    {
+      address: am3CRV,
+      name: 'balanceOf',
+      params: [poolATriCrypto2],
+    },
+    // atriCrypto 3
+    {
+      address: atricrypto3LP,
+      name: 'totalSupply'
+    },
+    {
+      address: amWBTC,
+      name: 'balanceOf',
+      params: [poolATriCrypto3],
+    },
+    {
+      address: amWETH,
+      name: 'balanceOf',
+      params: [poolATriCrypto3],
+    },
+    {
+      address: am3CRV,
+      name: 'balanceOf',
+      params: [poolATriCrypto3],
+    },
+    // Koge fund
+    {
+      address: kogecoinAddr,
+      name: 'balanceOf',
+      params: [kogeFund],
     },
   ]
 
@@ -495,14 +584,125 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [lithiumMaticLP],
     },
+    // Link
+    {
+      address: linkAddr,
+      name: 'balanceOf',
+      params: [linkEthLP],
+    },
+    {
+      address: ethAddr,
+      name: 'balanceOf',
+      params: [linkEthLP],
+    },
+    // Sushi
+    {
+      address: sushiAddr,
+      name: 'balanceOf',
+      params: [sushiEthLP],
+    },
+    {
+      address: ethAddr,
+      name: 'balanceOf',
+      params: [sushiEthLP],
+    },
+    // Ball
+    {
+      address: ballAddr,
+      name: 'balanceOf',
+      params: [ballMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [ballMaticLP],
+    },
+    // Banana
+    {
+      address: bananaAddr,
+      name: 'balanceOf',
+      params: [bananaMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [bananaMaticLP],
+    },
+    // MyFriends
+    {
+      address: myfriendsAddr,
+      name: 'balanceOf',
+      params: [myfriendsUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [myfriendsUSDCLP],
+    },
+    // Arcadium
+    {
+      address: arcadiumAddr,
+      name: 'balanceOf',
+      params: [arcadiumUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [arcadiumUSDCLP],
+    },
+    // Shield
+    {
+      address: shieldAddr,
+      name: 'balanceOf',
+      params: [shieldMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [shieldMaticLP],
+    },
+    // Iris
+    {
+      address: irisAddr,
+      name: 'balanceOf',
+      params: [irisMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [irisMaticLP],
+    },
+    // Alpha
+    {
+      address: alphaAddr,
+      name: 'balanceOf',
+      params: [alphaMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [alphaMaticLP],
+    },
+    // Spade
+    {
+      address: spadeAddr,
+      name: 'balanceOf',
+      params: [spadeUSDCLP],
+    },
+    {
+      address: usdcAddr,
+      name: 'balanceOf',
+      params: [spadeUSDCLP],
+    },
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance] = await multicall(erc20, calls)
 
-  const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto] = await multicall(erc20, curveCalls)
+  const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, iron4poolSupply, i3usdIron4pool, ironIron4pool, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto, atricrypto2Supply, amWBTCatricrypto2, amWETHatricrypto2, am3CRVatricrypto2, atricrypto3Supply, amWBTCatricrypto3, amWETHatricrypto3, am3CRVatricrypto3, kogeBal] = await multicall(erc20, curveCalls)
   // Curve ratio
   const curveRatio = (amDaiCurve/10**18 + amUSDCCurve/10**6 + amUSDTCurve/10**6)/(curve3poolSupply/10**18)
   const curveBtcRenBtcRatio = (amWBTCCurve/10**8 + amRenBTCCurve/10**8)/(btcrenbtcSupply/10**18)
   const ironRatio = (daiIron/10**18 + usdcIron/10**6 + usdtIron/10**6)/(iron3poolSupply/10**18)
+  const iron4PoolRatio = (i3usdIron4pool/10**18*ironRatio + ironIron4pool/10**18)/(iron4poolSupply/10**18)
   // Get prices in matic/USDC
   const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
   const titanMatic = titanBalanceLP/maticBalanceLP
@@ -532,6 +732,17 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const dinoUSDC = dinoBalance/(dinoUSDCBalance*10**12)
   const pswampMatic = pswampBalance/pswampMaticBalance
   const lithiumMatic = lithiumBalance/lithiumMaticBalance
+  const linkMatic = linkBalance/linkEthBalance*ethMatic
+  const sushiMatic = sushiBalance/sushiEthBalance*ethMatic
+  const ballMatic = ballBalance/ballMaticBalance
+  const bananaMatic = bananaBalance/bananaMaticBalance
+  const myfriendsUSDC = myfriendsBalance/(myfriendsUSDCBalance*10**12)
+  const arcadiumUSDC = arcadiumBalance/(arcadiumUSDCBalance*10**12)
+  const shieldMatic = shieldBalance/shieldMaticBalance
+  const irisMatic = irisBalance/irisMaticBalance
+  const alphaMatic = alphaBalance/alphaMaticBalance
+  const spadeUSDC = spadeBalance/(spadeUSDCBalance*10**12)
+  const kogeRemaining = kogeBal/10**9;
 
   // Get Matic price
   const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
@@ -564,12 +775,27 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const dinoUSD = usdcUSD/dinoUSDC
   const pswampUSD = maticUSD/pswampMatic
   const lithiumUSD = maticUSD/lithiumMatic
+  const linkUSD = maticUSD/linkMatic
+  const sushiUSD = maticUSD/sushiMatic
+  const ballUSD = maticUSD/ballMatic
+  const bananaUSD = maticUSD/bananaMatic
+  const myfriendsUSD = usdcUSD/myfriendsUSDC
+  const arcadiumUSD = usdcUSD/arcadiumUSDC
+  const shieldUSD = maticUSD/shieldMatic
+  const irisUSD = maticUSD/irisMatic
+  const alphaUSD = maticUSD/alphaMatic
+  const spadeUSD = usdcUSD/spadeUSDC
   // Curve stuff
   const curve3poolUSD = curveRatio
   const curveBtcRenBtcUSD = curveBtcRenBtcRatio*btcUSD
   const iron3poolUSD = ironRatio
+  const iron4poolUSD = iron4PoolRatio
   const atricryptoValue = amWBTCatricrypto/10**8*btcUSD + amWETHatricrypto/10**18*ethUSD + am3CRVatricrypto/10**18*curveRatio
   const atricryptoUSD = atricryptoValue/(atricryptoSupply/10**18)
+  const atricrypto2Value = amWBTCatricrypto2/10**8*btcUSD + amWETHatricrypto2/10**18*ethUSD + am3CRVatricrypto2/10**18*curveRatio
+  const atricrypto2USD = atricrypto2Value/(atricrypto2Supply/10**18)
+  const atricrypto3Value = amWBTCatricrypto3/10**8*btcUSD + amWETHatricrypto3/10**18*ethUSD + am3CRVatricrypto3/10**18*curveRatio
+  const atricrypto3USD = atricrypto3Value/(atricrypto3Supply/10**18)
   // Get Koge LP price
   const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
   // Get Koge price and Koge LP price
@@ -604,11 +830,26 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.curve3pool = {"usd":curve3poolUSD.toString()}
   data.btcrenbtc = {"usd":curveBtcRenBtcUSD.toString()}
   data.atricrypto = {"usd":atricryptoUSD.toString()}
+  data.atricrypto2 = {"usd":atricrypto2USD.toString()}
+  data.atricrypto3 = {"usd":atricrypto3USD.toString()}
   data.iron3pool = {"usd":iron3poolUSD.toString()}
+  data.iron4pool = {"usd":iron4poolUSD.toString()}
   data.vert = {"usd":vertUSD.toString()}
   data.dino = {"usd":dinoUSD.toString()}
   data.pswamp = {"usd":pswampUSD.toString()}
   data.lithium = {"usd":lithiumUSD.toString()}
+  data.link = {"usd":linkUSD.toString()}
+  data.sushi = {"usd":sushiUSD.toString()}
+  data.ball = {"usd":ballUSD.toString()}
+  data.banana = {"usd":bananaUSD.toString()}
+  data.myfriends = {"usd":myfriendsUSD.toString()}
+  data.arcadium = {"usd":arcadiumUSD.toString()}
+  data.shield = {"usd":shieldUSD.toString()}
+  data.iris = {"usd":irisUSD.toString()}
+  data.alpha = {"usd":alphaUSD.toString()}
+  data.spade = {"usd":spadeUSD.toString()}
+  data.kogeremaining = {"usd": kogeRemaining.toString()}
+
   // Return normalized token names
   return {
 //    updated_at: data.updated_at,

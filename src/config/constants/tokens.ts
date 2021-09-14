@@ -725,6 +725,42 @@ const tokens = {
     },
     decimals: 18,
   },
+  mana: {
+    symbol: 'Mana',
+    coingeico: 'mana',
+    address: {
+      137: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  grt: {
+    symbol: 'Grt',
+    coingeico: 'grt',
+    address: {
+      137: '0x5fe2B58c013d7601147DcdD68C143A77499f5531',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  alpha: {
+    symbol: 'Alpha',
+    coingeico: 'alpha',
+    address: {
+      137: '0x0B048D6e01a6b9002C291060bF2179938fd8264c',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  spade: {
+    symbol: 'Spade',
+    coingeico: 'spade',
+    address: {
+      137: '0xf5EA626334037a2cf0155D49eA6462fDdC6Eff19',
+      80001: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

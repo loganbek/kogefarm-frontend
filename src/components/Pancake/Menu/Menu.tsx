@@ -160,14 +160,10 @@ const Menu: React.FC<NavProps> = ({
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         /* DZ Hack
-        if (!farm.lpTotalInQuoteToken || !prices) {
-          return farm
-        }
-
-        const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
-        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-        const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
-*/
+          if (!farm.lpTotalInQuoteToken || !prices) {
+            return farm
+          }
+        */
         let decimal = 18
         if (farm.token === farm.quoteToken) {
           decimal = farm.token.decimals
@@ -279,7 +275,6 @@ const Menu: React.FC<NavProps> = ({
     <Skeleton width={60} />
   )
 
-
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
@@ -331,7 +326,7 @@ const Menu: React.FC<NavProps> = ({
           links={links}
         />
         <Inner isPushed={isPushed} showMenu={showMenu}>
-          {children}
+          { children }
         </Inner>
       </BodyWrapper>
     </Wrapper>

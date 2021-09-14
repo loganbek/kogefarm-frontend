@@ -223,8 +223,6 @@ const Stat = styled(Text)`
   font-weight: 600;
 `
 
-const format = num => numeral(num).format('0,0.00')
-
 const format18 = num => numeral(num).format('0,0.000000000000000000')
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
