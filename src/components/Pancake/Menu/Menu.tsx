@@ -269,6 +269,9 @@ const Menu: React.FC<NavProps> = ({
 
   const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity ?? 0), new BigNumber(0))
 
+  // const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
+
+  // console.log("tvl", tvl)
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
