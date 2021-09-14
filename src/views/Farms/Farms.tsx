@@ -622,6 +622,7 @@ const Farms: React.FC = () => {
             <Price alignItems="center" width="100%" justifyContent="space-between">
               <Text>KogeFarm Vault TVL</Text>
               <Text fontWeight="bold">${tvl}</Text>
+              <Text fontWeight="bold">${displayTVL}</Text>
             </Price>
           </Flex>
         </Flex>
