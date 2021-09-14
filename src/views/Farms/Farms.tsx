@@ -199,7 +199,7 @@ const Farms: React.FC = () => {
   console.log("allFarms", allFarms)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
-  // const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
@@ -296,11 +296,11 @@ const Farms: React.FC = () => {
     [query, prices, isActive],
   )
 
-  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity), new BigNumber(0))
+  // const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity), new BigNumber(0))
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
-    <Text>WRONG</Text>
+      <Text>{tvl}</Text>
     )
   
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
