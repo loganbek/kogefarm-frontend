@@ -613,7 +613,7 @@ const Farms: React.FC = () => {
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
               <Text>Total Value Locked (TVL)</Text>
-              <Text fontWeight="bold">${tvl.toFixed(4) ?? 0}</Text>
+              <Text fontWeight="bold">${tvl}</Text>
             </Price>
           </Flex>
         </Flex>
