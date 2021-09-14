@@ -19,6 +19,7 @@ import Page from 'components/layout/Page'
 import CheckBoxMenu from 'components/CheckboxMenu'
 import { AutoCompound } from 'components/Pancake/Svg'
 import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
+import { useGetStats } from 'hooks/api'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import usePersistState from 'hooks/usePersistState'
@@ -144,6 +145,7 @@ const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const { t } = useTranslation()
+  const data = useGetStats()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
   const [multiSearch, setMultiSearch] = useState(new Set())
@@ -194,6 +196,8 @@ const Farms: React.FC = () => {
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
+
+  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
@@ -608,8 +612,8 @@ const Farms: React.FC = () => {
               <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
-              <Text>Vault TVL</Text>
-              <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
+              <Text>Total Value Locked (TVL)</Text>
+              <Text fontWeight="bold">${tvl.toFixed(4) ?? 0}</Text>
             </Price>
           </Flex>
         </Flex>
