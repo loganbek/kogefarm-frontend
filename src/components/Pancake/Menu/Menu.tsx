@@ -298,7 +298,7 @@ const Menu: React.FC<NavProps> = ({
               <span>${ kogePrice?.toFixed(4) ?? 0}</span>
             </Stat>
             <Stat>
-              {t('Total Value Locked (TVL)')}
+              {t('KogeFarm Vault TVL')}
               {" "}
               <span>{displayTVL !== '$NaN' && displayTVL}</span>
             </Stat>
