@@ -83,7 +83,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
             setPendingTx(true)
             await onConfirm(withdrawBalance)
             setPendingTx(false)
-            onClose()
           }}
           width="100%"
         >
