@@ -196,7 +196,6 @@ const Farms: React.FC = () => {
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
-  console.log("allFarms", allFarms)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
