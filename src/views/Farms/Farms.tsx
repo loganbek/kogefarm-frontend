@@ -201,6 +201,9 @@ const Farms: React.FC = () => {
 
   const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
+  console.log("data", data)
+  console.log("tvl", tvl)
+
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
@@ -621,7 +624,7 @@ const Farms: React.FC = () => {
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
               <Text>KogeFarm Vault TVL</Text>
-              <Text fontWeight="bold">${tvl}</Text>
+              {/* <Text fontWeight="bold">${tvl?.}</Text> */}
               <Text fontWeight="bold">${displayTVL}</Text>
             </Price>
           </Flex>
