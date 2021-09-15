@@ -308,7 +308,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               </StakeContainer>
             )}
             <StyledLinkExternal href={bsc} color={theme.colors.textSubtle}>{t('View Contract')}</StyledLinkExternal>
-            <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Underlying Project')}</StyledLinkExternal>
+            <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Platform')}</StyledLinkExternal>
             <TagsContainer>
               {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
               {farm.isWault && <WaultTag />}
