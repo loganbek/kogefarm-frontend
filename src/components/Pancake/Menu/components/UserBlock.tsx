@@ -58,7 +58,7 @@ const walletMap = {
     component: WalletConnect,
     bg: 'rgba(59, 153, 252, 0.2)'
   },
-  TrustWallet: {
+  'Trust Wallet': {
     component: TrustWallet,
     bg: 'rgba(51, 117, 187, 0.2)'
   },
