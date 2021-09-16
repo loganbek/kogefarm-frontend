@@ -341,7 +341,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Info>
                 <Staked>
                   <Title>LPs Staked</Title>
-                  <Stat>{format18(farm.userData.tokenBalance)}</Stat>
+                  <Stat>{format18(farm.userData.stakedBalance)}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
