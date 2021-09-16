@@ -234,6 +234,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   expanded,
 }) => {
   const farm = details
+  console.log(farm)
   const { t } = useTranslation()
   const theme = useTheme();
   const isActive = true
@@ -356,11 +357,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 </APR>
                 <Return>
                   <Title>Daily Return</Title>
-                  <Stat>${liquidity?.liquidity?.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
+                  <Stat>{farm.multiplier}%</Stat>
+                  {/* <Stat>${liquidity?.liquidity?.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat> */}
                 </Return>
                 <Fee>
                   <Title>Daily LP Return</Title>
-                  <Stat>${userValue?.userValue?.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat>
+                  <Stat>{(farm.apr/1000).toFixed(2).toString()}%</Stat>
                 </Fee>
               </Info>
             </InfoWrapper>
