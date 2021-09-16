@@ -361,7 +361,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 </Return>
                 <Fee>
                   <Title>Deposit Fee (Third Party)</Title>
-                  <Stat>{farm.depositFee}%</Stat>
+                  <Stat>{farm.depositFee * 100}%</Stat>
                 </Fee>
               </Info>
             </InfoWrapper>
