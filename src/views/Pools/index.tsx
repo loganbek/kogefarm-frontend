@@ -117,7 +117,7 @@ const Pools: React.FC = ({ ...rest }) => {
             {t('Farms to invest')}
           </Heading>
           <Text mb="32px" fontSize="16px">
-            {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply are being distributed to holders through this farm.')}
+            {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply is being distributed to holders through this farm.')}
           </Text>
         </StyledFlex>
         <StyledFlex

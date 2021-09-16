@@ -83,10 +83,12 @@ const AprRow: React.FC<AprRowProps> = ({
             position="bottom"
             html={(
               <Tip>
-                { isAutoVault 
-                  ? t('APY includes compounding, APR doesn’t. This farm is compounded automatically, so we show APY.')
-                  : t('This farm\'s rewards aren’t compounded automatically, so we show APR')
-                }
+                <Text>
+                  { isAutoVault 
+                    ? t('APY includes compounding, APR doesn’t. This farm is compounded automatically, so we show APY.')
+                    : t('This farm\'s rewards aren’t compounded automatically, so we show APR')
+                  }
+                </Text>
               </Tip>
             )}
           >

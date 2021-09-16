@@ -341,7 +341,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <InfoWrapper>
               <Info>
                 <Staked>
-                  <Title>LPs Staked</Title>
+                  <Title>Total LPs Staked</Title>
                   <Stat>{format18(farm.userData.stakedBalance)}</Stat>
                   <Text
                     fontSize="10px"
@@ -356,13 +356,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                   <Stat>{(farm.apr ?? 0).toFixed(2)}%</Stat>
                 </APR>
                 <Return>
-                  <Title>Daily Return</Title>
+                  <Title>Daily LP Return</Title>
                   <Stat>{farm.multiplier}%</Stat>
-                  {/* <Stat>${liquidity?.liquidity?.multipliedBy(farm.apr ?? 0).dividedBy(1000).toFixed(2).toString()}</Stat> */}
                 </Return>
                 <Fee>
-                  <Title>Daily LP Return</Title>
-                  <Stat>{(farm.apr/1000).toFixed(2).toString()}%</Stat>
+                  <Title>Deposit Fee (Third Party)</Title>
+                  <Stat>{farm.kogefarmFee}%</Stat>
                 </Fee>
               </Info>
             </InfoWrapper>
