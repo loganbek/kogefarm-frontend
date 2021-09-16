@@ -44,6 +44,8 @@ const Tip = styled.div`
 const StyledButtonMenu = styled(ButtonMenu)`
   display: flex;
 
+  margin-top: 20px;
+
   > div {
     flex: 1;
 
