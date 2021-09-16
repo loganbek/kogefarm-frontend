@@ -40,6 +40,7 @@ const StyledInput = styled(Input)`
   border: 2px solid #1EA306;
   box-sizing: border-box;
   border-radius: 4px;
+  margin-bottom: 25px;
 `
 
 const StyledErrorMessage = styled(Text)`
