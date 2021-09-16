@@ -340,7 +340,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <InfoWrapper>
               <Info>
                 <Staked>
-                  <Title>LP&apos;s Staked</Title>
+                  <Title>LPs Staked</Title>
                   <Stat>{format18(farm.userData.tokenBalance)}</Stat>
                   <Text
                     fontSize="10px"
