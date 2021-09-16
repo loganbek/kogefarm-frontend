@@ -44,10 +44,10 @@ const StyledInput = styled(Input)`
 
 const StyledErrorMessage = styled(Text)`
   position: absolute;
-  bottom: -22px;
   a {
     display: inline;
   }
+  margin: 10px;
 `
 
 const ModalInput: React.FC<ModalInputProps> = ({
@@ -96,7 +96,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
       </StyledTokenInput>
       {isBalanceZero ? (
         <div>
-          <StyledErrorMessage fontSize="14px" color="failure">
+          <StyledErrorMessage fontSize="10px" color="failure">
             No tokens to stake:{' '}
             <Link bold={false} href={addLiquidityUrl} external color="failure">
               {t('get')} {symbol}

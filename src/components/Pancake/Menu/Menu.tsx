@@ -32,6 +32,7 @@ const LogoContainer = styled.div`
   width: 200px;
   align-items: center;
   flex-shrink: 0;
+  overflow: visible;
 
   @media screen and (max-width: 576px) {
     width: auto;
