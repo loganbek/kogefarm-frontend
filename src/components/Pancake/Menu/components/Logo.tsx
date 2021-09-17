@@ -47,6 +47,13 @@ const StyledLink = styled(Link)`
     }
   }
 
+  @media only screen and (max-width: 600px) {
+  .desktop-icon {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 svg {
   width: 100%;
 }
