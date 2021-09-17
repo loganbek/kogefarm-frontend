@@ -23,6 +23,7 @@ const WalletWrapper = styled(Box)`
 const StyledHeading = styled(Heading)`
   font-weight: 600;
   font-size: 18px;
+  margin-bottom: 18px;
 `;
 
 /**
