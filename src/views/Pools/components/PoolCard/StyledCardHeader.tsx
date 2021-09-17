@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Pool } from 'state/types'
 import UnlockButton from 'components/UnlockButton'
 import { useTranslation } from 'contexts/Localization'
-import useOutsideAlerter from 'hooks/useOutsideClickDetection'
+import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
 import CardActions from './CardActions'
 
 const Wrapper = styled(CardHeader) <{ isFinished?: boolean; background?: string; isPromotedPool?: boolean }>`
@@ -68,7 +68,7 @@ const StyledCardHeader: React.FC<{
 
     const handleOpen = () => setOpen(!open)
     // Close the modal if clicked outside
-    useOutsideAlerter(toolTipRef, handleOpen, open)
+    useOutsideClickDetection(toolTipRef, handleOpen, open)
 
     return (
       <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished}>

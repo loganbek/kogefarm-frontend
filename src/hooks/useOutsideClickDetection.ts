@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-const useOutsideAlerter = (ref: any, callBack: () => void, enabled: boolean) => {
+const useOutsideClickDetection = (ref: any, callBack: () => void, enabled: boolean) => {
     const listenerRef = useRef<boolean>()
 
     useEffect(() => {
@@ -39,4 +39,4 @@ const useOutsideAlerter = (ref: any, callBack: () => void, enabled: boolean) => 
     }, [ref, callBack, enabled]);
 }
 
-export default useOutsideAlerter
+export default useOutsideClickDetection
