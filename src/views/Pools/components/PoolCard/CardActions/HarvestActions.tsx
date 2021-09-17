@@ -71,8 +71,8 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
               <Balance
                 bold
                 fontSize="20px"
-                decimals={5} 
-                value={earningTokenBalance} 
+                decimals={5}
+                value={earningTokenBalance}
               />
             ) : (
               <Heading color="textDisabled">0</Heading>
@@ -104,7 +104,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
         <Button
           width="100%"
           disabled={!hasEarnings}
-          onClick={onPresentCollect}
+          onClick={() => { onClose(); onPresentCollect(); }}
         >
           {isCompoundPool ? t('Collect') : t('Harvest')}
         </Button>
