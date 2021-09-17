@@ -81,6 +81,8 @@ const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
 
+  margin-bottom: 8px;
+
   ${Text} {
     margin-right: 8px;
   }
@@ -139,6 +141,10 @@ const Price = styled(Flex)`
   b {
     margin-left: 8px;
   }
+`
+
+const VaultTypesContainer = styled.div<{ isDesktop: boolean }>`
+  margin:${props => props.isDesktop ? "0px" : "0px 0px 18px 0px"}
 `
 
 const NUMBER_OF_FARMS_VISIBLE = 12
@@ -341,7 +347,7 @@ const Farms: React.FC = () => {
             return false
           })
         case 'single':
-          return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId] &&  !/[-|/]/.exec(f.lpSymbol))
+          return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol))
         case 'stable':
           return filter(farms, f => f.token.address[chainId] === tokens.usdc.address[chainId])
         case 'feeless':
@@ -642,11 +648,13 @@ const Farms: React.FC = () => {
         </ToggleWrapper>
         <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
 
-        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
+        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : { margin: "12px 0px"}}>
           <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
         </LabelWrapper>
 
-        <CheckBoxMenu onChange={handleItemClick} />
+        <VaultTypesContainer isDesktop={isDesktop}>
+          <CheckBoxMenu onChange={handleItemClick} />
+        </VaultTypesContainer>
 
         <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
           <Text>Platform</Text>
