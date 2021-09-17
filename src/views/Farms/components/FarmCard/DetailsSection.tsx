@@ -54,7 +54,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       </Flex>
       <Flex justifyContent="space-between">
         <Text>{t('Daily LP Return')}:</Text>
-        <Text>{apyDRaw}%</Text>
+        <Text>{apyD}%</Text>
       </Flex>
       {depositFee && (<Flex justifyContent="space-between">
         <Text>{t('Deposit Fee (Third Party)')}:</Text>
