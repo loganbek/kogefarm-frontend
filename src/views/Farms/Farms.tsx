@@ -92,6 +92,10 @@ const Hero = styled(Flex)`
     text-decoration: underline;
   }
 
+  div {
+    display: inline;
+  }
+
   @media screen and (max-width: 576px) {
     flex-direction: column;
     .stats {
