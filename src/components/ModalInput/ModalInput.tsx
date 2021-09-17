@@ -109,7 +109,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
           {t('Balance')}: {displayBalance(max)} {symbol}
         </Text>
       )}
-      {depositFee && (
+      {!!depositFee && (
         <Text fontSize="10px" bold={false} color="failure">
           {t('Note: this vault has a ') + (depositFee*100).toString() + t('% third party deposit fee.')}
         </Text>
