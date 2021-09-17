@@ -622,12 +622,12 @@ const Farms: React.FC = () => {
         </Flex>
         <Flex width={isDesktop ? "30%" : "100%"} justifyContent="flex-end" className="stats">
           <Flex flexDirection="column" width="100%">
-            <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px">
-              <Text>KogeCoin Price</Text>
-              <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0}</Text>
+            <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
+              <Text>KogeCoin Price {' '}</Text>
+              <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0} {' '}</Text>
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
-              <Text>KogeFarm Vault TVL</Text>
+              <Text>KogeFarm Vault TVL {' '}</Text>
               {/* <Text fontWeight="bold">${tvl?.}</Text> */}
               <Text fontWeight="bold">${displayTVL}</Text>
             </Price>
