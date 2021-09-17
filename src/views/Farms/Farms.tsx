@@ -238,8 +238,8 @@ const Farms: React.FC = () => {
         const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
         let tokenPriceVsQuote = farm.rewardToken
           ? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]).div(
-              new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()]),
-            )
+            new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()]),
+          )
           : new BigNumber(farm.tokenPriceVsQuote)
         if (!farm.rewardToken && farm.token === farm.quoteToken) {
           tokenPriceVsQuote = new BigNumber(1)
@@ -248,7 +248,7 @@ const Farms: React.FC = () => {
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
         if (farm.token === farm.quoteToken) {
           totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
-          totalLiquidity = totalLiquidity.times(10 ** (18-decimal))
+          totalLiquidity = totalLiquidity.times(10 ** (18 - decimal))
         }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
         //        const jarRatioNum = new BigNumber(farm.jarRatio)
@@ -270,12 +270,12 @@ const Farms: React.FC = () => {
         let { rewardPerBlock, rewardPerBlock1 } = farm
         // Special case: pSwamp
         const masterChefAddress = getAddress(farm.masterChefAddresses)
-        if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E'){
+        if (masterChefAddress === '0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress === '0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress === '0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress === '0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress === '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress === '0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress === '0x1c0a0927105140216425c84399E68F8B31E7510E') {
           rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
         }
 
-        if (farm.rewardToken1){
-          rewardPerBlock = (rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+        if (farm.rewardToken1) {
+          rewardPerBlock = (rewardPerBlock1 * prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2 * prices[farm.rewardToken2.coingeico.toLowerCase()]) / prices[farm.quoteToken.coingeico.toLowerCase()]
           tokenPriceVsQuote = new BigNumber(1)
         }
 
@@ -303,9 +303,9 @@ const Farms: React.FC = () => {
   const displayTVL = tvl ? (
     `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
-      <Text>{tvl}</Text>
-    )
-  
+    <Text>{tvl}</Text>
+  )
+
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
   }
@@ -429,7 +429,7 @@ const Farms: React.FC = () => {
     let farmAPYNum =
       ((1 +
         ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
-          ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+        ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
         ((365 * 24 * 60) / farm.minutesPerCompound) -
         1) *
       100
@@ -458,7 +458,7 @@ const Farms: React.FC = () => {
           (
             ((1 +
               ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
-                ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+              ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
               ((24 * 60) / farm.minutesPerCompound) -
               1) *
             100
@@ -466,7 +466,7 @@ const Farms: React.FC = () => {
         originalValue:
           ((1 +
             ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
-              ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+            ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
             ((24 * 60) / farm.minutesPerCompound) -
             1) *
           100,
@@ -580,13 +580,17 @@ const Farms: React.FC = () => {
     setSortOption('platform')
   }
 
-  const options = uniqBy(activeFarms.map(farm => ({
-    label: farm.platform,
-    value: farm.platform
-  })), 'label')
+  const options = orderBy(
+    uniqBy(activeFarms.map(farm => ({
+      label: farm.platform,
+      value: farm.platform
+    })), 'label'),
+    "label",
+    ['asc']
+  )
   return (
     <Page>
-  
+
       <Hero>
         <Flex width={isDesktop ? "70%" : "100%"} flexDirection="column" mb="30px" className="info">
           <Heading scale="lg" mb="12px">
@@ -595,7 +599,7 @@ const Farms: React.FC = () => {
           <StyledText fontSize="14px" mb="14px">
             {t('KogeFarm helps you earn more yield by ')}
             {' '}
-            { isDesktop ? <AutoCompound /> : null }
+            {isDesktop ? <AutoCompound /> : null}
             {' '}
             <Tooltip
               trigger="mouseenter"
@@ -607,7 +611,7 @@ const Farms: React.FC = () => {
                     Auto-compounding means that rather than having to manually re-stake your token every so often in order to get the best APY, it will be done for you.
                   </Text>
                 </Tip>
-            )}>
+              )}>
               <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>.
             </Tooltip>
             {' '}
@@ -630,20 +634,20 @@ const Farms: React.FC = () => {
           </Flex>
         </Flex>
       </Hero>
-  
+
       <ControlContainer>
         <ToggleWrapper>
           <Text fontSize="12px" bold>{t('Staked only')}</Text>
           <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
         </ToggleWrapper>
         <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-  
+
         <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
           <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
         </LabelWrapper>
 
         <CheckBoxMenu onChange={handleItemClick} />
-          
+
         <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
           <Text>Platform</Text>
           <Select
@@ -658,7 +662,7 @@ const Farms: React.FC = () => {
           />
         </LabelWrapper>
       </ControlContainer>
-    
+
       <InfoContainer>
         <Text fontSize="12px">
           Showing {current} of {activeFarms.length} vaults
