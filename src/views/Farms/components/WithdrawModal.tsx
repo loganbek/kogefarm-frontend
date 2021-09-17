@@ -1,9 +1,10 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState, useRef } from 'react'
 import { Button, Flex } from 'components/Pancake'
 import ModalInput from 'components/ModalInput'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -25,6 +26,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+
+  const closeModalRef = useRef()
 
   let numDecimals = 18
   if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
@@ -61,8 +64,11 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
     setVal(fullDisplayBalance)
   }, [fullDisplayBalance, setVal ])
 
+  useOutsideClickDetection(closeModalRef, onClose, true)
+
+
   return (
-    <div>
+    <div ref={closeModalRef}>
       <ModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}
