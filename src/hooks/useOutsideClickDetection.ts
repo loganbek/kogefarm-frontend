@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Hook that alerts clicks outside of the passed ref
  */
 const useOutsideAlerter = (ref: any, callBack: () => void, enabled: boolean) => {
+    const listenerRef = useRef<boolean>()
+
     useEffect(() => {
         /**
          * Call callback fn if clicked on outside of targeted element ref
@@ -13,11 +15,20 @@ const useOutsideAlerter = (ref: any, callBack: () => void, enabled: boolean) => 
                 callBack()
             }
         }
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-
+        if(!listenerRef.current && enabled){
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            listenerRef.current = true
+        }
+        
+        
         // Unbind the event listener on clean up
-        const unbind = () => document.removeEventListener("mousedown", handleClickOutside);
+        const unbind = () => {
+            if(listenerRef.current){
+                document.removeEventListener("mousedown", handleClickOutside);
+                listenerRef.current = false
+            }
+        }
 
         if (!enabled) {
             unbind()
