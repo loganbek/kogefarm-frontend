@@ -105,7 +105,7 @@ const StyledCardHeader: React.FC<{
                   fontWeight="bold"
                   fontSize="12px"
                 >
-                  Stake
+                  Stake/Harvest
                 </Text>
               </Button>
             </Tooltip>
