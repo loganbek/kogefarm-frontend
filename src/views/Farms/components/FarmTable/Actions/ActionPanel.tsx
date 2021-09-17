@@ -360,7 +360,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 <Return>
                   <Title>Daily LP Return</Title>
                   <Stat>{(farm.apr / 1000).toFixed(2).toString()}%</Stat>
-                  <Stat>{((1 + (farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee) / (100 * 365 * 24 * 60 / farm.minutesPerCompound)) ** (365 * 24 * 60 / farm.minutesPerCompound) - 1) * 100}</Stat>
                 </Return>
                 <Fee>
                   <Title>Deposit Fee (Third Party)</Title>
