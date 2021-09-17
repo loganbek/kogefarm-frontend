@@ -330,7 +330,7 @@ const Farms: React.FC = () => {
           }
 
           return filter(farms, f => {
-            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId]
+            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
             const stableFilter = f.token.address[chainId] === tokens.usdc.address[chainId]
             const feelessFilter = f.depositFee === 0
 
@@ -341,7 +341,7 @@ const Farms: React.FC = () => {
             return false
           })
         case 'single':
-          return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId])
+          return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId] &&  !/[-|/]/.exec(f.lpSymbol))
         case 'stable':
           return filter(farms, f => f.token.address[chainId] === tokens.usdc.address[chainId])
         case 'feeless':
