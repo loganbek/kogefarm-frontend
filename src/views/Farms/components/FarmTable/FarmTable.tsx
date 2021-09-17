@@ -97,7 +97,6 @@ const ScrollButtonContainer = styled.div`
 `
 
 const Header = styled.th`
-  cursor: pointer;
   vertical-align: middle;
 `
 
@@ -105,7 +104,8 @@ const CollapsibleContainer = styled.div`
   margin: 0 28px;
 `
 
-const StyledCollapsible = styled(Collapsible)<{ open?: boolean }>`
+const StyledCollapsible = styled(Collapsible) <{ open?: boolean }>`
+  cursor: pointer;
   ${({ open }) => open ? css`
     transform: rotate(180deg);
   ` : css`
@@ -114,8 +114,13 @@ const StyledCollapsible = styled(Collapsible)<{ open?: boolean }>`
 `
 
 const Label = styled(Text)`
+  cursor: pointer;
   display: inline-block;
   color: ${({ theme }) => theme.colors.rowHeaderText};
+`
+
+const SortIcon = styled(Sort)`
+  cursor: pointer;
 `
 
 const FarmTable: React.FC<ITableProps> = props => {
@@ -145,7 +150,7 @@ const FarmTable: React.FC<ITableProps> = props => {
               <TableHeader>
                 <tr>
                   {headers.map(header => (
-                    <Header key={header.name} onClick={() => sort(header)}>
+                    <Header key={header.name}>
                       <Flex
                         justifyContent={header.align}
                         alignItems="center"
@@ -159,7 +164,7 @@ const FarmTable: React.FC<ITableProps> = props => {
                             position="bottom"
                             html={(
                               <Tip>
-                                <Text>{ open ? "Collapse all" : "Expand all"}</Text>
+                                <Text>{open ? "Collapse all" : "Expand all"}</Text>
                               </Tip>
                             )}
                           >
@@ -168,37 +173,37 @@ const FarmTable: React.FC<ITableProps> = props => {
                               <StyledCollapsible
                                 open={open}
                                 color="transparent"
-                                onClick={handleOpen} 
+                                onClick={handleOpen}
                               />
                             </CollapsibleContainer>
                           </Tooltip>
                         )}
 
-                        { header.display ? (
+                        {header.display ? (
                           <>
-                            <Label fontWeight="bold">
+                            <Label fontWeight="bold" onClick={() => sort(header)}>
                               {header.label}
                             </Label>
                             {/* @ts-ignore */}
-                            { header.sortable && (
-                              <Sort asc={header.sorted.asc} on={header.sorted.on} />
+                            {header.sortable && (
+                              <SortIcon asc={header.sorted.asc} on={header.sorted.on} onClick={() => sort(header)}/>
                             )}
                           </>
                         ) : null}
-                    </Flex>
-                  </Header>
+                      </Flex>
+                    </Header>
                   ))}
                 </tr>
               </TableHeader>
             ) : null}
-            
+
             <TableBody>
               {rows.map((row) => (
                 <Row
                   {...row.original}
                   open={open}
                   userDataReady={userDataReady}
-                  key={`table-row-${row.id}`} 
+                  key={`table-row-${row.id}`}
                 />
               ))}
             </TableBody>
