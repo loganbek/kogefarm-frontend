@@ -131,7 +131,7 @@ const Pools: React.FC = ({ ...rest }) => {
             width="100%"
             mb="8px"
           >
-            <Text fontWeight="bold">Mined Kogecoin</Text>
+            <Text fontWeight="bold">KogeCoin Distributed</Text>
 
             <Flex>
               <Text
