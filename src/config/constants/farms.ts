@@ -2202,6 +2202,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 1,
      minutesPerCompound: 5,
      kogefarmFee: 0,
+     depositFee: 0,
      underlyingWebsite: 'https://quickswap.exchange',
      kogefarmComment: ' (QuickSwap)',
      platform: 'QuickSwap'
