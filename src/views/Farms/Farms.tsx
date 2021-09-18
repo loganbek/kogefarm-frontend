@@ -159,7 +159,7 @@ const Farms: React.FC = () => {
   const data = useGetStats()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const [query, setQuery] = useState('')
-  const [multiSearch, setMultiSearch] = useState(new Set())
+  const [multiSearch, setMultiSearch] = useState(new Set(["all"]))
   const [isSearching, setIsSearching] = useState(false)
   const [current, setCurrent] = useState(0)
   const [platform, setPlatform] = useState('')
@@ -209,7 +209,7 @@ const Farms: React.FC = () => {
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
-//  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+  //  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
@@ -306,14 +306,14 @@ const Farms: React.FC = () => {
     [query, prices, isActive],
   )
 
-  const userTvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue? curr.userValue : 0), new BigNumber(0))
+  const userTvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
   const displayUserTVL = userTvl ? (
     `${Number(userTvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
     <Skeleton width={60} />
   )
 
-  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity? curr.liquidity : 0), new BigNumber(0))
+  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity ? curr.liquidity : 0), new BigNumber(0))
   const displayTVL = tvl ? (
     `${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
@@ -334,16 +334,13 @@ const Farms: React.FC = () => {
 
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
-        case 'multi':
-          if (multiSearch.has('all')) {
-            return farms
-          }
+        case 'multi': {
 
           if (isSearching) {
             console.log('Searching...')
           }
 
-          return filter(farms, f => {
+          const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
             const stableFilter = f.token.address[chainId] === tokens.usdc.address[chainId] && !/matic/gmi.exec(f.lpSymbol)
             const feelessFilter = f.depositFee === 0
@@ -354,6 +351,9 @@ const Farms: React.FC = () => {
 
             return false
           })
+          if (multiSearch.has('platform')) return filter(vaultTypeFilter, { platform })
+          return vaultTypeFilter
+        }
         case 'single':
           return filter(farms, f => f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol))
         case 'stable':
@@ -587,14 +587,24 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    setMultiSearch(activeIndex)
+    const _multiSearch = new Set(multiSearch)
+    ;["all", "single", "stable", "feeless"].forEach(e=> _multiSearch.delete(e))
+    activeIndex.forEach(e=> _multiSearch.add(e))
+    setMultiSearch(_multiSearch)
     setIsSearching(!isSearching)
     setSortOption('multi')
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
     setPlatform(option.value)
-    setSortOption('platform')
+    setSortOption('multi')
+    if (option.value) {
+      setMultiSearch(multiSearch.add('platform'))
+    } else {
+      const _multiSearch = new Set(multiSearch)
+      _multiSearch.delete('platform')
+      setMultiSearch(_multiSearch)
+    }
   }
 
   const options = orderBy(
@@ -640,26 +650,26 @@ const Farms: React.FC = () => {
           </StyledText>
         </Flex>
         {!isDesktop &&
-        (<Flex width="100%" justifyContent="flex-end" className="stats">
-          <Flex flexDirection="column" width="100%">
-            <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
-              <Text>Vault TVL {' '}</Text>
-              <Text fontWeight="bold">${tvl.isZero()? '-' : displayTVL} {' '}</Text>
-            </Price>
-          </Flex>
-        </Flex>)}
+          (<Flex width="100%" justifyContent="flex-end" className="stats">
+            <Flex flexDirection="column" width="100%">
+              <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
+                <Text>Vault TVL {' '}</Text>
+                <Text fontWeight="bold">${tvl.isZero() ? '-' : displayTVL} {' '}</Text>
+              </Price>
+            </Flex>
+          </Flex>)}
         {!isDesktop &&
-        (<Flex width="100%" justifyContent="flex-end" className="stats">
-          <Flex flexDirection="column" width="100%">
-            <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
-              <Text>KogeCoin Price {' '}</Text>
-              <Text fontWeight="bold">${kogePrice && kogePrice.toLocaleString(undefined, {maximumFractionDigits:4})} {' '}</Text>
-            </Price>
+          (<Flex width="100%" justifyContent="flex-end" className="stats">
+            <Flex flexDirection="column" width="100%">
+              <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
+                <Text>KogeCoin Price {' '}</Text>
+                <Text fontWeight="bold">${kogePrice && kogePrice.toLocaleString(undefined, { maximumFractionDigits: 4 })} {' '}</Text>
+              </Price>
             </Flex>
           </Flex>)}
 
-          <Flex width={isDesktop ? "30%" : "100%"} justifyContent="right" className="stats">
-            <Flex flexDirection="column" width="100%">
+        <Flex width={isDesktop ? "30%" : "100%"} justifyContent="right" className="stats">
+          <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between">
               <Text>Total User Staked {' '}</Text>
               {/* <Text fontWeight="bold">${tvl?.}</Text> */}
@@ -676,7 +686,7 @@ const Farms: React.FC = () => {
         </ToggleWrapper>
         <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
 
-        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : { margin: "12px 0px"}}>
+        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : { margin: "12px 0px" }}>
           <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
         </LabelWrapper>
 
