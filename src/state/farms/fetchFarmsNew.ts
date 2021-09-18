@@ -1,8 +1,13 @@
+import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import jarAbi from 'config/abi/GenericJar.json'
+// import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
+import { BIG_TEN } from 'utils/bigNumber'
+// import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
 import { getAddress } from 'utils/addressHelpers'
 import { FarmConfig } from 'config/constants/types'
+import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { createClient } from 'urql'
 
 const quickGraphURL = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap05'
@@ -11,7 +16,10 @@ const dfynGraphURL = 'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5'
 
 export const fetchFarmsTokenBalanceLP = async (farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farmConfig) => {
-    const lpAddress = getAddress(farmConfig.lpAddresses)
+    let lpAddress = getAddress(farmConfig.lpAddresses)
+    if (lpAddress==='0x388E2a3d389F27504212030c2D42Abf0a8188cd1'){
+      lpAddress = '0xcCB9d2100037f1253e6C1682AdF7dC9944498AFF'
+    }
     return { address: getAddress(farmConfig.token.address), name: 'balanceOf', params: [lpAddress] }
   })
 
@@ -21,7 +29,10 @@ export const fetchFarmsTokenBalanceLP = async (farmsToFetch: FarmConfig[]) => {
 
 export const fetchFarmsQuoteTokenBalanceLP = async (farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farmConfig) => {
-    const lpAddress = getAddress(farmConfig.lpAddresses)
+    let lpAddress = getAddress(farmConfig.lpAddresses)
+    if (lpAddress==='0x388E2a3d389F27504212030c2D42Abf0a8188cd1'){
+      lpAddress = '0xcCB9d2100037f1253e6C1682AdF7dC9944498AFF'
+    }
     return { address: getAddress(farmConfig.quoteToken.address), name: 'balanceOf', params: [lpAddress] }
   })
 
@@ -33,11 +44,14 @@ export const fetchFarmsLpTokenBalanceMC = async (farmsToFetch: FarmConfig[]) => 
   const calls = farmsToFetch.map((farmConfig) => {
     const masterChefAddress = getAddress(farmConfig.masterChefAddresses)
     const lpAddress = getAddress(farmConfig.lpAddresses)
-    if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E' || masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C') {
+    if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E' || masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0x5b782CfF50BE54e14A8762B689c18AFf39A9c42e' || masterChefAddress==='0x7Da45e3E3218b3A304A79e86c411F2bfd605A8De') {
       return { address: masterChefAddress, name: 'wantLockedTotal'}
     }
     if (masterChefAddress==='0x52e7b0C6fB33D3d404b07006b006c8A8D6049C55' || masterChefAddress==='0x80F23e90f8D7d6f5e3f602B1E26C7b5Fa4E530d3') {
       return { address: masterChefAddress, name: 'stakedDinos'}
+    }
+    if (farmConfig.platform==='Gravity' && farmConfig.lpSymbol!=='Sushi' && farmConfig.lpSymbol!=='Link'){
+      return { address: masterChefAddress, name: 'totalStakedAmount'}
     }
     return { address: lpAddress, name: 'balanceOf', params: [masterChefAddress] }
   })
@@ -48,7 +62,10 @@ export const fetchFarmsLpTokenBalanceMC = async (farmsToFetch: FarmConfig[]) => 
 
 export const fetchFarmsLpTotalSupply = async (farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farmConfig) => {
-    const lpAddress = getAddress(farmConfig.lpAddresses)
+    let lpAddress = getAddress(farmConfig.lpAddresses)
+    if (lpAddress==='0x388E2a3d389F27504212030c2D42Abf0a8188cd1'){
+      lpAddress = '0xcCB9d2100037f1253e6C1682AdF7dC9944498AFF'
+    }
     return { address: lpAddress, name: 'totalSupply' }
   })
 
@@ -151,24 +168,25 @@ export const fetchFarmsTradingFeeRate = async (farmsToFetch: FarmConfig[]) => {
           url: APIURL,
         })
 
+        const responseData = await client.query(subgraphQuery).toPromise()
         let volume0 = 0
         let volume1 = 0
-        let volumeInUSD = 0
+        let volumeUSD = 0
         try {
-          const responseData = await client.query(subgraphQuery).toPromise()
-
           if (farmConfig.isSushi) {
             volume0 = responseData.data.pairDayDatas[0].volumeToken0
             volume1 = responseData.data.pairDayDatas[0].volumeToken1
-            volumeInUSD = responseData.data.pairDayDatas[0].volumeUSD
+            volumeUSD = responseData.data.pairDayDatas[0].volumeUSD
           } else {
-            volume0 = responseData.data.pairDayDatas[0]?.dailyVolumeToken0
-            volume1 = responseData.data.pairDayDatas[0]?.dailyVolumeToken1
-            volumeInUSD = responseData.data.pairDayDatas[0]?.dailyVolumeUSD
+            volume0 = responseData.data.pairDayDatas[0].dailyVolumeToken0
+            volume1 = responseData.data.pairDayDatas[0].dailyVolumeToken1
+            volumeUSD = responseData.data.pairDayDatas[0].dailyVolumeUSD
           }
-          const { reserve0, reserve1, reserveUSD } = responseData.data?.pairDayDatas[0]
-          tradingFeeRate = (0.003 * 100 * volumeInUSD) / reserveUSD
-          if (volumeInUSD <= 1000) {
+          const reserve0 = responseData.data.pairDayDatas[0].reserve0
+          const reserve1 = responseData.data.pairDayDatas[0].reserve1
+          const reserveUSD = responseData.data.pairDayDatas[0].reserveUSD
+          tradingFeeRate = (0.003 * 100 * volumeUSD) / reserveUSD
+          if (volumeUSD <= 1000) {
             tradingFeeRate = 0.003 * 100 * (((1 / 2) * volume0) / reserve0 + ((1 / 2) * volume1) / reserve1)
           }
           if (tradingFeeRate >= 2) {
