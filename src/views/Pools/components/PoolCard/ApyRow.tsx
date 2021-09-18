@@ -7,6 +7,17 @@ import { getPoolApr } from 'utils/apr'
 import { Flex, Text } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
+import { Tooltip } from 'react-tippy'
+import { TooltipIcon } from 'components/Pancake/Svg'
+
+const Tip = styled.div`
+  background: ${({ theme }) => theme.colors.tertiary};
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  padding: 24px;
+  margin-top: 15px;
+  border-radius: 4px;
+`
 
 const StyledTable = styled.table`
 	margin-top: 64px;
@@ -131,6 +142,21 @@ const ApyCalculatorModal = ({
 								<Text fontSize="12px" color="textSubtle" textTransform="uppercase">
 									{t('ROI')}
 								</Text>
+								<Tooltip
+			            trigger="mouseenter"
+			            interactive
+			            useContext
+			            position="bottom"
+			            html={(
+			              <Tip>
+			                <Text>
+			                  {t('ROI assumes daily manual compounding')}
+			                </Text>
+			              </Tip>
+			            )}
+			          >
+								<TooltipIcon ml="8px" />
+							</Tooltip>
 							</Flex>
 						</th>
 						<th>
@@ -149,7 +175,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" bold>
-								{ oneDayRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }%
+								{ oneDayRoi.toLocaleString(undefined,{minimumFractionDigits: roundingDecimals, maximumFractionDigits:roundingDecimals}) }%
 							</Text>
 						</td>
 						<td>
@@ -166,7 +192,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								{ sevenDayRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }%
+								{ sevenDayRoi.toLocaleString(undefined,{minimumFractionDigits: roundingDecimals, maximumFractionDigits:roundingDecimals}) }%
 							</Text>
 						</td>
 						<td>
@@ -183,7 +209,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								{thirtyDayRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals})}%
+								{thirtyDayRoi.toLocaleString(undefined,{minimumFractionDigits: roundingDecimals, maximumFractionDigits:roundingDecimals})}%
 							</Text>
 						</td>
 						<td>
@@ -200,7 +226,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								{threeSixtyFiveRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals})}%
+								{threeSixtyFiveRoi.toLocaleString(undefined,{minimumFractionDigits: roundingDecimals, maximumFractionDigits:roundingDecimals})}%
 							</Text>
 						</td>
 						<td>
