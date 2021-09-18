@@ -306,7 +306,14 @@ const Farms: React.FC = () => {
     [query, prices, isActive],
   )
 
-  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue? curr.userValue : 0), new BigNumber(0))
+  const userTvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue? curr.userValue : 0), new BigNumber(0))
+  const displayUserTVL = userTvl ? (
+    `${Number(userTvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+  ) : (
+    <Skeleton width={60} />
+  )
+
+  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity? curr.liquidity : 0), new BigNumber(0))
   const displayTVL = tvl ? (
     `${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
@@ -629,16 +636,31 @@ const Farms: React.FC = () => {
             by Obelisk.
           </StyledText>
         </Flex>
-        <Flex width={isDesktop ? "30%" : "100%"} justifyContent="flex-end" className="stats">
+        {!isDesktop &&
+        (<Flex width="100%" justifyContent="flex-end" className="stats">
+          <Flex flexDirection="column" width="100%">
+            <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
+              <Text>Vault TVL {' '}</Text>
+              <Text fontWeight="bold">${tvl.isZero()? '-' : displayTVL} {' '}</Text>
+            </Price>
+          </Flex>
+        </Flex>)}
+        {!isDesktop &&
+        (<Flex width="100%" justifyContent="flex-end" className="stats">
           <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
               <Text>KogeCoin Price {' '}</Text>
               <Text fontWeight="bold">${kogePrice && kogePrice.toLocaleString(undefined, {maximumFractionDigits:4})} {' '}</Text>
             </Price>
+            </Flex>
+          </Flex>)}
+
+          <Flex width={isDesktop ? "30%" : "100%"} justifyContent="right" className="stats">
+            <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between">
               <Text>Total User Staked {' '}</Text>
               {/* <Text fontWeight="bold">${tvl?.}</Text> */}
-              <Text fontWeight="bold">${tvl.isZero() ? '-' : displayTVL}</Text>
+              <Text fontWeight="bold">${userTvl.isZero() ? '-' : displayUserTVL}</Text>
             </Price>
           </Flex>
         </Flex>
