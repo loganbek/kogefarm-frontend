@@ -25,8 +25,8 @@ const Balance: React.FC<BalanceProps> = ({
     previousValue.current = value
   }, [value])
 
-  const showPrefix = Boolean(value && prefix)
-  const showUnit = Boolean(value && unit)
+  const showPrefix = Boolean((value||value===0) && prefix)
+  const showUnit = Boolean((value || value===0) && unit)
 
   return (
     <Text color={isDisabled ? 'textDisabled' : color} {...props}>

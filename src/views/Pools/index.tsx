@@ -104,10 +104,10 @@ const Pools: React.FC = ({ ...rest }) => {
   return (
     <Page>
       <StyledFlex
-        justifyContent="space-between" 
+        justifyContent="space-between"
         flexDirection={['column', null, 'row']}
       >
-        <StyledFlex 
+        <StyledFlex
           flexDirection="column"
           mr={['8px', 0]}
           width="50%"
@@ -122,7 +122,7 @@ const Pools: React.FC = ({ ...rest }) => {
         </StyledFlex>
         <StyledFlex
           alignItems="center"
-          flexDirection="column" 
+          flexDirection="column"
           width="30%"
           className="progress"
         >
@@ -137,7 +137,7 @@ const Pools: React.FC = ({ ...rest }) => {
               <Text
                 fontWeight="bold"
               >
-                {format(kogeRemaining)} /
+                {format(kogeInitial-kogeRemaining)} /
               </Text>
               <Text>
                  {format(kogeInitial)}

@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import React from 'react'
+import React, {useState} from 'react'
 import { CardBody, Flex, CardRibbon, useMatchBreakpoints } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -15,13 +15,15 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
     sousId,
     stakingToken,
     earningToken,
-    isFinished, 
+    isFinished,
     userData,
   } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
   const { isXl } = useMatchBreakpoints()
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(!open)
 
   return (
     <StyledCard
@@ -44,7 +46,8 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
           <Flex mt="24px" flexDirection="column">
             <ExpandedFooter
               pool={pool}
-              account={account} 
+              account={account}
+              handleOpen={handleOpen}
             />
           </Flex>
           <ApyRow pool={pool} />

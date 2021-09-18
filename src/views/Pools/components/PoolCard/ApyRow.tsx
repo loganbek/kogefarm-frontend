@@ -53,18 +53,20 @@ const ApyCalculatorModal = ({
   compoundFrequency = 1,
   performanceFee = 0,
 }) => {
-  const { stakingToken, earningToken, totalStaked, tokenPerBlock } = pool
+  const { stakingToken, earningToken, totalStaked, userData, tokenPerBlock } = pool
   const { t } = useTranslation()
 
   const earningTokenPrice = useGetApiPrice(earningToken.coingeico)
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
   const oneThousandDollarsWorthOfToken = 1000 / earningTokenPrice
 
-  const totalLiquidity = totalStaked.times(new BigNumber(stakingTokenPrice))
+	const userLiquidity = userData.stakedBalance.times(new BigNumber(stakingTokenPrice))
 
-  const getTotalStakedBalance = () => {
-    return getBalanceNumber(totalLiquidity, stakingToken.decimals)
+	const getUserStakedBalance = () => {
+    return getBalanceNumber(userLiquidity, stakingToken.decimals)
   }
+
+
 
   const apr = getPoolApr(
     stakingTokenPrice,
@@ -133,7 +135,7 @@ const ApyCalculatorModal = ({
 						</th>
 						<th>
 							<Text fontSize="12px" color="textSubtle">
-								{t('Total Staked x ROI')}
+								{t('User Staked x ROI')}
 							</Text>
 						</th>
 					</tr>
@@ -152,7 +154,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getTotalStakedBalance() * Number(oneDayRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(oneDayRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
@@ -169,7 +171,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getTotalStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
@@ -186,7 +188,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getTotalStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>
@@ -203,7 +205,7 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getTotalStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toFixed(2) }
 							</Text>
 						</td>
 					</tr>

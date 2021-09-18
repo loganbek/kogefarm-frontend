@@ -36,17 +36,6 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance, handleOp
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column">
-        {harvest && (
-          <HarvestActions
-            earnings={earnings}
-            earningToken={earningToken}
-            onClose={handleOpen}
-            sousId={sousId}
-            pid={pid}
-            earningTokenPrice={earningTokenPrice}
-            isLoading={isLoading}
-          />
-        )}
         <Box display="inline" mb="8px" mt="8px">
           <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="10px">
             {isStaked ? stakingToken.symbol : t('Stake')}{' '}

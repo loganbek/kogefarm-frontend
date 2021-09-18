@@ -11,7 +11,7 @@ import CollectModal from '../Modals/CollectModal'
 interface HarvestActionsProps {
   earnings: BigNumber
   earningToken: Token
-  onClose?: () => void
+  onClose: () => void
   sousId: number
   pid: number
   earningTokenPrice: number
@@ -107,13 +107,6 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           onClick={() => { onClose(); onPresentCollect(); }}
         >
           {isCompoundPool ? t('Collect') : t('Harvest')}
-        </Button>
-        <Button
-          variant="tertiary"
-          onClick={onClose}
-          width="50%"
-        >
-          {t('Cancel')}
         </Button>
       </Flex>
     </div>
