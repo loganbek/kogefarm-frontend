@@ -289,9 +289,10 @@ const Menu: React.FC<NavProps> = ({
             isDark={isDark}
             href={homeLink?.href ?? "/"}
           />
+          { !isMobile ? (
           <Box ml="10px">
             <Wordmark isDark={isDark} />
-          </Box>
+          </Box> ) : null}
         </LogoContainer>
 
         { !isMobile ? (

@@ -2202,6 +2202,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 1,
      minutesPerCompound: 5,
      kogefarmFee: 0,
+     depositFee: 0,
      underlyingWebsite: 'https://quickswap.exchange',
      kogefarmComment: ' (QuickSwap)',
      platform: 'QuickSwap'
@@ -3225,6 +3226,7 @@ const farms: FarmConfig[] = [
      poolWeightDesignate: 500/10750,
      minutesPerCompound: 5,
      kogefarmFee: 0.015+0.03,
+     depositFee: 0,
      underlyingWebsite: 'https://polygon.jetswap.finance/farms',
      isJetSwap: true,
      kogefarmComment: ' (JetSwap)',
