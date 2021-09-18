@@ -111,10 +111,10 @@ const ApyCalculatorModal = ({
     performanceFee,
   })
 
-	const oneDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
-	const sevenDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
-	const thirtyDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
-	const threeSixtyFiveRoi = getRoi({ amountEarned: tokenEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(roundingDecimals)
+	const oneDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })
+	const sevenDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken })
+	const thirtyDayRoi = getRoi({ amountEarned: tokenEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfToken })
+	const threeSixtyFiveRoi = getRoi({ amountEarned: tokenEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfToken })
 
   return (
 		<>
@@ -149,12 +149,12 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" bold>
-								{ oneDayRoi }%
+								{ oneDayRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }%
 							</Text>
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getUserStakedBalance() * Number(oneDayRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(oneDayRoi ?? 0) / 100).toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }
 							</Text>
 						</td>
 					</tr>
@@ -166,12 +166,12 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								{ sevenDayRoi }%
+								{ sevenDayRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }%
 							</Text>
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getUserStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(sevenDayRoi ?? 0) / 100).toLocaleString(undefined,{maximumFractionDigits:roundingDecimals})}
 							</Text>
 						</td>
 					</tr>
@@ -183,12 +183,12 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								{thirtyDayRoi}%
+								{thirtyDayRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals})}%
 							</Text>
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getUserStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(thirtyDayRoi ?? 0) / 100).toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }
 							</Text>
 						</td>
 					</tr>
@@ -200,12 +200,12 @@ const ApyCalculatorModal = ({
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								{threeSixtyFiveRoi}%
+								{threeSixtyFiveRoi.toLocaleString(undefined,{maximumFractionDigits:roundingDecimals})}%
 							</Text>
 						</td>
 						<td>
 							<Text fontSize="12px" fontWeight="bold">
-								${ (getUserStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toFixed(2) }
+								${ (getUserStakedBalance() * Number(threeSixtyFiveRoi ?? 0) / 100).toLocaleString(undefined,{maximumFractionDigits:roundingDecimals}) }
 							</Text>
 						</td>
 					</tr>
