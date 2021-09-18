@@ -298,6 +298,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     liquidityurl = `https://polygon.curve.fi/ren/deposit`
   }
 
+  let userDeposits
+  const farmRatio = new BigNumber(farm.jarRatio)
+  if (farmRatio > new BigNumber(0)) {
+    userDeposits = new BigNumber(farm.userData.stakedBalance)
+      .times(farmRatio).div(10 ** 18)
+  } else {
+    userDeposits = new BigNumber(0)
+  }
+
   const apyd = (
     ((1 +
       ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
@@ -352,7 +361,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Info>
                 <Staked>
                   <Title>Total User&apos;s LPs Staked</Title>
-                  <Stat>{(new BigNumber(farm.userData.stakedBalance).dividedBy(new BigNumber(10**lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits:  lpDecimals})}</Stat>
+                  <Stat>{(userDeposits.dividedBy(new BigNumber(10**lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits:  lpDecimals})}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
