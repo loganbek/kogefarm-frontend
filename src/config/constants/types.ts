@@ -71,7 +71,6 @@ export interface FarmConfig {
   isJetSwap?: boolean
   isFirebird?: boolean
   isCommunity?: boolean
-  lpDecimals?: number
   dual?: {
     rewardPerBlock: number
     earnLabel: string

@@ -307,7 +307,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     100
   ).toLocaleString(undefined, { maximumFractionDigits: 2 })
 
-  const lpDecimals = farm.lpDecimals ? farm.lpDecimals:18
+  let lpDecimals = 18
+  if (farm.token===farm.quoteToken){
+    lpDecimals = farm.token.decimals
+  }
   return (
     <Container expanded={expanded}>
       <Wrapper>
