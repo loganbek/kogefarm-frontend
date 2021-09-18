@@ -299,7 +299,7 @@ const Menu: React.FC<NavProps> = ({
             <Stat>
               KogeCoin Price
               {" "}
-              <span>${ kogePrice?.toFixed(4) ?? 0}</span>
+              <span>${ kogePrice?.toLocaleString(undefined,{maximumFractionDigits:4}) ?? 0}</span>
             </Stat>
             <Stat>
               {t('KogeFarm Vault TVL')}

@@ -91,7 +91,8 @@ const farms: FarmConfig[] = [
      kogefarmFee: 0.00,
      depositFee: 0,
      underlyingWebsite: 'https://kogecoin.io',
-     platform: 'Koge'
+     platform: 'Koge',
+     lpDecimals: 9,
    },
 
    {

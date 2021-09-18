@@ -8,7 +8,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
 import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL } from 'config'
-
+import BigNumber from 'bignumber.js'
 import StakedAction from './StakedAction'
 import { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
@@ -186,14 +186,14 @@ const Info = styled.div`
   display: grid;
   column-gap: 10px;
   row-gap: 10px;
-  grid-template-areas: 
+  grid-template-areas:
     "staked staked staked"
     "apr return fee";
-  
+
   > div {
     padding: 24px;
     border-radius: 4px;
-    background: ${({ theme }) => theme.colors.infoContainer}; 
+    background: ${({ theme }) => theme.colors.infoContainer};
   }
 `
 
@@ -298,6 +298,16 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     liquidityurl = `https://polygon.curve.fi/ren/deposit`
   }
 
+  const apyd = (
+    ((1 +
+      ((farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee)) /
+      ((100 * 365 * 24 * 60) / farm.minutesPerCompound)) **
+      ((24 * 60) / farm.minutesPerCompound) -
+      1) *
+    100
+  ).toLocaleString(undefined, { maximumFractionDigits: 2 })
+
+  const lpDecimals = farm.lpDecimals ? farm.lpDecimals:18
   return (
     <Container expanded={expanded}>
       <Wrapper>
@@ -344,7 +354,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Info>
                 <Staked>
                   <Title>Total User&apos;s LPs Staked</Title>
-                  <Stat>{format18((Number(farm.userData.stakedBalance))/(10 ** 18))}</Stat>
+                  <Stat>{(new BigNumber(farm.userData.stakedBalance).dividedBy(new BigNumber(10**lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits:  lpDecimals})}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
@@ -355,21 +365,21 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 </Staked>
                 <APR>
                   <Title>Underlying APR</Title>
-                  <Stat>{(farm.apr ?? 0).toFixed(2)}%</Stat>
+                  <Stat>{(farm.apr ?? 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>
                 </APR>
                 <Return>
-                  <Title>Daily LP Return</Title>
-                  <Stat>{(farm.apr / 1000).toFixed(2).toString()}%</Stat>
+                  <Title>Daily Return</Title>
+                  <Stat>{apyd}%</Stat>
                 </Return>
                 <Fee>
                   <Title>Deposit Fee (Third Party)</Title>
-                  <Stat>{farm.depositFee * 100}%</Stat>
+                  <Stat>{(farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>
                 </Fee>
               </Info>
             </InfoWrapper>
           </ContainerWrapper>
         ) : null}
-  
+
         {isMobile ? <StakedAction {...details} userDataReady={userDataReady} /> : null }
       </Wrapper>
     </Container>

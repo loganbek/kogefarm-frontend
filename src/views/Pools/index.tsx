@@ -149,9 +149,7 @@ const Pools: React.FC = ({ ...rest }) => {
             justifyContent="space-between"
             width="100%"
             mt="20px"
-          >
-            <Text fontWeight="bold">Vault TVL</Text>
-          </Flex>
+          />
         </StyledFlex>
       </StyledFlex>
       <FlexLayout>

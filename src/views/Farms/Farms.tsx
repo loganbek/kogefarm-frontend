@@ -11,6 +11,7 @@ import {
   Toggle,
   Text,
   Flex,
+  Skeleton
 } from 'components/Pancake'
 import tokens from 'config/constants/tokens'
 import styled from 'styled-components'
@@ -208,7 +209,7 @@ const Farms: React.FC = () => {
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
-  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+//  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
@@ -305,11 +306,11 @@ const Farms: React.FC = () => {
     [query, prices, isActive],
   )
 
-  // const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity), new BigNumber(0))
+  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue? curr.userValue : 0), new BigNumber(0))
   const displayTVL = tvl ? (
-    `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    `${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
-    <Text>{tvl}</Text>
+    <Skeleton width={60} />
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -449,12 +450,12 @@ const Farms: React.FC = () => {
       },
       apr: {
         align: 'flex-end',
-        value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && farm.apr.toLocaleString(undefined, { maximumFractionDigits: 2 }),
         originalValue: farm.apr,
       },
       apy: {
         align: 'flex-end',
-        value: farm.apr && farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && farmAPYNum.toLocaleString(undefined, { maximumFractionDigits: 2 }),
         originalValue: farmAPYNum,
       },
       apyd: {
@@ -630,10 +631,10 @@ const Farms: React.FC = () => {
           <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
               <Text>KogeCoin Price {' '}</Text>
-              <Text fontWeight="bold">${kogePrice?.toFixed(4) ?? 0} {' '}</Text>
+              <Text fontWeight="bold">${kogePrice && kogePrice.toLocaleString(undefined, {maximumFractionDigits:4})} {' '}</Text>
             </Price>
             <Price alignItems="center" width="100%" justifyContent="space-between">
-              <Text>KogeFarm Vault TVL {' '}</Text>
+              <Text>Total User Staked {' '}</Text>
               {/* <Text fontWeight="bold">${tvl?.}</Text> */}
               <Text fontWeight="bold">${displayTVL}</Text>
             </Price>
