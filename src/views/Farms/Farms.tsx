@@ -362,7 +362,6 @@ const Farms: React.FC = () => {
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'multi': {
-
           if (isSearching) {
             console.log('Searching...')
           }
@@ -376,7 +375,7 @@ const Farms: React.FC = () => {
             tokens.ust.address[chainId]]
               .includes(f.token.address[chainId]) || ["DAI", "USDT", "USDT"].reduce((p, c) => p && f.lpSymbol.includes(c), Boolean(true)))
               && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
-            const feelessFilter = f.depositFee === 0
+            const feelessFilter = !f.depositFee
 
             if (multiSearch.has('single')) return singleFilter
             if (multiSearch.has('stable')) return stableFilter
