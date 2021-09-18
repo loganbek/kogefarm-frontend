@@ -113,8 +113,8 @@ const StyledCollapsible = styled(Collapsible) <{ open?: boolean }>`
   `}
 `
 
-const Label = styled(Text)`
-  cursor: pointer;
+const Label = styled(Text) <{ sortable: boolean }>`
+  cursor: ${props => props.sortable ? "pointer" : "default"};
   display: inline-block;
   color: ${({ theme }) => theme.colors.rowHeaderText};
 `
@@ -181,12 +181,13 @@ const FarmTable: React.FC<ITableProps> = props => {
 
                         {header.display ? (
                           <>
-                            <Label fontWeight="bold" onClick={() => sort(header)}>
+                            {/* @ts-ignore */}
+                            <Label sortable={header.sortable} fontWeight="bold" onClick={() => header.sortable && sort(header)}>
                               {header.label}
                             </Label>
                             {/* @ts-ignore */}
                             {header.sortable && (
-                              <SortIcon asc={header.sorted.asc} on={header.sorted.on} onClick={() => sort(header)}/>
+                              <SortIcon asc={header.sorted.asc} on={header.sorted.on} onClick={() => sort(header)} />
                             )}
                           </>
                         ) : null}

@@ -28,10 +28,11 @@ export interface RowProps {
   apyd: ApyProps
   liquidity: LiquidityProps
   userValue: UserValueProps
-  actions: any
+  actions: { userValue: string } | any
   platform?: any
   align?: string
   open?: boolean
+  sortable?:boolean
 }
 
 interface RowPropsWithLoading extends RowProps {

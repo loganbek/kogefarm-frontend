@@ -148,7 +148,7 @@ const VaultTypesContainer = styled.div<{ isDesktop: boolean }>`
   margin:${props => props.isDesktop ? "0px" : "0px 0px 18px 0px"}
 `
 
-const NUMBER_OF_FARMS_VISIBLE = 12
+const NUMBER_OF_FARMS_VISIBLE = 5000
 const chainId = process.env.REACT_APP_CHAIN_ID;
 
 // @ts-ignore
@@ -528,23 +528,26 @@ const Farms: React.FC = () => {
         sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
           switch (column.name) {
             case 'farm':
-              return b.id - a.id
-            case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
-
-              return 0
+              return a.original.farm.label.localeCompare(b.original.farm.label)
             case 'apy':
               if (a.original.apy.value && b.original.apy.value) {
                 return Number(a.original.apy.value) - Number(b.original.apy.value)
               }
-
-              return 0
-            case 'earned':
-              return a.original.earned.earnings - b.original.earned.earnings
+              return -1
+            case 'userValue':
+              if (a.original.userValue.userValue && b.original.userValue.userValue) {
+                return Number(a.original.userValue.userValue) - Number(b.original.userValue.userValue)
+              }
+              return -1
+            case 'liquidity':
+              if (a.original.liquidity.liquidity && b.original.liquidity.liquidity) {
+                return Number(a.original.liquidity.liquidity) - Number(b.original.liquidity.liquidity)
+              }
+              return -1
+            case 'platform':
+              return a.original.platform.userValue.localeCompare(b.original.platform.userValue)
             default:
-              return 1
+              return -1
           }
         },
         sortable: column.sortable,
