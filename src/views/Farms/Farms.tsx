@@ -353,8 +353,6 @@ const Farms: React.FC = () => {
               && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
             const feelessFilter = f.depositFee === 0
 
-            console.log(f);
-
             if (multiSearch.has('single')) return singleFilter
             if (multiSearch.has('stable')) return stableFilter
             if (multiSearch.has('feeless')) return feelessFilter
