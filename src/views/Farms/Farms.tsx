@@ -344,13 +344,16 @@ const Farms: React.FC = () => {
 
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
-            const stableFilter = [tokens.usdc.address[chainId],
+            const stableFilter = ([tokens.usdc.address[chainId],
             tokens.dai.address[chainId],
             tokens.usdt.address[chainId],
             tokens.mimatic.address[chainId],
             tokens.ust.address[chainId]]
-              .includes(f.token.address[chainId]) && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
+              .includes(f.token.address[chainId]) || ["DAI", "USDT", "USDT"].reduce((p, c) => p && f.lpSymbol.includes(c), Boolean(true)))
+              && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
             const feelessFilter = f.depositFee === 0
+
+            console.log(f);
 
             if (multiSearch.has('single')) return singleFilter
             if (multiSearch.has('stable')) return stableFilter
