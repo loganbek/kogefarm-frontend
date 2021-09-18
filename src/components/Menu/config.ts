@@ -2,13 +2,13 @@ import { MenuEntry } from 'components/Pancake'
 
 export const config: MenuEntry[] = [
   {
-    label: 'Vaults to stake',
+    label: 'Vaults',
     icon: 'HomeIcon',
     href: '/',
     group: '',
   },
   {
-    label: 'Farms to invest',
+    label: 'KogeCoin Farms',
     icon: 'PoolIcon',
     href: 'farms',
     group: '',

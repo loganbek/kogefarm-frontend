@@ -114,7 +114,7 @@ const Pools: React.FC = ({ ...rest }) => {
           className="info"
         >
           <Heading scale="lg" mb="16px">
-            {t('Farms to invest')}
+            {t('KogeCoin Farms')}
           </Heading>
           <Text mb="32px" fontSize="16px">
             {t('Stake KogeCoin LP and KogeCoins to earn. All of our remaining supply is being distributed to holders through this farm.')}
