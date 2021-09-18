@@ -528,7 +528,7 @@ const Farms: React.FC = () => {
         sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
           switch (column.name) {
             case 'farm':
-              return a.original.farm.label.localeCompare(b.original.farm.label)
+              return b.original.farm.label.localeCompare(a.original.farm.label)
             case 'apy':
               if (a.original.apy.value && b.original.apy.value) {
                 return Number(a.original.apy.value) - Number(b.original.apy.value)
@@ -545,7 +545,7 @@ const Farms: React.FC = () => {
               }
               return -1
             case 'platform':
-              return a.original.platform.userValue.localeCompare(b.original.platform.userValue)
+              return b.original.platform.userValue.localeCompare(a.original.platform.userValue)
             default:
               return -1
           }
