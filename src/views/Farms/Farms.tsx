@@ -704,7 +704,7 @@ const Farms: React.FC = () => {
           <Select
             options={[
               {
-                label: '',
+                label: 'All',
                 value: '',
               },
               ...options
