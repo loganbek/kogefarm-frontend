@@ -121,7 +121,7 @@ const PrivacyPolicy = () => {
 
                 <p>For any questions or concerns regarding your privacy, you may contact us using the following details:</p>
 
-                <a href="mailto:kogecoindev@kogecoin.io">kogecoindev@kogecoin.io</a>
+                <a href="mailto:kevin@kogecoin.io">kevin@kogecoin.io</a>
             </Text>
             </StyledPrivacyPolicy>
             </Page>

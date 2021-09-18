@@ -33,7 +33,7 @@ const TermsOfUse = () => {
     return (
         <Page>
             <StyledTermsOfUse>
-                
+
                 <Heading color="primary" scale="xl">Terms of Use</Heading>
                 {/* <Text mb="16px">{t('Oops, page not found.')}</Text>
                 <Button as="a" href="/" scale="sm">
@@ -65,7 +65,7 @@ const TermsOfUse = () => {
                     <p>You acknowledge that you have read this Agreement and agree to all its terms and conditions. By accessing and using the Website and Services you agree to be bound by this Agreement. If you do not agree to abide by the terms of this Agreement, you are not authorized to access or use the Website and Services. This terms and conditions policy was created with the <a target="_blank" href="https://www.websitepolicies.com/terms-and-conditions-generator" rel="noreferrer">terms and conditions generator</a>.</p>
                     <Heading color="primary">Contacting us</Heading>
                     <p>If you have any questions, concerns, or complaints regarding this Agreement, we encourage you to contact us using the details below:</p>
-                    <a href="mailto:kogecoindev@kogecoin.io">kogecoindev@kogecoin.io</a>
+                    <a href="mailto:kogecoindev@kogecoin.io">kevin@kogecoin.io</a>
                     <p>This document was last updated on September 3, 2021</p>
                 </Text>
             </StyledTermsOfUse>
