@@ -93,6 +93,7 @@ const ListItem = styled.li`
 `
 
 export interface SelectProps {
+  value?: OptionProps
   options: OptionProps[]
   onChange?: (option: OptionProps) => void
 }
@@ -102,12 +103,17 @@ export interface OptionProps {
   value: any
 }
 
-const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => {
+const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value }) => {
   const containerRef = useRef(null)
   const dropdownRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(options[0])
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
+
+  // Sync the selected option with the parent
+  useEffect(() => {
+    setSelectedOption(value)
+  }, [value])
 
   const toggling = () => setIsOpen(!isOpen)
 

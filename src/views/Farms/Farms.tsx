@@ -169,6 +169,8 @@ const Farms: React.FC = () => {
   const prices = useGetApiPrices()
   const kogePrice = useGetApiPrice('kogecoin');
 
+  const [platformSelectOption, setPlatformSelectOption] = useState<OptionProps>({ label: 'All', value: '' })
+
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
@@ -343,11 +345,11 @@ const Farms: React.FC = () => {
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
             const stableFilter = [tokens.usdc.address[chainId],
-                                  tokens.dai.address[chainId], 
-                                  tokens.usdt.address[chainId],
-                                  tokens.mimatic.address[chainId], 
-                                  tokens.ust.address[chainId]]
-                                  .includes(f.token.address[chainId]) && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
+            tokens.dai.address[chainId],
+            tokens.usdt.address[chainId],
+            tokens.mimatic.address[chainId],
+            tokens.ust.address[chainId]]
+              .includes(f.token.address[chainId]) && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
             const feelessFilter = f.depositFee === 0
 
             if (multiSearch.has('single')) return singleFilter
@@ -592,12 +594,22 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    const _multiSearch = new Set(multiSearch)
-      ;["all", "single", "stable", "feeless"].forEach(e => _multiSearch.delete(e))
-    activeIndex.forEach(e => _multiSearch.add(e))
-    setMultiSearch(_multiSearch)
-    setIsSearching(!isSearching)
-    setSortOption('multi')
+    console.log(activeIndex.has('all'));
+
+    if (activeIndex.has('all')) {
+      setMultiSearch(new Set(['all']))
+      setIsSearching(!isSearching)
+      setSortOption('multi')
+      setPlatform('')
+      setPlatformSelectOption({ value: '', label: 'All' })
+    } else {
+      const _multiSearch = new Set(multiSearch)
+        ;["all", "single", "stable", "feeless"].forEach(e => _multiSearch.delete(e))
+      activeIndex.forEach(e => _multiSearch.add(e))
+      setMultiSearch(_multiSearch)
+      setIsSearching(!isSearching)
+      setSortOption('multi')
+    }
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
@@ -709,6 +721,7 @@ const Farms: React.FC = () => {
               },
               ...options
             ]}
+            value={platformSelectOption}
             onChange={(e) => handleSortOptionChangeAlt(e)}
           />
         </LabelWrapper>
