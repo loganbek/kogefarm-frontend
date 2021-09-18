@@ -761,6 +761,15 @@ const tokens = {
     },
     decimals: 18,
   },
+  tmgo: {
+    symbol: 'TMGO',
+    coingeico: 'tmgo',
+    address: {
+      137: '0x034D706c3AF9D11F0Ba90d9967947ABEdA7a5758',
+      80001: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

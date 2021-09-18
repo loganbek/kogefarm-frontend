@@ -62,7 +62,6 @@ export interface FarmConfig {
   rewardPerBlock?: number
   poolWeightDesignate: number
   underlyingWebsite: string
-  platform?: string
   multiplier?: string
   isSushi?: boolean
   isDfyn?: boolean
@@ -71,6 +70,7 @@ export interface FarmConfig {
   isJetSwap?: boolean
   isFirebird?: boolean
   isCommunity?: boolean
+  isElk?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string
@@ -79,13 +79,14 @@ export interface FarmConfig {
   minutesPerCompound: number
   kogefarmFee: number
   kogefarmComment?: string
-  isGravity?: boolean
   rewardToken?: Token
   rewardToken1?: Token
   rewardToken2?: Token
   rewardPerBlock1?: number
   rewardPerBlock2?: number
   depositFee?: number
+  isGravity?: boolean
+  platform: string
 }
 
 export interface PoolConfig {

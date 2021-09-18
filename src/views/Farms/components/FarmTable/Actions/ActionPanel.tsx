@@ -316,10 +316,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     100
   ).toLocaleString(undefined, { maximumFractionDigits: 2 })
 
-  let lpDecimals = 18
-  if (farm.token===farm.quoteToken){
-    lpDecimals = farm.token.decimals
-  }
+  const lpDecimals = farm.token===farm.quoteToken ? farm.token.decimals : 18
+
+  const depositFee = farm.depositFee ? (farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 }) : '0'
+
   return (
     <Container expanded={expanded}>
       <Wrapper>
@@ -336,7 +336,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             </ValueWrapper>
             <ValueWrapper>
               <Text>{t('Deposit Fee (Third Party)')}</Text>
-              <Text>{(farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Text>
+              <Text>{depositFee}%</Text>
             </ValueWrapper>
             <ValueWrapper>
               <Text>{t('User Staked')}</Text>
@@ -391,7 +391,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 </APR>
                 <Fee>
                   <Title>Deposit Fee (Third Party)</Title>
-                  <Stat>{(farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>
+                  <Stat>{depositFee}%</Stat>
                 </Fee>
               </Info>
             </InfoWrapper>
