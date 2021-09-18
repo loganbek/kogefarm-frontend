@@ -313,6 +313,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <Wrapper>
         <ContainerWrapper>
           <InfoContainer>
+          <TagsContainer />
             {isActive && (
               <StakeContainer>
                 <StyledLinkExternal href={liquidityurl} color={theme.colors.textSubtle}>
@@ -322,13 +323,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             )}
             <StyledLinkExternal href={bsc} color={theme.colors.textSubtle}>{t('View Contract')}</StyledLinkExternal>
             <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Platform')}</StyledLinkExternal>
-            <TagsContainer>
-              {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-              {farm.isWault && <WaultTag />}
-              {farm.isApe && <ApeTag />}
-              {farm.isJetSwap && <JetSwapTag />}
-              {dual ? <DualTag /> : null}
-            </TagsContainer>
+            <TagsContainer />
           </InfoContainer>
 
           <ValueContainer>
