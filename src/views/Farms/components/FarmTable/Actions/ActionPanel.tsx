@@ -343,8 +343,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <InfoWrapper>
               <Info>
                 <Staked>
-                  <Title>Total LPs Staked</Title>
-                  <Stat>{format18((farm.userData.stakedBalance))}</Stat>
+                  <Title>Total User&apos;s LPs Staked</Title>
+                  <Stat>{format18((Number(farm.userData.stakedBalance))/(10 ** 18))}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
