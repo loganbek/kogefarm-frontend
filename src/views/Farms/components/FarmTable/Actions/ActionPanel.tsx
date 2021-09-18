@@ -188,7 +188,7 @@ const Info = styled.div`
   row-gap: 10px;
   grid-template-areas:
     "staked staked staked"
-    "apr return fee";
+    "return apr fee";
 
   > div {
     padding: 24px;
@@ -344,12 +344,20 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Apy {...apy} />
             </ValueWrapper>
             <ValueWrapper>
-              <Text>{t('Total Staked')}</Text>
-              <Liquidity {...liquidity} />
+              <Text>{t('Daily return')}</Text>
+              <Text>{apyd}%</Text>
+            </ValueWrapper>
+            <ValueWrapper>
+              <Text>{t('Deposit Fee (Third Party)')}</Text>
+              <Text>{(farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Text>
             </ValueWrapper>
             <ValueWrapper>
               <Text>{t('User Staked')}</Text>
               <UserValue {...userValue} />
+            </ValueWrapper>
+            <ValueWrapper>
+              <Text>{t('Total Staked')}</Text>
+              <Liquidity {...liquidity} />
             </ValueWrapper>
           </ValueContainer>
 
@@ -370,14 +378,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                     {farm.lpSymbol}
                   </Text>
                 </Staked>
-                <APR>
-                  <Title>Underlying APR</Title>
-                  <Stat>{(farm.apr ?? 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>
-                </APR>
                 <Return>
                   <Title>Daily Return</Title>
                   <Stat>{apyd}%</Stat>
                 </Return>
+                <APR>
+                  <Title>Underlying APR</Title>
+                  <Stat>{(farm.apr ?? 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>
+                </APR>
                 <Fee>
                   <Title>Deposit Fee (Third Party)</Title>
                   <Stat>{(farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>

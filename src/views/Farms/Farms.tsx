@@ -621,7 +621,9 @@ const Farms: React.FC = () => {
               )}>
               <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>.
             </Tooltip>
-            {' '}
+            {' Lowest '}
+            <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
+            {' in Polygon. '}
             <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
             {' '}
             by Obelisk.
