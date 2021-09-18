@@ -324,19 +324,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     <Container expanded={expanded}>
       <Wrapper>
         <ContainerWrapper>
-          <InfoContainer>
-          <TagsContainer />
-            {isActive && (
-              <StakeContainer>
-                <StyledLinkExternal href={liquidityurl} color={theme.colors.textSubtle}>
-                  {t(`Get ${lpLabel}`, { name: lpLabel })}
-                </StyledLinkExternal>
-              </StakeContainer>
-            )}
-            <StyledLinkExternal href={bsc} color={theme.colors.textSubtle}>{t('View Contract')}</StyledLinkExternal>
-            <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Platform')}</StyledLinkExternal>
-            <TagsContainer />
-          </InfoContainer>
 
           <ValueContainer>
             <ValueWrapper>
@@ -360,6 +347,22 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <Liquidity {...liquidity} />
             </ValueWrapper>
           </ValueContainer>
+
+          {isMobile ? <StakedAction {...details} userDataReady={userDataReady} /> : null }
+
+          <InfoContainer>
+          <TagsContainer />
+            {isActive && (
+              <StakeContainer>
+                <StyledLinkExternal href={liquidityurl} color={theme.colors.textSubtle}>
+                  {t(`Get ${lpLabel}`, { name: lpLabel })}
+                </StyledLinkExternal>
+              </StakeContainer>
+            )}
+            <StyledLinkExternal href={bsc} color={theme.colors.textSubtle}>{t('View Contract')}</StyledLinkExternal>
+            <StyledLinkExternal href={info} color={theme.colors.textSubtle}>{t('Platform')}</StyledLinkExternal>
+            <TagsContainer />
+          </InfoContainer>
 
         </ContainerWrapper>
 
@@ -395,7 +398,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </ContainerWrapper>
         ) : null}
 
-        {isMobile ? <StakedAction {...details} userDataReady={userDataReady} /> : null }
       </Wrapper>
     </Container>
   )
