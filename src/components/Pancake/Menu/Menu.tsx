@@ -273,10 +273,10 @@ const Menu: React.FC<NavProps> = ({
   // const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
 
   // console.log("tvl", tvl)
-  const displayTVL = tvl ? (
-    `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  const displayTVL = tvl.isZero() ? (
+    '-'
   ) : (
-    <Skeleton width={60} />
+    `$${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   )
 
   return (
@@ -299,7 +299,7 @@ const Menu: React.FC<NavProps> = ({
             <Stat>
               KogeCoin Price
               {" "}
-              <span>${ kogePrice?.toLocaleString(undefined,{maximumFractionDigits:4}) ?? 0}</span>
+              <span>${ kogePrice?.toLocaleString(undefined,{maximumFractionDigits:4}) ?? '-'}</span>
             </Stat>
             <Stat>
               {t('KogeFarm Vault TVL')}
