@@ -342,7 +342,7 @@ const Farms: React.FC = () => {
 
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
-            const stableFilter = f.token.address[chainId] === tokens.usdc.address[chainId] && !/matic/gmi.exec(f.lpSymbol)
+            const stableFilter = f.token.address[chainId] === tokens.usdc.address[chainId] && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
             const feelessFilter = f.depositFee === 0
 
             if (multiSearch.has('single')) return singleFilter
