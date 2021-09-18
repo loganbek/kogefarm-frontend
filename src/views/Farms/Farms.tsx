@@ -276,7 +276,7 @@ const Farms: React.FC = () => {
           userDeposits = new BigNumber(0)
         }
           // If dual rewards: transform reward/block in terms of token price
-        let { rewardPerBlock, rewardPerBlock1 } = farm
+        let rewardPerBlock = farm.rewardPerBlock
         const masterChefAddress = getAddress(farm.masterChefAddresses)
         // Special case: pSwamp
         let rewardPerBlock1 = farm.rewardPerBlock1
@@ -307,6 +307,10 @@ const Farms: React.FC = () => {
           rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
           rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 85)[0].lpTokenBalanceMC).toNumber()
         }
+        if (farm.rewardToken1){
+          rewardPerBlock = (rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+          tokenPriceVsQuote = new BigNumber(1)
+        }
 
 
         const apr = isActive
@@ -326,7 +330,7 @@ const Farms: React.FC = () => {
       return farmsToDisplayWithAPR
     },
     //    [cakePrice, prices, query, isActive],
-    [query, prices, isActive],
+    [query, prices, isActive, farmsLP],
   )
 
   const userTvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
