@@ -273,18 +273,39 @@ const Farms: React.FC = () => {
         } else {
           userDeposits = new BigNumber(0)
         }
-        // If dual rewards: transform reward/block in terms of token price
+          // If dual rewards: transform reward/block in terms of token price
         let { rewardPerBlock, rewardPerBlock1 } = farm
-        // Special case: pSwamp
         const masterChefAddress = getAddress(farm.masterChefAddresses)
-        if (masterChefAddress === '0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress === '0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress === '0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress === '0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress === '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress === '0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress === '0x1c0a0927105140216425c84399E68F8B31E7510E') {
+        // Special case: pSwamp
+        let rewardPerBlock1 = farm.rewardPerBlock1
+        if (masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E'){
           rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
         }
-
-        if (farm.rewardToken1) {
-          rewardPerBlock = (rewardPerBlock1 * prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2 * prices[farm.rewardToken2.coingeico.toLowerCase()]) / prices[farm.quoteToken.coingeico.toLowerCase()]
-          tokenPriceVsQuote = new BigNumber(1)
+        if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+          rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 86)[0].lpTokenBalanceMC).toNumber()
         }
+        if (masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+          rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 83)[0].lpTokenBalanceMC).toNumber()
+        }
+        if (masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+          rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 82)[0].lpTokenBalanceMC).toNumber()
+        }
+        if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+          rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 95)[0].lpTokenBalanceMC).toNumber()
+        }
+        if (masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+          rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 97)[0].lpTokenBalanceMC).toNumber()
+        }
+        if (masterChefAddress==='0x7Da45e3E3218b3A304A79e86c411F2bfd605A8De'){
+          rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
+          rewardPerBlock1 /= new BigNumber(farmsLP.filter((x) => x.pid === 85)[0].lpTokenBalanceMC).toNumber()
+        }
+
 
         const apr = isActive
           ? getMetaFarmApr(farm.poolWeightDesignate, rewardPerBlock, totalLiquidity, tokenPriceVsQuote)
@@ -343,9 +364,9 @@ const Farms: React.FC = () => {
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
             const stableFilter = [tokens.usdc.address[chainId],
-                                  tokens.dai.address[chainId], 
+                                  tokens.dai.address[chainId],
                                   tokens.usdt.address[chainId],
-                                  tokens.mimatic.address[chainId], 
+                                  tokens.mimatic.address[chainId],
                                   tokens.ust.address[chainId]]
                                   .includes(f.token.address[chainId]) && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
             const feelessFilter = f.depositFee === 0
