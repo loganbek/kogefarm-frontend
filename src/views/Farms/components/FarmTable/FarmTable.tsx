@@ -129,7 +129,7 @@ const FarmTable: React.FC<ITableProps> = props => {
   const [open, setOpen] = useState(false)
   const { data, columns, userDataReady } = props
 
-  const { rows, toggleSort, headers } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
+  const { rows, toggleSort, headers } = useTable(columns, data)
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
