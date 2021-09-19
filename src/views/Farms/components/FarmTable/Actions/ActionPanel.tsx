@@ -74,7 +74,8 @@ const ContainerWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 25% 75%;
   justify-content: space-between;
   width: 100%;
 
