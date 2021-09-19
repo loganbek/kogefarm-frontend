@@ -363,7 +363,7 @@ const Farms: React.FC = () => {
       switch (sortOption) {
         case 'multi': {
           if (isSearching) {
-            console.log('Searching...')
+            // bypass the react-exhaustive-deps for isSearch
           }
 
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
@@ -619,8 +619,6 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    console.log(activeIndex.has('all'));
-
     if (activeIndex.has('all')) {
       setMultiSearch(new Set(['all']))
       setIsSearching(!isSearching)

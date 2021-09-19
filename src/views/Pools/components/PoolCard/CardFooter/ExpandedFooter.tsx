@@ -78,8 +78,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, handleOpen }) => 
     stakingTokenLink = `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
   }
 
-  console.log(handleOpen)
-
   return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" flexDirection="column">

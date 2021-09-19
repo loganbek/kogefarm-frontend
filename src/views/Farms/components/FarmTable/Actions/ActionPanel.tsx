@@ -236,7 +236,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   expanded,
 }) => {
   const farm = details
-  console.log(farm)
   const { t } = useTranslation()
   const theme = useTheme();
   const isActive = true
