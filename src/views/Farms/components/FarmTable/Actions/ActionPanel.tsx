@@ -383,7 +383,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                   </Text>
                 </Staked>
                 <Return>
-                  <Title>My Daily Return</Title>
+                  <Title>My Daily Return (If Staked)</Title>
                   <Stat>{apyd}%</Stat>
                 </Return>
                 <APR>
