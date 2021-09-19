@@ -17,7 +17,7 @@ const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
 };
 
 const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  switch(variant) {
+  switch (variant) {
     case 'primary':
     case 'outline':
     default:
@@ -108,16 +108,21 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
   ...props
 }) => {
   return (
-    <StyledButtonMenu 
+    <StyledButtonMenu
       disabled={disabled}
       variant={variant}
       fullWidth={fullWidth}
       {...props}
     >
       {Children.map(children, (child: ReactElement, index) => {
+        let onClick = onItemClick ? () => onItemClick(index) : undefined
+        if (child.props.onClick) {
+          onClick = child.props.onClick
+        }
+
         return cloneElement(child, {
           isActive: activeIndex === index,
-          onClick: onItemClick ? () => onItemClick(index) : undefined,
+          onClick,
           scale,
           variant,
           disabled,

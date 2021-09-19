@@ -4,7 +4,7 @@ import { light, dark } from 'components/Pancake'
 
 const CACHE_KEY = 'IS_DARK'
 
-const ThemeContext = React.createContext({ isDark: null, toggleTheme: () => null })
+const ThemeContext = React.createContext({ isDark: null, toggleTheme: (index?: number) => null })
 
 const ThemeContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
@@ -12,10 +12,10 @@ const ThemeContextProvider = ({ children }) => {
     return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : true
   })
 
-  const toggleTheme = () => {
+  const toggleTheme = (index?: number) => {
     setIsDark((prevState) => {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(!prevState))
-      return !prevState
+      localStorage.setItem(CACHE_KEY, JSON.stringify(index ?? !prevState))
+      return index ?? !prevState
     })
   }
 

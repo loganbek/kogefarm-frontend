@@ -8,7 +8,7 @@ import { PanelProps, PushedProps } from "../types";
 import { SvgProps, CogIcon } from "../../Svg";
 import * as IconModule from "../icons";
 
-interface Props extends PanelProps, PushedProps {}
+interface Props extends PanelProps, PushedProps { }
 
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 const { MoonIcon, SunIcon } = Icons;
@@ -81,19 +81,19 @@ const PanelFooter: React.FC<Props> = ({
 
   const ken = index => {
     setActiveIndex(index)
-    toggleTheme(!isDark)
+    toggleTheme(index)
   }
 
   return (
     <Container>
       <SettingsEntry>
         <Wrapper>
-          <StyledButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle" onItemClick={ken}>
-            <ButtonMenuItem>
+          <StyledButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
+            <ButtonMenuItem onClick={() => ken(1)}>
               <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
               Dark
             </ButtonMenuItem>
-            <ButtonMenuItem>
+            <ButtonMenuItem onClick={() => ken(0)}>
               <SunIcon color={isDark ? "textDisabled" : "text"} width="24px" />
               Light
             </ButtonMenuItem>
