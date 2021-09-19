@@ -87,7 +87,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     id: 4,
     name: 'apy',
     translationId: 1072,
-    sortable: false,
+    sortable: true,
     label: 'APY',
     align: 'flex-end',
     display: true,
