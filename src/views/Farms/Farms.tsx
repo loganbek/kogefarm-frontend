@@ -675,7 +675,7 @@ const Farms: React.FC = () => {
       <Hero>
         <Flex width={isDesktop ? "70%" : "100%"} flexDirection="column" mb="30px" className="info">
           <Heading scale="lg" mb="12px">
-            Vaults to stake
+            Vaults
           </Heading>
           <StyledText fontSize="14px" mb="14px">
             {t('KogeFarm helps you earn more yield by ')}
