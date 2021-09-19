@@ -71,25 +71,32 @@ const CheckBoxMenu = ({
 	onChange: any
 }) => {
 	const [checkedState, setCheckedState] = useState(["all"]);
-	const currentTabs = new Set()
 
 	const handleOnChange = value => {
-		if (currentTabs.has(value)) {
-			currentTabs.delete(value)
+		if (value === "all") {
+			setCheckedState(["all"]);
+			onChange(new Set(["all"]))
 		} else {
-			currentTabs.add(value)
+			let _checkedState = checkedState.filter(e => e !== "all")
+			if (checkedState.includes(value)) {
+				_checkedState = _checkedState.filter(e => e !== value)
+			} else {
+				_checkedState.push(value)
+			}
+			if (!_checkedState.length) {
+				_checkedState = ["all"]
+			}
+			setCheckedState(Array.from(_checkedState) as string[]);
+			onChange(new Set(_checkedState))
 		}
-
-    setCheckedState(Array.from(currentTabs) as string[]);
-		onChange(currentTabs)
-  };
+	};
 
 	return (
 		<Wrapper>
 			<Text bold mr="12px">Vault type</Text>
 			<TabWrapper>
 				<Tabs>
-					{ tabs.map(({ value }) => (
+					{tabs.map(({ value }) => (
 						<Input
 							key={value}
 							type="checkbox"
@@ -100,7 +107,7 @@ const CheckBoxMenu = ({
 							onChange={() => handleOnChange(value)}
 						/>
 					))}
-					{ tabs.map(({ label, value }) => (
+					{tabs.map(({ label, value }) => (
 						<Label htmlFor={value} key={value}>
 							<Text bold fontSize="10px">
 								{label}

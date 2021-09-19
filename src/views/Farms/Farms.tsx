@@ -389,6 +389,7 @@ const Farms: React.FC = () => {
           }
 
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
+            let isWantedToken = true
             const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] && !/[-|/]/.exec(f.lpSymbol)
             const stableFilter = ([tokens.usdc.address[chainId],
             tokens.dai.address[chainId],
@@ -401,11 +402,11 @@ const Farms: React.FC = () => {
 
             const feelessFilter = !f.depositFee
 
-            if (multiSearch.has('single')) return singleFilter
-            if (multiSearch.has('stable')) return stableFilter
-            if (multiSearch.has('feeless')) return feelessFilter
+            if (multiSearch.has('single')) { isWantedToken = isWantedToken && singleFilter }
+            if (multiSearch.has('stable')) { isWantedToken = isWantedToken && stableFilter }
+            if (multiSearch.has('feeless')) { isWantedToken = isWantedToken && feelessFilter }
 
-            return false
+            return isWantedToken
           })
           if (multiSearch.has('platform')) return filter(vaultTypeFilter, { platform })
           return vaultTypeFilter
@@ -643,20 +644,9 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    if (activeIndex.has('all')) {
-      setMultiSearch(new Set(['all']))
-      setIsSearching(!isSearching)
-      setSortOption('multi')
-      setPlatform('')
-      setPlatformSelectOption({ value: '', label: 'All' })
-    } else {
-      const _multiSearch = new Set(multiSearch)
-        ;["all", "single", "stable", "feeless"].forEach(e => _multiSearch.delete(e))
-      activeIndex.forEach(e => _multiSearch.add(e))
-      setMultiSearch(_multiSearch)
-      setIsSearching(!isSearching)
-      setSortOption('multi')
-    }
+    setMultiSearch(activeIndex)
+    setIsSearching(!isSearching)
+    setSortOption('multi')
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
