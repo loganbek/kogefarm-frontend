@@ -61,7 +61,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   )
 
   return (
-    <div>
+    <div style={{ marginBottom: 12 }}>
       <Wrapper>
         {isLoading ? (
           <Skeleton width="80px" height="48px" />
