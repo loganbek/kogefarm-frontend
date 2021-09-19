@@ -316,6 +316,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   ).toLocaleString(undefined, { maximumFractionDigits: 2 })
 
   const lpDecimals = farm.token===farm.quoteToken ? farm.token.decimals : 18
+  const userValueDecimals = farm.token===farm.quoteToken ? farm.token.decimals : 2
 
   const depositFee = farm.depositFee ? (farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 }) : '0'
 
@@ -370,7 +371,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <InfoWrapper>
               <Info>
                 <Staked>
-                  <Title>My Staked LP Tokens</Title>
+                  <Title>My Staked LP Tokens (${userDeposits.toNumber().toLocaleString(undefined, { maximumFractionDigits:  userValueDecimals})})</Title>
                   <Stat>{(userDeposits.dividedBy(new BigNumber(10**lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits:  lpDecimals})}</Stat>
                   <Text
                     fontSize="10px"

@@ -737,7 +737,7 @@ const Farms: React.FC = () => {
             <Price alignItems="center" width="100%" justifyContent="space-between">
               <Text>My Total Value Staked: {' '}</Text>
               {/* <Text fontWeight="bold">${tvl?.}</Text> */}
-              <Text fontWeight="bold">${userTvl.isZero() ? '-' : displayUserTVL}</Text>
+              <Text fontWeight="bold">${userTvl.isZero() ? '0' : displayUserTVL}</Text>
             </Price>
           </Flex>
         </Flex>
