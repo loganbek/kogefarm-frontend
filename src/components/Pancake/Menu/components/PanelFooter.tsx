@@ -48,7 +48,7 @@ const Links = styled.div`
 
 const StyledButtonMenu = styled(ButtonMenu)`
   width: 100%;
-
+  cursor: pointer !important;
   button {
     font-size: 10px;
   }
