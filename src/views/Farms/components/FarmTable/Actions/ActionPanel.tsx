@@ -73,9 +73,9 @@ const Container = styled.div<{ expanded }>`
 const ContainerWrapper = styled.div`
 `
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 25% 75%;
+const Wrapper = styled.div<{ isMobile?: boolean }>`
+  display: ${props => props.isMobile ? "flex" : "grid"};
+  ${props => props.isMobile ? "" : "grid-template-columns: 25% 75%;"}
   justify-content: space-between;
   width: 100%;
 
@@ -252,49 +252,49 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = farm.underlyingWebsite
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  if (farm.isSushi===true){
+  if (farm.isSushi === true) {
     liquidityurl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isWault===true){
+  if (farm.isWault === true) {
     liquidityurl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isDfyn===true){
+  if (farm.isDfyn === true) {
     liquidityurl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isApe===true){
+  if (farm.isApe === true) {
     liquidityurl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isJetSwap===true){
+  if (farm.isJetSwap === true) {
     liquidityurl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isFirebird===true){
+  if (farm.isFirebird === true) {
     liquidityurl = `${FIREBIRD_ADD_LIQUIDITY_URL}/${lpAddress}`
   }
-  if (farm.token===farm.quoteToken){
+  if (farm.token === farm.quoteToken) {
     liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
-    if (farm.isApe===true){
+    if (farm.isApe === true) {
       liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.isSushi===true){
+    if (farm.isSushi === true) {
       liquidityurl = `https://app.sushi.com/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.token.coingeico==='pwings'){
+    if (farm.token.coingeico === 'pwings') {
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
   }
-  if (farm.lpSymbol==="PYQ-USDC"){
+  if (farm.lpSymbol === "PYQ-USDC") {
     liquidityurl = `https://app.polyquity.org/liquidity`
   }
-  if (farm.token.coingeico==='curve3pool'){
+  if (farm.token.coingeico === 'curve3pool') {
     liquidityurl = `https://polygon.curve.fi/aave/deposit`
   }
-  if (farm.token.coingeico==='iron3pool'){
+  if (farm.token.coingeico === 'iron3pool') {
     liquidityurl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
-  if (farm.token.coingeico==='atricrypto'){
+  if (farm.token.coingeico === 'atricrypto') {
     liquidityurl = `https://polygon.curve.fi/atricrypto/deposit`
   }
-  if (farm.token.coingeico==='btcrenbtc'){
+  if (farm.token.coingeico === 'btcrenbtc') {
     liquidityurl = `https://polygon.curve.fi/ren/deposit`
   }
 
@@ -316,14 +316,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     100
   ).toLocaleString(undefined, { maximumFractionDigits: 2 })
 
-  const lpDecimals = farm.token===farm.quoteToken ? farm.token.decimals : 18
-  const userValueDecimals = farm.token===farm.quoteToken ? farm.token.decimals : 2
+  const lpDecimals = farm.token === farm.quoteToken ? farm.token.decimals : 18
+  const userValueDecimals = farm.token === farm.quoteToken ? farm.token.decimals : 2
 
   const depositFee = farm.depositFee ? (farm.depositFee * 100).toLocaleString(undefined, { maximumFractionDigits: 2 }) : '0'
 
   return (
     <Container expanded={expanded}>
-      <Wrapper>
+      <Wrapper isMobile={isMobile}>
         <ContainerWrapper>
 
           <ValueContainer>
@@ -349,10 +349,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             </ValueWrapper>
           </ValueContainer>
 
-          {isMobile ? <StakedAction {...details} userDataReady={userDataReady} /> : null }
+          {isMobile ? <StakedAction {...details} userDataReady={userDataReady} /> : null}
 
           <InfoContainer>
-          <TagsContainer />
+            <TagsContainer />
             {isActive && (
               <StakeContainer>
                 <StyledLinkExternal href={liquidityurl} color={theme.colors.textSubtle}>
@@ -367,13 +367,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
         </ContainerWrapper>
 
-        { isDesktop ? (
+        {isDesktop ? (
           <ContainerWrapper>
             <InfoWrapper>
               <Info>
                 <Staked>
                   <Title>My Staked LP Tokens</Title>
-                  <Stat>{(userDeposits.dividedBy(new BigNumber(10**lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits:  lpDecimals})}</Stat>
+                  <Stat>{(userDeposits.dividedBy(new BigNumber(10 ** lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits: lpDecimals })}</Stat>
                   <Text
                     fontSize="10px"
                     textTransform="uppercase"
