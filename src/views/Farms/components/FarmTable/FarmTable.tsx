@@ -133,7 +133,7 @@ const FarmTable: React.FC<ITableProps> = props => {
   const { rows, toggleSort, headers } = useTable(columns, data)
 
   useEffect(() => {
-    if (colSortBy.columnName) {
+    if (colSortBy.columnName && colSortBy.columnName.toLocaleUpperCase() === "APY") {
       toggleSort(colSortBy.columnName, colSortBy.iscAscOverride)
     }
   }, [data, toggleSort, colSortBy])
