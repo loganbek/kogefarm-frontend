@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { Tooltip } from 'react-tippy'
 import { isMobile } from "react-device-detect";
 import styled from 'styled-components'
@@ -90,6 +90,20 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { onUnstake } = useUnstake(jarAddress)
   const web3 = useWeb3()
 
+  const emptyDivRef = useRef<HTMLDivElement>()
+
+  const cleanEmptyDivRef = () => {
+    if (emptyDivRef.current) {
+      // @ts-ignore
+      const el = Array.from(emptyDivRef.current.getElementsByTagName('div')).filter(e => !e.innerHTML).forEach(e => e?.remove())
+    }
+  }
+
+  useEffect(() => {
+    cleanEmptyDivRef()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emptyDivRef.current, withdrawIsOpen])
+
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
   const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
@@ -98,38 +112,38 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     tokenAddress: token.address,
   })
   let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  if (isSushi===true){
+  if (isSushi === true) {
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (isWault===true){
+  if (isWault === true) {
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (isApe===true){
+  if (isApe === true) {
     addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (isJetSwap===true){
+  if (isJetSwap === true) {
     addLiquidityUrl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (quoteToken===token){
+  if (quoteToken === token) {
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
   }
-  if (lpSymbol.toUpperCase()==="PYQ-USDC"){
+  if (lpSymbol.toUpperCase() === "PYQ-USDC") {
     addLiquidityUrl = `https://app.polyquity.org/liquidity`
   }
-  if (token.coingeico==='curve3pool'){
+  if (token.coingeico === 'curve3pool') {
     addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
   }
-  if (token.coingeico==='iron3pool'){
+  if (token.coingeico === 'iron3pool') {
     addLiquidityUrl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
-  if (token.coingeico==='atricrypto'){
+  if (token.coingeico === 'atricrypto') {
     addLiquidityUrl = `https://polygon.curve.fi/atricrypto/deposit`
   }
-  if (token.coingeico==='btcrenbtc'){
+  if (token.coingeico === 'btcrenbtc') {
     addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
   }
 
-  const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
+  const displayBalanceNumber = stakedBalance.times(jarRatio).div(10 ** 18)
 
   const onDepositClose = () => setDepositIsOpen(false)
   const onWithdrawClose = () => setWithdrawIsOpen(false)
@@ -160,70 +174,72 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   if (isApproved) {
     return (
-      <StyledButtonMenu scale="sm" variant="outline">
-        <Tooltip 
-          trigger="click"
-          open={depositIsOpen}
-          interactive
-          useContext
-          position={isMobile ? "bottom" : "bottom-end"}
-          html={(
-            <Tip>
-              <DepositModal
-                max={tokenBalance} 
-                onConfirm={onStake}
-                onClose={onDepositClose}
-                tokenName={lpSymbol}
-                addLiquidityUrl={addLiquidityUrl}
-                depositFee={depositFee} 
-              />
-            </Tip>
-          )}
-        >
-          <StyledButtonMenuItem 
-            onClick={(e) => {
-              e.stopPropagation()
-              setDepositIsOpen(true)
-            }}
+      <div ref={emptyDivRef}>
+        <StyledButtonMenu scale="sm" variant="outline">
+          <Tooltip
+            trigger="click"
+            open={depositIsOpen}
+            interactive
+            useContext
+            position={isMobile ? "bottom" : "bottom-end"}
+            html={(
+              <Tip>
+                <DepositModal
+                  max={tokenBalance}
+                  onConfirm={onStake}
+                  onClose={onDepositClose}
+                  tokenName={lpSymbol}
+                  addLiquidityUrl={addLiquidityUrl}
+                  depositFee={depositFee}
+                />
+              </Tip>
+            )}
           >
-            <Deposit isDark={isDark} />
-            <Text fontWeight="bold">
-              Deposit
-            </Text>
-          </StyledButtonMenuItem>
-        </Tooltip>
-        <Tooltip 
-          trigger="click"
-          open={withdrawIsOpen}
-          interactive
-          useContext
-          position={isMobile ? "bottom" : "bottom-end"}
-          html={(
-            <Tip>
-              <WithdrawModal
-                max={stakedBalance}
-                displayMax={displayBalanceNumber}
-                onConfirm={onUnstake}
-                onClose={onWithdrawClose}
-                tokenName={lpSymbol}
-                depositFee={depositFee} 
-              />
-            </Tip>
-          )}
-        >
-          <StyledButtonMenuItem 
-            onClick={(e) => {
-              e.stopPropagation()
-              setWithdrawIsOpen(true)
-            }}
+            <StyledButtonMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                setDepositIsOpen(true)
+              }}
+            >
+              <Deposit isDark={isDark} />
+              <Text fontWeight="bold">
+                Deposit
+              </Text>
+            </StyledButtonMenuItem>
+          </Tooltip>
+          <Tooltip
+            trigger="click"
+            open={withdrawIsOpen}
+            interactive
+            useContext
+            position={isMobile ? "bottom" : "bottom-end"}
+            html={(
+              <Tip>
+                <WithdrawModal
+                  max={stakedBalance}
+                  displayMax={displayBalanceNumber}
+                  onConfirm={onUnstake}
+                  onClose={onWithdrawClose}
+                  tokenName={lpSymbol}
+                  depositFee={depositFee}
+                />
+              </Tip>
+            )}
           >
-            <Withdraw isDark={isDark} />
-            <Text fontWeight="bold">
-              Withdraw
-            </Text>
-          </StyledButtonMenuItem>
-        </Tooltip>
-      </StyledButtonMenu>
+            <StyledButtonMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                setWithdrawIsOpen(true)
+              }}
+            >
+              <Withdraw isDark={isDark} />
+              <Text fontWeight="bold">
+                Withdraw
+              </Text>
+            </StyledButtonMenuItem>
+          </Tooltip>
+        </StyledButtonMenu>
+      </div>
     )
   }
 
