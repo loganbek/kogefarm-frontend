@@ -16,7 +16,7 @@ import PoolCard from './components/PoolCard'
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
-const Progress = styled.div<{ progress: number}>`
+const Progress = styled.div<{ progress: number }>`
   background-color: ${({ theme }) => theme.colors.rowHeader};
   height: 4px;
   border-radius: 21px;
@@ -99,7 +99,7 @@ const Pools: React.FC = ({ ...rest }) => {
     }
   }, [observerIsSet])
 
-  const percent = (kogeRemaining / kogeInitial) * 10
+  const percent = ((kogeInitial - kogeRemaining) / kogeInitial) * 100
 
   return (
     <Page>
@@ -137,10 +137,10 @@ const Pools: React.FC = ({ ...rest }) => {
               <Text
                 fontWeight="bold"
               >
-                {format(kogeInitial-kogeRemaining)} /
+                {format(kogeInitial - kogeRemaining)} /
               </Text>
               <Text>
-                 {format(kogeInitial)}
+                {format(kogeInitial)}
               </Text>
             </Flex>
           </Flex>
@@ -157,22 +157,22 @@ const Pools: React.FC = ({ ...rest }) => {
           <>
             {stakedOnly
               ? orderBy(stakedOnlyOpenPools, ['sortOrder'])
-                  .slice(0, numberOfPoolsVisible)
-                  .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
+                .slice(0, numberOfPoolsVisible)
+                .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
               : orderBy(openPools, ['sortOrder'])
-                  .slice(0, numberOfPoolsVisible)
-                  .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
-                   {/* <CakeVaultCard pool={cakePoolData} showStakedOnly={stakedOnly} /> */}
+                .slice(0, numberOfPoolsVisible)
+                .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
+            {/* <CakeVaultCard pool={cakePoolData} showStakedOnly={stakedOnly} /> */}
           </>
         </Route>
         <Route path={`${path}/history`}>
           {stakedOnly
             ? orderBy(stakedOnlyFinishedPools, ['sortOrder'])
-                .slice(0, numberOfPoolsVisible)
-                .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
+              .slice(0, numberOfPoolsVisible)
+              .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)
             : orderBy(finishedPools, ['sortOrder'])
-                .slice(0, numberOfPoolsVisible)
-                .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
+              .slice(0, numberOfPoolsVisible)
+              .map((pool) => <PoolCard key={pool.sousId} pool={pool} account={account} />)}
         </Route>
       </FlexLayout>
       <div ref={loadMoreRef} />
