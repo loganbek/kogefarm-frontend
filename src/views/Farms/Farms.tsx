@@ -587,10 +587,8 @@ const Farms: React.FC = () => {
             case 'farm':
               return b.original.farm.label.localeCompare(a.original.farm.label)
             case 'apy':
-              if (a.original.details.apr && b.original.details.apr) {
-                return Number(a.original.details.apr) - Number(b.original.details.apr)
-              }
-              return 0
+              // special implementation, check createReducer "TOGGLE_SORT" hook for more detail
+              return ["original?.apy?.originalValue"]
             case 'userValue':
               if (a.original.userValue.userValue && b.original.userValue.userValue) {
                 return Number(a.original.userValue.userValue) - Number(b.original.userValue.userValue)
