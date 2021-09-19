@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Tooltip } from 'react-tippy'
 import { isDesktop } from "react-device-detect";
 import styled, { css } from 'styled-components'
@@ -128,8 +128,15 @@ const FarmTable: React.FC<ITableProps> = props => {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { data, columns, userDataReady } = props
+  const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
 
   const { rows, toggleSort, headers } = useTable(columns, data)
+
+  useEffect(() => {
+    if (colSortBy.columnName) {
+      toggleSort(colSortBy.columnName, colSortBy.iscAscOverride)
+    }
+  }, [data, toggleSort, colSortBy])
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
@@ -137,7 +144,14 @@ const FarmTable: React.FC<ITableProps> = props => {
     })
   }
 
-  const sort = ({ name }) => toggleSort(name)
+  const sort = ({ name }) => {
+    toggleSort(name)
+    if (!colSortBy.columnName) {
+      setColSortBy({ columnName: name, iscAscOverride: false })
+    } else {
+      setColSortBy({ columnName: name, iscAscOverride: colSortBy.columnName === name ? !colSortBy.iscAscOverride : colSortBy.iscAscOverride })
+    }
+  }
   const handleOpen = () => setOpen(!open)
 
   return (
