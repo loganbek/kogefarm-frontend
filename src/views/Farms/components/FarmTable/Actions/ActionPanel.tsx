@@ -370,7 +370,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <InfoWrapper>
               <Info>
                 <Staked>
-                  <Title>Total User&apos;s LPs Staked</Title>
+                  <Title>My Staked LP Tokens</Title>
                   <Stat>{(userDeposits.dividedBy(new BigNumber(10**lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits:  lpDecimals})}</Stat>
                   <Text
                     fontSize="10px"
@@ -381,15 +381,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                   </Text>
                 </Staked>
                 <Return>
-                  <Title>Daily Return</Title>
+                  <Title>My Daily Return</Title>
                   <Stat>{apyd}%</Stat>
                 </Return>
                 <APR>
-                  <Title>Underlying APR</Title>
+                  <Title>Source Farm APR</Title>
                   <Stat>{(farm.apr ?? 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}%</Stat>
                 </APR>
                 <Fee>
-                  <Title>Deposit Fee (Third Party)</Title>
+                  <Title>Source Farm Deposit Fee</Title>
                   <Stat>{depositFee}%</Stat>
                 </Fee>
               </Info>
