@@ -220,4 +220,4 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
   )
 }
 
-export default Row
+export default React.memo(Row)

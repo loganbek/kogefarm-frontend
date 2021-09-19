@@ -221,4 +221,4 @@ const FarmTable: React.FC<ITableProps> = props => {
   )
 }
 
-export default FarmTable
+export default React.memo(FarmTable)

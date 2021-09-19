@@ -158,4 +158,4 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
   )
 }
 
-export default Select
+export default React.memo(Select)

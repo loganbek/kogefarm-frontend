@@ -60,4 +60,4 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   )
 }
 
-export default CardHeading
+export default React.memo(CardHeading)

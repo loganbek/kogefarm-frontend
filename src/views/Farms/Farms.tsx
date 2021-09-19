@@ -41,112 +41,112 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 
-const ControlContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  position: relative;
+const ControlContainer = React.memo(styled.div`
+display: flex;
+width: 100%;
+align-items: center;
+position: relative;
 
-  justify-content: space-between;
+justify-content: space-between;
+flex-direction: column;
+margin-bottom: 32px;
+
+${({ theme }) => theme.mediaQueries.sm} {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+`)
+
+const Tip = React.memo(styled.div`
+background: ${({ theme }) => theme.colors.tertiary};
+box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+width: 100%;
+padding: 24px;
+margin-top: 15px;
+border-radius: 4px;
+width: 300px;
+`)
+
+const StyledText = React.memo(styled(Text)`
+svg {
+  position: relative;
+  top: 7px;
+  left: -2px;
+  margin: 0 4px;
+
+}
+`)
+
+const ToggleWrapper = React.memo(styled.div`
+display: flex;
+align-items: center;
+
+margin-bottom: 8px;
+
+${Text} {
+  margin-right: 8px;
+}
+`)
+
+const Hero = React.memo(styled(Flex)`
+a {
+  color: #1EA306;
+  text-decoration: underline;
+}
+
+div {
+  display: inline;
+}
+
+@media screen and (max-width: 576px) {
   flex-direction: column;
-  margin-bottom: 32px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-bottom: 0;
+  .stats {
+    order: 0;
+    margin-bottom: 20px;
   }
-`
 
-const Tip = styled.div`
-  background: ${({ theme }) => theme.colors.tertiary};
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  .info {
+    order: 1;
+  }
+}
+`)
+
+const LabelWrapper = React.memo(styled.div`
+position: relative;
+
+> ${Text} {
+  font-size: 10px;
+  position: absolute;
+  top: -8px;
+  z-index: 1;
+  background: ${({ theme }) => theme.colors.background};
+  display: inline-block;
+  left: 10px;
+  padding: 2px 6px;
+}
+
+@media screen and (max-width: 576px) {
   width: 100%;
-  padding: 24px;
-  margin-top: 15px;
-  border-radius: 4px;
-  width: 300px;
-`
+}
+`)
 
-const StyledText = styled(Text)`
-  svg {
-    position: relative;
-    top: 7px;
-    left: -2px;
-    margin: 0 4px;
+const InfoContainer = React.memo(styled.div`
+width: 100%;
+justify-content: space-between;
+display: flex;
+margin-top: 26px;
+`)
 
-  }
-`
+const Price = React.memo(styled(Flex)`
+b {
+  margin-left: 8px;
+}
+`)
 
-const ToggleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-
-  margin-bottom: 8px;
-
-  ${Text} {
-    margin-right: 8px;
-  }
-`
-
-const Hero = styled(Flex)`
-  a {
-    color: #1EA306;
-    text-decoration: underline;
-  }
-
-  div {
-    display: inline;
-  }
-
-  @media screen and (max-width: 576px) {
-    flex-direction: column;
-    .stats {
-      order: 0;
-      margin-bottom: 20px;
-    }
-
-    .info {
-      order: 1;
-    }
-  }
-`
-
-const LabelWrapper = styled.div`
-  position: relative;
-
-  > ${Text} {
-    font-size: 10px;
-    position: absolute;
-    top: -8px;
-    z-index: 1;
-    background: ${({ theme }) => theme.colors.background};
-    display: inline-block;
-    left: 10px;
-    padding: 2px 6px;
-  }
-
-  @media screen and (max-width: 576px) {
-    width: 100%;
-  }
-`
-
-const InfoContainer = styled.div`
-  width: 100%;
-  justify-content: space-between;
-  display: flex;
-  margin-top: 26px;
-`
-
-const Price = styled(Flex)`
-  b {
-    margin-left: 8px;
-  }
-`
-
-const VaultTypesContainer = styled.div<{ isDesktop: boolean }>`
-  margin:${props => props.isDesktop ? "0px" : "0px 0px 18px 0px"}
-`
+const VaultTypesContainer = React.memo(styled.div<{ isDesktop: boolean }>`
+margin:${props => props.isDesktop ? "0px" : "0px 0px 18px 0px"}
+`)
 
 const NUMBER_OF_FARMS_VISIBLE = 5000
 const chainId = process.env.REACT_APP_CHAIN_ID;
@@ -786,4 +786,4 @@ const Farms: React.FC = () => {
   )
 }
 
-export default Farms
+export default React.memo(Farms)

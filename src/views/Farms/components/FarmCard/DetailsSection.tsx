@@ -69,4 +69,4 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   )
 }
 
-export default DetailsSection
+export default React.memo(DetailsSection)

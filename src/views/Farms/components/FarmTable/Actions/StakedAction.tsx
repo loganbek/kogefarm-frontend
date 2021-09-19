@@ -269,4 +269,4 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   )
 }
 
-export default Staked
+export default React.memo(Staked)

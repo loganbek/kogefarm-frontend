@@ -402,4 +402,4 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   )
 }
 
-export default ActionPanel
+export default React.memo(ActionPanel)

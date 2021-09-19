@@ -267,4 +267,4 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
   )
 }
 
-export default FarmCard
+export default React.memo(FarmCard)
