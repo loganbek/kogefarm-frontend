@@ -725,9 +725,9 @@ const Farms: React.FC = () => {
         <Flex width={isDesktop ? "30%" : "100%"} justifyContent="right" className="stats">
           <Flex flexDirection="column" width="100%">
             <Price alignItems="center" width="100%" justifyContent="space-between">
-              <Text>Total User Staked {' '}</Text>
+              <Text>My Total Value Staked: {' '}</Text>
               {/* <Text fontWeight="bold">${tvl?.}</Text> */}
-              <Text fontWeight="bold">${userTvl.isZero() ? '-' : displayUserTVL}</Text>
+              <Text fontWeight="bold">${userTvl.isZero() ? '0' : displayUserTVL}</Text>
             </Price>
           </Flex>
         </Flex>
