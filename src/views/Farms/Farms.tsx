@@ -206,23 +206,39 @@ const Farms: React.FC = () => {
     }
   }, [isArchived, dispatch, account])
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
-  const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
+  const activeFarms = useMemo(
+    () => farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+    , [farmsLP])
+  const inactiveFarms = useMemo(
+    () => farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+    , [farmsLP])
+  const allFarms = useMemo(
+    () => farmsLP.filter((farm) => farm.pid !== 0)
+    , [farmsLP])
+  const archivedFarms = useMemo(
+    () => farmsLP.filter((farm) => isArchivedPid(farm.pid))
+    , [farmsLP])
 
   //  const tvl = data ? data.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
 
-  const stakedOnlyFarms = activeFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+  const stakedOnlyFarms = useMemo(
+    () => activeFarms.filter(
+      (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    )
+    , [activeFarms])
+
+  const stakedInactiveFarms = useMemo(
+    () => inactiveFarms.filter(
+      (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    )
+    , [inactiveFarms]
   )
 
-  const stakedInactiveFarms = inactiveFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
-  )
-
-  const stakedArchivedFarms = archivedFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+  const stakedArchivedFarms = useMemo(
+    () => archivedFarms.filter(
+      (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    )
+    , [archivedFarms]
   )
 
   const farmsList = useCallback(
@@ -333,14 +349,20 @@ const Farms: React.FC = () => {
     [query, prices, isActive, farmsLP],
   )
 
-  const userTvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
+  const userTvl = useMemo(
+    () => farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
+    , [allFarms, farmsList]
+  )
   const displayUserTVL = userTvl ? (
     `${Number(userTvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
     <Skeleton width={60} />
   )
 
-  const tvl = farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity ? curr.liquidity : 0), new BigNumber(0))
+  const tvl = useMemo(
+    () => farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.liquidity ? curr.liquidity : 0), new BigNumber(0))
+    , [allFarms, farmsList]
+  )
   const displayTVL = tvl ? (
     `${Number(tvl).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
   ) : (
@@ -467,7 +489,7 @@ const Farms: React.FC = () => {
     }
   }, [farmsStakedMemoized, observerIsSet])
 
-  const rowData = farmsStakedMemoized.map((farm) => {
+  const rowData = useMemo(() => farmsStakedMemoized.map((farm) => {
     //    const { token, quoteToken } = farm
     //    const tokenAddress = token.address
     //    const quoteTokenAddress = quoteToken.address
@@ -546,7 +568,7 @@ const Farms: React.FC = () => {
     }
 
     return row
-  })
+  }), [farmsStakedMemoized])
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
