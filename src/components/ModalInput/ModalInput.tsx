@@ -48,7 +48,7 @@ const StyledErrorMessage = styled(Text)`
   a {
     display: inline;
   }
-  margin: 50px;
+  margin: -50px;
 `
 
 const ModalInput: React.FC<ModalInputProps> = ({
