@@ -44,11 +44,9 @@ const StyledInput = styled(Input)`
 `
 
 const StyledErrorMessage = styled(Text)`
-  position: absolute;
   a {
     display: inline;
   }
-  margin-top: -35px;
 `
 
 const ModalInput: React.FC<ModalInputProps> = ({
@@ -86,6 +84,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
             onChange={onChange}
             placeholder="0.00"
             value={value}
+            style={{ marginBottom: 10 }}
           />
           <Button
             scale="xs"
@@ -95,25 +94,28 @@ const ModalInput: React.FC<ModalInputProps> = ({
           </Button>
         </StyledInputWrapper>
       </StyledTokenInput>
-      {isBalanceZero ? (
-        <div>
-          <StyledErrorMessage fontSize="10px" color="failure">
-            No tokens to stake:{' '}
-            <Link bold={false} href={addLiquidityUrl} external color="failure">
-              {t('get')} {symbol}
-            </Link>
-          </StyledErrorMessage>
-        </div>
-      ) : (
-        <Text fontSize="10px" mt="5px">
-          {t('Balance')}: {displayBalance(max)} {symbol}
-        </Text>
-      )}
-      {!!depositFee && (
-        <Text fontSize="10px" bold={false} color="failure">
-          {t('Note: this vault has a ') + (depositFee*100).toString() + t('% third party deposit fee.')}
-        </Text>
-      )}
+      <div>
+        {isBalanceZero ? (
+          <div>
+            <StyledErrorMessage fontSize="10px" >
+              No tokens to stake:{' '}
+              <Link bold={false} href={addLiquidityUrl} external >
+                {t('Get')} {symbol}
+              </Link>
+            </StyledErrorMessage>
+          </div>
+        ) : (
+          <Text fontSize="10px" mt="5px">
+            {t('Balance')}: {displayBalance(max)} {symbol}
+          </Text>
+        )}
+        {!!depositFee && (
+          <Text fontSize="10px" bold={false} color="failure">
+            {t('Note: this vault has a ') + (depositFee * 100).toString() + t('% third party deposit fee.')}
+          </Text>
+        )}
+      </div>
+
     </div>
   )
 }
