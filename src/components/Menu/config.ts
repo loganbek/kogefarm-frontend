@@ -34,7 +34,13 @@ export const config: MenuEntry[] = [
         href: 'https://polyroll.org/roulette/KOGE?ref=0k4N170561126n1Q765N6O80n081qO639945n8o53o'
       }
     ],
-    group: 'Games',
+    group: 'Games/NFTs',
+  },
+  {
+    label: 'TurtleTanks',
+    icon: 'TicketIcon',
+    href: 'https://discord.gg/Df428BbdpS',
+    group: 'Games/NFTs',
   },
   {
     label: 'Governance',
