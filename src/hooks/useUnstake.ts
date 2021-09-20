@@ -14,16 +14,16 @@ import { useMasterchef, useSousChef, useJar } from './useContract'
 
 const useUnstake = (jarAddress: string) => {
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const jarContract = useJar(jarAddress)
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      const txHash = await withdrawalJar(jarContract, amount, account)
+      const txHash = await withdrawalJar(jarContract, amount, account, library)
       dispatch(fetchFarmUserDataAsync(account))
       console.info(txHash)
     },
-    [account, dispatch, jarContract],
+    [account, dispatch, jarContract, library],
   )
 
   return { onUnstake: handleUnstake }
@@ -31,27 +31,27 @@ const useUnstake = (jarAddress: string) => {
 
 export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {
       if (sousId === 0) {
-        const txHash = await unstake(masterChefContract, 0, amount, account)
+        const txHash = await unstake(masterChefContract, 0, amount, account, library)
         console.info(txHash)
       } else if (enableEmergencyWithdraw) {
         const txHash = await sousEmergencyUnstake(sousChefContract, account)
         console.info(txHash)
       } else {
-        const txHash = await sousUnstake(sousChefContract, amount, decimals, account)
+        const txHash = await sousUnstake(sousChefContract, amount, decimals, account, library)
         console.info(txHash)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserPendingReward(sousId, account))
     },
-    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId, library],
   )
 
   return { onUnstake: handleUnstake }
@@ -60,7 +60,7 @@ export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
 
 export const useMasterChefUnstake = (sousId, pid, enableEmergencyWithdraw = false) => {
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const masterChefContract = useMasterchef()
 
   const handleUnstake = useCallback(
@@ -69,14 +69,14 @@ export const useMasterChefUnstake = (sousId, pid, enableEmergencyWithdraw = fals
         const txHash = await masterChefEmergencyUnstake(masterChefContract, pid, account)
         console.info(txHash)
       } else {
-        const txHash = await masterChefUnstake(masterChefContract, pid, amount, decimals, account)
+        const txHash = await masterChefUnstake(masterChefContract, pid, amount, decimals, account, library)
         console.info(txHash)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserPendingReward(sousId, account))
     },
-    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousId, pid],
+    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousId, pid, library],
   )
 
   return { onUnstake: handleUnstake }
