@@ -2064,7 +2064,7 @@ const farms: FarmConfig[] = [
           quoteToken: tokens.iron4pool,
           rewardToken: tokens.ice,
           rewardPerBlock: 15.527256944444444444*2,
-          poolWeightDesignate: 14600/97933,
+          poolWeightDesignate: 7300/97933,
           minutesPerCompound: 1,
           kogefarmFee: 0.01,
           kogefarmComment: ' (Iron)',
