@@ -98,6 +98,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const alphaMaticLP = '0x79b368B3Aa34fF2044F7869024b5367A284D3b0E'
   const spadeAddr = '0xf5EA626334037a2cf0155D49eA6462fDdC6Eff19'
   const spadeUSDCLP = '0x8f2172568Ad3b2024b8CB29b03279E4b3d4849c8'
+  const elkAddr = '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C'
+  const elkMaticLP = '0x7Cb0703aa37601a02798BDFF63A18aF2dD082572'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
   const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
@@ -694,8 +696,19 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [spadeUSDCLP],
     },
+    // Elk
+    {
+      address: elkAddr,
+      name: 'balanceOf',
+      params: [elkMaticLP],
+    },
+    {
+      address: maticAddr,
+      name: 'balanceOf',
+      params: [elkMaticLP],
+    },
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance] = await multicall(erc20, calls)
+  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance, elkBalance, maticBalanceElk] = await multicall(erc20, calls)
 
   const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, iron4poolSupply, i3usdIron4pool, ironIron4pool, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto, atricrypto2Supply, amWBTCatricrypto2, amWETHatricrypto2, am3CRVatricrypto2, atricrypto3Supply, amWBTCatricrypto3, amWETHatricrypto3, am3CRVatricrypto3, kogeBal] = await multicall(erc20, curveCalls)
   // Curve ratio
@@ -742,6 +755,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const irisMatic = irisBalance/irisMaticBalance
   const alphaMatic = alphaBalance/alphaMaticBalance
   const spadeUSDC = spadeBalance/(spadeUSDCBalance*10**12)
+  const elkMatic = elkBalance/maticBalanceElk
   const kogeRemaining = kogeBal/10**9;
 
   // Get Matic price
@@ -785,6 +799,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const irisUSD = maticUSD/irisMatic
   const alphaUSD = maticUSD/alphaMatic
   const spadeUSD = usdcUSD/spadeUSDC
+  const elkUSD = maticUSD/elkMatic
+
   // Curve stuff
   const curve3poolUSD = curveRatio
   const curveBtcRenBtcUSD = curveBtcRenBtcRatio*btcUSD
@@ -848,6 +864,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   data.iris = {"usd":irisUSD.toString()}
   data.alpha = {"usd":alphaUSD.toString()}
   data.spade = {"usd":spadeUSD.toString()}
+  data.elk = {"usd":elkUSD.toString()}
   data.kogeremaining = {"usd": kogeRemaining.toString()}
 
   // Return normalized token names
