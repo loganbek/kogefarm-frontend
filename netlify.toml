@@ -17,12 +17,12 @@ minify = true
 [build.processing.images]
 compress = true
 
-# [[redirects]]
-# from = '/docs'
-# to = 'https://koge.gitbook.io'
-# status = 200
-# force = true
-# headers = {X-From = "Netlify"}
+[[redirects]]
+from = '/yieldfarmingama'
+to = 'https://kogecoin.notion.site/KogeFarm-s-LIVE-YouTube-AMA-with-QuickSwap-Orbs-and-QiDAO-c08960f880e84ac5abc2c1f3096791f4'
+status = 301
+force = true
+headers = {X-From = "Netlify"}
 
 [context.deploy-preview.processing]
 skip-processing = true
