@@ -59,9 +59,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
     <Container showMenu={showMenu}>
       {Object.entries(groupedLinks).map(([label, items]) => (
         <React.Fragment key={uniqueId('frag-')}>
-          {isPushed ? (
-            <Title key={uniqueId('title_')}>{label}</Title>
-          ) : null}
+          <Title key={uniqueId('title_')}>{label}</Title>
           {items.map(entry => {
             const Icon = Icons[entry.icon];
             const iconElement = <Icon width="24px" mr="8px" />;
