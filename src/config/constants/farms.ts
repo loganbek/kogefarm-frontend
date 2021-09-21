@@ -2927,6 +2927,7 @@ const farms: FarmConfig[] = [
           minutesPerCompound: 5,
           kogefarmFee: 0.01,
           isSushi: true,
+          multiplier: '0X',
           kogefarmComment: ' (New)',
           underlyingWebsite: 'https://polyquity.org',
           platform: 'PolyQuity'
