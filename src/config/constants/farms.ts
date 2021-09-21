@@ -553,7 +553,7 @@ const farms: FarmConfig[] = [
             poolWeightDesignate: 2500/101500,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
-            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            underlyingWebsite: 'https://ui.polypup.finance/address/0xdabdf071635df85e87cb5b531c4db448a0f0ce21',
             platform: 'PolyPup',
             isJetSwap: true,
             kogefarmComment: ' (JetSwap)'
