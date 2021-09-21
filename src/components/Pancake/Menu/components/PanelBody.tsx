@@ -11,11 +11,13 @@ import { PanelProps, PushedProps } from "../types";
 
 interface Props extends PanelProps, PushedProps {
   isMobile: boolean;
+  showMenu: boolean;
 }
 
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 
-const Container = styled.div`
+const Container = styled.div<{ showMenu: boolean }>`
+  padding-top: 71px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -35,7 +37,7 @@ const Title = styled.div`
   color: ${({ theme }) => theme.colors.menuHeader};
 `
 
-const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
+const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMenu }) => {
   const location = useLocation();
   const groupedLinks = groupBy(links, 'group')
 
@@ -43,13 +45,13 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   const handleClick = isMobile ? () => pushNav(false) : undefined;
 
   return (
-    <Container>
+    <Container showMenu={showMenu}>
       {Object.entries(groupedLinks).map(([label, items]) => (
         <React.Fragment key={uniqueId('frag-')}>
-          { isPushed ? (
+          {isPushed ? (
             <Title key={uniqueId('title_')}>{label}</Title>
           ) : null}
-          { items.map(entry => {
+          {items.map(entry => {
             const Icon = Icons[entry.icon];
             const iconElement = <Icon width="24px" mr="8px" />;
             const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
