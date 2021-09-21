@@ -180,6 +180,11 @@ const ValueWrapper = styled.div`
   }
 `
 
+const LpAndFiat = styled.div`
+  display: grid;
+  justify-items: end;
+`
+
 const Info = styled.div`
   width: 100%;
   height: 100%;
@@ -253,77 +258,77 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
 
-  let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
-  if (farm.isSushi===true){
-    liquidityurl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
+  let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  if (farm.isSushi === true) {
+    liquidityurl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
-  if (farm.isDfyn===true){
-    liquidityurl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (farm.isDfyn === true) {
+    liquidityurl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (farm.isWault===true){
-    liquidityurl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (farm.isWault === true) {
+    liquidityurl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (farm.isApe===true){
-    liquidityurl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
+  if (farm.isApe === true) {
+    liquidityurl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
-  if (farm.isJetSwap===true){
-    liquidityurl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (farm.isJetSwap === true) {
+    liquidityurl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (farm.isElk===true){
-    liquidityurl = `${ELK_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (farm.isElk === true) {
+    liquidityurl = `${ELK_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (farm.isFirebird===true){
+  if (farm.isFirebird === true) {
     liquidityurl = `${FIREBIRD_ADD_LIQUIDITY_URL}/${lpAddress}`
   }
-  if (farm.isGravity===true){
-    liquidityurl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
+  if (farm.isGravity === true) {
+    liquidityurl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
-  if (farm.token===farm.quoteToken){
+  if (farm.token === farm.quoteToken) {
     liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
-    if (farm.isApe===true){
+    if (farm.isApe === true) {
       liquidityurl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.isSushi===true){
+    if (farm.isSushi === true) {
       liquidityurl = `https://app.sushi.com/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.isGravity===true){
+    if (farm.isGravity === true) {
       liquidityurl = `https://gravityfinance.io/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.isJetSwap===true){
+    if (farm.isJetSwap === true) {
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.token.coingeico==='pwings'){
+    if (farm.token.coingeico === 'pwings') {
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
   }
-  if (farm.lpSymbol==="PYQ-USDC"){
+  if (farm.lpSymbol === "PYQ-USDC") {
     liquidityurl = `https://app.polyquity.org/liquidity`
   }
-  if (farm.token.coingeico==='curve3pool'){
+  if (farm.token.coingeico === 'curve3pool') {
     liquidityurl = `https://polygon.curve.fi/aave/deposit`
   }
-  if (farm.token.coingeico==='iron3pool'){
+  if (farm.token.coingeico === 'iron3pool') {
     liquidityurl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
-  if (farm.token.coingeico==='iron4pool'){
+  if (farm.token.coingeico === 'iron4pool') {
     liquidityurl = `https://app.iron.finance/swap/pools/isiron/deposit`
   }
-  if (farm.token.coingeico==='atricrypto'){
+  if (farm.token.coingeico === 'atricrypto') {
     liquidityurl = `https://polygon.curve.fi/atricrypto/deposit`
   }
-  if (farm.token.coingeico==='atricrypto2'){
+  if (farm.token.coingeico === 'atricrypto2') {
     liquidityurl = `https://polygon.curve.fi/atricrypto2/deposit`
   }
-  if (farm.token.coingeico==='atricrypto3'){
+  if (farm.token.coingeico === 'atricrypto3') {
     liquidityurl = `https://polygon.curve.fi/atricrypto3/deposit`
   }
-  if (farm.token.coingeico==='btcrenbtc'){
+  if (farm.token.coingeico === 'btcrenbtc') {
     liquidityurl = `https://polygon.curve.fi/ren/deposit`
   }
-  if (farm.token.coingeico==='ghst'){
+  if (farm.token.coingeico === 'ghst') {
     liquidityurl = `https://aavegotchi.com/stake-polygon`
   }
-  if (farm.token.coingeico==='arcadium'){
+  if (farm.token.coingeico === 'arcadium') {
     liquidityurl = `https://stadiumarcadium.farm/addliquidity/`
   }
 
@@ -354,7 +359,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     <Container expanded={expanded}>
       <Wrapper isMobile={isMobile}>
         <ContainerWrapper>
-
           <ValueContainer>
             <ValueWrapper>
               <Text>{t('APY')}</Text>
@@ -370,7 +374,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             </ValueWrapper>
             <ValueWrapper>
               <Text>{t('User Staked')}</Text>
-              <UserValue {...userValue} />
+              <LpAndFiat>
+                <Stat>{(userDeposits.dividedBy(new BigNumber(10 ** lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits: 4 })} LP</Stat>
+                <UserValue {...userValue} />
+              </LpAndFiat>
             </ValueWrapper>
             <ValueWrapper>
               <Text>{t('Total Staked')}</Text>
