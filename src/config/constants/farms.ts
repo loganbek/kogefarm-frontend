@@ -532,7 +532,7 @@ const farms: FarmConfig[] = [
           },
 
           {
-            pid: 236,
+            pid: 237,
             lpSymbol: 'Collar-KogeCoin LP',
             lpAddresses: {
               80001: '',
