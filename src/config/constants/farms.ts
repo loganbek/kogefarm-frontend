@@ -448,6 +448,119 @@ const farms: FarmConfig[] = [
           },
 
           {
+            pid: 234,
+            lpSymbol: 'Collar-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x33e05daCdd6254FDCcadAB11cCf69a2e877DBc7d',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 0,
+            jarAddresses: {
+              80001: '',
+              137: '0x5AA51B3890bAEdFB3BF570a6345D5F3B2A6ddfDf',
+            },
+            token: tokens.collar,
+            quoteToken: tokens.usdc,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 10000/101500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            isSushi: true,
+            kogefarmComment: ' (Sushi)'
+          },
+
+          {
+            pid: 235,
+            lpSymbol: 'Collar-Matic LP',
+            lpAddresses: {
+              80001: '',
+              137: '0xbBe5F4998Cc537A91e7b90C7925D1c7C5bAb7ee0',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 1,
+            jarAddresses: {
+              80001: '',
+              137: '0x084A5e96F3EE81909bF8e4De5Ad3a823616Bd08f',
+            },
+            token: tokens.collar,
+            quoteToken: tokens.matic,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 10000/101500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            isSushi: true,
+            kogefarmComment: ' (Sushi)'
+          },
+
+          {
+            pid: 236,
+            lpSymbol: 'Collar-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x23e5d894177840dd25De6b37752593a9c5DcC762',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 23,
+            jarAddresses: {
+              80001: '',
+              137: '0xE5C7986950e10541CADC1646ff227aCA52F7995D',
+            },
+            token: tokens.collar,
+            quoteToken: tokens.usdc,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 14000/101500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            isJetSwap: true,
+            kogefarmComment: ' (JetSwap)'
+          },
+
+          {
+            pid: 237,
+            lpSymbol: 'Collar-KogeCoin LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x4c2Ab54adBC557334289BeE9a7F5237461bC7844',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 28,
+            jarAddresses: {
+              80001: '',
+              137: '0x64c20BB3D9aCD870f748fe73B6541D500643e490',
+            },
+            token: tokens.collar,
+            quoteToken: tokens.kogecoin,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 2500/101500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            isJetSwap: true,
+            kogefarmComment: ' (JetSwap)'
+          },
+
+
+          {
             pid: 183,
             lpSymbol: 'Shi3ld',
             lpAddresses: {

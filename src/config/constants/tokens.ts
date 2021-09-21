@@ -770,6 +770,15 @@ const tokens = {
     },
     decimals: 18,
   },
+  collar: {
+    symbol: 'Collar',
+    coingeico: 'collar',
+    address: {
+      137: '0x8DF26a1BD9bD98e2eC506fc9d8009954716A05DC',
+      80001: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
