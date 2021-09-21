@@ -46,10 +46,8 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
     <Container>
       {Object.entries(groupedLinks).map(([label, items]) => (
         <React.Fragment key={uniqueId('frag-')}>
-          { isPushed ? (
-            <Title key={uniqueId('title_')}>{label}</Title>
-          ) : null}
-          { items.map(entry => {
+          <Title key={uniqueId('title_')}>{label}</Title>
+          {items.map(entry => {
             const Icon = Icons[entry.icon];
             const iconElement = <Icon width="24px" mr="8px" />;
             const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
