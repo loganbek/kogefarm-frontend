@@ -242,7 +242,7 @@ const Farms: React.FC = () => {
   )
 
   const farmsList = useCallback(
-    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
+    (farmsToDisplay: Farm[], filterQuery?:boolean): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         /* DZ Hack
         if (!farm.lpTotalInQuoteToken || !prices) {
@@ -337,7 +337,7 @@ const Farms: React.FC = () => {
         return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits }
       })
 
-      if (query) {
+      if (query && !filterQuery) {
         const lowercaseQuery = latinise(query.toLowerCase())
         farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
           return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
@@ -350,7 +350,7 @@ const Farms: React.FC = () => {
   )
 
   const userTvl = useMemo(
-    () => farmsList(allFarms).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
+    () => farmsList(allFarms, true).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
     , [allFarms, farmsList]
   )
   const displayUserTVL = userTvl ? (
