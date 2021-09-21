@@ -489,7 +489,7 @@ const farms: FarmConfig[] = [
             masterChefPid: 1,
             jarAddresses: {
               80001: '',
-              137: '0x6A2Feaee7Fe39916A3385B4587323E4FDc652B88',
+              137: '0x084A5e96F3EE81909bF8e4De5Ad3a823616Bd08f',
             },
             token: tokens.collar,
             quoteToken: tokens.matic,
@@ -545,7 +545,7 @@ const farms: FarmConfig[] = [
             masterChefPid: 28,
             jarAddresses: {
               80001: '',
-              137: '0xD27C89CEb5bDC6834CAc4E21Ba81D6c2a49fB1A6',
+              137: '0x64c20BB3D9aCD870f748fe73B6541D500643e490',
             },
             token: tokens.collar,
             quoteToken: tokens.kogecoin,
