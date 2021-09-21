@@ -390,8 +390,8 @@ const Farms: React.FC = () => {
 
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             let isWantedToken = true
-            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] 
-              && !/[-|/]/.exec(f.lpSymbol) 
+            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId]
+              && !/[-|/]/.exec(f.lpSymbol)
               && !/(atricrypto)/gmi.exec(f.lpSymbol)
             const stableFilter = ([tokens.usdc.address[chainId],
             tokens.dai.address[chainId],
@@ -693,7 +693,7 @@ const Farms: React.FC = () => {
                   </Text>
                 </Tip>
               )}>
-              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a>.
+              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every five minutes.
             </Tooltip>
             {' Lowest '}
             <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
