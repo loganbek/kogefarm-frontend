@@ -111,7 +111,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
         )}
         {!!depositFee && (
           <Text fontSize="10px" bold={false} color="failure">
-            {t('Note: this vault has a ') + (depositFee * 100).toString() + t('% third party deposit fee.')}
+            {t('Note: this vault has a ') + (depositFee * 100).toString() + t('% third party deposit fee, and may have a fixed end date.')}
           </Text>
         )}
       </div>
