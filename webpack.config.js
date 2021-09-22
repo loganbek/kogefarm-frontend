@@ -9,6 +9,7 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const CopyPlugin = require("copy-webpack-plugin");
 
+
 module.exports = {
     entry: "./src/index.tsx",
     output: { publicPath: '/', path: path.join(__dirname, "build"), filename: "[name].[contenthash].js" },
