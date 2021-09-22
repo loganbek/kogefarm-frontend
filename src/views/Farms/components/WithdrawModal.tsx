@@ -5,6 +5,7 @@ import ModalInput from 'components/ModalInput'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
+import useToast from 'hooks/useToast'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -27,16 +28,18 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
 
+  const { toastError } = useToast()
+
   const closeModalRef = useRef()
 
   let numDecimals = 18
-  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+  if (tokenName === "KogeCoin" || tokenName === "KOGECOIN") {
     numDecimals = 9
   }
-  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+  if (tokenName.toUpperCase() === "USDC" || tokenName.toUpperCase() === "USDT") {
     numDecimals = 6
   }
-  if (tokenName.toUpperCase()==="BTC"){
+  if (tokenName.toUpperCase() === "BTC") {
     numDecimals = 8
   }
 
@@ -44,7 +47,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
     return getFullDisplayBalance(max, numDecimals)
   }, [max, numDecimals])
   const fullDisplayBalance = useMemo(() => {
-    return getFullDisplayBalance(displayMax,numDecimals,numDecimals)
+    return getFullDisplayBalance(displayMax, numDecimals, numDecimals)
   }, [displayMax, numDecimals])
 
   const valNumber = new BigNumber(val)
@@ -62,7 +65,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
 
   const handleSelectMax = useCallback(() => {
     setVal(fullDisplayBalance)
-  }, [fullDisplayBalance, setVal ])
+  }, [fullDisplayBalance, setVal])
 
   useOutsideClickDetection(closeModalRef, onClose, true)
 
@@ -76,19 +79,24 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         max={fullDisplayBalance}
         symbol={tokenName}
         inputTitle={t('LP share')}
-        depositFee = {depositFee}
+        depositFee={depositFee}
       />
       <Flex mt="12px">
         <Button
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullDisplayBalanceNumber)}
           onClick={async () => {
-            let withdrawBalance = valNumber.times(fullBalanceNumber).div(fullDisplayBalanceNumber).toFixed(numDecimals,1)
-            if (val===fullDisplayBalance){
+            let withdrawBalance = valNumber.times(fullBalanceNumber).div(fullDisplayBalanceNumber).toFixed(numDecimals, 1)
+            if (val === fullDisplayBalance) {
               withdrawBalance = fullBalance
             }
             setPendingTx(true)
-            await onConfirm(withdrawBalance)
-            setPendingTx(false)
+            try {
+              await onConfirm(withdrawBalance)
+            } catch (e) {
+              toastError(t('Canceled'), t('Please try again and confirm the transaction.'))
+            } finally {
+              setPendingTx(false)
+            }
           }}
           width="100%"
         >
@@ -98,7 +106,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
           variant="tertiary"
           onClick={onClose}
           width="50%"
-          disabled={pendingTx}
         >
           {t('Cancel')}
         </Button>
