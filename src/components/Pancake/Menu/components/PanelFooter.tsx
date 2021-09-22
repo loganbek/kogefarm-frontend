@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import ButtonMenu from "../../ButtonMenu/ButtonMenu"
@@ -67,7 +67,7 @@ const PanelFooter: React.FC<Props> = ({
   toggleTheme,
   isDark,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(isDark ? 0 : 1)
+  const activeIndex = useMemo(() => isDark ? 1 : 0, [isDark])
 
   if (!isPushed) {
     return (
@@ -80,7 +80,6 @@ const PanelFooter: React.FC<Props> = ({
   }
 
   const ken = index => {
-    setActiveIndex(index)
     toggleTheme(index)
   }
 
@@ -89,13 +88,13 @@ const PanelFooter: React.FC<Props> = ({
       <SettingsEntry>
         <Wrapper>
           <StyledButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
-            <ButtonMenuItem onClick={() => ken(1)}>
-              <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
-              Dark
-            </ButtonMenuItem>
             <ButtonMenuItem onClick={() => ken(0)}>
               <SunIcon color={isDark ? "textDisabled" : "text"} width="24px" />
               Light
+            </ButtonMenuItem>
+            <ButtonMenuItem onClick={() => ken(1)}>
+              <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
+              Dark
             </ButtonMenuItem>
           </StyledButtonMenu>
         </Wrapper>
