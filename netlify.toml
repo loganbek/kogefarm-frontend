@@ -3,9 +3,6 @@ base = "/"
 command = "yarn build"
 publish = "build/"
 
-[functions]
-node_bundler = "esbuild"
-
 [build.processing]
 skip-processing = false
 
