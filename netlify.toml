@@ -41,7 +41,7 @@ compress = false
 [[headers]]
   for = "/*"
   [headers.values]
-  Clear-Site-Data = "cache"
+  Clear-Site-Data = "\"*\""
 	cache-control = '''
 	max-age=0,
 	no-cache,
