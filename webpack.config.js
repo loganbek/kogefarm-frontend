@@ -7,12 +7,11 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const InterpolateHtmlPlugin = require("interpolate-html-plugin")
-
-
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: "./src/index.tsx",
-    output: { publicPath: '/', path: path.join(__dirname, "build"), filename: "index.bundle.js" },
+    output: { publicPath: '/', path: path.join(__dirname, "build"), filename: "[name].[contenthash].js" },
     mode: process.env.NODE_ENV || "development",
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
@@ -24,7 +23,6 @@ module.exports = {
             contexts: path.resolve(__dirname, 'src/contexts/'),
             state: path.resolve(__dirname, 'src/state/'),
             views: path.resolve(__dirname, 'src/views/'),
-            images: path.resolve(__dirname, 'src/images/'),
         }
     },
     devServer: { static: path.join(__dirname, "src") },
@@ -55,6 +53,11 @@ module.exports = {
         new TsconfigPathsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new CssMinimizerPlugin(),
+        new CopyPlugin({
+            patterns: [
+                { from: "public", to: "." },
+              ],
+        }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "public", "index.html"),
