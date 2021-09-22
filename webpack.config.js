@@ -5,14 +5,27 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+const InterpolateHtmlPlugin = require("interpolate-html-plugin")
+
 
 
 module.exports = {
     entry: "./src/index.tsx",
-    output: { path: path.join(__dirname, "build"), filename: "index.bundle.js" },
+    output: { publicPath: '/', path: path.join(__dirname, "build"), filename: "index.bundle.js" },
     mode: process.env.NODE_ENV || "development",
     resolve: {
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: [".ts", ".tsx", ".js"],
+        alias: {
+            components: path.resolve(__dirname, 'src/components/'),
+            hooks: path.resolve(__dirname, 'src/hooks/'),
+            config: path.resolve(__dirname, 'src/config/'),
+            utils: path.resolve(__dirname, 'src/utils/'),
+            contexts: path.resolve(__dirname, 'src/contexts/'),
+            state: path.resolve(__dirname, 'src/state/'),
+            views: path.resolve(__dirname, 'src/views/'),
+            images: path.resolve(__dirname, 'src/images/'),
+        }
     },
     devServer: { static: path.join(__dirname, "src") },
     module: {
@@ -20,12 +33,13 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ["babel-loader"],
+                use: ["source-map-loader"],
+                enforce: "pre"
             },
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ["ts-loader"],
+                use: ["babel-loader", 'ts-loader'],
             },
             {
                 test: /\.(css|scss)$/,
@@ -33,7 +47,7 @@ module.exports = {
             },
             {
                 test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-                use: ["file-loader"],
+                use: ['file-loader'],
             },
         ],
     },
@@ -45,5 +59,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "public", "index.html"),
         }),
+        new InterpolateHtmlPlugin({
+            PUBLIC_URL: "public"
+        }),
+        new NodePolyfillPlugin()
     ],
 };

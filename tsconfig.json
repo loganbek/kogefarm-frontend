@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "target": "es5",
     "sourceMap": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,7 +21,20 @@
     "jsx": "react-jsx",
     "strictNullChecks": false,
     "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true
+    "paths": {
+      "components/*": [
+        "components/*"
+      ],
+      "hooks/*":["hooks/*"],
+      "config/*":["config/*"],
+      "utils/*":["utils/*"],
+      "contexts/*":["contexts/*"],
+      "state/*":["state/*"],
+      "views/*":["views/*"]
+    }
   },
-  "include": ["src", "scripts"]
+  "include": [
+    "./src/**/*",
+    "scripts"
+  ]
 }
