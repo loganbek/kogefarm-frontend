@@ -235,35 +235,35 @@ const Menu: React.FC<NavProps> = ({
     [query, prices, isActive],
   )
 
+  // Commented out as it creates a bug, #105 for more info
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentOffset = window.pageYOffset;
+  //     const isBottomOfPage = window.document.body.clientHeight === currentOffset + window.innerHeight;
+  //     const isTopOfPage = currentOffset === 0;
+  //     // Always show the menu when user reach the top
+  //     if (isTopOfPage) {
+  //       setShowMenu(true);
+  //     }
+  //     // Avoid triggering anything at the bottom because of layout shift
+  //     else if (!isBottomOfPage) {
+  //       if (currentOffset < refPrevOffset.current) {
+  //         // Has scroll up
+  //         setShowMenu(true);
+  //       } else {
+  //         // Has scroll down
+  //         setShowMenu(false);
+  //       }
+  //     }
+  //     refPrevOffset.current = currentOffset;
+  //   };
+  //   const throttledHandleScroll = throttle(handleScroll, 200);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentOffset = window.pageYOffset;
-      const isBottomOfPage = window.document.body.clientHeight === currentOffset + window.innerHeight;
-      const isTopOfPage = currentOffset === 0;
-      // Always show the menu when user reach the top
-      if (isTopOfPage) {
-        setShowMenu(true);
-      }
-      // Avoid triggering anything at the bottom because of layout shift
-      else if (!isBottomOfPage) {
-        if (currentOffset < refPrevOffset.current) {
-          // Has scroll up
-          setShowMenu(true);
-        } else {
-          // Has scroll down
-          setShowMenu(false);
-        }
-      }
-      refPrevOffset.current = currentOffset;
-    };
-    const throttledHandleScroll = throttle(handleScroll, 200);
-
-    window.addEventListener("scroll", throttledHandleScroll);
-    return () => {
-      window.removeEventListener("scroll", throttledHandleScroll);
-    };
-  }, []);
+  //   window.addEventListener("scroll", throttledHandleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", throttledHandleScroll);
+  //   };
+  // }, []);
 
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
