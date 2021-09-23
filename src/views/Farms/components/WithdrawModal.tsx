@@ -96,6 +96,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
               toastError(t('Canceled'), t('Please try again and confirm the transaction.'))
             } finally {
               setPendingTx(false)
+              withdrawBalance = "0.00"
             }
           }}
           width="100%"
@@ -103,7 +104,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
           {pendingTx ? t('Pending...') : t('Withdraw')}
         </Button>
         <Button
-          variant="tertiary"
           onClick={onClose}
           width="50%"
         >
