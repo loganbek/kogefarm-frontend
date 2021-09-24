@@ -96,6 +96,7 @@ export interface SelectProps {
   value?: OptionProps
   options: OptionProps[]
   onChange?: (option: OptionProps) => void
+  style?: React.CSSProperties
 }
 
 export interface OptionProps {
@@ -103,7 +104,7 @@ export interface OptionProps {
   value: any
 }
 
-const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value }) => {
+const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value, style }) => {
   const containerRef = useRef(null)
   const dropdownRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -134,7 +135,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
   }, [])
 
   return (
-    <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
+    <DropDownContainer style={style} isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling}>
           <Text>{selectedOption.label}</Text>

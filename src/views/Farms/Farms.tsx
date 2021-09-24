@@ -41,10 +41,10 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 
-const ControlContainer = React.memo(styled.div`
+const ControlContainer = React.memo(styled.div<{ isDesktop: boolean }>`
 display: flex;
 width: 100%;
-align-items: center;
+align-items: ${({ isDesktop }) => isDesktop ? "baseline" : "center"};
 position: relative;
 
 justify-content: space-between;
@@ -114,6 +114,7 @@ div {
 
 const LabelWrapper = React.memo(styled.div`
 position: relative;
+width: 168px;
 
 > ${Text} {
   font-size: 10px;
@@ -145,7 +146,7 @@ b {
 `)
 
 const VaultTypesContainer = React.memo(styled.div<{ isDesktop: boolean }>`
-margin:${props => props.isDesktop ? "0px" : "0px 0px 18px 0px"}
+margin:${props => props.isDesktop ? "0px" : "18px 0px"}
 `)
 
 const NUMBER_OF_FARMS_VISIBLE = 5000
@@ -390,8 +391,8 @@ const Farms: React.FC = () => {
 
           const vaultTypeFilter = multiSearch.has('all') ? farms : filter(farms, f => {
             let isWantedToken = true
-            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId] 
-              && !/[-|/]/.exec(f.lpSymbol) 
+            const singleFilter = f.token.address[chainId] === f.quoteToken.address[chainId]
+              && !/[-|/]/.exec(f.lpSymbol)
               && !/(atricrypto)/gmi.exec(f.lpSymbol)
             const stableFilter = ([tokens.usdc.address[chainId],
             tokens.dai.address[chainId],
@@ -733,16 +734,12 @@ const Farms: React.FC = () => {
         </Flex>
       </Hero>
 
-      <ControlContainer>
+      <ControlContainer isDesktop={isDesktop}>
         <ToggleWrapper>
           <Text fontSize="12px" bold>{t('Staked only')}</Text>
           <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
         </ToggleWrapper>
         <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-
-        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : { margin: "12px 0px" }}>
-          <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
-        </LabelWrapper>
 
         <VaultTypesContainer isDesktop={isDesktop}>
           <CheckBoxMenu onChange={handleItemClick} />
@@ -751,6 +748,7 @@ const Farms: React.FC = () => {
         <LabelWrapper style={isDesktop ? { marginLeft: 0 } : {}}>
           <Text>Platform</Text>
           <Select
+            style={isDesktop ? { width: 170 } : {}}
             options={[
               {
                 label: 'All',
@@ -761,6 +759,10 @@ const Farms: React.FC = () => {
             value={platformSelectOption}
             onChange={(e) => handleSortOptionChangeAlt(e)}
           />
+        </LabelWrapper>
+
+        <LabelWrapper style={isDesktop ? { marginLeft: 0 } : { margin: "12px 0px" }}>
+          <SearchInput onChange={handleChangeQuery} placeholder="Search by asset" />
         </LabelWrapper>
       </ControlContainer>
 
