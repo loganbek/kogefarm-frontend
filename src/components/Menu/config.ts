@@ -133,6 +133,10 @@ export const config: MenuEntry[] = [
       {
         label: "Tiếng Việt",
         href: "https://t.me/kogevietnamese"
+      },
+      {
+        label: "Telegram Shortcuts",
+        href: "https://kogecoin.notion.site/075253d5c5694fb8a8c707e8cb71fee9?v=c0a069e63eae4b02a3efcde538607a2b"
       }
     ]
   },
