@@ -466,7 +466,7 @@ const farms: FarmConfig[] = [
             token: tokens.collar,
             quoteToken: tokens.usdc,
             rewardPerBlock: 0.075,
-            poolWeightDesignate: 10000/106500,
+            poolWeightDesignate: 10000/113500,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://collar.polypup.finance/farms',
@@ -494,7 +494,7 @@ const farms: FarmConfig[] = [
             token: tokens.collar,
             quoteToken: tokens.matic,
             rewardPerBlock: 0.075,
-            poolWeightDesignate: 10000/106500,
+            poolWeightDesignate: 10000/113500,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://collar.polypup.finance/farms',
@@ -522,7 +522,7 @@ const farms: FarmConfig[] = [
             token: tokens.collar,
             quoteToken: tokens.usdc,
             rewardPerBlock: 0.075,
-            poolWeightDesignate: 14000/106500,
+            poolWeightDesignate: 14000/113500,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://collar.polypup.finance/farms',
@@ -550,7 +550,7 @@ const farms: FarmConfig[] = [
             token: tokens.collar,
             quoteToken: tokens.kogecoin,
             rewardPerBlock: 0.075,
-            poolWeightDesignate: 5000/106500,
+            poolWeightDesignate: 5000/113500,
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ui.polypup.finance/address/0xdabdf071635df85e87cb5b531c4db448a0f0ce21',
@@ -559,6 +559,197 @@ const farms: FarmConfig[] = [
             kogefarmComment: ' (JetSwap)'
           },
 
+          {
+            pid: 238,
+            lpSymbol: 'Collar',
+            lpAddresses: {
+              80001: '',
+              137: '0x8DF26a1BD9bD98e2eC506fc9d8009954716A05DC',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 7,
+            jarAddresses: {
+              80001: '',
+              137: '0xb99898440ff53A7f36422faee7030F4785452636',
+            },
+            token: tokens.collar,
+            quoteToken: tokens.collar,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 15000/113500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            isJetSwap: true,
+          },
+
+          {
+            pid: 239,
+            lpSymbol: 'Ball-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x0097692463fD591aEf388851FE2d756505f498AC',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 2,
+            jarAddresses: {
+              80001: '',
+              137: '0xc74e6DcF602e81FC10dE4FE852Ab4243412E0Dd9',
+            },
+            token: tokens.ball,
+            quoteToken: tokens.usdc,
+            rewardToken: tokens.collar,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 1500/113500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            kogefarmComment: ' (Collar)'
+          },
+
+          {
+            pid: 240,
+            lpSymbol: 'Bone-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x2CC05c660f35E8692CA99dB95922CB744d44ef20',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 3,
+            jarAddresses: {
+              80001: '',
+              137: '0xA1e13449EA8218Ab2e3ea0CF841d39A61b2024D9',
+            },
+            token: tokens.bone,
+            quoteToken: tokens.usdc,
+            rewardToken: tokens.collar,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 1500/113500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            kogefarmComment: ' (Collar)'
+          },
+
+          {
+            pid: 241,
+            lpSymbol: 'Pup-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x767f8BD67a5f133BdDF3b285c5E2FD3D157A2cdC',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0xDAbDF071635Df85E87CB5b531C4Db448a0f0cE21',
+            },
+            masterChefPid: 4,
+            jarAddresses: {
+              80001: '',
+              137: '0xd9bea4230Be112D900B493F6a772b1E769eCC7B8',
+            },
+            token: tokens.pup,
+            quoteToken: tokens.usdc,
+            rewardToken: tokens.collar,
+            rewardPerBlock: 0.075,
+            poolWeightDesignate: 1500/113500,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://collar.polypup.finance/farms',
+            platform: 'PolyPup',
+            kogefarmComment: ' (Collar)'
+          },
+
+          {
+            pid: 242,
+            lpSymbol: 'Sing-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x6046eB198AbC5Ea4f17027bC00a2aeE0420E84EE',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0x9762Fe3ef5502dF432de41E7765b0ccC90E02e92',
+            },
+            masterChefPid: 0,
+            jarAddresses: {
+              80001: '',
+              137: '0x2002ac0EE6Fb936d5F0d52ACebAB581a3dF5F971',
+            },
+            token: tokens.sing,
+            quoteToken: tokens.usdc,
+            rewardPerBlock: 0.1*2,
+            poolWeightDesignate: 80/234,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://singular.farm/farm',
+            platform: 'Singular',
+            isApe: true,
+          },
+
+          {
+            pid: 243,
+            lpSymbol: 'Sing-Matic LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x854D3639F38F65c091664062230091858955Ddc2',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0x9762Fe3ef5502dF432de41E7765b0ccC90E02e92',
+            },
+            masterChefPid: 1,
+            jarAddresses: {
+              80001: '',
+              137: '0x05e30F9b15a88f911c58D63EdAc8B60d24488AeB',
+            },
+            token: tokens.sing,
+            quoteToken: tokens.matic,
+            rewardPerBlock: 0.1*2,
+            poolWeightDesignate: 40/234,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://singular.farm/farm',
+            platform: 'Singular',
+            isApe: true,
+          },
+
+/*          {
+            pid: 244,
+            lpSymbol: 'Sing-KogeCoin LP',
+            lpAddresses: {
+              80001: '',
+              137: '0x3f121a0Ee1E1776299876cb6E15CCA55bbd7a33A',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0x9762Fe3ef5502dF432de41E7765b0ccC90E02e92',
+            },
+            masterChefPid: 16,
+            jarAddresses: {
+              80001: '',
+              137: '0xFC3578356Cb5BcBA389145903254Aad2c3f606bc',
+            },
+            token: tokens.sing,
+            quoteToken: tokens.kogecoin,
+            rewardPerBlock: 0.1*2,
+            poolWeightDesignate: 1/233,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://singular.farm/farm',
+            platform: 'Singular',
+          },
+*/
 
           {
             pid: 183,
@@ -4854,7 +5045,8 @@ const farms: FarmConfig[] = [
            minutesPerCompound: 1,
            kogefarmFee: 0.01,
            underlyingWebsite: 'https://ball.polypup.finance/',
-           platform: 'PolyPup'
+           platform: 'PolyPup',
+           multiplier: '0X',
          },
 
 
@@ -4881,7 +5073,8 @@ const farms: FarmConfig[] = [
             minutesPerCompound: 1,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -4907,7 +5100,8 @@ const farms: FarmConfig[] = [
             minutesPerCompound: 1,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -4935,7 +5129,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -4963,7 +5158,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -4992,7 +5188,8 @@ const farms: FarmConfig[] = [
             depositFee: 0.04,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5021,7 +5218,8 @@ const farms: FarmConfig[] = [
             depositFee: 0.04,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5050,7 +5248,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5079,7 +5278,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5108,7 +5308,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5137,7 +5338,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5159,14 +5361,15 @@ const farms: FarmConfig[] = [
             token: tokens.dai,
             quoteToken: tokens.dai,
             rewardToken: tokens.ball,
-            rewardPerBlock: 0.05,
+            rewardPerBlock: 0,
             poolWeightDesignate: 2800/69100,
             minutesPerCompound: 1,
             depositFee: 0.04,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
           {
@@ -5195,7 +5398,8 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://ball.polypup.finance/',
             kogefarmComment: ' (Ball)',
-            platform: 'PolyPup'
+            platform: 'PolyPup',
+            multiplier: '0X',
           },
 
 

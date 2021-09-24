@@ -779,6 +779,15 @@ const tokens = {
     },
     decimals: 18,
   },
+  sing: {
+    symbol: 'Sing',
+    coingeico: 'sing',
+    address: {
+      137: '0xCB898b0eFb084Df14dd8E018dA37B4d0f06aB26D',
+      80001: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
