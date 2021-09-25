@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from 'components/Pancake'
+import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
 
-const DropDownHeader = styled.div<{isActive?:boolean}>`
+const DropDownHeader = styled.div<{ isActive?: boolean }>`
   width: 100%;
   height: 40px;
   display: flex;
@@ -134,6 +135,8 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
       height: dropdownRef.current.offsetHeight,
     })
   }, [])
+
+  useOutsideClickDetection(containerRef, () => setIsOpen(false), isOpen)
 
   return (
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
