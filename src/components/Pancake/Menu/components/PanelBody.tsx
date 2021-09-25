@@ -43,6 +43,16 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   // Close the menu when a user clicks a link on mobile
   const handleClick = isMobile ? () => pushNav(false) : undefined;
 
+  const getHref = (href: string) => {
+    if (href === "/" && location.pathname === "/vaults") {
+      return "#"
+    }
+    if (href === location.pathname) {
+      return "#"
+    }
+    return href
+  }
+
   return (
     <Container>
       {Object.entries(groupedLinks).map(([label, items]) => (
@@ -72,7 +82,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
                   {isPushed &&
                     entry.items.map((item) => (
                       <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
-                        <MenuLink href={item.href}>
+                        <MenuLink href={getHref(item.href)}>
                           <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
                           {item.status && (
                             <LinkStatus color="primary">
@@ -85,9 +95,11 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
                 </Accordion>
               );
             }
+
+
             return (
               <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
-                <MenuLink href={entry.href} onClick={handleClick}>
+                <MenuLink href={getHref(entry.href)} onClick={handleClick}>
                   {iconElement}
                   <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
                   {entry.status && (
