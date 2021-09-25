@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { Text } from "components/Pancake";
+import { isDesktop } from 'react-device-detect';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -23,7 +24,7 @@ const TabWrapper = styled.div`
 
 const Tabs = styled.div`
 	display: flex;
-
+	align-items:center;
   &:first-of-type {
 		overview: hidden;
 		border-radius: 4px 0 0 4px;
@@ -39,7 +40,7 @@ const Input = styled.input`
 `
 
 const Label = styled.label<{ checked?: boolean }>`
-	padding: 7px 14px;
+	padding: 14px 14px;
 	cursor: pointer;
 	-webkit-transition: background-color 0.2s, opacity 0.2s;
 	transition: background-color 0.2s, opacity 0.2s;
@@ -108,7 +109,7 @@ const CheckBoxMenu = ({
 						/>
 					))}
 					{tabs.map(({ label, value }) => (
-						<Label htmlFor={value} key={value}>
+						<Label htmlFor={value} key={value} style={value === "all" && !isDesktop ? {padding: "22px 14px"}:{}}>
 							<Text bold fontSize="10px">
 								{label}
 							</Text>
