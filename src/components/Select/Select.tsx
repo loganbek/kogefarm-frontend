@@ -2,18 +2,19 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from 'components/Pancake'
 
-const DropDownHeader = styled.div`
+const DropDownHeader = styled.div<{isActive?:boolean}>`
   width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 16px;
-  box-shadow: ${({ theme }) => theme.shadows.inset};
+  box-shadow: ${({ theme, isActive }) => !isActive ? theme.shadows.inset : theme.shadows.focus};
   border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.inputAlt};
   transition: border-radius 0.15s;
+
 `
 
 const DropDownListContainer = styled.div`
@@ -29,6 +30,7 @@ const DropDownListContainer = styled.div`
   transform: scaleY(0);
   transform-origin: top;
   opacity: 0;
+  
 
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 168px;
@@ -136,7 +138,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
   return (
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
-        <DropDownHeader onClick={toggling}>
+        <DropDownHeader onClick={toggling} isActive={isOpen}>
           <Text>{selectedOption.label}</Text>
         </DropDownHeader>
       )}
