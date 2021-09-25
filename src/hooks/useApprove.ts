@@ -61,7 +61,7 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
       }
     } catch (e) {
       console.error(e)
-      toastError('Error', e?.message)
+      toastError('Error', (e as any)?.message)
       setRequestedApproval(false)
     }
   }, [account, sousId, dispatch, lpContract, sousChefContract, toastError, toastSuccess])
