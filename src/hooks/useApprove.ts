@@ -91,7 +91,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
       })
       .on('error', (error) => {
         console.error(error)
-        toastError('Error','Please try again. Confirm the transaction and make sure you are paying enough gas!')
+        toastError('Error', 'Please try again. Confirm the transaction and make sure you are paying enough gas!')
         setRequestedApproval(false)
       })
   }
