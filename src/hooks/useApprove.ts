@@ -61,7 +61,7 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
       }
     } catch (e) {
       console.error(e)
-      toastError('Error', e?.message)
+      toastError('Error', (e as any)?.message)
       setRequestedApproval(false)
     }
   }, [account, sousId, dispatch, lpContract, sousChefContract, toastError, toastSuccess])
@@ -91,7 +91,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
       })
       .on('error', (error) => {
         console.error(error)
-        toastError('Error','Please try again. Confirm the transaction and make sure you are paying enough gas!')
+        toastError('Error', 'Please try again. Confirm the transaction and make sure you are paying enough gas!')
         setRequestedApproval(false)
       })
   }
