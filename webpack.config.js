@@ -9,7 +9,6 @@ const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const CopyPlugin = require("copy-webpack-plugin");
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ReactRefreshTypeScript = require('react-refresh-typescript');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, "public", "index.html"),
@@ -119,7 +118,7 @@ module.exports = (env, options) => {
         ].filter(Boolean),
         optimization: {
             ...isProd && {
-                minimizer: [new UglifyJsPlugin()]
+                minimize: true
             }
         }
     }
