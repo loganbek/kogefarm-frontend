@@ -9,6 +9,7 @@ const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const CopyPlugin = require("copy-webpack-plugin");
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ReactRefreshTypeScript = require('react-refresh-typescript');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, "public", "index.html"),
@@ -43,7 +44,7 @@ module.exports = (env, options) => {
         },
         devServer: {
             hot: true,
-            liveReload:false,
+            liveReload: false,
             static: path.join(__dirname, "src"),
             port: 3000,
             historyApiFallback: true,
@@ -116,5 +117,10 @@ module.exports = (env, options) => {
             }),
             new NodePolyfillPlugin(),
         ].filter(Boolean),
+        optimization: {
+            ...isProd && {
+                minimizer: [new UglifyJsPlugin()]
+            }
+        }
     }
 }
