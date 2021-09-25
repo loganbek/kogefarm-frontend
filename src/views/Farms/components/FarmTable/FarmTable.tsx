@@ -31,7 +31,8 @@ const TableWrapper = styled.div`
   }
 `
 
-const StyledTable = styled.table`
+const StyledTable = styled.table<{ isDesktop: boolean }>`
+  table-layout: ${props => props.isDesktop ? "fixed" : ""};
   border-collapse: separate;
   border-spacing: 0 12px;
   font-size: 12px;
@@ -74,6 +75,14 @@ const TableHeader = styled.thead`
   top: 64px;
   z-index: 1;
   background: ${({ theme }) => theme.colors.rowHeader};
+
+  tr th:nth-child(1) { width: 5% }
+  tr th:nth-child(2) { width: 10% }
+  tr th:nth-child(3) { width: 15% }
+  tr th:nth-child(4) { width: 15% }
+  tr th:nth-child(5) { width: 15% }
+  tr th:nth-child(6) { width: 15% }
+  tr th:nth-child(7) { width: 25% }
 
   tr:first-child th:first-child { border-top-left-radius: 10px; }
   tr:first-child th:last-child { border-top-right-radius: 10px; }
@@ -159,7 +168,7 @@ const FarmTable: React.FC<ITableProps> = props => {
       <TableContainer>
 
         <TableWrapper ref={tableWrapperEl}>
-          <StyledTable>
+          <StyledTable isDesktop={isDesktop}>
             {isDesktop ? (
               <TableHeader>
                 <tr>
