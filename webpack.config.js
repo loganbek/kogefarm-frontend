@@ -61,11 +61,18 @@ module.exports = (env, options) => {
                     test: /\.(ts|tsx)$/,
                     exclude: /node_modules/,
                     use: [
-                        !isProd && {
+                        {
                             loader: "babel-loader",
                             options: {
-                                cacheDirectory: true,
-                                plugins: ["react-refresh/babel"]
+                                cacheDirectory: !isProd,
+                                plugins: [
+                                    !isProd && "react-refresh/babel",
+                                    "babel-plugin-styled-components",
+                                ].filter(Boolean),
+                                presets: [
+                                    !isProd && "@babel/preset-typescript"
+                                ].filter(Boolean),
+
                             },
                         },
                         {
