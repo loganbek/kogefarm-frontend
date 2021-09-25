@@ -12,7 +12,6 @@ import BigNumber from 'bignumber.js'
 import StakedAction from './StakedAction'
 import { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
-import ROI from '../ROI'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
 
@@ -189,7 +188,7 @@ const Info = styled.div`
   column-gap: 10px;
   row-gap: 10px;
   grid-template-areas:
-    "staked staked roi"
+    "staked staked staked"
     "return apr fee";
 
   > div {
@@ -197,10 +196,6 @@ const Info = styled.div`
     border-radius: 4px;
     background: ${({ theme }) => theme.colors.infoContainer};
   }
-`
-
-const ROI = styled.div`
-  grid-area: roi;
 `
 
 const Staked = styled.div`
@@ -413,11 +408,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                     {farm.lpSymbol}
                   </Text>
                 </Staked>
-                <ROI>
-                <Title>ROI</Title>
-                <Stat>$0.00</Stat>
-                  <Stat fontSize="8px" textTransform="uppercase"> ~0 {farm.rewardToken}</Stat>
-                  </ROI>
                 <Return>
                   <Title>My Daily Return (If Staked)</Title>
                   <Stat>{apyd}%</Stat>
