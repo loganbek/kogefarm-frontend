@@ -82,8 +82,6 @@ const ToggleWrapper = React.memo(styled.div`
 display: flex;
 align-items: center;
 
-margin-bottom: 8px;
-
 ${Text} {
   margin-right: 8px;
 }
