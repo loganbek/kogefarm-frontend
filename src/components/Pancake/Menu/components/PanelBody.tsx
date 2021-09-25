@@ -23,6 +23,7 @@ const Container = styled.div<{ showMenu: boolean }>`
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
+  white-space: nowrap;
 
   > div:first-child {
     display: none;
