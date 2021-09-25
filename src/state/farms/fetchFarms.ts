@@ -120,7 +120,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
             APIURL = sushiGraphURL
             subgraphQuery = `
                 query {
-                  pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pair_contains:"${lpAddress.toLowerCase()}"}) {
+                  pairDayDatas(first:1,orderBy: date, orderDirection: desc, where:{pair_contains:"${lpAddress?.toLowerCase()}"}) {
                     reserve0
                     reserve1
                     reserveUSD
@@ -171,7 +171,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
               tradingFeeRate = 0
             }
           } catch (e) {
-            console.log('')
+            // console.log('')
           }
         }
         if (farmConfig.token.coingeico==='curve3pool'){
