@@ -3559,7 +3559,7 @@ const farms: FarmConfig[] = [
         },
         token: tokens.pswamp,
         quoteToken: tokens.matic,
-        rewardPerBlock: 0.107205733*2.47/2.07,
+        rewardPerBlock: 0.107205733*1.06/0.38,
         poolWeightDesignate: 500/3150,
         minutesPerCompound: 5,
         depositFee: 0.001,
