@@ -46,14 +46,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <Heading mb="4px">{lpLabel}</Heading>
         {/* <Flex justifyContent="center"> */}
         {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-        <Wrapper marginTop="6px">
+  {/*      <Wrapper marginTop="6px">
         {isSushiFarm && <SushiTag />}
         {isWaultFarm && <WaultTag />}
         {isDfynFarm && <DfynTag />}
         {isApeFarm && <ApeTag />}
         {isJetSwapFarm && <JetSwapTag />}
         </Wrapper>
-{/*          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> */}
+          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> */}
         {/* </Flex> */}
       </Flex>
     </Wrapper>

@@ -289,6 +289,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     if (farm.isGravity===true){
       liquidityurl = `https://gravityfinance.io/swap?outputCurrency=${lpAddress}`
     }
+    if (farm.isJetSwap===true){
+      liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
     if (farm.token.coingeico==='pwings'){
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
