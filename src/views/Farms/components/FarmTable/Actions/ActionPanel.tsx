@@ -375,7 +375,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <ValueWrapper>
               <Text>{t('User Staked')}</Text>
               <LpAndFiat>
-                <Stat>{(userDeposits.dividedBy(new BigNumber(10 ** lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits: 4 })} LP</Stat>
+                <Stat>{(userDeposits.dividedBy(new BigNumber(10 ** lpDecimals))).toNumber().toLocaleString(undefined, { maximumFractionDigits: lpDecimals })} LP</Stat>
                 <UserValue {...userValue} />
               </LpAndFiat>
             </ValueWrapper>
