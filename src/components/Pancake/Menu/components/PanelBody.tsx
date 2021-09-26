@@ -8,6 +8,8 @@ import Accordion from "./Accordion";
 import { MenuEntry, LinkLabel, LinkStatus } from "./MenuEntry";
 import MenuLink from "./MenuLink";
 import { PanelProps, PushedProps } from "../types";
+import { Tooltip } from "react-tippy";
+import { Text } from "components/Pancake";
 
 interface Props extends PanelProps, PushedProps {
   isMobile: boolean;
@@ -38,6 +40,15 @@ const Title = styled.div`
   color: ${({ theme }) => theme.colors.menuHeader};
 `
 
+const Tip = styled.div`
+background: ${({ theme }) => theme.colors.tertiary};
+box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+width: 100%;
+padding: 24px;
+margin-top: 15px;
+border-radius: 4px;
+`
+
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMenu }) => {
   const location = useLocation();
   const groupedLinks = groupBy(links, 'group')
@@ -55,6 +66,30 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
     return href
   }
 
+  const withToolTip = (key: any, component: React.ReactElement, title: any) => {
+    return (
+      isPushed ? (
+        component
+      ) : (
+        <Tooltip
+          key={key}
+          trigger="mouseenter"
+          interactive
+          useContext
+          position="right"
+          offset={-500}
+          html={(
+            <Tip>
+              <Text>{title}</Text>
+            </Tip>
+          )}
+        >
+          {component}
+        </Tooltip>
+      )
+    )
+  }
+
   return (
     <Container showMenu={showMenu}>
       {Object.entries(groupedLinks).map(([label, items]) => (
@@ -69,7 +104,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
               const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
               const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
 
-              return (
+
+              return withToolTip(
+                entry.label,
                 <Accordion
                   key={entry.label}
                   isPushed={isPushed}
@@ -94,12 +131,12 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
                         </MenuLink>
                       </MenuEntry>
                     ))}
-                </Accordion>
+                </Accordion>, entry.label
               );
             }
 
-
-            return (
+            return withToolTip(
+              entry.label,
               <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
                 <MenuLink href={getHref(entry.href)} onClick={handleClick}>
                   {iconElement}
@@ -110,7 +147,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
                     </LinkStatus>
                   )}
                 </MenuLink>
-              </MenuEntry>
+              </MenuEntry>, entry.label
             );
           })}
         </React.Fragment>
