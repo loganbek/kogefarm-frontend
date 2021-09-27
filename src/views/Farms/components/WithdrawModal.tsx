@@ -106,6 +106,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         <Button
           onClick={onClose}
           width="50%"
+          variant="tertiary"
         >
           {t('Cancel')}
         </Button>
