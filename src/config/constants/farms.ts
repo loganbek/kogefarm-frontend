@@ -449,7 +449,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 260,
-    lpSymbol: 'USDC-Brew LP',
+    lpSymbol: 'Brew-USDC LP',
     lpAddresses: {
       80001: '',
       137: '0x248C328b1048f9B6e7e00D61a02E9cA3F8c2bf50',
@@ -478,7 +478,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 261,
-    lpSymbol: 'USDC-Mocha LP',
+    lpSymbol: 'Mocha-USDC LP',
     lpAddresses: {
       80001: '',
       137: '0x79A73a8370fA09ff363d8ee1ebB5CE0A9b6085B9',
