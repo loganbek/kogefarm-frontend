@@ -519,7 +519,7 @@ const farms: FarmConfig[] = [
     masterChefPid: 11,
     jarAddresses: {
       80001: '',
-      137: '0xe703b8BB7E0c6656006e5D165E1934B9B60C45e9',
+      137: '0xA7BEFC58c2e14e8f22E5566E49c05a7e7E6F054F',
     },
     token: tokens.link,
     quoteToken: tokens.eth,
@@ -548,7 +548,7 @@ const farms: FarmConfig[] = [
     masterChefPid: 12,
     jarAddresses: {
       80001: '',
-      137: '0x0310C1F9b176fFF4aA917cF0056cf07917ea94f4',
+      137: '0xfAa6Ca9A5FED9cAEF91711283d59F0EebE782a23',
     },
     token: tokens.aave,
     quoteToken: tokens.eth,
@@ -577,7 +577,7 @@ const farms: FarmConfig[] = [
     masterChefPid: 13,
     jarAddresses: {
       80001: '',
-      137: '0x73Bc901E91EeC3c93d0B80E5022eF465639c39f5',
+      137: '0x5E0F3303218a3665a2707a1D01EDEe78Abe9F3D6',
     },
     token: tokens.btc,
     quoteToken: tokens.eth,
