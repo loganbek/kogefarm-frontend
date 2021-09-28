@@ -81,7 +81,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
           position="right"
           offset={-500}
           html={(
-            <Tip>
+            <Tip style={{ padding: 12 }}>
               <Text>{title}</Text>
             </Tip>
           )}
