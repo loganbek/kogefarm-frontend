@@ -304,7 +304,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 256,
-    lpSymbol: 'pBrew-Matic LP',
+    lpSymbol: 'pBrew-WMatic LP',
     lpAddresses: {
       80001: '',
       137: '0x4f03233c742Ea20e73b46d5E33242b7770274ab8',
