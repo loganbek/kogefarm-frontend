@@ -71,6 +71,8 @@ export interface FarmConfig {
   isFirebird?: boolean
   isCommunity?: boolean
   isElk?: boolean
+  isGravity?: boolean
+  isCafeSwap?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string
@@ -85,7 +87,6 @@ export interface FarmConfig {
   rewardPerBlock1?: number
   rewardPerBlock2?: number
   depositFee?: number
-  isGravity?: boolean
   platform: string
 }
 

@@ -77,6 +77,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isElk,
   isFirebird,
   isGravity,
+  isCafeSwap,
   depositFee,
   userDataReady,
 }) => {
@@ -143,6 +144,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (isGravity===true){
     addLiquidityUrl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
   }
+  if (isCafeSwap === true) {
+    addLiquidityUrl = `${CAFE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  }
   if (quoteToken===token){
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
     if (isApe===true){
@@ -153,6 +157,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
     if (isGravity===true){
       addLiquidityUrl = `https://gravityfinance.io/swap?outputCurrency=${lpAddress}`
+    }
+    if (isCafeSwap === true) {
+      addLiquidityUrl = `https://polygondex.cafeswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
     if (token.coingeico==='pwings'){
       addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`

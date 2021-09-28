@@ -100,7 +100,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
 
       let tradingFeeRate = 0
       // Subgraph Trading Pair Data
-      if (!farmConfig.isJetSwap && !farmConfig.isFirebird && !farmConfig.isGravity) {
+      if (!farmConfig.isJetSwap && !farmConfig.isFirebird && !farmConfig.isGravity && !farmConfig.isCafeSwap) {
 
         if (farmConfig.token.address !== farmConfig.quoteToken.address) {
           let APIURL = quickGraphURL
