@@ -1269,6 +1269,7 @@ const farms: FarmConfig[] = [
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://polyalpha.finance/farms',
             platform: 'PolyAlpha',
+            multiplier: '0X',
           },
 
           {
@@ -1297,7 +1298,8 @@ const farms: FarmConfig[] = [
             underlyingWebsite: 'https://polyalpha.finance/farms',
             platform: 'PolyAlpha',
             isApe: true,
-            kogefarmComment: ' (Alpha)'
+            kogefarmComment: ' (Alpha)',
+            multiplier: '0X',
           },
 
           {
@@ -1323,7 +1325,8 @@ const farms: FarmConfig[] = [
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://polyalpha.finance/farms',
-            platform: 'PolyAlpha'
+            platform: 'PolyAlpha',
+            multiplier: '0X',
           },
 
           {
@@ -1351,7 +1354,8 @@ const farms: FarmConfig[] = [
             underlyingWebsite: 'https://polyalpha.finance/farms',
             platform: 'PolyAlpha',
             isJetSwap: true,
-            kogefarmComment: ' (JetSwap)'
+            kogefarmComment: ' (JetSwap)',
+            multiplier: '0X',
           },
 
           {
@@ -1379,7 +1383,8 @@ const farms: FarmConfig[] = [
             underlyingWebsite: 'https://polyalpha.finance/farms',
             platform: 'PolyAlpha',
             isApe: true,
-            kogefarmComment: ' (ApeSwap)'
+            kogefarmComment: ' (ApeSwap)',
+            multiplier: '0X',
           },
 
           {
@@ -1407,7 +1412,8 @@ const farms: FarmConfig[] = [
             underlyingWebsite: 'https://polyalpha.finance/farms',
             platform: 'PolyAlpha',
             isJetSwap: true,
-            kogefarmComment: ' (JetSwap)'
+            kogefarmComment: ' (JetSwap)',
+            multiplier: '0X',
           },
 
           {
@@ -1436,7 +1442,8 @@ const farms: FarmConfig[] = [
             underlyingWebsite: 'https://polyalpha.finance/farms',
             platform: 'PolyAlpha',
             isApe: true,
-            kogefarmComment: ' (ApeSwap)'
+            kogefarmComment: ' (ApeSwap)',
+            multiplier: '0X',
           },
 
 
