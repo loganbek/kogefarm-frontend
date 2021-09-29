@@ -1,13 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Tooltip } from 'react-tippy'
-import { isDesktop } from "react-device-detect";
-import styled, { css } from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'components/Pancake'
-import { Sort, Collapsible } from 'components/Pancake/Svg'
-import { useTranslation } from 'contexts/Localization'
-
+import { Button, ChevronUpIcon, ColumnType, Flex, Text, useTable } from 'components/Pancake';
+import { Collapsible, Sort } from 'components/Pancake/Svg';
+import { useTranslation } from 'contexts/Localization';
 import _ from 'lodash';
-import Row, { RowProps } from './Row'
+import React, { useRef, useState } from 'react';
+import { isDesktop } from "react-device-detect";
+import { Tooltip } from 'react-tippy';
+import styled, { css } from 'styled-components';
+import Row, { RowProps } from './Row';
+
 
 export interface ITableProps {
   data: RowProps[]
@@ -133,12 +133,16 @@ const SortIcon = styled(Sort)`
   cursor: pointer;
 `
 
+const LAZY_NUMBER_OF_FARMS_VISIBLE = 12
+
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { data, columns, userDataReady } = props
   const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
+  const [showMore, setShowMore] = React.useState(LAZY_NUMBER_OF_FARMS_VISIBLE)
+
 
   const { rows: _rows, headers } = useTable(columns, data)
 
@@ -154,14 +158,15 @@ const FarmTable: React.FC<ITableProps> = props => {
       }
     }
 
-    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc")
-  }, [_rows, colSortBy])
+    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc").slice(0, showMore)
+  }, [_rows, colSortBy, showMore])
 
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
       behavior: 'smooth',
     })
+    setShowMore(LAZY_NUMBER_OF_FARMS_VISIBLE)
   }
 
   const sort = ({ name }) => {
@@ -232,7 +237,15 @@ const FarmTable: React.FC<ITableProps> = props => {
             ) : null}
 
             <TableBody>
-              {rows.map((row) => (
+              {rows.map((row, i) => i === rows.length - 1 ? (
+                <Row
+                  {...row.original}
+                  open={open}
+                  userDataReady={userDataReady}
+                  key={`table-row-${row.id}`}
+                  onInView={(inView) => inView && showMore !== data.length ? setShowMore(showMore + LAZY_NUMBER_OF_FARMS_VISIBLE) : null}
+                />
+              ) : (
                 <Row
                   {...row.original}
                   open={open}
