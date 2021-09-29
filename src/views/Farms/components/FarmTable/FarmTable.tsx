@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Tooltip } from 'react-tippy'
 import { isDesktop } from "react-device-detect";
+import { InView } from 'react-intersection-observer'
 import styled, { css } from 'styled-components'
 import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'components/Pancake'
 import { Sort, Collapsible } from 'components/Pancake/Svg'
@@ -133,12 +134,15 @@ const SortIcon = styled(Sort)`
   cursor: pointer;
 `
 
+const LAZY_NUMBER_OF_FARMS_VISIBLE = 12
+
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { data, columns, userDataReady } = props
   const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
+  const [showMore, setShowMore] = React.useState(LAZY_NUMBER_OF_FARMS_VISIBLE)
 
   const { rows: _rows, headers } = useTable(columns, data)
 
@@ -154,8 +158,8 @@ const FarmTable: React.FC<ITableProps> = props => {
       }
     }
 
-    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc")
-  }, [_rows, colSortBy])
+    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc").slice(0, showMore)
+  }, [_rows, colSortBy, showMore])
 
 
   const scrollToTop = (): void => {
@@ -232,13 +236,24 @@ const FarmTable: React.FC<ITableProps> = props => {
             ) : null}
 
             <TableBody>
-              {rows.map((row) => (
-                <Row
-                  {...row.original}
-                  open={open}
-                  userDataReady={userDataReady}
-                  key={`table-row-${row.id}`}
-                />
+              {rows.map((row, i) => i === rows.length - 1 ? (
+                <InView as="div" onChange={showMore === data.length ? undefined : (inView) => inView && setShowMore(showMore + LAZY_NUMBER_OF_FARMS_VISIBLE)}>
+                  <Row
+                    {...row.original}
+                    open={open}
+                    userDataReady={userDataReady}
+                    key={`table-row-${row.id}`}
+                  />
+                </InView>
+              ) : (
+                (
+                  <Row
+                    {...row.original}
+                    open={open}
+                    userDataReady={userDataReady}
+                    key={`table-row-${row.id}`}
+                  />
+                )
               ))}
             </TableBody>
           </StyledTable>
