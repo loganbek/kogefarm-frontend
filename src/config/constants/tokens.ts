@@ -788,6 +788,33 @@ const tokens = {
     },
     decimals: 18,
   },
+  pbrew: {
+    symbol: 'pBrew',
+    coingeico: 'pbrew',
+    address: {
+      137: '0xb5106A3277718eCaD2F20aB6b86Ce0Fee7A21F09',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  brew: {
+    symbol: 'Brew',
+    coingeico: 'brew',
+    address: {
+      137: '0xa0b20DecBc557E3f68E140eD5a0c69bc865F865A',
+      80001: '',
+    },
+    decimals: 18,
+  },
+  mocha: {
+    symbol: 'Mocha',
+    coingeico: 'mocha',
+    address: {
+      137: '0xB01371072fDcB9B4433b855e16A682B461F94AB3',
+      80001: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
