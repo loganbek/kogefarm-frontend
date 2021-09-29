@@ -1,14 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Tooltip } from 'react-tippy'
-import { isDesktop } from "react-device-detect";
-import { InView } from 'react-intersection-observer'
-import styled, { css } from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'components/Pancake'
-import { Sort, Collapsible } from 'components/Pancake/Svg'
-import { useTranslation } from 'contexts/Localization'
-
+import { Button, ChevronUpIcon, ColumnType, Flex, Text, useTable } from 'components/Pancake';
+import { Collapsible, Sort } from 'components/Pancake/Svg';
+import { useTranslation } from 'contexts/Localization';
 import _ from 'lodash';
-import Row, { RowProps } from './Row'
+import React, { useRef, useState } from 'react';
+import { isDesktop } from "react-device-detect";
+import { Tooltip } from 'react-tippy';
+import styled, { css } from 'styled-components';
+import Row, { RowProps } from './Row';
+
 
 export interface ITableProps {
   data: RowProps[]
@@ -144,6 +143,7 @@ const FarmTable: React.FC<ITableProps> = props => {
   const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
   const [showMore, setShowMore] = React.useState(LAZY_NUMBER_OF_FARMS_VISIBLE)
 
+
   const { rows: _rows, headers } = useTable(columns, data)
 
   const rows = React.useMemo(() => {
@@ -166,6 +166,7 @@ const FarmTable: React.FC<ITableProps> = props => {
     tableWrapperEl.current.scrollIntoView({
       behavior: 'smooth',
     })
+    setShowMore(LAZY_NUMBER_OF_FARMS_VISIBLE)
   }
 
   const sort = ({ name }) => {
@@ -237,23 +238,20 @@ const FarmTable: React.FC<ITableProps> = props => {
 
             <TableBody>
               {rows.map((row, i) => i === rows.length - 1 ? (
-                <InView as="div" onChange={showMore === data.length ? undefined : (inView) => inView && setShowMore(showMore + LAZY_NUMBER_OF_FARMS_VISIBLE)}>
-                  <Row
-                    {...row.original}
-                    open={open}
-                    userDataReady={userDataReady}
-                    key={`table-row-${row.id}`}
-                  />
-                </InView>
+                <Row
+                  {...row.original}
+                  open={open}
+                  userDataReady={userDataReady}
+                  key={`table-row-${row.id}`}
+                  onInView={(inView) => inView && showMore !== data.length ? setShowMore(showMore + LAZY_NUMBER_OF_FARMS_VISIBLE) : null}
+                />
               ) : (
-                (
-                  <Row
-                    {...row.original}
-                    open={open}
-                    userDataReady={userDataReady}
-                    key={`table-row-${row.id}`}
-                  />
-                )
+                <Row
+                  {...row.original}
+                  open={open}
+                  userDataReady={userDataReady}
+                  key={`table-row-${row.id}`}
+                />
               ))}
             </TableBody>
           </StyledTable>
