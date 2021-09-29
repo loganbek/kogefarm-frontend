@@ -67,6 +67,10 @@ const StyledTr = styled.tr`
     padding: 8px 24px;
   }
 
+  td:nth-child(3) {
+    overflow-wrap: anywhere;
+  }
+
   .details {
     @media screen and (max-width: 576px) {
       padding-right: 0;
