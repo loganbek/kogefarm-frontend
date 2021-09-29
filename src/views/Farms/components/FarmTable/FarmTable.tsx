@@ -6,6 +6,7 @@ import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'compone
 import { Sort, Collapsible } from 'components/Pancake/Svg'
 import { useTranslation } from 'contexts/Localization'
 
+import _ from 'lodash';
 import Row, { RowProps } from './Row'
 
 export interface ITableProps {
@@ -139,13 +140,23 @@ const FarmTable: React.FC<ITableProps> = props => {
   const { data, columns, userDataReady } = props
   const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
 
-  const { rows, toggleSort, headers } = useTable(columns, data)
+  const { rows: _rows, headers } = useTable(columns, data)
 
-  useEffect(() => {
-    if (colSortBy.columnName && colSortBy.columnName.toLocaleUpperCase() === "APY") {
-      toggleSort(colSortBy.columnName, colSortBy.iscAscOverride)
+  const rows = React.useMemo(() => {
+    const order = (v: any) => {
+      switch (colSortBy.columnName) {
+        case "apy": return Number(v?.original?.apy?.originalValue);
+        case "farm": return v?.original?.farm?.label;
+        case "userValue": return Number(v?.original?.userValue?.userValue);
+        case "liquidity": return Number(v?.original?.liquidity?.liquidity);
+        case "platform": return v?.original?.platform?.userValue;
+        default: break;
+      }
     }
-  }, [data, toggleSort, colSortBy])
+
+    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc")
+  }, [_rows, colSortBy])
+
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
@@ -154,7 +165,6 @@ const FarmTable: React.FC<ITableProps> = props => {
   }
 
   const sort = ({ name }) => {
-    toggleSort(name)
     if (!colSortBy.columnName) {
       setColSortBy({ columnName: name, iscAscOverride: false })
     } else {
@@ -210,7 +220,7 @@ const FarmTable: React.FC<ITableProps> = props => {
                             </Label>
                             {/* @ts-ignore */}
                             {header.sortable && (
-                              <SortIcon asc={header.sorted.asc} on={header.sorted.on} onClick={() => sort(header)} />
+                              <SortIcon asc={!colSortBy.iscAscOverride} on={colSortBy.columnName === header.name} onClick={() => sort(header)} />
                             )}
                           </>
                         ) : null}
