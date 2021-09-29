@@ -679,8 +679,6 @@ const Farms: React.FC = () => {
           <StyledText fontSize="14px" mb="14px">
             {t('KogeFarm helps you earn more yield by ')}
             {' '}
-            {isDesktop ? <AutoCompound /> : null}
-            {' '}
             <Tooltip
               trigger="mouseenter"
               position="bottom"
