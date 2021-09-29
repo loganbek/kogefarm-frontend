@@ -75,7 +75,7 @@ export const config: MenuEntry[] = [
   {
     label: 'Back up site',
     icon: 'MoreIcon',
-    href: 'https://main.d282tvvic8lprz.amplifyapp.com',
+    href: 'https://kogefarmbackup.io',
     group: 'Help',
   },
   {

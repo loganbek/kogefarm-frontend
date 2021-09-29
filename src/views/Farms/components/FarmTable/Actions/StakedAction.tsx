@@ -17,7 +17,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL,ELK_ADD_LIQUIDITY_URL,FIREBIRD_ADD_LIQUIDITY_URL,GRAVITY_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL,ELK_ADD_LIQUIDITY_URL,FIREBIRD_ADD_LIQUIDITY_URL,GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -77,6 +77,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isElk,
   isFirebird,
   isGravity,
+  isCafeSwap,
   depositFee,
   userDataReady,
 }) => {
@@ -143,6 +144,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (isGravity===true){
     addLiquidityUrl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
   }
+  if (isCafeSwap === true) {
+    addLiquidityUrl = `${CAFE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  }
   if (quoteToken===token){
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
     if (isApe===true){
@@ -153,6 +157,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
     if (isGravity===true){
       addLiquidityUrl = `https://gravityfinance.io/swap?outputCurrency=${lpAddress}`
+    }
+    if (isCafeSwap === true) {
+      addLiquidityUrl = `https://polygondex.cafeswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
     if (token.coingeico==='pwings'){
       addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`

@@ -7,7 +7,7 @@ import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL } from 'config'
 import BigNumber from 'bignumber.js'
 import StakedAction from './StakedAction'
 import { AprProps } from '../Apr'
@@ -283,6 +283,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   if (farm.isGravity === true) {
     liquidityurl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
+  if (farm.isCafeSwap === true) {
+    liquidityurl = `${CAFE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  }
   if (farm.token === farm.quoteToken) {
     liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
     if (farm.isApe === true) {
@@ -296,6 +299,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     }
     if (farm.isJetSwap === true) {
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
+    if (farm.isCafeSwap === true) {
+      liquidityurl = `https://polygondex.cafeswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
     if (farm.token.coingeico === 'pwings') {
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
