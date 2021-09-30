@@ -102,7 +102,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const elkMaticLP = '0x7Cb0703aa37601a02798BDFF63A18aF2dD082572'
   const collarAddr = '0x8DF26a1BD9bD98e2eC506fc9d8009954716A05DC'
   const collarMaticLP = '0xbBe5F4998Cc537A91e7b90C7925D1c7C5bAb7ee0'
-  const pbrewAddr = '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
+  const pbrewAddr = '0xb5106A3277718eCaD2F20aB6b86Ce0Fee7A21F09'
   const pbrewMaticLP = '0x4f03233c742Ea20e73b46d5E33242b7770274ab8'
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
