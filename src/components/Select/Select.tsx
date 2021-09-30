@@ -20,6 +20,7 @@ const DropDownHeader = styled.div<{ isActive?: boolean }>`
 
 const DropDownListContainer = styled.div`
   min-width: 136px;
+  width: 100%;
   height: 0;
   position: absolute;
   top: 45px;
