@@ -621,6 +621,33 @@ const farms: FarmConfig[] = [
     kogefarmComment: ' (pBrew)'
   },
 
+  {
+    pid: 266,
+    lpSymbol: 'CRV-DFYN',
+    lpAddresses: {
+      80001: '',
+      137: '0x4Ea3e2cfC39FA51Df85ebcfa366d7f0eED448a1C',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xc7A399EC7Cfe5e1B728cACD742637c4e6F06C3D8',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0x51AC169E6139E3bebaf8D51A8867b921a77E9d99',
+    },
+    token: tokens.dfyn,
+    quoteToken: tokens.crv,
+    rewardPerBlock: 0.023148148148148148*2,
+    poolWeightDesignate: 1,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    isDfyn: true,
+    underlyingWebsite: 'https://exchange.dfyn.network/#/eco-farms',
+    platform: 'DFYN'
+  },
+
 
           {
             pid: 198,
