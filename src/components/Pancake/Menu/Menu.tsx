@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
-import { Box } from "components/Pancake";
+import { Box, Link } from "components/Pancake";
 import { useTranslation } from 'contexts/Localization'
 import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
@@ -282,7 +282,7 @@ const Menu: React.FC<NavProps> = ({
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
-        <LogoContainer>
+        <LogoContainer as={Link} href={homeLink?.href ?? "/"}>
           <Logo
             isPushed={isPushed}
             togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
