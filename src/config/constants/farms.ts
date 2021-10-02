@@ -122,7 +122,7 @@ const farms: FarmConfig[] = [
      underlyingWebsite: 'https://polygon.curve.fi',
      platform: 'Curve'
    },
-
+/*
    {
      pid: 77,
      lpSymbol: 'atricrypto',
@@ -153,7 +153,7 @@ const farms: FarmConfig[] = [
      platform: 'Curve',
      multiplier: '0X'
    },
-/*
+
    {
      pid: 166,
      lpSymbol: 'atricrypto2',
@@ -1282,7 +1282,7 @@ const farms: FarmConfig[] = [
             platform: 'PolyShield',
             isElk: true,
           },
-
+/*
           {
             pid: 196,
             lpSymbol: 'KogeCoin-Matic LP',
@@ -1309,7 +1309,7 @@ const farms: FarmConfig[] = [
             platform: 'Koge',
             multiplier: '0X',
           },
-
+*/
           {
             pid: 192,
             lpSymbol: 'Iris',
@@ -1561,7 +1561,7 @@ const farms: FarmConfig[] = [
             kogefarmComment: ' (JetSwap)',
             multiplier: '0X',
           },
-
+/*
           {
             pid: 214,
             lpSymbol: 'Spade-USDC LP',
@@ -1591,7 +1591,7 @@ const farms: FarmConfig[] = [
             kogefarmComment: ' (ApeSwap)',
             multiplier: '0X',
           },
-
+*/
 
          {
            pid: 224,
@@ -2214,7 +2214,7 @@ const farms: FarmConfig[] = [
           platform: 'Gravity',
           isGravity: true,
         },
-
+/*
         {
           pid: 88,
           lpSymbol: 'GFI-USDC LP',
@@ -2241,7 +2241,7 @@ const farms: FarmConfig[] = [
           multiplier: '0X',
           platform: 'Gravity (legacy)'
         },
-/*
+
         {
           pid: 89,
           lpSymbol: 'GFI-ETH LP',
@@ -5366,7 +5366,7 @@ const farms: FarmConfig[] = [
             platform: 'SA',
             multiplier: '0X',
           },
-
+/*
           {
             pid: 160,
             lpSymbol: 'ETH',
@@ -5398,8 +5398,8 @@ const farms: FarmConfig[] = [
             platform: 'SA',
             multiplier: '0X',
           },
-
-
+*/
+/*
           {
             pid: 161,
             lpSymbol: 'BTC',
@@ -5431,7 +5431,7 @@ const farms: FarmConfig[] = [
             platform: 'SA',
             multiplier: '0X',
           },
-
+*/
 
          {
            pid: 127,
@@ -5543,7 +5543,7 @@ const farms: FarmConfig[] = [
             platform: 'PolyPup',
             multiplier: '0X',
           },
-
+/*
           {
             pid: 124,
             lpSymbol: 'Pup-USDC LP',
@@ -5572,7 +5572,7 @@ const farms: FarmConfig[] = [
             platform: 'PolyPup',
             multiplier: '0X',
           },
-
+*/
           {
             pid: 125,
             lpSymbol: 'Mai(miMatic)-USDC LP',
@@ -5722,7 +5722,7 @@ const farms: FarmConfig[] = [
             platform: 'PolyPup',
             multiplier: '0X',
           },
-
+/*
           {
             pid: 131,
             lpSymbol: 'Btc',
@@ -5752,7 +5752,7 @@ const farms: FarmConfig[] = [
             platform: 'PolyPup',
             multiplier: '0X',
           },
-
+*/
           {
             pid: 132,
             lpSymbol: 'Dai',
@@ -6038,7 +6038,7 @@ const farms: FarmConfig[] = [
      platform: 'PolyPup',
      multiplier: '0X',
    },
-
+/*
    {
      pid: 58,
      lpSymbol: 'Pup-USDC LP',
@@ -6067,7 +6067,7 @@ const farms: FarmConfig[] = [
      platform: 'PolyPup',
      multiplier: '0X',
    },
-
+*/
    {
      pid: 47,
      lpSymbol: 'WMatic-USDC LP',
@@ -6097,7 +6097,7 @@ const farms: FarmConfig[] = [
      platform: 'PolyPup',
      multiplier: '0X',
    },
-
+/*
    {
      pid: 48,
      lpSymbol: 'WEth-USDC LP',
@@ -6127,7 +6127,7 @@ const farms: FarmConfig[] = [
      platform: 'PolyPup',
      multiplier: '0X',
    },
-
+*/
    {
      pid: 49,
      lpSymbol: 'Bone',
