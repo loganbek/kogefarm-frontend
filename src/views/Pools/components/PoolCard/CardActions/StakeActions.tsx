@@ -29,6 +29,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const { stakingToken, stakingLimit, isFinished, userData } = pool
   const { t } = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
+  // const stakedTokenBalance = getBalanceNumber(stakedBalance, 12)
   const stakingTokenPrice = useGetApiPrice(stakingToken.coingeico)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
@@ -77,7 +78,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       <Flex justifyContent="space-between" alignItems="center">
         <Flex flexDirection="column">
           <>
-            <Balance bold fontSize="20px" decimals={3} value={stakedTokenBalance} />
+            <Balance bold fontSize="18px" decimals={12} value={stakedTokenBalance} />
               <Text fontSize="12px" color="textSubtle">
                 <Balance
                   fontSize="12px"
