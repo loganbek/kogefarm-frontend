@@ -1,6 +1,5 @@
 import { Button, ChevronUpIcon, ColumnType, Flex, Text, useTable } from 'components/Pancake';
 import { Collapsible, Sort } from 'components/Pancake/Svg';
-import Select from 'components/Select/Select';
 import { useTranslation } from 'contexts/Localization';
 import _ from 'lodash';
 import React, { useRef, useState } from 'react';
@@ -17,26 +16,6 @@ export interface ITableProps {
   sortColumn?: string
   handleCurrent?: (count: number) => void
 }
-
-const LabelWrapper = React.memo(styled.div`
-position: relative;
-width: 168px;
-
-> ${Text} {
-  font-size: 10px;
-  position: absolute;
-  top: -8px;
-  z-index: 1;
-  background: ${({ theme }) => theme.colors.background};
-  display: inline-block;
-  left: 10px;
-  padding: 2px 6px;
-}
-
-@media screen and (max-width: 576px) {
-  width: 100%;
-}
-`)
 
 const Container = styled.div`
   width: 100%;
@@ -154,13 +133,6 @@ const SortIcon = styled(Sort)`
   cursor: pointer;
 `
 
-const MobileSortSelectors = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 12px;
-  margin-top: 12px;
-`
-
 const LAZY_NUMBER_OF_FARMS_VISIBLE = 12
 
 const FarmTable: React.FC<ITableProps> = props => {
@@ -170,6 +142,7 @@ const FarmTable: React.FC<ITableProps> = props => {
   const { data, columns, userDataReady } = props
   const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
   const [showMore, setShowMore] = React.useState(LAZY_NUMBER_OF_FARMS_VISIBLE)
+
 
   const { rows: _rows, headers } = useTable(columns, data)
 
@@ -207,29 +180,8 @@ const FarmTable: React.FC<ITableProps> = props => {
 
   return (
     <Container>
-      {
-        !isDesktop && (
-          <MobileSortSelectors >
-            <LabelWrapper>
-              <Text>Sort by</Text>
-              <Select
-                options={headers.filter(h => h.name !== "details" && h.name !== "actions").map(h => ({ label: h.label, value: h.name }))}
-                value={{ label: headers.find(h => h.name === colSortBy.columnName)?.label, value: colSortBy.columnName }}
-                onChange={(e) => setColSortBy({ ...colSortBy, columnName: e.value })}
-              />
-            </LabelWrapper>
-            <LabelWrapper>
-              <Text>Sort order</Text>
-              <Select
-                options={[{ label: "Asc", value: false }, { label: "Desc", value: true }]}
-                value={{ label: colSortBy.iscAscOverride ? "Desc" : "Asc", value: colSortBy.iscAscOverride }}
-                onChange={(e) => setColSortBy({ ...colSortBy, iscAscOverride: e.value })}
-              />
-            </LabelWrapper>
-          </MobileSortSelectors>
-        )
-      }
       <TableContainer>
+
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable isDesktop={isDesktop}>
             {isDesktop ? (
