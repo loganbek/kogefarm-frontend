@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from "styled-components";
 import BigNumber from 'bignumber.js'
 import throttle from "lodash/throttle";
-import { Box } from "components/Pancake";
+import { Box, Link } from "components/Pancake";
 import { useTranslation } from 'contexts/Localization'
 import { latinise } from 'utils/latinise'
 import { getAddress } from 'utils/addressHelpers'
@@ -290,8 +290,8 @@ const Menu: React.FC<NavProps> = ({
             href={homeLink?.href ?? "/"}
           />
           { !isMobile ? (
-          <Box ml="10px">
-            <Wordmark isDark={isDark} />
+            <Box as={Link} href={homeLink?.href ?? "/"} ml="10px">
+              <Wordmark isDark={isDark} />
           </Box> ) : null}
         </LogoContainer>
 
