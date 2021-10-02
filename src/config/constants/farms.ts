@@ -1333,7 +1333,8 @@ const farms: FarmConfig[] = [
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://www.hermesdefi.io/app/pools',
-            platform: 'Hermes Defi'
+            platform: 'Hermes Defi',
+            multiplier: '0X',
           },
 
           {
@@ -1359,7 +1360,8 @@ const farms: FarmConfig[] = [
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://www.hermesdefi.io/app/pools',
-            platform: 'Hermes Defi'
+            platform: 'Hermes Defi',
+            multiplier: '0X',
           },
 
           {
@@ -1385,7 +1387,8 @@ const farms: FarmConfig[] = [
             minutesPerCompound: 5,
             kogefarmFee: 0.01,
             underlyingWebsite: 'https://www.hermesdefi.io/app/pools',
-            platform: 'Hermes Defi'
+            platform: 'Hermes Defi',
+            multiplier: '0X',
           },
 
           {
