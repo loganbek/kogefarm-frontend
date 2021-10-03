@@ -12,7 +12,12 @@ export const useGetConnectorsByName = (chain: SUPPORTED_CHAINS) => {
 
   const chainId = CHAINS[chain].numberChainId
 
-  const injected = new InjectedConnector({ supportedChainIds: [chainId] })
+  const injected = new InjectedConnector({
+    supportedChainIds: [
+      CHAINS[SUPPORTED_CHAINS.MATIC].numberChainId,
+      CHAINS[SUPPORTED_CHAINS.MOONRIVER].numberChainId,
+    ]
+  })
 
   const walletconnect = new WalletConnectConnector({
     rpc: { [chainId]: rpcUrl },
