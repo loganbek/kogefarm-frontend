@@ -7361,7 +7361,7 @@ const farms: FarmConfig[] = [
   multiplier: '0X',
   platform: 'Iron'
 },
-
+//NEXTFARMHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
 
 /*  {
     pid: 2,

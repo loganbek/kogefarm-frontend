@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints, Text } from 'components/Pancake'
+import { Text, useMatchBreakpoints } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
+import React, { useEffect, useState } from 'react'
+import InView from 'react-intersection-observer'
 import { useFarmUser } from 'state/hooks'
-
+import styled from 'styled-components'
+import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
+import { DesktopColumnSchema, MobileColumnSchema } from '../types'
+import ActionPanel from './Actions/ActionPanel'
 import StakedAction from './Actions/StakedAction'
-
 import Apr, { AprProps } from './Apr'
 import Apy, { ApyProps } from './Apy'
-import Farm, { FarmProps } from './Farm'
-import Earned, { EarnedProps } from './Earned'
+import CellLayout from './CellLayout'
 import Details from './Details'
+import Earned, { EarnedProps } from './Earned'
+import Farm, { FarmProps } from './Farm'
 import Liquidity, { LiquidityProps } from './Liquidity'
 import UserValue, { UserValueProps } from './UserValue'
-import ActionPanel from './Actions/ActionPanel'
-import CellLayout from './CellLayout'
-import { DesktopColumnSchema, MobileColumnSchema } from '../types'
+
+
 
 export interface RowProps {
   details: FarmWithStakedValue
@@ -32,11 +33,12 @@ export interface RowProps {
   platform?: any
   align?: string
   open?: boolean
-  sortable?:boolean
+  sortable?: boolean
 }
 
 interface RowPropsWithLoading extends RowProps {
   userDataReady: boolean
+  onInView?: (inView: boolean) => void
 }
 
 const cells = {
@@ -65,6 +67,10 @@ const StyledTr = styled.tr`
     padding: 8px 24px;
   }
 
+  td:nth-child(3) {
+    overflow-wrap: anywhere;
+  }
+
   .details {
     @media screen and (max-width: 576px) {
       padding-right: 0;
@@ -82,7 +88,7 @@ const FarmMobileCell = styled.td`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
-  const { details, userDataReady, open } = props
+  const { details, userDataReady, open, onInView } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
   const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
@@ -123,13 +129,13 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
             switch (key) {
               case 'actions':
                 return (
-                  <td key={key}>
+                  <InView as="td" onChange={onInView} key={key}>
                     <CellInner>
                       <CellLayout align={props.actions.align}>
                         <StakedAction {...details} userDataReady={userDataReady} />
                       </CellLayout>
                     </CellInner>
-                  </td>
+                  </InView>
                 )
               case 'details':
                 return (
@@ -179,13 +185,13 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
 
     return (
       <StyledTr onClick={toggleActionPanel}>
-        <td>
+        <InView as="td" onChange={onInView}>
           <CellInner>
             <CellLayout>
               <Details actionPanelToggled={actionPanelExpanded} />
             </CellLayout>
           </CellInner>
-        </td>
+        </InView>
         <td>
           <tr>
             <FarmMobileCell>

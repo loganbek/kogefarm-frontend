@@ -1,12 +1,27 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Tooltip } from 'react-tippy'
+import { Button, ChevronUpIcon, ColumnType, Flex, Text, useTable } from 'components/Pancake';
+import { Collapsible, Sort } from 'components/Pancake/Svg';
+import Select from 'components/Select/Select';
+import { useTranslation } from 'contexts/Localization';
+import _ from 'lodash';
+import React, { useRef, useState } from 'react';
 import { isDesktop } from "react-device-detect";
-import styled, { css } from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType, Flex, Text } from 'components/Pancake'
-import { Sort, Collapsible } from 'components/Pancake/Svg'
-import { useTranslation } from 'contexts/Localization'
+import { Tooltip } from 'react-tippy';
+import styled, { css } from 'styled-components';
+import Row, { RowProps } from './Row';
 
-import Row, { RowProps } from './Row'
+
+const roundBigNumber = (num: number) => {
+  const _roundAndFormat = (pow: number, suffix: string) => `${Number((num / (10 ** pow)).toFixed(2)).toLocaleString('en-US', { maximumFractionDigits: 2 })}${suffix}`
+  if (num > 10 ** 9) {
+    return _roundAndFormat(9, "B")
+  }
+
+  if (num > 10 ** 6) {
+    return _roundAndFormat(6, "M")
+  }
+
+  return num.toLocaleString('en-US', { maximumFractionDigits: 2 })
+}
 
 export interface ITableProps {
   data: RowProps[]
@@ -15,6 +30,26 @@ export interface ITableProps {
   sortColumn?: string
   handleCurrent?: (count: number) => void
 }
+
+const LabelWrapper = React.memo(styled.div`
+position: relative;
+width: 168px;
+
+> ${Text} {
+  font-size: 10px;
+  position: absolute;
+  top: -8px;
+  z-index: 1;
+  background: ${({ theme }) => theme.colors.background};
+  display: inline-block;
+  left: 10px;
+  padding: 2px 6px;
+}
+
+@media screen and (max-width: 576px) {
+  width: 100%;
+}
+`)
 
 const Container = styled.div`
   width: 100%;
@@ -132,29 +167,60 @@ const SortIcon = styled(Sort)`
   cursor: pointer;
 `
 
+const MobileSortSelectors = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 12px;
+  margin-top: 12px;
+`
+
+const LAZY_NUMBER_OF_FARMS_VISIBLE = 12
+
 const FarmTable: React.FC<ITableProps> = props => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { data, columns, userDataReady } = props
   const [colSortBy, setColSortBy] = useState({ columnName: "", iscAscOverride: false })
+  const [showMore, setShowMore] = React.useState(LAZY_NUMBER_OF_FARMS_VISIBLE)
 
-  const { rows, toggleSort, headers } = useTable(columns, data)
+  const { rows: _rows, headers } = useTable(columns, data)
 
-  useEffect(() => {
-    if (colSortBy.columnName && colSortBy.columnName.toLocaleUpperCase() === "APY") {
-      toggleSort(colSortBy.columnName, colSortBy.iscAscOverride)
+  const rows = React.useMemo(() => {
+    const order = (v: any) => {
+      switch (colSortBy.columnName) {
+        case "apy": return Number(v?.original?.apy?.originalValue);
+        case "farm": return v?.original?.farm?.label;
+        case "userValue": return Number(v?.original?.userValue?.userValue);
+        case "liquidity": return Number(v?.original?.liquidity?.liquidity);
+        case "platform": return v?.original?.platform?.userValue;
+        default: break;
+      }
     }
-  }, [data, toggleSort, colSortBy])
+
+    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc")
+      .slice(0, showMore)
+      .map(r => ({
+        ...r,
+        original: {
+          ...r.original,
+          apy: {
+            ...r.original.apy,
+            value: r.original.apy.originalValue !== Number.POSITIVE_INFINITY ? roundBigNumber(r.original.apy.originalValue) : r.original.apy.value
+          }
+        }
+      }))
+  }, [_rows, colSortBy, showMore])
+
 
   const scrollToTop = (): void => {
     tableWrapperEl.current.scrollIntoView({
       behavior: 'smooth',
     })
+    setShowMore(LAZY_NUMBER_OF_FARMS_VISIBLE)
   }
 
   const sort = ({ name }) => {
-    toggleSort(name)
     if (!colSortBy.columnName) {
       setColSortBy({ columnName: name, iscAscOverride: false })
     } else {
@@ -165,8 +231,29 @@ const FarmTable: React.FC<ITableProps> = props => {
 
   return (
     <Container>
+      {
+        !isDesktop && (
+          <MobileSortSelectors >
+            <LabelWrapper>
+              <Text>Sort by</Text>
+              <Select
+                options={headers.filter(h => h.name !== "details" && h.name !== "actions").map(h => ({ label: h.label, value: h.name }))}
+                value={{ label: headers.find(h => h.name === colSortBy.columnName)?.label, value: colSortBy.columnName }}
+                onChange={(e) => setColSortBy({ ...colSortBy, columnName: e.value })}
+              />
+            </LabelWrapper>
+            <LabelWrapper>
+              <Text>Sort order</Text>
+              <Select
+                options={[{ label: "Asc", value: false }, { label: "Desc", value: true }]}
+                value={{ label: colSortBy.iscAscOverride ? "Desc" : "Asc", value: colSortBy.iscAscOverride }}
+                onChange={(e) => setColSortBy({ ...colSortBy, iscAscOverride: e.value })}
+              />
+            </LabelWrapper>
+          </MobileSortSelectors>
+        )
+      }
       <TableContainer>
-
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable isDesktop={isDesktop}>
             {isDesktop ? (
@@ -210,7 +297,7 @@ const FarmTable: React.FC<ITableProps> = props => {
                             </Label>
                             {/* @ts-ignore */}
                             {header.sortable && (
-                              <SortIcon asc={header.sorted.asc} on={header.sorted.on} onClick={() => sort(header)} />
+                              <SortIcon asc={!colSortBy.iscAscOverride} on={colSortBy.columnName === header.name} onClick={() => sort(header)} />
                             )}
                           </>
                         ) : null}
@@ -222,7 +309,15 @@ const FarmTable: React.FC<ITableProps> = props => {
             ) : null}
 
             <TableBody>
-              {rows.map((row) => (
+              {rows.map((row, i) => i === rows.length - 1 ? (
+                <Row
+                  {...row.original}
+                  open={open}
+                  userDataReady={userDataReady}
+                  key={`table-row-${row.id}`}
+                  onInView={(inView) => inView && showMore !== data.length ? setShowMore(showMore + LAZY_NUMBER_OF_FARMS_VISIBLE) : null}
+                />
+              ) : (
                 <Row
                   {...row.original}
                   open={open}

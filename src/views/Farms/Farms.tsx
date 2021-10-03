@@ -187,9 +187,9 @@ const Farms: React.FC = () => {
   const userDataReady = !account || (!!account && userDataLoaded)
 
   const [stakedOnly, setStakedOnly] = useState(!isActive)
-  // useEffect(() => {
-  //   setStakedOnly(!isActive)
-  // }, [isActive])
+  useEffect(() => {
+    setStakedOnly(!isActive)
+  }, [isActive])
 
   useEffect(() => {
     // Makes the main scheduled fetching to request archived farms data
@@ -241,7 +241,7 @@ const Farms: React.FC = () => {
   )
 
   const farmsList = useCallback(
-    (farmsToDisplay: Farm[], filterQuery?:boolean): FarmWithStakedValue[] => {
+    (farmsToDisplay: Farm[], filterQuery?: boolean): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         /* DZ Hack
         if (!farm.lpTotalInQuoteToken || !prices) {
@@ -643,7 +643,12 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    setMultiSearch(activeIndex)
+    const search = multiSearch
+    if (search.has('platform')) {
+      setMultiSearch(new Set<any>(activeIndex).add('platform'))
+    } else {
+      setMultiSearch(new Set(activeIndex))
+    }
     setIsSearching(!isSearching)
     setSortOption('multi')
   }
@@ -678,8 +683,6 @@ const Farms: React.FC = () => {
           </Heading>
           <StyledText fontSize="14px" mb="14px">
             {t('KogeFarm helps you earn more yield by ')}
-            {' '}
-            {isDesktop ? <AutoCompound /> : null}
             {' '}
             <Tooltip
               trigger="mouseenter"

@@ -1,6 +1,6 @@
 {
   "name": "kogefarm-frontend",
-  "version": "0.1.0",
+  "version": "2.0.2",
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
@@ -69,6 +69,7 @@
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.8",
     "react-helmet-async": "^1.0.9",
+    "react-intersection-observer": "^8.32.1",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
