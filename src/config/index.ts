@@ -1,5 +1,7 @@
 import BigNumber from 'bignumber.js/bignumber'
 import { BIG_TEN } from 'utils/bigNumber'
+import { MOONRIVER_FARMS, POLYGON_FARMS } from './constants/farms'
+import { FarmConfig } from './constants/types'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -52,3 +54,79 @@ export const LOTTERY_MAX_NUMBER_OF_TICKETS = 50
 export const LOTTERY_TICKET_PRICE = 1
 export const DEFAULT_TOKEN_DECIMAL = BIG_TEN.pow(18)
 export const KOGE_TOKEN_DECIMAL = BIG_TEN.pow(9)
+
+
+/**
+ * Network configs
+ */
+export interface ChainInterface {
+  chainId: string;
+  chainName: string
+  nativeCurrency: {
+    name: string,
+    symbol: string,
+    decimals: number,
+  },
+  rpcUrls: string[],
+  blockExplorerUrls: string[],
+}
+const POLYGON_CHAIN_ID = 137
+export const POLYGON_CHAIN: ChainInterface = {
+  chainId: `0x${Number(POLYGON_CHAIN_ID).toString(16)}`,
+  chainName: 'Matic Network Mainnet',
+  nativeCurrency: {
+    name: 'MATIC',
+    symbol: 'MATIC',
+    decimals: 18,
+  },
+  rpcUrls: [
+    process.env.REACT_APP_NODE_1,
+    process.env.REACT_APP_NODE_2,
+    process.env.REACT_APP_NODE_3,
+    process.env.REACT_APP_NODE_4,
+    process.env.REACT_APP_NODE_5
+  ],
+  blockExplorerUrls: ['https://polygonscan.com/'],
+}
+
+// Moonriver
+const MOONRIVER_CHAIN_ID = 1285
+export const MOONRIVER_CHAIN: ChainInterface = {
+  chainId: `0x${Number(MOONRIVER_CHAIN_ID).toString(16)}`,
+  chainName: 'Moonriver',
+  nativeCurrency: {
+    name: 'MOVR',
+    symbol: 'MOVR',
+    decimals: 18,
+  },
+  rpcUrls: [
+    "https://rpc.moonriver.moonbeam.network",
+    "https://moonriver.api.onfinality.io/public",
+  ],
+  blockExplorerUrls: ['https://blockscout.moonriver.moonbeam.network/'],
+}
+
+export enum SUPPORTED_CHAINS {
+  MATIC = "MATIC",
+  MOONRIVER = "MOONRIVER"
+}
+export type CHAINSInterface = {
+  [x in SUPPORTED_CHAINS]: ChainInterface & { numberChainId: number; chainNameAbbr: string; logoUrl: string; farms: FarmConfig[] }
+}
+
+export const CHAINS: CHAINSInterface = {
+  [SUPPORTED_CHAINS.MATIC]: {
+    ...POLYGON_CHAIN,
+    numberChainId: 137,
+    chainNameAbbr: "Polygon",
+    logoUrl: "/images/polygon.svg",
+    farms: POLYGON_FARMS
+  },
+  [SUPPORTED_CHAINS.MOONRIVER]: {
+    ...MOONRIVER_CHAIN,
+    numberChainId: 1285,
+    chainNameAbbr: "Moonriver",
+    logoUrl: "/images/moonriver.svg",
+    farms: MOONRIVER_FARMS
+  }
+}
