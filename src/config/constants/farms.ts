@@ -237,7 +237,7 @@ const farms: FarmConfig[] = [
     rewardToken1: tokens.matic,
     rewardToken2: tokens.crv,
     rewardPerBlock1: 0.0485, // 0.0485
-    rewardPerBlock2: 0.0225, //
+    rewardPerBlock2: 0.0258, // 
     poolWeightDesignate: 1,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
