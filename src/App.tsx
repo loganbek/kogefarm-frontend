@@ -16,6 +16,7 @@ import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 // import PrivacyPolicy from './views/PrivacyPolicy'
 // import TermsOfUse from './views/TermsOfUse';
 
@@ -43,9 +44,10 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
-  useEagerConnect()
-  useFetchPublicData()
-  useFetchPriceList()
+  const { getCurrentNetwork } = useNetworkSwitcher()
+  useEagerConnect(getCurrentNetwork())
+  useFetchPublicData(getCurrentNetwork)
+  useFetchPriceList(getCurrentNetwork)
 
   return (
     <Router history={history}>
@@ -59,11 +61,11 @@ const App: React.FC = () => {
               <Farms />
             </Route>
             <Route path="/farms">
-               <Pools />
+              <Pools />
             </Route>
             <Route path="/privacy">
               <PrivacyPolicy />
-              </Route>
+            </Route>
             <Route path="/terms" >
               <TermsOfUse />
             </Route>
@@ -73,7 +75,7 @@ const App: React.FC = () => {
       </Menu>
       <ToastListener />
       <ScrollToTop
-        smooth 
+        smooth
         color="#ffffff"
         style={{
           backgroundColor: "#1EA306",
