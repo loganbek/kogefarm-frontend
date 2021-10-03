@@ -5,6 +5,7 @@ import React from "react"
 import { setFarms } from "state/farms"
 import { useAppDispatch } from "state/index"
 import { setupNetwork } from "utils/wallet"
+import { connectorLocalStorageKey } from "./Pancake"
 import Select, { OptionProps } from "./Select/Select"
 
 
@@ -32,6 +33,7 @@ function NetworkSwitcher() {
         setCurrentNetwork(v.value)
         setValue(v)
         logout()
+        window.localStorage.removeItem(connectorLocalStorageKey);
         setupNetwork(v.value)
     }
 
