@@ -113,8 +113,8 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.curve3pool,
      rewardToken1: tokens.matic,
      rewardToken2: tokens.crv,
-     rewardPerBlock1: 0.592, // s
-     rewardPerBlock2: 0.158, // 0.158
+     rewardPerBlock1: 0.625, // 0.625
+     rewardPerBlock2: 0.783, // 0.158
      poolWeightDesignate: 1,
      minutesPerCompound: 1,
      kogefarmFee: 0.01,
@@ -205,8 +205,8 @@ const farms: FarmConfig[] = [
      quoteToken: tokens.atricrypto3,
      rewardToken1: tokens.matic,
      rewardToken2: tokens.crv,
-     rewardPerBlock1: 0.354, // 0.354
-     rewardPerBlock2: 0.171, // 0.171
+     rewardPerBlock1: 0.5105, // 0.5105
+     rewardPerBlock2: 0.1783, // 0.171
      poolWeightDesignate: 1,
      minutesPerCompound: 5,
      kogefarmFee: 0.01,
@@ -236,8 +236,8 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.btcrenbtc,
     rewardToken1: tokens.matic,
     rewardToken2: tokens.crv,
-    rewardPerBlock1: 0.153, // 0.153
-    rewardPerBlock2: 0.069, //
+    rewardPerBlock1: 0.0485, // 0.0485
+    rewardPerBlock2: 0.0225, //
     poolWeightDesignate: 1,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
