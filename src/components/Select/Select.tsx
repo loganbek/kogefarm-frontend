@@ -6,9 +6,10 @@ import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
 const DropDownHeader = styled.div<{ isActive?: boolean }>`
   width: 100%;
   height: 40px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 12px;
   align-items: center;
-  justify-content: space-between;
   padding: 0px 16px;
   box-shadow: ${({ theme, isActive }) => !isActive ? theme.shadows.inset : theme.shadows.focus};
   border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
@@ -88,6 +89,10 @@ const DropDownList = styled.ul`
 `
 
 const ListItem = styled.li`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 12px;
+  align-items: center;
   list-style: none;
   padding: 12px 24px;
 
@@ -106,6 +111,7 @@ export interface SelectProps {
 export interface OptionProps {
   label: string
   value: any
+  icon?: any
 }
 
 const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value, style }) => {
@@ -144,6 +150,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
     <DropDownContainer style={style} isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling} isActive={isOpen}>
+          {selectedOption.icon}
           <Text>{selectedOption.label}</Text>
         </DropDownHeader>
       )}
@@ -153,6 +160,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
           {options.map((option) =>
             option.label !== selectedOption.label ? (
               <ListItem onClick={onOptionClicked(option)} key={option.label}>
+                {option.icon}
                 <Text fontWeight="bold">
                   {option.label}
                 </Text>
@@ -165,4 +173,4 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
   )
 }
 
-export default React.memo(Select)
+export default Select
