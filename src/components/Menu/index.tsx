@@ -6,11 +6,13 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import { config } from './config'
 
 const Menu = (props) => {
+  const { getCurrentNetwork } = useNetworkSwitcher()
   const { account } = useWeb3React()
-  const { login, logout } = useAuth()
+  const { login, logout } = useAuth(getCurrentNetwork())
   const { isDark, toggleTheme } = useTheme()
   //  const { profile } = useProfile()
   const { currentLanguage, setLanguage } = useTranslation()
@@ -26,13 +28,13 @@ const Menu = (props) => {
       langs={languageList}
       setLang={setLanguage}
       links={config}
-//      profile={{
-//        username: profile?.username,
-//        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-//        profileLink: '/profile',
-//        noProfileLink: '/profile',
-//        showPip: !profile?.username,
-//      }}
+      //      profile={{
+      //        username: profile?.username,
+      //        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
+      //        profileLink: '/profile',
+      //        noProfileLink: '/profile',
+      //        showPip: !profile?.username,
+      //      }}
       {...props}
     />
   )

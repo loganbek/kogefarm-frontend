@@ -20,7 +20,7 @@ import { fetchPrices } from './prices'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 
-export const useFetchPublicData = () => {
+export const useFetchPublicData = (deps?: any) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
@@ -28,7 +28,7 @@ export const useFetchPublicData = () => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
     dispatch(fetchPoolsStakingLimitsAsync())
-  }, [dispatch, slowRefresh])
+  }, [dispatch, slowRefresh, deps])
 
 }
 
@@ -68,13 +68,13 @@ export const useLpTokenPrice = (symbol: string) => {
 }
 
 // Prices
-export const useFetchPriceList = () => {
+export const useFetchPriceList = (deps?: any) => {
   const { slowRefresh } = useRefresh()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchPrices())
-  }, [dispatch, slowRefresh])
+  }, [dispatch, slowRefresh, deps])
 }
 
 export const useGetApiPrices = () => {

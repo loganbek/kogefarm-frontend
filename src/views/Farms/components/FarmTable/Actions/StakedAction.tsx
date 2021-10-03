@@ -17,12 +17,13 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL,ELK_ADD_LIQUIDITY_URL,FIREBIRD_ADD_LIQUIDITY_URL,GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
 import useTheme from 'hooks/useTheme'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
@@ -88,12 +89,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const [depositIsOpen, setDepositIsOpen] = useState(false)
   const [withdrawIsOpen, setWithdrawIsOpen] = useState(false)
 
+  const { getCurrentNetwork } = useNetworkSwitcher()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const jarAddress = jarAddresses[process.env.REACT_APP_CHAIN_ID]
-  const { onStake } = useStake(jarAddress)
-  const { onUnstake } = useUnstake(jarAddress)
-  const web3 = useWeb3()
+  const { onStake } = useStake(jarAddress, getCurrentNetwork())
+  const { onUnstake } = useUnstake(jarAddress, getCurrentNetwork())
+  const web3 = useWeb3(getCurrentNetwork())
 
   const emptyDivRef = useRef<HTMLDivElement>()
 
@@ -119,80 +121,80 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
 
-  let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
-  if (isSushi===true){
-    addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
+  let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  if (isSushi === true) {
+    addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
-  if (isDfyn===true){
-    addLiquidityUrl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (isDfyn === true) {
+    addLiquidityUrl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (isWault===true){
-    addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (isWault === true) {
+    addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (isApe===true){
-    addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
+  if (isApe === true) {
+    addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
-  if (isJetSwap===true){
-    addLiquidityUrl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (isJetSwap === true) {
+    addLiquidityUrl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (isElk===true){
-    addLiquidityUrl = `${ELK_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'MATIC')}`
+  if (isElk === true) {
+    addLiquidityUrl = `${ELK_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'MATIC')}`
   }
-  if (isFirebird===true){
+  if (isFirebird === true) {
     addLiquidityUrl = `${FIREBIRD_ADD_LIQUIDITY_URL}/${lpAddress}`
   }
-  if (isGravity===true){
-    addLiquidityUrl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress,'ETH')}`
+  if (isGravity === true) {
+    addLiquidityUrl = `${GRAVITY_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
   if (isCafeSwap === true) {
     addLiquidityUrl = `${CAFE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
-  if (quoteToken===token){
+  if (quoteToken === token) {
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
-    if (isApe===true){
+    if (isApe === true) {
       addLiquidityUrl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
-    if (isSushi===true){
+    if (isSushi === true) {
       addLiquidityUrl = `https://app.sushi.com/swap?outputCurrency=${lpAddress}`
     }
-    if (isGravity===true){
+    if (isGravity === true) {
       addLiquidityUrl = `https://gravityfinance.io/swap?outputCurrency=${lpAddress}`
     }
     if (isCafeSwap === true) {
       addLiquidityUrl = `https://polygondex.cafeswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
-    if (token.coingeico==='pwings'){
+    if (token.coingeico === 'pwings') {
       addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
   }
-  if (lpSymbol.toUpperCase()==="PYQ-USDC"){
+  if (lpSymbol.toUpperCase() === "PYQ-USDC") {
     addLiquidityUrl = `https://app.polyquity.org/liquidity`
   }
-  if (token.coingeico==='curve3pool'){
+  if (token.coingeico === 'curve3pool') {
     addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
   }
-  if (token.coingeico==='iron3pool'){
+  if (token.coingeico === 'iron3pool') {
     addLiquidityUrl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
-  if (token.coingeico==='iron4pool'){
+  if (token.coingeico === 'iron4pool') {
     addLiquidityUrl = `https://app.iron.finance/swap/pools/isiron/deposit`
   }
-  if (token.coingeico==='atricrypto'){
+  if (token.coingeico === 'atricrypto') {
     addLiquidityUrl = `https://polygon.curve.fi/atricrypto/deposit`
   }
-  if (token.coingeico==='atricrypto2'){
+  if (token.coingeico === 'atricrypto2') {
     addLiquidityUrl = `https://polygon.curve.fi/atricrypto2/deposit`
   }
-  if (token.coingeico==='atricrypto3'){
+  if (token.coingeico === 'atricrypto3') {
     addLiquidityUrl = `https://polygon.curve.fi/atricrypto3/deposit`
   }
-  if (token.coingeico==='btcrenbtc'){
+  if (token.coingeico === 'btcrenbtc') {
     addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
   }
-  if (token.coingeico==='ghst'){
+  if (token.coingeico === 'ghst') {
     addLiquidityUrl = `https://aavegotchi.com/stake-polygon`
   }
-  if (token.coingeico==='arcadium'){
+  if (token.coingeico === 'arcadium') {
     addLiquidityUrl = `https://stadiumarcadium.farm/addliquidity/`
   }
 
@@ -202,7 +204,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const onDepositClose = () => setDepositIsOpen(false)
   const onWithdrawClose = () => setWithdrawIsOpen(false)
 
-  const lpContract = getBep20Contract(lpAddress, web3)
+  const lpContract = getBep20Contract(lpAddress, getCurrentNetwork(), web3)
 
   const { onApprove } = useApprove(lpContract, jarAddress)
 
