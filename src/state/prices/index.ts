@@ -4,6 +4,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { PriceApiThunk, PriceState, GeicoApiList } from 'state/types'
 import multicall from 'utils/multicall'
 import erc20 from 'config/abi/erc20.json'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
+import { SUPPORTED_CHAINS } from 'config/index'
 
 const initialState: PriceState = {
   isLoading: false,
@@ -15,14 +17,17 @@ const initialState: PriceState = {
 
 // Thunks
 export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async () => {
-//  const response = await fetch('https://api.pancakeswap.info/api/v2/tokens')
-//  const data = (await response.json()) as PriceApiResponse
-//  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd')
-  const data ={"usdc":{"usd":"1.0"}} as GeicoApiList
+  //  const response = await fetch('https://api.pancakeswap.info/api/v2/tokens')
+  //  const data = (await response.json()) as PriceApiResponse
+  //  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd')
+  const data = { "usdc": { "usd": "1.0" } } as GeicoApiList
 
+  /**
+   * POLYGON ADDRESSES
+   */
   // Fetch KogeCoin price from LP pool
   const kogecoinAddr = '0x13748d548D95D78a3c83fe3F32604B4796CFfa23'
-  const maticAddr ='0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
+  const maticAddr = '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
   const usdcAddr = '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
   const ethAddr = '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
   const ethMaticLP = '0xadbF1854e5883eB8aa7BAf50705338739e558E5b'
@@ -134,10 +139,21 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const atricrypto3LP = '0xdAD97F7713Ae9437fa9249920eC8507e5FbB23d3'
   // kogeremaining
   const kogeFund = '0x6A82FdE3033a969cf1ECe48D76aA942E9Fc567Db'
-/*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
-  const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
-*/
-  const curveCalls = [
+  /*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+    const usdtUSDCLP = '0x2cF7252e74036d1Da831d11089D326296e64a728'
+  */
+
+  /**
+   * MOONRIVER ADDRESSES
+   */
+  const movrDai = "0x80a16016cc4a2e6a2caca8a4a498b1699ff0f844"
+  const movrUsdc = "0xe3f5a90f9cb311505cd691a46596599aa1a0ad7d"
+  const movrUsdcDaiLp = "0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53"
+
+  /**
+   * POLYGON CALLS
+   */
+  const polygonCurveCalls = [
     // Curve
     {
       address: am3crvLP,
@@ -275,7 +291,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     },
   ]
 
-  const calls = [
+  const polygonCalls = [
     // Matic Price
     {
       address: maticAddr,
@@ -734,174 +750,200 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       params: [pbrewMaticLP],
     },
   ]
-  const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance,maticFish, wexBalanceLP,usdcWex,miMaticQidaoUSDC,usdcmiMaticQidao, miMaticQidao,qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance, elkBalance, maticBalanceElk, collarBalance, collarMaticBalance, pbrewBalance, pbrewMaticBalance] = await multicall(erc20, calls)
 
-  const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, iron4poolSupply, i3usdIron4pool, ironIron4pool, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto, atricrypto2Supply, amWBTCatricrypto2, amWETHatricrypto2, am3CRVatricrypto2, atricrypto3Supply, amWBTCatricrypto3, amWETHatricrypto3, am3CRVatricrypto3, kogeBal] = await multicall(erc20, curveCalls)
-  // Curve ratio
-  const curveRatio = (amDaiCurve/10**18 + amUSDCCurve/10**6 + amUSDTCurve/10**6)/(curve3poolSupply/10**18)
-  const curveBtcRenBtcRatio = (amWBTCCurve/10**8 + amRenBTCCurve/10**8)/(btcrenbtcSupply/10**18)
-  const ironRatio = (daiIron/10**18 + usdcIron/10**6 + usdtIron/10**6)/(iron3poolSupply/10**18)
-  const iron4PoolRatio = (i3usdIron4pool/10**18*ironRatio + ironIron4pool/10**18)/(iron4poolSupply/10**18)
-  // Get prices in matic/USDC
-  const kogeMatic = kogeBalanceLP/maticTokenBalanceLP*10**9
-  const titanMatic = titanBalanceLP/maticBalanceLP
-  const ethMatic = ethBalance/ethMaticBalance
-  const quickMatic = quickBalance/quickMaticBalance
-  const bootyMatic = bootyBalanceLP/maticBalanceBooty
-  const fishMatic = fishBalance/maticFish
-  const ironUSDC = ironBalanceLP/(usdcBalanceIron*10**12)
-  const wexUSDC = wexBalanceLP/(usdcWex*10**12)
-  const miMaticUSDC = miMaticQidaoUSDC/(usdcmiMaticQidao*10**12)
-  const qidaomiMatic = miMaticQidao/qidaoMiMatic
-  const omenUSDC = omenBalance/(omenUSDCBalance*10**12)
-  const yeldUSDC = yeldBalance/(yeldUSDCBalance*10**12)
-  const crystlMatic = crystlBalance/crystalMaticBalance
-  const pyqUSDC = pyqBalance/(pyqUSDCBalance*10**12)
-  const rollMatic = rollBalance/rollMaticBalance
-  const boneMatic = boneBalance/boneMaticBalance
-  const pupMatic = pupBalance/pupMaticBalance
-  const btcUSDC = btcBalance*10**(18-8)/(btcUSDCBalance*10**12)
-  const boneswapMatic = boneswapBalance/boneswapMaticBalance
-  const pwingsMatic = pwingsBalance/pwingsMaticBalance
-  const gfiEth = gfiBalance/gfiEthBalance
-  const gfiMatic = gfiEth*ethMatic
-  const iceUSDC = iceBalance/(iceUSDCBalance*10**12)
-  const vertUSDC = vertBalance/(vertUSDCBalance*10**12)
-  const crvWETH = crvBalance/crvWETHBalance
-  const dinoUSDC = dinoBalance/(dinoUSDCBalance*10**12)
-  const pswampMatic = pswampBalance/pswampMaticBalance
-  const lithiumMatic = lithiumBalance/lithiumMaticBalance
-  const linkMatic = linkBalance/linkEthBalance*ethMatic
-  const sushiMatic = sushiBalance/sushiEthBalance*ethMatic
-  const ballMatic = ballBalance/ballMaticBalance
-  const bananaMatic = bananaBalance/bananaMaticBalance
-  const myfriendsUSDC = myfriendsBalance/(myfriendsUSDCBalance*10**12)
-  const arcadiumUSDC = arcadiumBalance/(arcadiumUSDCBalance*10**12)
-  const shieldMatic = shieldBalance/shieldMaticBalance
-  const irisMatic = irisBalance/irisMaticBalance
-  const alphaMatic = alphaBalance/alphaMaticBalance
-  const spadeUSDC = spadeBalance/(spadeUSDCBalance*10**12)
-  const elkMatic = elkBalance/maticBalanceElk
-  const collarMatic = collarBalance/collarMaticBalance
-  const pbrewMatic = pbrewBalance/pbrewMaticBalance
-  const kogeRemaining = kogeBal/10**9;
+  /**
+   * MOONRIVER CALLS
+   */
+  const moonriverCalls = [
+    // Solarbeam
+    {
+      address: movrDai,
+      name: 'balanceOf',
+      params: [movrUsdcDaiLp],
+    },
+    {
+      address: movrUsdc,
+      name: 'balanceOf',
+      params: [movrUsdcDaiLp],
+    },
+  ]
 
-  // Get Matic price
-  const maticUSD = (usdcBalanceUM*10**12)/maticBalanceUM
-  const usdcUSD = parseFloat(data.usdc.usd)
-  // Get Koge price in USD
-  const kogeUSD = maticUSD/kogeMatic
-  const titanUSD = maticUSD/titanMatic
-  const bootyUSD = maticUSD/bootyMatic
-  const ethUSD = maticUSD/ethMatic
-  const quickUSD = maticUSD/quickMatic
-  const fishUSD = maticUSD/fishMatic
-  const ironUSD = usdcUSD/ironUSDC
-  const wexUSD = usdcUSD/wexUSDC
-  const miMaticUSD = usdcUSD/miMaticUSDC
-  const qidaoUSD = qidaomiMatic/miMaticUSD
-  const omenUSD = usdcUSD/omenUSDC
-  const yeldUSD = usdcUSD/yeldUSDC
-  const crystlUSD = maticUSD/crystlMatic
-  const pyqUSD = usdcUSD/pyqUSDC
-  const rollUSD = maticUSD/rollMatic
-  const boneUSD = maticUSD/boneMatic
-  const pupUSD = maticUSD/pupMatic
-  const btcUSD = usdcUSD/btcUSDC
-  const boneswapUSD = maticUSD/boneswapMatic
-  const pwingsUSD = maticUSD/pwingsMatic
-  const gfiUSD = maticUSD/gfiMatic
-  const iceUSD = usdcUSD/iceUSDC
-  const crvUSD = ethUSD/crvWETH
-  const vertUSD = usdcUSD/vertUSDC
-  const dinoUSD = usdcUSD/dinoUSDC
-  const pswampUSD = maticUSD/pswampMatic
-  const lithiumUSD = maticUSD/lithiumMatic
-  const linkUSD = maticUSD/linkMatic
-  const sushiUSD = maticUSD/sushiMatic
-  const ballUSD = maticUSD/ballMatic
-  const bananaUSD = maticUSD/bananaMatic
-  const myfriendsUSD = usdcUSD/myfriendsUSDC
-  const arcadiumUSD = usdcUSD/arcadiumUSDC
-  const shieldUSD = maticUSD/shieldMatic
-  const irisUSD = maticUSD/irisMatic
-  const alphaUSD = maticUSD/alphaMatic
-  const spadeUSD = usdcUSD/spadeUSDC
-  const elkUSD = maticUSD/elkMatic
-  const collarUSD = maticUSD/collarMatic
-  const pbrewUSD = maticUSD/pbrewMatic
+  const currentChain = useNetworkSwitcher().getCurrentNetwork()
 
-  // Curve stuff
-  const curve3poolUSD = curveRatio
-  const curveBtcRenBtcUSD = curveBtcRenBtcRatio*btcUSD
-  const iron3poolUSD = ironRatio
-  const iron4poolUSD = iron4PoolRatio
-  const atricryptoValue = amWBTCatricrypto/10**8*btcUSD + amWETHatricrypto/10**18*ethUSD + am3CRVatricrypto/10**18*curveRatio
-  const atricryptoUSD = atricryptoValue/(atricryptoSupply/10**18)
-  const atricrypto2Value = amWBTCatricrypto2/10**8*btcUSD + amWETHatricrypto2/10**18*ethUSD + am3CRVatricrypto2/10**18*curveRatio
-  const atricrypto2USD = atricrypto2Value/(atricrypto2Supply/10**18)
-  const atricrypto3Value = amWBTCatricrypto3/10**8*btcUSD + amWETHatricrypto3/10**18*ethUSD + am3CRVatricrypto3/10**18*curveRatio
-  const atricrypto3USD = atricrypto3Value/(atricrypto3Supply/10**18)
-  // Get Koge LP price
-  const kogeMaticLPUSD = maticTokenBalanceLP*2*maticUSD/totalLPSupply
-  // Get Koge price and Koge LP price
-  data['matic-network'] = {"usd":maticUSD.toString()}
-  data.kogecoin = {"usd":kogeUSD.toString()}
-  data.kogematiclp = {"usd":kogeMaticLPUSD.toString()}
-  data.titan = {"usd":titanUSD.toString()}
-  data.eth = {"usd":ethUSD.toString()}
-  data.quick = {"usd":quickUSD.toString()}
-  data.booty = {"usd":bootyUSD.toString()}
-  data.iron = {"usd":ironUSD.toString()}
-  data.fish = {"usd":fishUSD.toString()}
-  data.wexpoly = {"usd":wexUSD.toString()}
-  data.mimatic = {"usd":miMaticUSD.toString()}
-  data.qidao = {"usd":qidaoUSD.toString()}
-  data.omen = {"usd":omenUSD.toString()}
-  data.yeld = {"usd":yeldUSD.toString()}
-  data.crystl = {"usd":crystlUSD.toString()}
-  data.pyq = {"usd":pyqUSD.toString()}
-  data.roll = {"usd":rollUSD.toString()}
-  data.bone = {"usd":boneUSD.toString()}
-  data.pup = {"usd":pupUSD.toString()}
-  data.btc = {"usd":btcUSD.toString()}
-  data.dai = {"usd":usdcUSD.toString()}
-  data.boneswap = {"usd":boneswapUSD.toString()}
-  data.pwings = {"usd":pwingsUSD.toString()}
-  data.gfi = {"usd":gfiUSD.toString()}
-  data.ice = {"usd":iceUSD.toString()}
-  data.usdt = {"usd":"1.0"}
-  data.ust = {"usd":"1.0"}
-  data.crv = {"usd":crvUSD.toString()}
-  data.curve3pool = {"usd":curve3poolUSD.toString()}
-  data.btcrenbtc = {"usd":curveBtcRenBtcUSD.toString()}
-  data.atricrypto = {"usd":atricryptoUSD.toString()}
-  data.atricrypto2 = {"usd":atricrypto2USD.toString()}
-  data.atricrypto3 = {"usd":atricrypto3USD.toString()}
-  data.iron3pool = {"usd":iron3poolUSD.toString()}
-  data.iron4pool = {"usd":iron4poolUSD.toString()}
-  data.vert = {"usd":vertUSD.toString()}
-  data.dino = {"usd":dinoUSD.toString()}
-  data.pswamp = {"usd":pswampUSD.toString()}
-  data.lithium = {"usd":lithiumUSD.toString()}
-  data.link = {"usd":linkUSD.toString()}
-  data.sushi = {"usd":sushiUSD.toString()}
-  data.ball = {"usd":ballUSD.toString()}
-  data.banana = {"usd":bananaUSD.toString()}
-  data.myfriends = {"usd":myfriendsUSD.toString()}
-  data.arcadium = {"usd":arcadiumUSD.toString()}
-  data.shield = {"usd":shieldUSD.toString()}
-  data.iris = {"usd":irisUSD.toString()}
-  data.alpha = {"usd":alphaUSD.toString()}
-  data.spade = {"usd":spadeUSD.toString()}
-  data.elk = {"usd":elkUSD.toString()}
-  data.collar = {"usd":collarUSD.toString()}
-  data.pbrew = {"usd":pbrewUSD.toString()}
-  data.kogeremaining = {"usd": kogeRemaining.toString()}
+  if (currentChain === SUPPORTED_CHAINS.MATIC) {
+    const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance, maticFish, wexBalanceLP, usdcWex, miMaticQidaoUSDC, usdcmiMaticQidao, miMaticQidao, qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance, elkBalance, maticBalanceElk, collarBalance, collarMaticBalance, pbrewBalance, pbrewMaticBalance] = await multicall(erc20, polygonCalls)
 
+    const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, iron4poolSupply, i3usdIron4pool, ironIron4pool, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto, atricrypto2Supply, amWBTCatricrypto2, amWETHatricrypto2, am3CRVatricrypto2, atricrypto3Supply, amWBTCatricrypto3, amWETHatricrypto3, am3CRVatricrypto3, kogeBal] = await multicall(erc20, curveCalls)
+    // Curve ratio
+    const curveRatio = (amDaiCurve / 10 ** 18 + amUSDCCurve / 10 ** 6 + amUSDTCurve / 10 ** 6) / (curve3poolSupply / 10 ** 18)
+    const curveBtcRenBtcRatio = (amWBTCCurve / 10 ** 8 + amRenBTCCurve / 10 ** 8) / (btcrenbtcSupply / 10 ** 18)
+    const ironRatio = (daiIron / 10 ** 18 + usdcIron / 10 ** 6 + usdtIron / 10 ** 6) / (iron3poolSupply / 10 ** 18)
+    const iron4PoolRatio = (i3usdIron4pool / 10 ** 18 * ironRatio + ironIron4pool / 10 ** 18) / (iron4poolSupply / 10 ** 18)
+    // Get prices in matic/USDC
+    const kogeMatic = kogeBalanceLP / maticTokenBalanceLP * 10 ** 9
+    const titanMatic = titanBalanceLP / maticBalanceLP
+    const ethMatic = ethBalance / ethMaticBalance
+    const quickMatic = quickBalance / quickMaticBalance
+    const bootyMatic = bootyBalanceLP / maticBalanceBooty
+    const fishMatic = fishBalance / maticFish
+    const ironUSDC = ironBalanceLP / (usdcBalanceIron * 10 ** 12)
+    const wexUSDC = wexBalanceLP / (usdcWex * 10 ** 12)
+    const miMaticUSDC = miMaticQidaoUSDC / (usdcmiMaticQidao * 10 ** 12)
+    const qidaomiMatic = miMaticQidao / qidaoMiMatic
+    const omenUSDC = omenBalance / (omenUSDCBalance * 10 ** 12)
+    const yeldUSDC = yeldBalance / (yeldUSDCBalance * 10 ** 12)
+    const crystlMatic = crystlBalance / crystalMaticBalance
+    const pyqUSDC = pyqBalance / (pyqUSDCBalance * 10 ** 12)
+    const rollMatic = rollBalance / rollMaticBalance
+    const boneMatic = boneBalance / boneMaticBalance
+    const pupMatic = pupBalance / pupMaticBalance
+    const btcUSDC = btcBalance * 10 ** (18 - 8) / (btcUSDCBalance * 10 ** 12)
+    const boneswapMatic = boneswapBalance / boneswapMaticBalance
+    const pwingsMatic = pwingsBalance / pwingsMaticBalance
+    const gfiEth = gfiBalance / gfiEthBalance
+    const gfiMatic = gfiEth * ethMatic
+    const iceUSDC = iceBalance / (iceUSDCBalance * 10 ** 12)
+    const vertUSDC = vertBalance / (vertUSDCBalance * 10 ** 12)
+    const crvWETH = crvBalance / crvWETHBalance
+    const dinoUSDC = dinoBalance / (dinoUSDCBalance * 10 ** 12)
+    const pswampMatic = pswampBalance / pswampMaticBalance
+    const lithiumMatic = lithiumBalance / lithiumMaticBalance
+    const linkMatic = linkBalance / linkEthBalance * ethMatic
+    const sushiMatic = sushiBalance / sushiEthBalance * ethMatic
+    const ballMatic = ballBalance / ballMaticBalance
+    const bananaMatic = bananaBalance / bananaMaticBalance
+    const myfriendsUSDC = myfriendsBalance / (myfriendsUSDCBalance * 10 ** 12)
+    const arcadiumUSDC = arcadiumBalance / (arcadiumUSDCBalance * 10 ** 12)
+    const shieldMatic = shieldBalance / shieldMaticBalance
+    const irisMatic = irisBalance / irisMaticBalance
+    const alphaMatic = alphaBalance / alphaMaticBalance
+    const spadeUSDC = spadeBalance / (spadeUSDCBalance * 10 ** 12)
+    const elkMatic = elkBalance / maticBalanceElk
+    const collarMatic = collarBalance / collarMaticBalance
+    const pbrewMatic = pbrewBalance / pbrewMaticBalance
+    const kogeRemaining = kogeBal / 10 ** 9;
+
+    // Get Matic price
+    const maticUSD = (usdcBalanceUM * 10 ** 12) / maticBalanceUM
+    const usdcUSD = parseFloat(data.usdc.usd)
+    // Get Koge price in USD
+    const kogeUSD = maticUSD / kogeMatic
+    const titanUSD = maticUSD / titanMatic
+    const bootyUSD = maticUSD / bootyMatic
+    const ethUSD = maticUSD / ethMatic
+    const quickUSD = maticUSD / quickMatic
+    const fishUSD = maticUSD / fishMatic
+    const ironUSD = usdcUSD / ironUSDC
+    const wexUSD = usdcUSD / wexUSDC
+    const miMaticUSD = usdcUSD / miMaticUSDC
+    const qidaoUSD = qidaomiMatic / miMaticUSD
+    const omenUSD = usdcUSD / omenUSDC
+    const yeldUSD = usdcUSD / yeldUSDC
+    const crystlUSD = maticUSD / crystlMatic
+    const pyqUSD = usdcUSD / pyqUSDC
+    const rollUSD = maticUSD / rollMatic
+    const boneUSD = maticUSD / boneMatic
+    const pupUSD = maticUSD / pupMatic
+    const btcUSD = usdcUSD / btcUSDC
+    const boneswapUSD = maticUSD / boneswapMatic
+    const pwingsUSD = maticUSD / pwingsMatic
+    const gfiUSD = maticUSD / gfiMatic
+    const iceUSD = usdcUSD / iceUSDC
+    const crvUSD = ethUSD / crvWETH
+    const vertUSD = usdcUSD / vertUSDC
+    const dinoUSD = usdcUSD / dinoUSDC
+    const pswampUSD = maticUSD / pswampMatic
+    const lithiumUSD = maticUSD / lithiumMatic
+    const linkUSD = maticUSD / linkMatic
+    const sushiUSD = maticUSD / sushiMatic
+    const ballUSD = maticUSD / ballMatic
+    const bananaUSD = maticUSD / bananaMatic
+    const myfriendsUSD = usdcUSD / myfriendsUSDC
+    const arcadiumUSD = usdcUSD / arcadiumUSDC
+    const shieldUSD = maticUSD / shieldMatic
+    const irisUSD = maticUSD / irisMatic
+    const alphaUSD = maticUSD / alphaMatic
+    const spadeUSD = usdcUSD / spadeUSDC
+    const elkUSD = maticUSD / elkMatic
+    const collarUSD = maticUSD / collarMatic
+    const pbrewUSD = maticUSD / pbrewMatic
+
+    // Curve stuff
+    const curve3poolUSD = curveRatio
+    const curveBtcRenBtcUSD = curveBtcRenBtcRatio * btcUSD
+    const iron3poolUSD = ironRatio
+    const iron4poolUSD = iron4PoolRatio
+    const atricryptoValue = amWBTCatricrypto / 10 ** 8 * btcUSD + amWETHatricrypto / 10 ** 18 * ethUSD + am3CRVatricrypto / 10 ** 18 * curveRatio
+    const atricryptoUSD = atricryptoValue / (atricryptoSupply / 10 ** 18)
+    const atricrypto2Value = amWBTCatricrypto2 / 10 ** 8 * btcUSD + amWETHatricrypto2 / 10 ** 18 * ethUSD + am3CRVatricrypto2 / 10 ** 18 * curveRatio
+    const atricrypto2USD = atricrypto2Value / (atricrypto2Supply / 10 ** 18)
+    const atricrypto3Value = amWBTCatricrypto3 / 10 ** 8 * btcUSD + amWETHatricrypto3 / 10 ** 18 * ethUSD + am3CRVatricrypto3 / 10 ** 18 * curveRatio
+    const atricrypto3USD = atricrypto3Value / (atricrypto3Supply / 10 ** 18)
+    // Get Koge LP price
+    const kogeMaticLPUSD = maticTokenBalanceLP * 2 * maticUSD / totalLPSupply
+    // Get Koge price and Koge LP price
+    data['matic-network'] = { "usd": maticUSD.toString() }
+    data.kogecoin = { "usd": kogeUSD.toString() }
+    data.kogematiclp = { "usd": kogeMaticLPUSD.toString() }
+    data.titan = { "usd": titanUSD.toString() }
+    data.eth = { "usd": ethUSD.toString() }
+    data.quick = { "usd": quickUSD.toString() }
+    data.booty = { "usd": bootyUSD.toString() }
+    data.iron = { "usd": ironUSD.toString() }
+    data.fish = { "usd": fishUSD.toString() }
+    data.wexpoly = { "usd": wexUSD.toString() }
+    data.mimatic = { "usd": miMaticUSD.toString() }
+    data.qidao = { "usd": qidaoUSD.toString() }
+    data.omen = { "usd": omenUSD.toString() }
+    data.yeld = { "usd": yeldUSD.toString() }
+    data.crystl = { "usd": crystlUSD.toString() }
+    data.pyq = { "usd": pyqUSD.toString() }
+    data.roll = { "usd": rollUSD.toString() }
+    data.bone = { "usd": boneUSD.toString() }
+    data.pup = { "usd": pupUSD.toString() }
+    data.btc = { "usd": btcUSD.toString() }
+    data.dai = { "usd": usdcUSD.toString() }
+    data.boneswap = { "usd": boneswapUSD.toString() }
+    data.pwings = { "usd": pwingsUSD.toString() }
+    data.gfi = { "usd": gfiUSD.toString() }
+    data.ice = { "usd": iceUSD.toString() }
+    data.usdt = { "usd": "1.0" }
+    data.ust = { "usd": "1.0" }
+    data.crv = { "usd": crvUSD.toString() }
+    data.curve3pool = { "usd": curve3poolUSD.toString() }
+    data.btcrenbtc = { "usd": curveBtcRenBtcUSD.toString() }
+    data.atricrypto = { "usd": atricryptoUSD.toString() }
+    data.atricrypto2 = { "usd": atricrypto2USD.toString() }
+    data.atricrypto3 = { "usd": atricrypto3USD.toString() }
+    data.iron3pool = { "usd": iron3poolUSD.toString() }
+    data.iron4pool = { "usd": iron4poolUSD.toString() }
+    data.vert = { "usd": vertUSD.toString() }
+    data.dino = { "usd": dinoUSD.toString() }
+    data.pswamp = { "usd": pswampUSD.toString() }
+    data.lithium = { "usd": lithiumUSD.toString() }
+    data.link = { "usd": linkUSD.toString() }
+    data.sushi = { "usd": sushiUSD.toString() }
+    data.ball = { "usd": ballUSD.toString() }
+    data.banana = { "usd": bananaUSD.toString() }
+    data.myfriends = { "usd": myfriendsUSD.toString() }
+    data.arcadium = { "usd": arcadiumUSD.toString() }
+    data.shield = { "usd": shieldUSD.toString() }
+    data.iris = { "usd": irisUSD.toString() }
+    data.alpha = { "usd": alphaUSD.toString() }
+    data.spade = { "usd": spadeUSD.toString() }
+    data.elk = { "usd": elkUSD.toString() }
+    data.collar = { "usd": collarUSD.toString() }
+    data.pbrew = { "usd": pbrewUSD.toString() }
+    data.kogeremaining = { "usd": kogeRemaining.toString() }
+
+  }
+  if (currentChain === SUPPORTED_CHAINS.MOONRIVER) {
+    // Set the prices
+
+  }
   // Return normalized token names
   return {
-//    updated_at: data.updated_at,
+    //    updated_at: data.updated_at,
     data: Object.keys(data).reduce((accum, token) => {
       return {
         ...accum,
@@ -909,6 +951,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       }
     }, {}),
   }
+
 })
 
 export const pricesSlice = createSlice({
@@ -921,7 +964,7 @@ export const pricesSlice = createSlice({
     })
     builder.addCase(fetchPrices.fulfilled, (state, action: PayloadAction<PriceApiThunk>) => {
       state.isLoading = false
-//      state.lastUpdated = action.payload.updated_at
+      //      state.lastUpdated = action.payload.updated_at
       state.data = action.payload.data
     })
   },
