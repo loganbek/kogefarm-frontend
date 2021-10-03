@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
-import web3NoAccount from 'utils/web3'
+import { getWeb3NoAccount } from 'utils/web3'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
@@ -24,7 +24,7 @@ import { SUPPORTED_CHAINS } from 'config/index'
 
 
 const getContract = (abi: any, address: string, chain: SUPPORTED_CHAINS, web3?: Web3) => {
-  const _web3 = web3 ?? web3NoAccount(chain)
+  const _web3 = web3 ?? getWeb3NoAccount(chain)
   if (_web3) {
     return new _web3.eth.Contract(abi as unknown as AbiItem, address)
   }

@@ -6,6 +6,7 @@ import { getNodeUrl } from './getRpcUrl'
 
 
 const getWeb3NoAccount = (chain?: SUPPORTED_CHAINS) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { getCurrentNetwork } = useNetworkSwitcher()
 
   const RPC_URL = getNodeUrl(chain ?? getCurrentNetwork())
@@ -15,5 +16,5 @@ const getWeb3NoAccount = (chain?: SUPPORTED_CHAINS) => {
   return web3NoAccount
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export { getWeb3NoAccount }
-export default getWeb3NoAccount
