@@ -14,6 +14,7 @@ const tokens = {
     address: {
       137: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
       80001: '',
+      1285: '0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D',
     },
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc',
@@ -214,6 +215,7 @@ const tokens = {
     address: {
       137: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
       80001: '',
+      1285: '0x80A16016cC4A2E6a2CACA8a4a498b1699fF0f844',
     },
     decimals: 18,
     projectLink: '',
@@ -812,6 +814,16 @@ const tokens = {
     address: {
       137: '0xB01371072fDcB9B4433b855e16A682B461F94AB3',
       80001: '',
+    },
+    decimals: 18,
+  },
+  solar: {
+    symbol: 'Solar',
+    coingeico: 'solar',
+    address: {
+      137: '',
+      80001: '',
+      1285: '0x6bD193Ee6D2104F14F94E2cA6efefae561A4334B',
     },
     decimals: 18,
   },

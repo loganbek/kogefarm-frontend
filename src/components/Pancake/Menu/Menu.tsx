@@ -175,8 +175,8 @@ const Menu: React.FC<NavProps> = ({
         const quoteTokenPriceUsd = prices[farm.quoteToken.coingeico.toLowerCase()]
         let tokenPriceVsQuote = farm.rewardToken
           ? new BigNumber(prices[farm.rewardToken.coingeico.toLowerCase()]).div(
-              new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()]),
-            )
+            new BigNumber(prices[farm.quoteToken.coingeico.toLowerCase()]),
+          )
           : new BigNumber(farm.tokenPriceVsQuote)
         if (!farm.rewardToken && farm.token === farm.quoteToken) {
           tokenPriceVsQuote = new BigNumber(1)
@@ -185,7 +185,7 @@ const Menu: React.FC<NavProps> = ({
         let totalLiquidity = new BigNumber(farm.quoteTokenAmount).times(2)
         if (farm.token === farm.quoteToken) {
           totalLiquidity = new BigNumber(farm.lpTokenBalanceMC)
-          totalLiquidity = totalLiquidity.times(10 ** (18-decimal))
+          totalLiquidity = totalLiquidity.times(10 ** (18 - decimal))
         }
         const jarLPDeposits = new BigNumber(farm.jarLPDeposits)
         //        const jarRatioNum = new BigNumber(farm.jarRatio)
@@ -207,12 +207,12 @@ const Menu: React.FC<NavProps> = ({
         let { rewardPerBlock, rewardPerBlock1 } = farm
         // Special case: pSwamp
         const masterChefAddress = getAddress(farm.masterChefAddresses)
-        if (masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E'){
+        if (masterChefAddress === '0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress === '0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress === '0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress === '0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress === '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress === '0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress === '0x1c0a0927105140216425c84399E68F8B31E7510E') {
           rewardPerBlock1 *= new BigNumber(farm.lpTokenBalanceMC).toNumber()
         }
 
-        if (farm.rewardToken1){
-          rewardPerBlock = (rewardPerBlock1*prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2*prices[farm.rewardToken2.coingeico.toLowerCase()])/prices[farm.quoteToken.coingeico.toLowerCase()]
+        if (farm.rewardToken1) {
+          rewardPerBlock = (rewardPerBlock1 * prices[farm.rewardToken1.coingeico.toLowerCase()] + farm.rewardPerBlock2 * prices[farm.rewardToken2.coingeico.toLowerCase()]) / prices[farm.quoteToken.coingeico.toLowerCase()]
           tokenPriceVsQuote = new BigNumber(1)
         }
 
@@ -289,18 +289,18 @@ const Menu: React.FC<NavProps> = ({
             isDark={isDark}
             href={homeLink?.href ?? "/"}
           />
-          { !isMobile ? (
-          <Box ml="10px">
-            <Wordmark isDark={isDark} />
-          </Box> ) : null}
+          {!isMobile ? (
+            <Box ml="10px">
+              <Wordmark isDark={isDark} />
+            </Box>) : null}
         </LogoContainer>
 
-        { !isMobile ? (
+        {!isMobile ? (
           <InfoContainer>
             <Stat>
               KogeCoin Price
               {" "}
-              <span>${ kogePrice?.toLocaleString(undefined,{maximumFractionDigits:4}) ?? '-'}</span>
+              <span>${kogePrice?.toLocaleString(undefined, { maximumFractionDigits: 4 }) ?? '-'}</span>
             </Stat>
             <Stat>
               {t('KogeFarm Vault TVL')}
@@ -331,7 +331,7 @@ const Menu: React.FC<NavProps> = ({
           links={links}
         />
         <Inner isPushed={isPushed} showMenu={showMenu}>
-          { children }
+          {children}
         </Inner>
       </BodyWrapper>
     </Wrapper>

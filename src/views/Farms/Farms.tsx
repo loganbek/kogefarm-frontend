@@ -241,7 +241,7 @@ const Farms: React.FC = () => {
   )
 
   const farmsList = useCallback(
-    (farmsToDisplay: Farm[], filterQuery?:boolean): FarmWithStakedValue[] => {
+    (farmsToDisplay: Farm[], filterQuery?: boolean): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         /* DZ Hack
         if (!farm.lpTotalInQuoteToken || !prices) {
@@ -643,7 +643,12 @@ const Farms: React.FC = () => {
 
 
   const handleItemClick = activeIndex => {
-    setMultiSearch(activeIndex)
+    const search = multiSearch
+    if (search.has('platform')) {
+      setMultiSearch(new Set<any>(activeIndex).add('platform'))
+    } else {
+      setMultiSearch(new Set(activeIndex))
+    }
     setIsSearching(!isSearching)
     setSortOption('multi')
   }

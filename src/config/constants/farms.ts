@@ -621,6 +621,33 @@ const farms: FarmConfig[] = [
     kogefarmComment: ' (pBrew)'
   },
 
+  {
+    pid: 266,
+    lpSymbol: 'CRV-DFYN',
+    lpAddresses: {
+      80001: '',
+      137: '0x4Ea3e2cfC39FA51Df85ebcfa366d7f0eED448a1C',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xc7A399EC7Cfe5e1B728cACD742637c4e6F06C3D8',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0x51AC169E6139E3bebaf8D51A8867b921a77E9d99',
+    },
+    token: tokens.dfyn,
+    quoteToken: tokens.crv,
+    rewardPerBlock: 0.023148148148148148 * 2,
+    poolWeightDesignate: 1,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    isDfyn: true,
+    underlyingWebsite: 'https://exchange.dfyn.network/#/eco-farms',
+    platform: 'DFYN'
+  },
+
 
   {
     pid: 198,
@@ -7347,6 +7374,34 @@ const farms: FarmConfig[] = [
 
 export const POLYGON_FARMS: FarmConfig[] = farms
 
-export const MOONRIVER_FARMS: FarmConfig[] = []
+export const MOONRIVER_FARMS: FarmConfig[] = [
+  {
+    pid: 20,
+    lpSymbol: 'USDC-Dai',
+    lpAddresses: {
+      80001: '',
+      137: '0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 8,
+    jarAddresses: {
+      80001: '',
+      137: '0x2a5d9C979deB9da7F5Bb208b94C704e31B18e423',
+    },
+    token: tokens.dai,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95,
+    poolWeightDesignate: 270 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+]
 
 export default farms

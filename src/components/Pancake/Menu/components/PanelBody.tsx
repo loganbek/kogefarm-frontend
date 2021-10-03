@@ -1,15 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { groupBy, uniqueId } from 'lodash'
 import { useLocation } from "react-router-dom";
+import { Tooltip } from "react-tippy";
+import { Text } from "components/Pancake";
+import Divider from "views/Farms/components/Divider";
 import { SvgProps } from "../../Svg";
 import * as IconModule from "../icons";
 import Accordion from "./Accordion";
 import { MenuEntry, LinkLabel, LinkStatus } from "./MenuEntry";
 import MenuLink from "./MenuLink";
 import { PanelProps, PushedProps } from "../types";
-import { Tooltip } from "react-tippy";
-import { Text } from "components/Pancake";
 
 interface Props extends PanelProps, PushedProps {
   isMobile: boolean;
@@ -50,6 +51,7 @@ border-radius: 4px;
 `
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMenu }) => {
+  const theme = useTheme()
   const location = useLocation();
   const groupedLinks = groupBy(links, 'group')
 
@@ -79,7 +81,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
           position="right"
           offset={-500}
           html={(
-            <Tip>
+            <Tip style={{ padding: 12 }}>
               <Text>{title}</Text>
             </Tip>
           )}
@@ -94,7 +96,13 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
     <Container showMenu={showMenu}>
       {Object.entries(groupedLinks).map(([label, items]) => (
         <React.Fragment key={uniqueId('frag-')}>
-          <Title key={uniqueId('title_')}>{label}</Title>
+          {
+            isPushed ? (
+              <Title key={uniqueId('title_')}>{label}</Title>
+            ) : (
+              <Divider style={{ margin: "5px 0px", backgroundColor: theme.colors.tertiary }} />
+            )
+          }
           {items.map(entry => {
             const Icon = Icons[entry.icon];
             const iconElement = <Icon width="24px" mr="8px" />;
