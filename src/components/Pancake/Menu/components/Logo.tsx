@@ -82,7 +82,7 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
           {innerLogo}
         </StyledLink>
       ) : (
-        <StyledLink as="a" href={href} aria-label="KogeFarm home page">
+        <StyledLink to={href} aria-label="KogeFarm home page">
           {innerLogo}
         </StyledLink>
       )}
