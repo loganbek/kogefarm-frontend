@@ -345,11 +345,10 @@ const farms: FarmConfig[] = [
       masterChefPid: 15,
       jarAddresses: {
         80001: '',
-        137: '0x4C389275c52b2A2b07E444cf0223744668A54b52',
+        137: '0x2Cb2c97F28cC58de6bD3d379919dD66Ba1801c65',
       },
       token: tokens.pbrew,
       quoteToken: tokens.paw,
-      rewardToken: tokens.pbrew,
       rewardPerBlock: 15,
       poolWeightDesignate: 100/11550,
       minutesPerCompound: 5,
@@ -374,7 +373,7 @@ const farms: FarmConfig[] = [
         masterChefPid: 18,
         jarAddresses: {
           80001: '',
-          137: '0xAD367134f993D8C2d62A1255FE1252A18d5C78ba',
+          137: '0x9A7D67a685251567B0AEe4CA08402A1A9f8a1D05',
         },
         token: tokens.pbrew,
         quoteToken: tokens.eth,
@@ -386,7 +385,7 @@ const farms: FarmConfig[] = [
         isCafeSwap: true,
         platform: 'CafeSwap',
       },
-    
+
   {
     pid: 255,
     lpSymbol: 'USDC-Matic LP',
@@ -683,7 +682,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'Btc-RenBtc LP',
     lpAddresses: {
       80001: '',
-      137: '0xE439b2eE0F4C9b61AE89c57423cabDb35895Ff45',
+      137: '0x4fd19e59A1041e82aCB3Ecc6773EE99913076868',
     },
     masterChefAddresses: {
       80001: '',
@@ -692,10 +691,10 @@ const farms: FarmConfig[] = [
     masterChefPid: 16,
     jarAddresses: {
       80001: '',
-      137: '0x4C389275c52b2A2b07E444cf0223744668A54b52',
+      137: '0xBa1998aD991DDC36f9f927764d0950F10654cbE7',
     },
-    token: tokens.btc,
-    quoteToken: tokens.renbtc,
+    token: tokens.renbtc,
+    quoteToken: tokens.btc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
     poolWeightDesignate: 100/11550,
@@ -755,6 +754,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.quick,
     quoteToken: tokens.eth,
+    rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
     poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,

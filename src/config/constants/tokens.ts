@@ -827,6 +827,16 @@ const tokens = {
     },
     decimals: 18,
   },
+  paw: {
+    symbol: 'Paw',
+    coingeico: 'paw',
+    address: {
+      137: '0xBC5b59EA1b6f8Da8258615EE38D40e999EC5D74F',
+      80001: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
