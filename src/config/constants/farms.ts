@@ -237,7 +237,7 @@ const farms: FarmConfig[] = [
     rewardToken1: tokens.matic,
     rewardToken2: tokens.crv,
     rewardPerBlock1: 0.0485, // 0.0485
-    rewardPerBlock2: 0.0258, // 
+    rewardPerBlock2: 0.0258, //
     poolWeightDesignate: 1,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
@@ -267,7 +267,7 @@ const farms: FarmConfig[] = [
     token: tokens.pbrew,
     quoteToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 1000/10700,
+    poolWeightDesignate: 1000/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -294,7 +294,7 @@ const farms: FarmConfig[] = [
     token: tokens.pbrew,
     quoteToken: tokens.usdc,
     rewardPerBlock: 15,
-    poolWeightDesignate: 2000/10700,
+    poolWeightDesignate: 2000/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -304,7 +304,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 256,
-    lpSymbol: 'pBrew-WMatic LP',
+    lpSymbol: 'pBrew-Matic LP',
     lpAddresses: {
       80001: '',
       137: '0x4f03233c742Ea20e73b46d5E33242b7770274ab8',
@@ -321,7 +321,7 @@ const farms: FarmConfig[] = [
     token: tokens.pbrew,
     quoteToken: tokens.matic,
     rewardPerBlock: 15,
-    poolWeightDesignate: 3000/10700,
+    poolWeightDesignate: 3000/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -330,6 +330,63 @@ const farms: FarmConfig[] = [
     kogefarmComment: ' (pBrew)'
   },
 
+
+    {
+      pid: 267,
+      lpSymbol: 'pBrew-Paw LP',
+      lpAddresses: {
+        80001: '',
+        137: '0xE439b2eE0F4C9b61AE89c57423cabDb35895Ff45',
+      },
+      masterChefAddresses: {
+        80001: '',
+        137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+      },
+      masterChefPid: 15,
+      jarAddresses: {
+        80001: '',
+        137: '0x4C389275c52b2A2b07E444cf0223744668A54b52',
+      },
+      token: tokens.pbrew,
+      quoteToken: tokens.paw,
+      rewardToken: tokens.pbrew,
+      rewardPerBlock: 15,
+      poolWeightDesignate: 100/11550,
+      minutesPerCompound: 5,
+      kogefarmFee: 0.01,
+      underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+      isCafeSwap: true,
+      platform: 'CafeSwap',
+    },
+
+
+      {
+        pid: 270,
+        lpSymbol: 'pBrew-ETH LP',
+        lpAddresses: {
+          80001: '',
+          137: '0x3EF3a87d745FABCAc255E9352Ea402d20F922C1C',
+        },
+        masterChefAddresses: {
+          80001: '',
+          137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+        },
+        masterChefPid: 18,
+        jarAddresses: {
+          80001: '',
+          137: '0xAD367134f993D8C2d62A1255FE1252A18d5C78ba',
+        },
+        token: tokens.pbrew,
+        quoteToken: tokens.eth,
+        rewardPerBlock: 15,
+        poolWeightDesignate: 500/11550,
+        minutesPerCompound: 5,
+        kogefarmFee: 0.01,
+        underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+        isCafeSwap: true,
+        platform: 'CafeSwap',
+      },
+    
   {
     pid: 255,
     lpSymbol: 'USDC-Matic LP',
@@ -350,7 +407,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.matic,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -380,7 +437,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.matic,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 200/10700,
+    poolWeightDesignate: 200/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -409,7 +466,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -438,7 +495,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -467,7 +524,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 1800/10700,
+    poolWeightDesignate: 1800/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -496,7 +553,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 1800/10700,
+    poolWeightDesignate: 1800/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -525,7 +582,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.eth,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -554,7 +611,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.eth,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -583,7 +640,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.eth,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -612,13 +669,99 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100/10700,
+    poolWeightDesignate: 100/11550,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
     isCafeSwap: true,
     platform: 'CafeSwap',
     kogefarmComment: ' (pBrew)'
+  },
+
+  {
+    pid: 268,
+    lpSymbol: 'Btc-RenBtc LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xE439b2eE0F4C9b61AE89c57423cabDb35895Ff45',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 16,
+    jarAddresses: {
+      80001: '',
+      137: '0x4C389275c52b2A2b07E444cf0223744668A54b52',
+    },
+    token: tokens.btc,
+    quoteToken: tokens.renbtc,
+    rewardToken: tokens.pbrew,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 100/11550,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
+    kogefarmComment: ' (pBrew)'
+  },
+
+  {
+    pid: 269,
+    lpSymbol: 'USDC-USDT LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x7f4cdeA583b6c4dd3241fD6618236FF1fE57f549',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 17,
+    jarAddresses: {
+      80001: '',
+      137: '0xAD367134f993D8C2d62A1255FE1252A18d5C78ba',
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.pbrew,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 50/11550,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
+    kogefarmComment: ' (pBrew)'
+  },
+
+
+  {
+    pid: 271,
+    lpSymbol: 'Eth-Quick LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x6C6aC1C806379877b6a4ea236b47890b9d195aE4',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 19,
+    jarAddresses: {
+      80001: '',
+      137: '0x2E084932ECf2df9ad7841E7838Dd39f47Ea4e695',
+    },
+    token: tokens.quick,
+    quoteToken: tokens.eth,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 100/11550,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
   },
 
   {
