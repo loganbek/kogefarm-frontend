@@ -129,23 +129,23 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
             switch (key) {
               case 'actions':
                 return (
-                  <InView as="td" onChange={onInView} key={key}>
+                  <td key={key}>
                     <CellInner>
                       <CellLayout align={props.actions.align}>
                         <StakedAction {...details} userDataReady={userDataReady} />
                       </CellLayout>
                     </CellInner>
-                  </InView>
+                  </td>
                 )
               case 'details':
                 return (
-                  <td key={key} className="details">
+                  <InView as="td" onChange={onInView} key={key} className="details">
                     <CellInner>
                       <CellLayout align={props.details.align}>
                         <Details actionPanelToggled={actionPanelExpanded} />
                       </CellLayout>
                     </CellInner>
-                  </td>
+                  </InView>
                 )
               case 'apr':
                 return (
