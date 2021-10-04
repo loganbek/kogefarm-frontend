@@ -146,9 +146,12 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   /**
    * MOONRIVER ADDRESSES
    */
+  const movr = "0x98878B06940aE243284CA214f92Bb71a2b032B8A"
   const movrDai = "0x80a16016cc4a2e6a2caca8a4a498b1699ff0f844"
   const movrUsdc = "0xe3f5a90f9cb311505cd691a46596599aa1a0ad7d"
   const movrUsdcDaiLp = "0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53"
+  const solar = "0x6bD193Ee6D2104F14F94E2cA6efefae561A4334B"
+  const solarUSDCLP = "0xdb66BE1005f5Fe1d2f486E75cE3C50B52535F886"
 
   /**
    * POLYGON CALLS
@@ -755,7 +758,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
    * MOONRIVER CALLS
    */
   const moonriverCalls = [
-    // Solarbeam
+    // Dai
     {
       address: movrDai,
       name: 'balanceOf',
@@ -765,6 +768,17 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: movrUsdc,
       name: 'balanceOf',
       params: [movrUsdcDaiLp],
+    },
+    // Solar
+    {
+      address: solar,
+      name: 'balanceOf',
+      params: [solarUSDCLP],
+    },
+    {
+      address: movrUsdc,
+      name: 'balanceOf',
+      params: [solarUSDCLP],
     },
   ]
 
@@ -938,8 +952,21 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
 
   }
   if (currentChain === SUPPORTED_CHAINS.MOONRIVER) {
-    // Set the prices
+    // Get LP pool composition
+    const [daiBalance, daiUSDCBalance, solarBalance, solarUSDCBalance] = await multicall(erc20, moonriverCalls)
 
+    // Get implied prices by quote token
+    const daiUSDC = daiBalance / (daiUSDCBalance * 10 ** 12)
+    const solarUSDC = solarBalance / (solarUSDCBalance * 10 ** 12)
+
+    // Convert to USD
+    const usdcUSD = parseFloat(data.usdc.usd)
+    const daiUSD = usdcUSD / daiUSDC
+    const solarUSD = usdcUSD / solarUSDC
+
+    // Get dollar prices
+    data.dai = { "usd": daiUSD.toString() }
+    data.solar = { "usd": solarUSD.toString() }
   }
   // Return normalized token names
   return {
