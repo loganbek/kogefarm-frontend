@@ -978,7 +978,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polybeta.finance/',
     isJetSwap: true,
-    platform: 'PolyBeta'
+    platform: 'PolyBeta',
+    kogefarmComment: ' (JetSwap)'
   },
 
   {
