@@ -913,7 +913,7 @@ const farms: FarmConfig[] = [
     masterChefPid: 13,
     jarAddresses: {
       80001: '',
-      137: '0x90a1977eD401c86274b87AfD95D0685edD2cE2ca',
+      137: '0xe47b2E9c02EF23B91cdfc1ADbfA9bBb4372d421B',
     },
     token: tokens.alpha,
     quoteToken: tokens.usdc,
