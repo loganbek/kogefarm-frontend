@@ -17,7 +17,7 @@ const dfynGraphURL = 'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5'
 export const fetchFarmsTokenBalanceLP = async (farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farmConfig) => {
     let lpAddress = getAddress(farmConfig.lpAddresses)
-    if (lpAddress==='0x388E2a3d389F27504212030c2D42Abf0a8188cd1'){
+    if (lpAddress === '0x388E2a3d389F27504212030c2D42Abf0a8188cd1') {
       lpAddress = '0xcCB9d2100037f1253e6C1682AdF7dC9944498AFF'
     }
     return { address: getAddress(farmConfig.token.address), name: 'balanceOf', params: [lpAddress] }
@@ -30,7 +30,7 @@ export const fetchFarmsTokenBalanceLP = async (farmsToFetch: FarmConfig[]) => {
 export const fetchFarmsQuoteTokenBalanceLP = async (farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farmConfig) => {
     let lpAddress = getAddress(farmConfig.lpAddresses)
-    if (lpAddress==='0x388E2a3d389F27504212030c2D42Abf0a8188cd1'){
+    if (lpAddress === '0x388E2a3d389F27504212030c2D42Abf0a8188cd1') {
       lpAddress = '0xcCB9d2100037f1253e6C1682AdF7dC9944498AFF'
     }
     return { address: getAddress(farmConfig.quoteToken.address), name: 'balanceOf', params: [lpAddress] }
@@ -44,14 +44,14 @@ export const fetchFarmsLpTokenBalanceMC = async (farmsToFetch: FarmConfig[]) => 
   const calls = farmsToFetch.map((farmConfig) => {
     const masterChefAddress = getAddress(farmConfig.masterChefAddresses)
     const lpAddress = getAddress(farmConfig.lpAddresses)
-    if (masterChefAddress==='0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress==='0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress==='0x1c0a0927105140216425c84399E68F8B31E7510E' || masterChefAddress==='0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress==='0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress==='0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress==='0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress==='0x5b782CfF50BE54e14A8762B689c18AFf39A9c42e' || masterChefAddress==='0x7Da45e3E3218b3A304A79e86c411F2bfd605A8De') {
-      return { address: masterChefAddress, name: 'wantLockedTotal'}
+    if (masterChefAddress === '0xd032Cb7a0225c62E5e26455dFE4eE8C87df254e3' || masterChefAddress === '0x7B6bA2709A597Bcbf7Ff54116c0E88DE5fe2C381' || masterChefAddress === '0x1c0a0927105140216425c84399E68F8B31E7510E' || masterChefAddress === '0x7d39705Cc041111275317f55B3A406ACC83615Bc' || masterChefAddress === '0x0706b1A8A1Eeb12Ce7fb1FFDC9A4b4cA31920Eae' || masterChefAddress === '0x9C515E2489749E2befA0B054EfCb3b34B2c7F432' || masterChefAddress === '0x94BE6A449a5c286734522FC6047484ac763c595C' || masterChefAddress === '0x5b782CfF50BE54e14A8762B689c18AFf39A9c42e' || masterChefAddress === '0x7Da45e3E3218b3A304A79e86c411F2bfd605A8De') {
+      return { address: masterChefAddress, name: 'wantLockedTotal' }
     }
-    if (masterChefAddress==='0x52e7b0C6fB33D3d404b07006b006c8A8D6049C55' || masterChefAddress==='0x80F23e90f8D7d6f5e3f602B1E26C7b5Fa4E530d3') {
-      return { address: masterChefAddress, name: 'stakedDinos'}
+    if (masterChefAddress === '0x52e7b0C6fB33D3d404b07006b006c8A8D6049C55' || masterChefAddress === '0x80F23e90f8D7d6f5e3f602B1E26C7b5Fa4E530d3') {
+      return { address: masterChefAddress, name: 'stakedDinos' }
     }
-    if (farmConfig.platform==='Gravity' && farmConfig.lpSymbol!=='Sushi' && farmConfig.lpSymbol!=='Link'){
-      return { address: masterChefAddress, name: 'totalStakedAmount'}
+    if (farmConfig.platform === 'Gravity' && farmConfig.lpSymbol !== 'Sushi' && farmConfig.lpSymbol !== 'Link') {
+      return { address: masterChefAddress, name: 'totalStakedAmount' }
     }
     return { address: lpAddress, name: 'balanceOf', params: [masterChefAddress] }
   })
@@ -63,7 +63,7 @@ export const fetchFarmsLpTokenBalanceMC = async (farmsToFetch: FarmConfig[]) => 
 export const fetchFarmsLpTotalSupply = async (farmsToFetch: FarmConfig[]) => {
   const calls = farmsToFetch.map((farmConfig) => {
     let lpAddress = getAddress(farmConfig.lpAddresses)
-    if (lpAddress==='0x388E2a3d389F27504212030c2D42Abf0a8188cd1'){
+    if (lpAddress === '0x388E2a3d389F27504212030c2D42Abf0a8188cd1') {
       lpAddress = '0xcCB9d2100037f1253e6C1682AdF7dC9944498AFF'
     }
     return { address: lpAddress, name: 'totalSupply' }

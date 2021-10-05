@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useCheckVaultApprovalStatus } from 'hooks/useApprove'
 import { Pool } from 'state/types'
 import { BIG_ZERO } from 'utils/bigNumber'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import VaultApprovalAction from './VaultApprovalAction'
 import VaultStakeActions from './VaultStakeActions'
 
@@ -22,19 +23,19 @@ const CakeVaultCardActions: React.FC<{
   const { t } = useTranslation()
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
 
-  const { isVaultApproved, setLastUpdated } = useCheckVaultApprovalStatus()
+  const { isVaultApproved, setLastUpdated } = useCheckVaultApprovalStatus(useNetworkSwitcher().getCurrentNetwork())
 
   return (
-  /*  <Box mt="24px" >
-    <Flex >
-    <Text><span>&nbsp;&nbsp;</span></Text>
-    </Flex>
-    </Box>
-    <Box mt="8px" >
-    <Flex>
-    <Text><span>&nbsp;&nbsp;</span></Text>
-    </Flex>
-    </Box> */
+    /*  <Box mt="24px" >
+      <Flex >
+      <Text><span>&nbsp;&nbsp;</span></Text>
+      </Flex>
+      </Box>
+      <Box mt="8px" >
+      <Flex>
+      <Text><span>&nbsp;&nbsp;</span></Text>
+      </Flex>
+      </Box> */
 
     <Flex flexDirection="column">
       <Flex flexDirection="column">

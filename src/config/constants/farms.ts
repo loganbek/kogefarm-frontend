@@ -7380,16 +7380,16 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
     lpSymbol: 'USDC-Dai',
     lpAddresses: {
       80001: '',
-      137: '0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53',
+      1285: '0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53',
     },
     masterChefAddresses: {
       80001: '',
-      137: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
     },
     masterChefPid: 8,
     jarAddresses: {
       80001: '',
-      137: '0x2a5d9C979deB9da7F5Bb208b94C704e31B18e423',
+      1285: '0x2a5d9C979deB9da7F5Bb208b94C704e31B18e423',
     },
     token: tokens.dai,
     quoteToken: tokens.usdc,

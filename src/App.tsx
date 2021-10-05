@@ -8,6 +8,7 @@ import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 // import { useFetchPriceList, useFetchProfile, useFetchPublicData } from 'state/hooks'
 import { useFetchPriceList, useFetchPublicData } from 'state/hooks'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -16,7 +17,6 @@ import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
-import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 // import PrivacyPolicy from './views/PrivacyPolicy'
 // import TermsOfUse from './views/TermsOfUse';
 

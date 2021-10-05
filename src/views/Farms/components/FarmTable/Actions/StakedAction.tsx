@@ -17,7 +17,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, CHAINS } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -92,7 +92,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { getCurrentNetwork } = useNetworkSwitcher()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
-  const jarAddress = jarAddresses[process.env.REACT_APP_CHAIN_ID]
+  const jarAddress = jarAddresses[CHAINS[getCurrentNetwork()].numberChainId]
   const { onStake } = useStake(jarAddress, getCurrentNetwork())
   const { onUnstake } = useUnstake(jarAddress, getCurrentNetwork())
   const web3 = useWeb3(getCurrentNetwork())
@@ -113,7 +113,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
-  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const chain = getCurrentNetwork()
+
+  const lpAddress = lpAddresses[CHAINS[chain].numberChainId]
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
@@ -204,9 +206,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const onDepositClose = () => setDepositIsOpen(false)
   const onWithdrawClose = () => setWithdrawIsOpen(false)
 
-  const lpContract = getBep20Contract(lpAddress, getCurrentNetwork(), web3)
+  const lpContract = getBep20Contract(lpAddress, chain, web3)
 
-  const { onApprove } = useApprove(lpContract, jarAddress)
+  const { onApprove } = useApprove(lpContract, jarAddress, chain)
 
   const handleApprove = useCallback(async () => {
     try {
