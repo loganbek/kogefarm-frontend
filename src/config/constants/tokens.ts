@@ -837,6 +837,16 @@ const tokens = {
     },
     decimals: 18,
   },
+  beta: {
+    symbol: 'Beta',
+    coingeico: 'beta',
+    address: {
+      137: '0xaC3090B7042FCA2cDBF233022e4a9823a032600c',
+      80001: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
