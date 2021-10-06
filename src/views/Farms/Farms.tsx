@@ -352,7 +352,7 @@ const Farms: React.FC = () => {
   )
 
   const userTvl = useMemo(
-    () => farmsList(allFarms, true).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
+    () => farmsList(allFarms, true).map(f => f.userValue).filter(f => f?.toString() !== "NaN").reduce((sum, curr) => sum.plus(curr ?? 0), new BigNumber(0))
     , [allFarms, farmsList]
   )
   const displayUserTVL = userTvl ? (
