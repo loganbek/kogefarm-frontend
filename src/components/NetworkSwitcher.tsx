@@ -27,11 +27,11 @@ function NetworkSwitcher() {
     const [value, setValue] = React.useState<OptionProps>(networks.find(v => v.value === getCurrentNetwork()))
 
     const changeNetwork = async (v: OptionProps) => {
-        await setupNetwork(v.value)
         window.localStorage.removeItem(connectorLocalStorageKey);
         setValue(v)
-        dispatch(setFarms(CHAINS[v.value].farms ?? []))
         setCurrentNetwork(v.value)
+        await setupNetwork(v.value)
+        dispatch(setFarms(CHAINS[v.value].farms ?? []))
     }
 
     return <Select value={value} options={networks} onChange={changeNetwork} />
