@@ -52,7 +52,7 @@ const IconWrapper = styled.div<IconWrapperProps>`
 
 const UserBlockContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.1fr;
   grid-gap: 12px;
   align-items: center;
 `
