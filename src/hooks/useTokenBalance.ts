@@ -7,16 +7,18 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import useWeb3 from './useWeb3'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
+import useNetworkSwitcher from './useNetworkSwitcher'
 
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { account } = useWeb3React()
-  const web3 = useWeb3()
+  const { getCurrentNetwork } = useNetworkSwitcher()
+  const web3 = useWeb3(getCurrentNetwork())
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress, web3)
+      const contract = getBep20Contract(tokenAddress, getCurrentNetwork(), web3)
       const res = await contract.methods.balanceOf(account).call()
       setBalance(new BigNumber(res))
     }
@@ -24,7 +26,7 @@ const useTokenBalance = (tokenAddress: string) => {
     if (account) {
       fetchBalance()
     }
-  }, [account, tokenAddress, web3, fastRefresh])
+  }, [account, tokenAddress, web3, fastRefresh, getCurrentNetwork])
 
   return balance
 }
@@ -49,17 +51,19 @@ const useTokenBalance = (tokenAddress: string) => {
 export const useBurnedBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { slowRefresh } = useRefresh()
-  const web3 = useWeb3()
+  const { getCurrentNetwork } = useNetworkSwitcher()
+
+  const web3 = useWeb3(getCurrentNetwork())
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress, web3)
+      const contract = getBep20Contract(tokenAddress, getCurrentNetwork(), web3)
       const res = await contract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
       setBalance(new BigNumber(res))
     }
 
     fetchBalance()
-  }, [web3, tokenAddress, slowRefresh])
+  }, [web3, tokenAddress, slowRefresh, getCurrentNetwork])
 
   return balance
 }
@@ -68,7 +72,9 @@ export const useGetBnbBalance = () => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
-  const web3 = useWeb3()
+  const { getCurrentNetwork } = useNetworkSwitcher()
+
+  const web3 = useWeb3(getCurrentNetwork())
 
   useEffect(() => {
     const fetchBalance = async () => {

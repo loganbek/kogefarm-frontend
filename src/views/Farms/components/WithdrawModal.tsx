@@ -93,6 +93,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
             try {
               await onConfirm(withdrawBalance)
             } catch (e) {
+              setPendingTx(false)
               toastError(t('Canceled'), t('Please try again and confirm the transaction.'))
             } finally {
               setPendingTx(false)
