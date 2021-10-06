@@ -16,7 +16,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
   const { sousId, stakingToken } = pool
   const { t } = useTranslation()
   const chain = useNetworkSwitcher().getCurrentNetwork()
-  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address, chain) : '', chain)
+  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '', chain)
   const { handleApprove, requestedApproval } = useSousApprove(stakingTokenContract, sousId, chain)
 
   return (

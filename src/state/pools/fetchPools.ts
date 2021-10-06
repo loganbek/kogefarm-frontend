@@ -8,6 +8,7 @@ import multicall from 'utils/multicall'
 import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getSouschefV2Contract } from 'utils/contractHelpers'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 export const fetchPoolsBlockLimits = async () => {
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
@@ -19,7 +20,7 @@ export const fetchPoolsBlockLimits = async () => {
   })
 
   const starts = await multicall(sousChefABI, callsStartBlock)
-//  const ends = await multicall(sousChefABI, callsEndBlock)
+  //  const ends = await multicall(sousChefABI, callsEndBlock)
   const ends = 100000000000
 
   return poolsWithEnd.map((cakePoolConfig, index) => {
@@ -70,7 +71,7 @@ export const fetchPoolsTotalStaking = async () => {
 
 export const fetchPoolStakingLimit = async (sousId: number): Promise<BigNumber> => {
   try {
-    const sousContract = getSouschefV2Contract(sousId)
+    const sousContract = getSouschefV2Contract(sousId, useNetworkSwitcher().getCurrentNetwork())
     const stakingLimit = await sousContract.methods.poolLimitPerUser().call()
     return new BigNumber(stakingLimit)
   } catch (error) {

@@ -17,6 +17,7 @@ import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 interface VaultStakeModalProps {
   pool: Pool
@@ -33,7 +34,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   const dispatch = useAppDispatch()
   const { stakingToken } = pool
   const { account } = useWeb3React()
-  const cakeVaultContract = useCakeVaultContract()
+  const cakeVaultContract = useCakeVaultContract(useNetworkSwitcher().getCurrentNetwork())
   const {
     userData: { lastDepositedTime, userShares },
     pricePerFullShare,
@@ -45,7 +46,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
   const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(lastDepositedTime, 10), 100)
-//  const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(lastDepositedTime, 10), userShares)
+  //  const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(lastDepositedTime, 10), userShares)
   const cakePriceBusd = usePriceCakeBusd()
   const usdValueStaked =
     cakePriceBusd.gt(0) && stakeAmount ? formatNumber(new BigNumber(stakeAmount).times(cakePriceBusd).toNumber()) : ''
