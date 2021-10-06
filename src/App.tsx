@@ -47,8 +47,8 @@ BigNumber.config({
 const App: React.FC = () => {
   const { getCurrentNetwork } = useNetworkSwitcher()
   useEagerConnect(getCurrentNetwork())
-  useFetchPublicData(getCurrentNetwork)
-  useFetchPriceList(getCurrentNetwork)
+  useFetchPublicData(getCurrentNetwork())
+  useFetchPriceList(getCurrentNetwork())
 
   React.useEffect(() => {
     setupNetwork(getCurrentNetwork())
