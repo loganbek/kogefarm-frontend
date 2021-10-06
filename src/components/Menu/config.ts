@@ -111,6 +111,12 @@ export const config: MenuEntry[] = [
     group: 'Stay Tuned',
   },
   {
+    label: 'YouTube',
+    icon: 'YouTubeIcon',
+    href: 'https://www.youtube.com/channel/UCxfG3PjuWkqTCVdiUGVU8Vw',
+    group: 'Stay Tuned',
+  },
+  {
     label: "Telegram",
     icon: "TelegramIcon",
     href: "https://t.me/kogecoin",

@@ -1,17 +1,17 @@
+import { Text } from "components/Pancake";
+import useNetworkSwitcher from "hooks/useNetworkSwitcher";
+import { groupBy, uniqueId } from 'lodash';
 import React from "react";
-import styled, { useTheme } from "styled-components";
-import { entries, groupBy, uniqueId } from 'lodash'
 import { useLocation } from "react-router-dom";
 import { Tooltip } from "react-tippy";
-import { Text } from "components/Pancake";
+import styled, { useTheme } from "styled-components";
 import Divider from "views/Farms/components/Divider";
 import { SvgProps } from "../../Svg";
 import * as IconModule from "../icons";
-import Accordion from "./Accordion";
-import { MenuEntry, LinkLabel, LinkStatus } from "./MenuEntry";
-import MenuLink from "./MenuLink";
 import { PanelProps, PushedProps } from "../types";
-import useNetworkSwitcher from "hooks/useNetworkSwitcher";
+import Accordion from "./Accordion";
+import { LinkLabel, LinkStatus, MenuEntry } from "./MenuEntry";
+import MenuLink from "./MenuLink";
 
 interface Props extends PanelProps, PushedProps {
   isMobile: boolean;

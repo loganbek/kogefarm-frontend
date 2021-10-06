@@ -109,6 +109,12 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const collarMaticLP = '0xbBe5F4998Cc537A91e7b90C7925D1c7C5bAb7ee0'
   const pbrewAddr = '0xb5106A3277718eCaD2F20aB6b86Ce0Fee7A21F09'
   const pbrewMaticLP = '0x4f03233c742Ea20e73b46d5E33242b7770274ab8'
+  const pawAddr = '0xBC5b59EA1b6f8Da8258615EE38D40e999EC5D74F'
+  const pawMaticLP = '0xCdf59DE1d771E265aD8A1571532181e137258f44'
+  const betaAddr = '0xaC3090B7042FCA2cDBF233022e4a9823a032600c'
+  const betaMaticLP = '0x2F2C4A52616663D15E3fACe26Db6305AFe549EDc'
+  //LPTOKENADDRESSHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
+  //HARVESTTOKENADDRESSESHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
   // Curve
   const amDai = '0x27f8d03b3a2196956ed754badc28d73be8830a6e'
   const amUSDC = '0x1a13f4ca1d028320a707d99520abfefca3998b7f'
@@ -137,6 +143,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const atricrypto2LP = '0xbece5d20A8a104c54183CC316C8286E3F00ffC71'
   const poolATriCrypto3 = '0x92215849c439E1f8612b6646060B4E3E5ef822cC'
   const atricrypto3LP = '0xdAD97F7713Ae9437fa9249920eC8507e5FbB23d3'
+  //LPTOKENADDRESSHERE
   // kogeremaining
   const kogeFund = '0x6A82FdE3033a969cf1ECe48D76aA942E9Fc567Db'
   /*  const usdtAddr = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'

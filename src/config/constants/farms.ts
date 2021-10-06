@@ -113,8 +113,8 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.curve3pool,
     rewardToken1: tokens.matic,
     rewardToken2: tokens.crv,
-    rewardPerBlock1: 0.592, // s
-    rewardPerBlock2: 0.158, // 0.158
+    rewardPerBlock1: 0.625, // 0.625
+    rewardPerBlock2: 0.783, // 0.158
     poolWeightDesignate: 1,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
@@ -122,38 +122,38 @@ const farms: FarmConfig[] = [
     underlyingWebsite: 'https://polygon.curve.fi',
     platform: 'Curve'
   },
-
-  {
-    pid: 77,
-    lpSymbol: 'atricrypto',
-    lpAddresses: {
-      80001: '',
-      137: '0x8096ac61db23291252574D49f036f0f9ed8ab390',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xb0a366b987d77b5eD5803cBd95C80bB6DEaB48C0',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      137: '0x7a54BeCc6e4898249F4B4573Ea904F75Cbb17e2F',
-    },
-    token: tokens.atricrypto,
-    quoteToken: tokens.atricrypto,
-    rewardToken1: tokens.matic,
-    rewardToken2: tokens.crv,
-    rewardPerBlock1: 0, // 0.4575
-    rewardPerBlock2: 0, // 0.2901
-    poolWeightDesignate: 1,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    kogefarmComment: ' (Curve)',
-    underlyingWebsite: 'https://polygon.curve.fi',
-    platform: 'Curve',
-    multiplier: '0X'
-  },
   /*
+     {
+       pid: 77,
+       lpSymbol: 'atricrypto',
+       lpAddresses: {
+         80001: '',
+         137: '0x8096ac61db23291252574D49f036f0f9ed8ab390',
+       },
+       masterChefAddresses: {
+         80001: '',
+         137: '0xb0a366b987d77b5eD5803cBd95C80bB6DEaB48C0',
+       },
+       masterChefPid: 0,
+       jarAddresses: {
+         80001: '',
+         137: '0x7a54BeCc6e4898249F4B4573Ea904F75Cbb17e2F',
+       },
+       token: tokens.atricrypto,
+       quoteToken: tokens.atricrypto,
+       rewardToken1: tokens.matic,
+       rewardToken2: tokens.crv,
+       rewardPerBlock1: 0, // 0.4575
+       rewardPerBlock2: 0, // 0.2901
+       poolWeightDesignate: 1,
+       minutesPerCompound: 1,
+       kogefarmFee: 0.01,
+       kogefarmComment: ' (Curve)',
+       underlyingWebsite: 'https://polygon.curve.fi',
+       platform: 'Curve',
+       multiplier: '0X'
+     },
+  
      {
        pid: 166,
        lpSymbol: 'atricrypto2',
@@ -205,8 +205,8 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.atricrypto3,
     rewardToken1: tokens.matic,
     rewardToken2: tokens.crv,
-    rewardPerBlock1: 0.354, // 0.354
-    rewardPerBlock2: 0.171, // 0.171
+    rewardPerBlock1: 0.5105, // 0.5105
+    rewardPerBlock2: 0.1783, // 0.171
     poolWeightDesignate: 1,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
@@ -236,8 +236,8 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.btcrenbtc,
     rewardToken1: tokens.matic,
     rewardToken2: tokens.crv,
-    rewardPerBlock1: 0.153, // 0.153
-    rewardPerBlock2: 0.069, //
+    rewardPerBlock1: 0.0485, // 0.0485
+    rewardPerBlock2: 0.0258, //
     poolWeightDesignate: 1,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
@@ -267,7 +267,7 @@ const farms: FarmConfig[] = [
     token: tokens.pbrew,
     quoteToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 1000 / 10700,
+    poolWeightDesignate: 1000 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -294,7 +294,7 @@ const farms: FarmConfig[] = [
     token: tokens.pbrew,
     quoteToken: tokens.usdc,
     rewardPerBlock: 15,
-    poolWeightDesignate: 2000 / 10700,
+    poolWeightDesignate: 2000 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -304,7 +304,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 256,
-    lpSymbol: 'pBrew-WMatic LP',
+    lpSymbol: 'pBrew-Matic LP',
     lpAddresses: {
       80001: '',
       137: '0x4f03233c742Ea20e73b46d5E33242b7770274ab8',
@@ -321,13 +321,69 @@ const farms: FarmConfig[] = [
     token: tokens.pbrew,
     quoteToken: tokens.matic,
     rewardPerBlock: 15,
-    poolWeightDesignate: 3000 / 10700,
+    poolWeightDesignate: 3000 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
     isCafeSwap: true,
     platform: 'CafeSwap',
     kogefarmComment: ' (pBrew)'
+  },
+
+
+  {
+    pid: 267,
+    lpSymbol: 'pBrew-Paw LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xE439b2eE0F4C9b61AE89c57423cabDb35895Ff45',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 15,
+    jarAddresses: {
+      80001: '',
+      137: '0x2Cb2c97F28cC58de6bD3d379919dD66Ba1801c65',
+    },
+    token: tokens.pbrew,
+    quoteToken: tokens.paw,
+    rewardPerBlock: 20,
+    poolWeightDesignate: 100 / 11520,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
+  },
+
+
+  {
+    pid: 270,
+    lpSymbol: 'pBrew-ETH LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x3EF3a87d745FABCAc255E9352Ea402d20F922C1C',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 18,
+    jarAddresses: {
+      80001: '',
+      137: '0x9A7D67a685251567B0AEe4CA08402A1A9f8a1D05',
+    },
+    token: tokens.pbrew,
+    quoteToken: tokens.eth,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 500 / 11520,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
   },
 
   {
@@ -350,7 +406,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.matic,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -380,7 +436,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.matic,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 200 / 10700,
+    poolWeightDesignate: 200 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -409,7 +465,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -438,7 +494,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -467,7 +523,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 1800 / 10700,
+    poolWeightDesignate: 1800 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -496,7 +552,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 1800 / 10700,
+    poolWeightDesignate: 1800 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -525,7 +581,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.eth,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -554,7 +610,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.eth,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -583,7 +639,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.eth,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
@@ -612,13 +668,317 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.pbrew,
     rewardPerBlock: 15,
-    poolWeightDesignate: 100 / 10700,
+    poolWeightDesignate: 100 / 11520,
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
     isCafeSwap: true,
     platform: 'CafeSwap',
     kogefarmComment: ' (pBrew)'
+  },
+
+  {
+    pid: 268,
+    lpSymbol: 'Btc-RenBtc LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x4fd19e59A1041e82aCB3Ecc6773EE99913076868',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 16,
+    jarAddresses: {
+      80001: '',
+      137: '0xBa1998aD991DDC36f9f927764d0950F10654cbE7',
+    },
+    token: tokens.renbtc,
+    quoteToken: tokens.btc,
+    rewardToken: tokens.pbrew,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 100 / 11520,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
+    kogefarmComment: ' (pBrew)'
+  },
+
+  {
+    pid: 269,
+    lpSymbol: 'USDC-USDT LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x7f4cdeA583b6c4dd3241fD6618236FF1fE57f549',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 17,
+    jarAddresses: {
+      80001: '',
+      137: '0xAD367134f993D8C2d62A1255FE1252A18d5C78ba',
+    },
+    token: tokens.usdt,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.pbrew,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 50 / 11520,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
+    kogefarmComment: ' (pBrew)'
+  },
+
+
+  {
+    pid: 271,
+    lpSymbol: 'Eth-Quick LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x6C6aC1C806379877b6a4ea236b47890b9d195aE4',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xca2DeAc853225f5a4dfC809Ae0B7c6e39104fCe5',
+    },
+    masterChefPid: 19,
+    jarAddresses: {
+      80001: '',
+      137: '0x2E084932ECf2df9ad7841E7838Dd39f47Ea4e695',
+    },
+    token: tokens.quick,
+    quoteToken: tokens.eth,
+    rewardToken: tokens.pbrew,
+    rewardPerBlock: 15,
+    poolWeightDesignate: 100 / 11520,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polygon.cafeswap.finance/farms',
+    isCafeSwap: true,
+    platform: 'CafeSwap',
+  },
+
+  {
+    pid: 272,
+    lpSymbol: 'Beta',
+    lpAddresses: {
+      80001: '',
+      137: '0xaC3090B7042FCA2cDBF233022e4a9823a032600c',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      137: '0x967e9A7A23E68cc6A0e8b98db8C079f133580760',
+    },
+    token: tokens.beta,
+    quoteToken: tokens.beta,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 700 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    platform: 'PolyBeta'
+  },
+
+  {
+    pid: 273,
+    lpSymbol: 'Alpha',
+    lpAddresses: {
+      80001: '',
+      137: '0x0B048D6e01a6b9002C291060bF2179938fd8264c',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 1,
+    jarAddresses: {
+      80001: '',
+      137: '0x9abF2f2acBce703Eaca4430F7E44Ab9098b60C48',
+    },
+    token: tokens.alpha,
+    quoteToken: tokens.alpha,
+    rewardToken: tokens.beta,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 200 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    platform: 'PolyBeta',
+    isJetSwap: true
+  },
+
+  {
+    pid: 274,
+    lpSymbol: 'Spade',
+    lpAddresses: {
+      80001: '',
+      137: '0xf5EA626334037a2cf0155D49eA6462fDdC6Eff19',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      80001: '',
+      137: '0x720726a3546B1f9CF145093bcdc293E149e2e07F',
+    },
+    token: tokens.spade,
+    quoteToken: tokens.spade,
+    rewardToken: tokens.beta,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 150 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    platform: 'PolyBeta'
+  },
+
+  {
+    pid: 275,
+    lpSymbol: 'Beta-USDC LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xa305A860BC0B2255dC10340E98190a6E8992b967',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 11,
+    jarAddresses: {
+      80001: '',
+      137: '0x57bc21ff1236A3fDE7164FCe75c97E3e0714CCB5',
+    },
+    token: tokens.beta,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.beta,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 2000 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    platform: 'PolyBeta'
+  },
+
+  {
+    pid: 276,
+    lpSymbol: 'Beta-Matic LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x2F2C4A52616663D15E3fACe26Db6305AFe549EDc',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 12,
+    jarAddresses: {
+      80001: '',
+      137: '0x0DCc3Cd939e347dAaaA5b5729E6A2DAf52E4F402',
+    },
+    token: tokens.beta,
+    quoteToken: tokens.matic,
+    rewardToken: tokens.beta,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 800 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    platform: 'PolyBeta'
+  },
+
+  {
+    pid: 277,
+    lpSymbol: 'Alpha-USDC LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x944a8B12D898E878F92cfC18eee5E6f3f7e2E70d',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 13,
+    jarAddresses: {
+      80001: '',
+      137: '0xe47b2E9c02EF23B91cdfc1ADbfA9bBb4372d421B',
+    },
+    token: tokens.alpha,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.beta,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 300 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    isJetSwap: true,
+    platform: 'PolyBeta'
+  },
+
+  {
+    pid: 278,
+    lpSymbol: 'Beta-KogeCoin LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x83B6f8B40AA5FE76B2bbA0dF5073112785Bd7f49',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 14,
+    jarAddresses: {
+      80001: '',
+      137: '0xEab5DAC8E6E3da7679b2a01FCD17DBE1Ed519904',
+    },
+    token: tokens.beta,
+    quoteToken: tokens.kogecoin,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 700 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    platform: 'PolyBeta'
+  },
+
+  {
+    pid: 279,
+    lpSymbol: 'Beta-USDC LP',
+    lpAddresses: {
+      80001: '',
+      137: '0xeB4EDB0a3802FFb6Fa7F0a9635a112dcB1774B03',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0x9581EA83B4BCd5F2c5f1705382FBd80a11E57DcD',
+    },
+    masterChefPid: 15,
+    jarAddresses: {
+      80001: '',
+      137: '0x1ddE2a134E4dE3D0c85bb3f0816f343B9a861B64',
+    },
+    token: tokens.beta,
+    quoteToken: tokens.usdc,
+    rewardPerBlock: 0.0131,
+    poolWeightDesignate: 2640 / 10000,
+    minutesPerCompound: 5,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polybeta.finance/',
+    isJetSwap: true,
+    platform: 'PolyBeta',
+    kogefarmComment: ' (JetSwap)'
   },
 
   {
@@ -1282,34 +1642,34 @@ const farms: FarmConfig[] = [
     platform: 'PolyShield',
     isElk: true,
   },
-
-  {
-    pid: 196,
-    lpSymbol: 'KogeCoin-Matic LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x3885503aEF5E929fCB7035FBDcA87239651C8154',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      137: '0x48f5D07501A58Cb6fE35da305697c269Dc6944A2',
-    },
-    token: tokens.kogecoin,
-    quoteToken: tokens.matic,
-    rewardPerBlock: 2.8,
-    poolWeightDesignate: 1 / 2,
-    minutesPerCompound: 5,
-    kogefarmFee: 0,
-    underlyingWebsite: 'https://kogecoin.io',
-    platform: 'Koge',
-    multiplier: '0X',
-  },
-
+  /*
+            {
+              pid: 196,
+              lpSymbol: 'KogeCoin-Matic LP',
+              lpAddresses: {
+                80001: '',
+                137: '0x3885503aEF5E929fCB7035FBDcA87239651C8154',
+              },
+              masterChefAddresses: {
+                80001: '',
+                137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
+              },
+              masterChefPid: 0,
+              jarAddresses: {
+                80001: '',
+                137: '0x48f5D07501A58Cb6fE35da305697c269Dc6944A2',
+              },
+              token: tokens.kogecoin,
+              quoteToken: tokens.matic,
+              rewardPerBlock: 2.8,
+              poolWeightDesignate: 1/2,
+              minutesPerCompound: 5,
+              kogefarmFee: 0,
+              underlyingWebsite: 'https://kogecoin.io',
+              platform: 'Koge',
+              multiplier: '0X',
+            },
+  */
   {
     pid: 192,
     lpSymbol: 'Iris',
@@ -1333,7 +1693,8 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://www.hermesdefi.io/app/pools',
-    platform: 'Hermes Defi'
+    platform: 'Hermes Defi',
+    multiplier: '0X',
   },
 
   {
@@ -1359,7 +1720,8 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://www.hermesdefi.io/app/pools',
-    platform: 'Hermes Defi'
+    platform: 'Hermes Defi',
+    multiplier: '0X',
   },
 
   {
@@ -1385,7 +1747,8 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 5,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://www.hermesdefi.io/app/pools',
-    platform: 'Hermes Defi'
+    platform: 'Hermes Defi',
+    multiplier: '0X',
   },
 
   {
@@ -1558,37 +1921,37 @@ const farms: FarmConfig[] = [
     kogefarmComment: ' (JetSwap)',
     multiplier: '0X',
   },
-
-  {
-    pid: 214,
-    lpSymbol: 'Spade-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x8f2172568Ad3b2024b8CB29b03279E4b3d4849c8',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x0B14C435DC29f2e3F53E203a18077F4A41914870',
-    },
-    masterChefPid: 13,
-    jarAddresses: {
-      80001: '',
-      137: '0xeE0B5e8d2187DAeeAD591b3F51b2C9ed8452f28E',
-    },
-    token: tokens.spade,
-    quoteToken: tokens.usdc,
-    rewardToken: tokens.alpha,
-    rewardPerBlock: 0,
-    poolWeightDesignate: 140 / 10000,
-    minutesPerCompound: 5,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://polyalpha.finance/farms',
-    platform: 'PolyAlpha',
-    isApe: true,
-    kogefarmComment: ' (ApeSwap)',
-    multiplier: '0X',
-  },
-
+  /*
+            {
+              pid: 214,
+              lpSymbol: 'Spade-USDC LP',
+              lpAddresses: {
+                80001: '',
+                137: '0x8f2172568Ad3b2024b8CB29b03279E4b3d4849c8',
+              },
+              masterChefAddresses: {
+                80001: '',
+                137: '0x0B14C435DC29f2e3F53E203a18077F4A41914870',
+              },
+              masterChefPid: 13,
+              jarAddresses: {
+                80001: '',
+                137: '0xeE0B5e8d2187DAeeAD591b3F51b2C9ed8452f28E',
+              },
+              token: tokens.spade,
+              quoteToken: tokens.usdc,
+              rewardToken: tokens.alpha,
+              rewardPerBlock: 0,
+              poolWeightDesignate: 140/10000,
+              minutesPerCompound: 5,
+              kogefarmFee: 0.01,
+              underlyingWebsite: 'https://polyalpha.finance/farms',
+              platform: 'PolyAlpha',
+              isApe: true,
+              kogefarmComment: ' (ApeSwap)',
+              multiplier: '0X',
+            },
+  */
 
   {
     pid: 224,
@@ -2211,34 +2574,34 @@ const farms: FarmConfig[] = [
     platform: 'Gravity',
     isGravity: true,
   },
-
-  {
-    pid: 88,
-    lpSymbol: 'GFI-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0xb1f3555A7c3753AB4E6DF1d66CFDB25477a36Ce7',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x037013d0952a0215CC235F176e9eb88E6a465970',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      137: '0x7F75a9924066Fff7c97B150cB5119D5F9C8FD0E4',
-    },
-    token: tokens.gfi,
-    quoteToken: tokens.usdc,
-    rewardPerBlock: 17.361111111111100000,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 5,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://gravityfinance.io/',
-    multiplier: '0X',
-    platform: 'Gravity (legacy)'
-  },
   /*
+          {
+            pid: 88,
+            lpSymbol: 'GFI-USDC LP',
+            lpAddresses: {
+              80001: '',
+              137: '0xb1f3555A7c3753AB4E6DF1d66CFDB25477a36Ce7',
+            },
+            masterChefAddresses: {
+              80001: '',
+              137: '0x037013d0952a0215CC235F176e9eb88E6a465970',
+            },
+            masterChefPid: 0,
+            jarAddresses: {
+              80001: '',
+              137: '0x7F75a9924066Fff7c97B150cB5119D5F9C8FD0E4',
+            },
+            token: tokens.gfi,
+            quoteToken: tokens.usdc,
+            rewardPerBlock: 17.361111111111100000,
+            poolWeightDesignate: 1,
+            minutesPerCompound: 5,
+            kogefarmFee: 0.01,
+            underlyingWebsite: 'https://gravityfinance.io/',
+            multiplier: '0X',
+            platform: 'Gravity (legacy)'
+          },
+  
           {
             pid: 89,
             lpSymbol: 'GFI-ETH LP',
@@ -5363,72 +5726,72 @@ const farms: FarmConfig[] = [
     platform: 'SA',
     multiplier: '0X',
   },
-
-  {
-    pid: 160,
-    lpSymbol: 'ETH',
-    lpAddresses: {
-      80001: '',
-      137: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x9DD1fe32Aff4060c12E2b42961548876053187c6',
-    },
-    masterChefPid: 15,
-    jarAddresses: {
-      80001: '',
-      137: '0x51eEEb529b647EdD27fced366D15F52bf668e419',
-    },
-    token: tokens.eth,
-    quoteToken: tokens.eth,
-    rewardToken1: tokens.arcadium,
-    rewardToken2: tokens.myfriends,
-    rewardPerBlock1: 0 * 16000 / 398450, // 0.8064
-    rewardPerBlock2: 0 * 16000 / 398450,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 5,
-    kogefarmFee: 0.01,
-    depositFee: 0.04,
-    kogefarmComment: ' (Stadium Arcadium)',
-    underlyingWebsite: 'https://stadiumarcadium.farm/',
-    platform: 'SA',
-    multiplier: '0X',
-  },
-
-
-  {
-    pid: 161,
-    lpSymbol: 'BTC',
-    lpAddresses: {
-      80001: '',
-      137: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x9DD1fe32Aff4060c12E2b42961548876053187c6',
-    },
-    masterChefPid: 16,
-    jarAddresses: {
-      80001: '',
-      137: '0x2C61069B2e429F132CeF57D28aC58F4fA91B1dE1',
-    },
-    token: tokens.btc,
-    quoteToken: tokens.btc,
-    rewardToken1: tokens.arcadium,
-    rewardToken2: tokens.myfriends,
-    rewardPerBlock1: 0 * 13500 / 398450, // 0.8064
-    rewardPerBlock2: 0 * 13500 / 398450,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 5,
-    kogefarmFee: 0.01,
-    depositFee: 0.04,
-    kogefarmComment: ' (Stadium Arcadium)',
-    underlyingWebsite: 'https://stadiumarcadium.farm/',
-    platform: 'SA',
-    multiplier: '0X',
-  },
-
+  /*
+            {
+              pid: 160,
+              lpSymbol: 'ETH',
+              lpAddresses: {
+                80001: '',
+                137: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+              },
+              masterChefAddresses: {
+                80001: '',
+                137: '0x9DD1fe32Aff4060c12E2b42961548876053187c6',
+              },
+              masterChefPid: 15,
+              jarAddresses: {
+                80001: '',
+                137: '0x51eEEb529b647EdD27fced366D15F52bf668e419',
+              },
+              token: tokens.eth,
+              quoteToken: tokens.eth,
+              rewardToken1: tokens.arcadium,
+              rewardToken2: tokens.myfriends,
+              rewardPerBlock1: 0*16000/398450, // 0.8064
+              rewardPerBlock2: 0*16000/398450,
+              poolWeightDesignate: 1,
+              minutesPerCompound: 5,
+              kogefarmFee: 0.01,
+              depositFee: 0.04,
+              kogefarmComment: ' (Stadium Arcadium)',
+              underlyingWebsite: 'https://stadiumarcadium.farm/',
+              platform: 'SA',
+              multiplier: '0X',
+            },
+  */
+  /*
+            {
+              pid: 161,
+              lpSymbol: 'BTC',
+              lpAddresses: {
+                80001: '',
+                137: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+              },
+              masterChefAddresses: {
+                80001: '',
+                137: '0x9DD1fe32Aff4060c12E2b42961548876053187c6',
+              },
+              masterChefPid: 16,
+              jarAddresses: {
+                80001: '',
+                137: '0x2C61069B2e429F132CeF57D28aC58F4fA91B1dE1',
+              },
+              token: tokens.btc,
+              quoteToken: tokens.btc,
+              rewardToken1: tokens.arcadium,
+              rewardToken2: tokens.myfriends,
+              rewardPerBlock1: 0*13500/398450, // 0.8064
+              rewardPerBlock2: 0*13500/398450,
+              poolWeightDesignate: 1,
+              minutesPerCompound: 5,
+              kogefarmFee: 0.01,
+              depositFee: 0.04,
+              kogefarmComment: ' (Stadium Arcadium)',
+              underlyingWebsite: 'https://stadiumarcadium.farm/',
+              platform: 'SA',
+              multiplier: '0X',
+            },
+  */
 
   {
     pid: 127,
@@ -5540,36 +5903,36 @@ const farms: FarmConfig[] = [
     platform: 'PolyPup',
     multiplier: '0X',
   },
-
-  {
-    pid: 124,
-    lpSymbol: 'Pup-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x767f8BD67a5f133BdDF3b285c5E2FD3D157A2cdC',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xB5F383998d4E58C140c15C441c75bB79170b6b45',
-    },
-    masterChefPid: 3,
-    jarAddresses: {
-      80001: '',
-      137: '0xB38f6067703c924602C6c316E9193bE547cd7a01',
-    },
-    token: tokens.pup,
-    quoteToken: tokens.usdc,
-    rewardToken: tokens.ball,
-    rewardPerBlock: 0,
-    poolWeightDesignate: 1500 / 69100,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://ball.polypup.finance/',
-    kogefarmComment: ' (Ball)',
-    platform: 'PolyPup',
-    multiplier: '0X',
-  },
-
+  /*
+            {
+              pid: 124,
+              lpSymbol: 'Pup-USDC LP',
+              lpAddresses: {
+                80001: '',
+                137: '0x767f8BD67a5f133BdDF3b285c5E2FD3D157A2cdC',
+              },
+              masterChefAddresses: {
+                80001: '',
+                137: '0xB5F383998d4E58C140c15C441c75bB79170b6b45',
+              },
+              masterChefPid: 3,
+              jarAddresses: {
+                80001: '',
+                137: '0xB38f6067703c924602C6c316E9193bE547cd7a01',
+              },
+              token: tokens.pup,
+              quoteToken: tokens.usdc,
+              rewardToken: tokens.ball,
+              rewardPerBlock: 0,
+              poolWeightDesignate: 1500/69100,
+              minutesPerCompound: 1,
+              kogefarmFee: 0.01,
+              underlyingWebsite: 'https://ball.polypup.finance/',
+              kogefarmComment: ' (Ball)',
+              platform: 'PolyPup',
+              multiplier: '0X',
+            },
+  */
   {
     pid: 125,
     lpSymbol: 'Mai(miMatic)-USDC LP',
@@ -5719,37 +6082,37 @@ const farms: FarmConfig[] = [
     platform: 'PolyPup',
     multiplier: '0X',
   },
-
-  {
-    pid: 131,
-    lpSymbol: 'Btc',
-    lpAddresses: {
-      80001: '',
-      137: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xB5F383998d4E58C140c15C441c75bB79170b6b45',
-    },
-    masterChefPid: 16,
-    jarAddresses: {
-      80001: '',
-      137: '0xAFBFB2Bc9C0C00781993B203f43605966C8cD637',
-    },
-    token: tokens.btc,
-    quoteToken: tokens.btc,
-    rewardToken: tokens.ball,
-    rewardPerBlock: 0,
-    poolWeightDesignate: 1800 / 69100,
-    minutesPerCompound: 1,
-    depositFee: 0.04,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://ball.polypup.finance/',
-    kogefarmComment: ' (Ball)',
-    platform: 'PolyPup',
-    multiplier: '0X',
-  },
-
+  /*
+            {
+              pid: 131,
+              lpSymbol: 'Btc',
+              lpAddresses: {
+                80001: '',
+                137: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+              },
+              masterChefAddresses: {
+                80001: '',
+                137: '0xB5F383998d4E58C140c15C441c75bB79170b6b45',
+              },
+              masterChefPid: 16,
+              jarAddresses: {
+                80001: '',
+                137: '0xAFBFB2Bc9C0C00781993B203f43605966C8cD637',
+              },
+              token: tokens.btc,
+              quoteToken: tokens.btc,
+              rewardToken: tokens.ball,
+              rewardPerBlock: 0,
+              poolWeightDesignate: 1800/69100,
+              minutesPerCompound: 1,
+              depositFee: 0.04,
+              kogefarmFee: 0.01,
+              underlyingWebsite: 'https://ball.polypup.finance/',
+              kogefarmComment: ' (Ball)',
+              platform: 'PolyPup',
+              multiplier: '0X',
+            },
+  */
   {
     pid: 132,
     lpSymbol: 'Dai',
@@ -6035,36 +6398,36 @@ const farms: FarmConfig[] = [
     platform: 'PolyPup',
     multiplier: '0X',
   },
-
-  {
-    pid: 58,
-    lpSymbol: 'Pup-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x767f8BD67a5f133BdDF3b285c5E2FD3D157A2cdC',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x9DcB2D5e7b5212fAF98e4a152827fd76bD55f68b',
-    },
-    masterChefPid: 2,
-    jarAddresses: {
-      80001: '',
-      137: '0xc5CeE98D8B8b273398000f69fC31C6fFD2a37E08',
-    },
-    token: tokens.pup,
-    quoteToken: tokens.usdc,
-    rewardPerBlock: 0,
-    poolWeightDesignate: 1500 / 46500,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    rewardToken: tokens.bone,
-    kogefarmComment: ' (Bone)',
-    underlyingWebsite: 'https://bone.polypup.finance',
-    platform: 'PolyPup',
-    multiplier: '0X',
-  },
-
+  /*
+     {
+       pid: 58,
+       lpSymbol: 'Pup-USDC LP',
+       lpAddresses: {
+         80001: '',
+         137: '0x767f8BD67a5f133BdDF3b285c5E2FD3D157A2cdC',
+       },
+       masterChefAddresses: {
+         80001: '',
+         137: '0x9DcB2D5e7b5212fAF98e4a152827fd76bD55f68b',
+       },
+       masterChefPid: 2,
+       jarAddresses: {
+         80001: '',
+         137: '0xc5CeE98D8B8b273398000f69fC31C6fFD2a37E08',
+       },
+       token: tokens.pup,
+       quoteToken: tokens.usdc,
+       rewardPerBlock: 0,
+       poolWeightDesignate: 1500/46500,
+       minutesPerCompound: 1,
+       kogefarmFee: 0.01,
+       rewardToken: tokens.bone,
+       kogefarmComment: ' (Bone)',
+       underlyingWebsite: 'https://bone.polypup.finance',
+       platform: 'PolyPup',
+       multiplier: '0X',
+     },
+  */
   {
     pid: 47,
     lpSymbol: 'WMatic-USDC LP',
@@ -6094,37 +6457,37 @@ const farms: FarmConfig[] = [
     platform: 'PolyPup',
     multiplier: '0X',
   },
-
-  {
-    pid: 48,
-    lpSymbol: 'WEth-USDC LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x853Ee4b2A13f8a742d64C8F088bE7bA2131f670d',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x9DcB2D5e7b5212fAF98e4a152827fd76bD55f68b',
-    },
-    masterChefPid: 5,
-    jarAddresses: {
-      80001: '',
-      137: '0x11F75EF77f15EfFd7ad72F99FC5C5Ab4e97E8Acc',
-    },
-    token: tokens.eth,
-    quoteToken: tokens.usdc,
-    rewardPerBlock: 0,
-    poolWeightDesignate: 1500 / 46500,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    rewardToken: tokens.bone,
-    kogefarmComment: ' (Bone)',
-    depositFee: 0.04,
-    underlyingWebsite: 'https://bone.polypup.finance',
-    platform: 'PolyPup',
-    multiplier: '0X',
-  },
-
+  /*
+     {
+       pid: 48,
+       lpSymbol: 'WEth-USDC LP',
+       lpAddresses: {
+         80001: '',
+         137: '0x853Ee4b2A13f8a742d64C8F088bE7bA2131f670d',
+       },
+       masterChefAddresses: {
+         80001: '',
+         137: '0x9DcB2D5e7b5212fAF98e4a152827fd76bD55f68b',
+       },
+       masterChefPid: 5,
+       jarAddresses: {
+         80001: '',
+         137: '0x11F75EF77f15EfFd7ad72F99FC5C5Ab4e97E8Acc',
+       },
+       token: tokens.eth,
+       quoteToken: tokens.usdc,
+       rewardPerBlock: 0,
+       poolWeightDesignate: 1500/46500,
+       minutesPerCompound: 1,
+       kogefarmFee: 0.01,
+       rewardToken: tokens.bone,
+       kogefarmComment: ' (Bone)',
+       depositFee: 0.04,
+       underlyingWebsite: 'https://bone.polypup.finance',
+       platform: 'PolyPup',
+       multiplier: '0X',
+     },
+  */
   {
     pid: 49,
     lpSymbol: 'Bone',
@@ -7358,7 +7721,7 @@ const farms: FarmConfig[] = [
     multiplier: '0X',
     platform: 'Iron'
   },
-
+  //NEXTFARMHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
 
   /*  {
       pid: 2,

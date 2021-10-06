@@ -190,9 +190,9 @@ const Farms: React.FC = () => {
   const userDataReady = !account || (!!account && userDataLoaded)
 
   const [stakedOnly, setStakedOnly] = useState(!isActive)
-  // useEffect(() => {
-  //   setStakedOnly(!isActive)
-  // }, [isActive])
+  useEffect(() => {
+    setStakedOnly(!isActive)
+  }, [isActive])
 
   useEffect(() => {
     // Makes the main scheduled fetching to request archived farms data

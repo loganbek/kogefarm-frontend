@@ -10,6 +10,19 @@ import styled, { css } from 'styled-components';
 import Row, { RowProps } from './Row';
 
 
+const roundBigNumber = (num: number) => {
+  const _roundAndFormat = (pow: number, suffix: string) => `${Number((num / (10 ** pow)).toFixed(2)).toLocaleString('en-US', { maximumFractionDigits: 2 })}${suffix}`
+  if (num > 10 ** 9) {
+    return _roundAndFormat(9, "B")
+  }
+
+  if (num > 10 ** 6) {
+    return _roundAndFormat(6, "M")
+  }
+
+  return num.toLocaleString('en-US', { maximumFractionDigits: 2 })
+}
+
 export interface ITableProps {
   data: RowProps[]
   columns: ColumnType<RowProps>[]
@@ -185,7 +198,18 @@ const FarmTable: React.FC<ITableProps> = props => {
       }
     }
 
-    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc").slice(0, showMore)
+    return _.orderBy(_rows, order, colSortBy.iscAscOverride ? "desc" : "asc")
+      .slice(0, showMore)
+      .map(r => ({
+        ...r,
+        original: {
+          ...r.original,
+          apy: {
+            ...r.original.apy,
+            value: r.original.apy.originalValue !== Number.POSITIVE_INFINITY ? roundBigNumber(r.original.apy.originalValue) : r.original.apy.value
+          }
+        }
+      }))
   }, [_rows, colSortBy, showMore])
 
 
