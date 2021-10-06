@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
-import { CHAINS, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { CHAINS, DEFAULT_TOKEN_DECIMAL, SUPPORTED_CHAINS } from 'config'
 import { FarmConfig } from 'config/constants/types'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import { BIG_TEN } from 'utils/bigNumber'
@@ -18,7 +18,7 @@ import {
 
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const nonArchivedFarms = CHAINS[useNetworkSwitcher().getCurrentNetwork()].farms.filter(({ pid }) => !isArchivedPid(pid))
+const nonArchivedFarms = (chain: SUPPORTED_CHAINS) => CHAINS[chain].farms.filter(({ pid }) => !isArchivedPid(pid))
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const noAccountFarmConfig = CHAINS[useNetworkSwitcher().getCurrentNetwork()].farms.map((farm) => ({
@@ -142,8 +142,9 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
 } */
 
 export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
+  const chain = useNetworkSwitcher().getCurrentNetwork()
   const fetchArchived = getState().farms.loadArchivedFarmsData
-  const farmsToFetch = fetchArchived ? CHAINS[useNetworkSwitcher().getCurrentNetwork()].farms : nonArchivedFarms
+  const farmsToFetch = fetchArchived ? CHAINS[chain].farms : nonArchivedFarms(chain)
   const farms = await fetchFarms(farmsToFetch)
   const farmTokenBalanceLP = await fetchFarmsTokenBalanceLP(farmsToFetch)
   const farmQuoteTokenBalanceLP = await fetchFarmsQuoteTokenBalanceLP(farmsToFetch)
@@ -200,8 +201,9 @@ export const fetchFarmsPublicDataAsync = () => async (dispatch, getState) => {
 
 
 export const fetchFarmUserDataAsync = (account: string) => async (dispatch, getState) => {
+  const chain = useNetworkSwitcher().getCurrentNetwork()
   const fetchArchived = getState().farms.loadArchivedFarmsData
-  const farmsToFetch = fetchArchived ? CHAINS[useNetworkSwitcher().getCurrentNetwork()].farms : nonArchivedFarms
+  const farmsToFetch = fetchArchived ? CHAINS[chain].farms : nonArchivedFarms(chain)
   const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
   const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
   const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
