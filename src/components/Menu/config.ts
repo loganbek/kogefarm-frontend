@@ -1,4 +1,5 @@
 import { MenuEntry } from 'components/Pancake'
+import { SUPPORTED_CHAINS } from 'config/index';
 
 export const config: MenuEntry[] = [
   {
@@ -12,6 +13,7 @@ export const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: 'farms',
     group: '',
+    disabled: [SUPPORTED_CHAINS.MOONRIVER]
   },
   {
     label: 'PolyRoll',
