@@ -695,7 +695,7 @@ const Farms: React.FC = () => {
                   </Text>
                 </Tip>
               )}>
-              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every five minutes.
+              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every 20 minutes.
             </Tooltip>
             {' Lowest '}
             <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
