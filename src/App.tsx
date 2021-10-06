@@ -18,6 +18,8 @@ import PageLoader from './components/PageLoader'
 import Pools from './views/Pools'
 import history from './routerHistory'
 import { setupNetwork } from 'utils/wallet';
+import { useWeb3React } from '@web3-react/core';
+import { fetchFarmUserDataAsync } from 'state/farms';
 // import PrivacyPolicy from './views/PrivacyPolicy'
 // import TermsOfUse from './views/TermsOfUse';
 
@@ -46,9 +48,14 @@ BigNumber.config({
 
 const App: React.FC = () => {
   const { getCurrentNetwork } = useNetworkSwitcher()
+  const { account } = useWeb3React()
   useEagerConnect(getCurrentNetwork())
   useFetchPublicData(getCurrentNetwork())
   useFetchPriceList(getCurrentNetwork())
+
+  React.useEffect(() => {
+    fetchFarmUserDataAsync(account)
+  }, [getCurrentNetwork])
 
   React.useEffect(() => {
     setupNetwork(getCurrentNetwork())

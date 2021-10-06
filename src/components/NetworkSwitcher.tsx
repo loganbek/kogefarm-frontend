@@ -27,8 +27,8 @@ function NetworkSwitcher() {
     const [value, setValue] = React.useState(networks.find(v => v.value === getCurrentNetwork()))
 
     const changeNetwork = async (v: OptionProps) => {
-        window.localStorage.removeItem(connectorLocalStorageKey);
         await setupNetwork(v.value)
+        window.localStorage.removeItem(connectorLocalStorageKey);
         setValue(v)
         dispatch(setFarms(CHAINS[v.value].farms ?? []))
         setCurrentNetwork(v.value)

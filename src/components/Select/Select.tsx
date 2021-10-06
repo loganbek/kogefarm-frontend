@@ -129,9 +129,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
   const toggling = () => setIsOpen(!isOpen)
 
   const onOptionClicked = (option: OptionProps) => () => {
-    setSelectedOption(option)
     setIsOpen(false)
-
     if (onChange) {
       onChange(option)
     }
