@@ -45,6 +45,7 @@ export interface MenuEntry {
   calloutClass?: string;
   initialOpenState?: boolean;
   status?: LinkStatus;
+  disabled?: any[]
 }
 
 export interface PanelProps {

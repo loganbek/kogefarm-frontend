@@ -40,6 +40,8 @@ import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
+import { CHAINS } from 'config/index'
 
 const ControlContainer = React.memo(styled.div<{ isDesktop: boolean }>`
 display: flex;
@@ -148,7 +150,6 @@ margin:${props => props.isDesktop ? "0px" : "18px 0px"}
 `)
 
 const NUMBER_OF_FARMS_VISIBLE = 5000
-const chainId = process.env.REACT_APP_CHAIN_ID;
 
 // @ts-ignore
 const Farms: React.FC = () => {
@@ -167,6 +168,8 @@ const Farms: React.FC = () => {
   const [sortOption, setSortOption] = useState('')
   const prices = useGetApiPrices()
   const kogePrice = useGetApiPrice('kogecoin');
+
+  const chainId = CHAINS[useNetworkSwitcher().getCurrentNetwork()].numberChainId
 
   const [platformSelectOption, setPlatformSelectOption] = useState<OptionProps>({ label: 'All', value: '' })
 
@@ -623,17 +626,17 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} account={account} removed={false} chainId={chainId} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} account={account} removed chainId={chainId} />
             ))}
           </Route>
           <Route exact path={`${path}/archived`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} account={account} removed chainId={chainId} />
             ))}
           </Route>
         </FlexLayout>

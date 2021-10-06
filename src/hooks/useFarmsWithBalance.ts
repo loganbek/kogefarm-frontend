@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
-import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import multicall from 'utils/multicall'
-// import { getMasterChefAddress } from 'utils/addressHelpers'
-import { getAddress } from 'utils/addressHelpers'
+import BigNumber from 'bignumber.js'
 // import masterChefABI from 'config/abi/masterchef.json'
 import GenericJarABI from 'config/abi/GenericJar.json'
-import { farmsConfig } from 'config/constants'
 import { FarmConfig } from 'config/constants/types'
+import { CHAINS } from 'config/index'
+import { useEffect, useState } from 'react'
+// import { getMasterChefAddress } from 'utils/addressHelpers'
+import { getAddress } from 'utils/addressHelpers'
+import multicall from 'utils/multicall'
+import useNetworkSwitcher from './useNetworkSwitcher'
 import useRefresh from './useRefresh'
 
 export interface FarmWithBalance extends FarmConfig {
@@ -18,17 +19,18 @@ const useFarmsWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
+  const { getCurrentNetwork } = useNetworkSwitcher()
 
   useEffect(() => {
     const fetchBalances = async () => {
-      const calls = farmsConfig.map((farm) => ({
+      const calls = CHAINS[getCurrentNetwork()].farms.map((farm) => ({
         address: getAddress(farm.jarAddresses),
         name: 'balanceOf',
         params: [account],
       }))
 
       const rawResults = await multicall(GenericJarABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const results = CHAINS[getCurrentNetwork()].farms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
 
       setFarmsWithBalances(results)
     }
@@ -36,7 +38,7 @@ const useFarmsWithBalance = () => {
     if (account) {
       fetchBalances()
     }
-  }, [account, fastRefresh])
+  }, [account, fastRefresh, getCurrentNetwork])
 
   return farmsWithBalances
 }

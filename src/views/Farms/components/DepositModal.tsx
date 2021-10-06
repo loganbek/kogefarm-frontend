@@ -30,13 +30,13 @@ const DepositModal: React.FC<DepositModalProps> = ({
   const depostModalRef = useRef()
 
   let numDecimals = 18
-  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+  if (tokenName === "KogeCoin" || tokenName === "KOGECOIN") {
     numDecimals = 9
   }
-  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+  if (tokenName.toUpperCase() === "USDC" || tokenName.toUpperCase() === "USDT") {
     numDecimals = 6
   }
-  if (tokenName.toUpperCase()==="BTC"){
+  if (tokenName.toUpperCase() === "BTC") {
     numDecimals = 8
   }
 
@@ -73,17 +73,22 @@ const DepositModal: React.FC<DepositModalProps> = ({
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={t('Stake/Harvest')}
-        depositFee = {depositFee}
+        depositFee={depositFee}
       />
       <Flex mt="12px">
         <Button
           width="100%"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           onClick={async () => {
-            setPendingTx(true)
-            await onConfirm(val)
-            setPendingTx(false)
-            onClose()
+            try {
+              setPendingTx(true)
+              await onConfirm(val)
+              setPendingTx(false)
+              onClose()
+            } catch (e) {
+              setPendingTx(false)
+              onClose()
+            }
           }}
         >
           {pendingTx ? t('Pending...') : t('Deposit')}

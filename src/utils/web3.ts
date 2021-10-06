@@ -1,14 +1,20 @@
 import Web3 from 'web3'
 import { HttpProviderOptions } from 'web3-core-helpers'
-import getRpcUrl from 'utils/getRpcUrl'
+import { SUPPORTED_CHAINS } from 'config/index'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
+import { getNodeUrl } from './getRpcUrl'
 
-const RPC_URL = getRpcUrl()
-const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 } as HttpProviderOptions)
-const web3NoAccount = new Web3(httpProvider)
 
-const getWeb3NoAccount = () => {
+const getWeb3NoAccount = (chain?: SUPPORTED_CHAINS) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { getCurrentNetwork } = useNetworkSwitcher()
+
+  const RPC_URL = getNodeUrl(chain ?? getCurrentNetwork())
+  const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 } as HttpProviderOptions)
+  const web3NoAccount = new Web3(httpProvider)
+
   return web3NoAccount
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export { getWeb3NoAccount }
-export default web3NoAccount

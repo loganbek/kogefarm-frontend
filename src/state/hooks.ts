@@ -20,7 +20,7 @@ import { fetchPrices } from './prices'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 
-export const useFetchPublicData = () => {
+export const useFetchPublicData = (deps?: any) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
@@ -28,7 +28,7 @@ export const useFetchPublicData = () => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
     dispatch(fetchPoolsStakingLimitsAsync())
-  }, [dispatch, slowRefresh])
+  }, [dispatch, slowRefresh, deps])
 
 }
 
@@ -51,10 +51,10 @@ export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
 
   return {
-    allowance: farm.userData ? new BigNumber(farm.userData.allowance) : BIG_ZERO,
-    tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : BIG_ZERO,
-    stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : BIG_ZERO,
-    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO,
+    allowance: farm?.userData ? new BigNumber(farm.userData.allowance) : BIG_ZERO,
+    tokenBalance: farm?.userData ? new BigNumber(farm.userData.tokenBalance) : BIG_ZERO,
+    stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : BIG_ZERO,
+    earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : BIG_ZERO,
   }
 }
 
@@ -68,13 +68,13 @@ export const useLpTokenPrice = (symbol: string) => {
 }
 
 // Prices
-export const useFetchPriceList = () => {
+export const useFetchPriceList = (deps?: any) => {
   const { slowRefresh } = useRefresh()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchPrices())
-  }, [dispatch, slowRefresh])
+  }, [dispatch, slowRefresh, deps])
 }
 
 export const useGetApiPrices = () => {

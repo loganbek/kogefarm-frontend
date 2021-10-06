@@ -14,6 +14,7 @@ import { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -251,8 +252,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
-  const jarAddress = farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]
+  const chainId = useNetworkSwitcher().getCurrentNetwork()
+  const lpAddress = farm.lpAddresses[chainId]
+  const jarAddress = farm.jarAddresses[chainId]
   const bsc = `https://polygonscan.com/address/${jarAddress}`
   const info = farm.underlyingWebsite
 

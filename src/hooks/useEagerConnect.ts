@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { connectorLocalStorageKey, ConnectorNames } from 'components/Pancake'
 import useAuth from 'hooks/useAuth'
+import { SUPPORTED_CHAINS } from 'config/index'
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
@@ -16,8 +17,8 @@ const _binanceChainListener = async () =>
     }),
   )
 
-const useEagerConnect = () => {
-  const { login } = useAuth()
+const useEagerConnect = (chain: SUPPORTED_CHAINS) => {
+  const { login } = useAuth(chain)
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
@@ -36,7 +37,8 @@ const useEagerConnect = () => {
 
       login(connectorId)
     }
-  }, [login])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 }
 
 export default useEagerConnect

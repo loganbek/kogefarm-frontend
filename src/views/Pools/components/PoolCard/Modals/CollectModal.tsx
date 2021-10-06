@@ -17,6 +17,7 @@ import { useMasterChefHarvest } from 'hooks/useHarvest'
 import { useMasterChefStake } from 'hooks/useStake'
 import useToast from 'hooks/useToast'
 import { Token } from 'config/constants/types'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 interface CollectModalProps {
   formattedBalance: string
@@ -39,11 +40,13 @@ const CollectModal: React.FC<CollectModalProps> = ({
   isCompoundPool = false,
   onDismiss,
 }) => {
+  const { getCurrentNetwork } = useNetworkSwitcher()
+
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
-  const { onReward } = useMasterChefHarvest(sousId, pid)
-  const { onStake } = useMasterChefStake(sousId, pid)
+  const { onReward } = useMasterChefHarvest(sousId, pid, getCurrentNetwork())
+  const { onStake } = useMasterChefStake(sousId, pid, getCurrentNetwork())
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(

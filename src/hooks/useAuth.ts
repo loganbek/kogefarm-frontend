@@ -10,23 +10,25 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { ConnectorNames, connectorLocalStorageKey } from 'components/Pancake'
-import { connectorsByName } from 'utils/web3React'
+import { useGetConnectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
+import { SUPPORTED_CHAINS } from 'config/index'
 // import { profileClear } from 'state/profile'
 // import { useAppDispatch } from 'state'
 
-const useAuth = () => {
-//  const dispatch = useAppDispatch()
+const useAuth = (chain: SUPPORTED_CHAINS) => {
+  //  const dispatch = useAppDispatch()
   const { activate, deactivate } = useWeb3React()
   const { toastError } = useToast()
+  const connectorsByName = useGetConnectorsByName(chain)
 
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID]
     if (connector) {
       activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
-          const hasSetup = await setupNetwork()
+          const hasSetup = await setupNetwork(chain)
           if (hasSetup) {
             activate(connector)
           }
@@ -52,13 +54,13 @@ const useAuth = () => {
       toastError("Can't find connector", 'The connector config is wrong')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [chain])
 
   const logout = useCallback(() => {
-//    dispatch(profileClear())
+    //    dispatch(profileClear())
     deactivate()
-//  }, [deactivate, dispatch])
-}, [deactivate])
+    //  }, [deactivate, dispatch])
+  }, [deactivate])
 
   return { login, logout }
 }

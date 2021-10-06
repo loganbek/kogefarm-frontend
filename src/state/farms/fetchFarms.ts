@@ -174,14 +174,14 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
             // console.log('')
           }
         }
-        if (farmConfig.token.coingeico==='curve3pool'){
-          tradingFeeRate = 0.0557/365*100 //
+        if (farmConfig.token.coingeico === 'curve3pool') {
+          tradingFeeRate = 0.0557 / 365 * 100 //
         }
-        if (farmConfig.token.coingeico==='atricrypto3'){
-          tradingFeeRate = 0.0410/365*100
+        if (farmConfig.token.coingeico === 'atricrypto3') {
+          tradingFeeRate = 0.0410 / 365 * 100
         }
-        if (farmConfig.token.coingeico==='btcrenbtc'){
-          tradingFeeRate = 0.0121/365*100 // 
+        if (farmConfig.token.coingeico === 'btcrenbtc') {
+          tradingFeeRate = 0.0121 / 365 * 100 // 
         }
       }
       // new BigNumber(totalDepositsVal).times(quoteTokenAmount).div(tokenAmount).div(BIG_TEN.pow(quoteTokenDecimals)).times(2)

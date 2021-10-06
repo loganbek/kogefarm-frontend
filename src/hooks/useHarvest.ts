@@ -3,12 +3,13 @@ import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { soushHarvest, soushHarvestBnb, masterchefHarvest, harvest } from 'utils/callHelpers'
+import { SUPPORTED_CHAINS } from 'config/index'
 import { useMasterchef, useSousChef } from './useContract'
 
-export const useHarvest = (farmPid: number) => {
+export const useHarvest = (farmPid: number, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
+  const masterChefContract = useMasterchef(chain)
 
   const handleHarvest = useCallback(async () => {
     const txHash = await harvest(masterChefContract, farmPid, account, library)
@@ -19,9 +20,9 @@ export const useHarvest = (farmPid: number) => {
   return { onReward: handleHarvest }
 }
 
-export const useAllHarvest = (farmPids: number[]) => {
+export const useAllHarvest = (farmPids: number[], chain: SUPPORTED_CHAINS) => {
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
+  const masterChefContract = useMasterchef(chain)
 
   const handleHarvest = useCallback(async () => {
     const harvestPromises = farmPids.reduce((accum, pid) => {
@@ -34,11 +35,11 @@ export const useAllHarvest = (farmPids: number[]) => {
   return { onReward: handleHarvest }
 }
 
-export const useSousHarvest = (sousId, isUsingBnb = false) => {
+export const useSousHarvest = (sousId, isUsingBnb = false, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const sousChefContract = useSousChef(sousId)
-  const masterChefContract = useMasterchef()
+  const sousChefContract = useSousChef(sousId, chain)
+  const masterChefContract = useMasterchef(chain)
 
   const handleHarvest = useCallback(async () => {
     if (sousId === 0) {
@@ -55,17 +56,17 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
   return { onReward: handleHarvest }
 }
 
-export const useMasterChefHarvest = (sousId, pid: number) => {
+export const useMasterChefHarvest = (sousId, pid: number, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
-//  const sousChefContract = useSousChef(sousId)
+  const masterChefContract = useMasterchef(chain)
+  //  const sousChefContract = useSousChef(sousId)
 
   const handleHarvest = useCallback(async () => {
-  await masterchefHarvest(masterChefContract, pid, account, library)
-  dispatch(updateUserPendingReward(sousId, account))
-  dispatch(updateUserBalance(sousId, account))
-}, [account, dispatch, masterChefContract, pid, sousId, library])
+    await masterchefHarvest(masterChefContract, pid, account, library)
+    dispatch(updateUserPendingReward(sousId, account))
+    dispatch(updateUserBalance(sousId, account))
+  }, [account, dispatch, masterChefContract, pid, sousId, library])
 
   return { onReward: handleHarvest }
 }

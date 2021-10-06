@@ -1,11 +1,14 @@
+import { CHAINS } from 'config/index'
 import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 export const getAddress = (address: Address): string => {
-  const mainNetChainId = 56
-  const chainId = process.env.REACT_APP_CHAIN_ID
-  return address[chainId] ? address[chainId] : address[mainNetChainId]
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { numberChainId } = CHAINS[useNetworkSwitcher().getCurrentNetwork()]
+
+  return address[numberChainId]
 }
 
 export const getMulticallAddress = () => {

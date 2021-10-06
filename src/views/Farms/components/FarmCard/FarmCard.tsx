@@ -71,17 +71,18 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
-//  cakePrice?: BigNumber
+  chainId
+  //  cakePrice?: BigNumber
   provider?: ProviderType
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account, chainId }) => {
   const { t } = useTranslation()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const farmcomment = farm.kogefarmComment? farm.kogefarmComment.toUpperCase(): ''
+  const farmcomment = farm.kogefarmComment ? farm.kogefarmComment.toUpperCase() : ''
   const { depositFee } = farm
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
@@ -92,95 +93,95 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
     : '-'
 
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '').split(' ')[0] + farmcomment
-//  const earnLabel = farm.dual ? farm.dual.earnLabel : 'CAKE'
+  //  const earnLabel = farm.dual ? farm.dual.earnLabel : 'CAKE'
   const userValueFormatted = farm.userValue
     ? `$${farm.userValue.toNumber().toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
-  let farmAPYNum = ((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(365*24*60/farm.minutesPerCompound) - 1)*100
-  if (farmAPYNum>10**18){
+  let farmAPYNum = ((1 + (farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee) / (100 * 365 * 24 * 60 / farm.minutesPerCompound)) ** (365 * 24 * 60 / farm.minutesPerCompound) - 1) * 100
+  if (farmAPYNum > 10 ** 18) {
     farmAPYNum = Number.POSITIVE_INFINITY
   }
-  if (farm.apr===0){
+  if (farm.apr === 0) {
     farmAPYNum = 0
   }
   const farmAPY = farmAPYNum.toLocaleString('en-US', { maximumFractionDigits: 2 })
-  const farmAPYD = (((1+(farm.apr+365*farm.tradingFeeRate)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
-  const farmAPYDRaw = (((1+(farm.apr)*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
-//  const farmAPYW = (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60*7/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const farmAPYD = (((1 + (farm.apr + 365 * farm.tradingFeeRate) * (1 - farm.kogefarmFee) / (100 * 365 * 24 * 60 / farm.minutesPerCompound)) ** (24 * 60 / farm.minutesPerCompound) - 1) * 100).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const farmAPYDRaw = (((1 + (farm.apr) * (1 - farm.kogefarmFee) / (100 * 365 * 24 * 60 / farm.minutesPerCompound)) ** (24 * 60 / farm.minutesPerCompound) - 1) * 100).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  //  const farmAPYW = (((1+farm.apr*(1-farm.kogefarmFee)/(100*365*24*60/farm.minutesPerCompound))**(24*60*7/farm.minutesPerCompound) - 1)*100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpAddress = farm.lpAddresses[chainId]
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
   })
   let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  if (farm.isSushi===true){
+  if (farm.isSushi === true) {
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isDfyn===true){
+  if (farm.isDfyn === true) {
     addLiquidityUrl = `${DFYN_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isWault===true){
+  if (farm.isWault === true) {
     addLiquidityUrl = `${WAULT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isApe===true){
+  if (farm.isApe === true) {
     addLiquidityUrl = `${APE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isJetSwap===true){
+  if (farm.isJetSwap === true) {
     addLiquidityUrl = `${JET_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   }
-  if (farm.isFirebird===true){
+  if (farm.isFirebird === true) {
     addLiquidityUrl = `${FIREBIRD_ADD_LIQUIDITY_URL}/${lpAddress}`
   }
-  if (farm.token===farm.quoteToken){
+  if (farm.token === farm.quoteToken) {
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
-    if (farm.isApe===true){
+    if (farm.isApe === true) {
       addLiquidityUrl = `https://app.apeswap.finance/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.isSushi===true){
+    if (farm.isSushi === true) {
       addLiquidityUrl = `https://app.sushi.com/swap?outputCurrency=${lpAddress}`
     }
-    if (farm.token.coingeico==='pwings'){
+    if (farm.token.coingeico === 'pwings') {
       addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
     }
   }
-  if (farm.lpSymbol==="PYQ-USDC"){
+  if (farm.lpSymbol === "PYQ-USDC") {
     addLiquidityUrl = `https://app.polyquity.org/liquidity`
   }
-  if (farm.token.coingeico==='curve3pool'){
+  if (farm.token.coingeico === 'curve3pool') {
     addLiquidityUrl = `https://polygon.curve.fi/aave/deposit`
   }
-  if (farm.token.coingeico==='iron3pool'){
+  if (farm.token.coingeico === 'iron3pool') {
     addLiquidityUrl = `https://app.iron.finance/swap/pools/is3usd/deposit`
   }
-  if (farm.token.coingeico==='atricrypto'){
+  if (farm.token.coingeico === 'atricrypto') {
     addLiquidityUrl = `https://polygon.curve.fi/atricrypto/deposit`
   }
-  if (farm.token.coingeico==='btcrenbtc'){
+  if (farm.token.coingeico === 'btcrenbtc') {
     addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
   }
 
   const isPromotedFarm = false
 
-/*  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
-  if (farm.isSushi===true){
-    infoAddr = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
-  }
-  if (farm.isWault===true){
-    infoAddr = `https://polygonscan.com/address/${lpAddress}`
-  }
-  if (farm.isDfyn===true){
-    infoAddr = `https://info.dfyn.network/pair/${lpAddress}`
-  }
-  if (farm.isApe===true){
-    infoAddr = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
-  }
-  if (farm.token===farm.quoteToken){
-    infoAddr = `https://info.quickswap.exchange/address/${lpAddress}`
-  } */
+  /*  let infoAddr = `https://info.quickswap.exchange/pair/${lpAddress}`
+    if (farm.isSushi===true){
+      infoAddr = `https://analytics-polygon.sushi.com/pairs/${lpAddress}`
+    }
+    if (farm.isWault===true){
+      infoAddr = `https://polygonscan.com/address/${lpAddress}`
+    }
+    if (farm.isDfyn===true){
+      infoAddr = `https://info.dfyn.network/pair/${lpAddress}`
+    }
+    if (farm.isApe===true){
+      infoAddr = `https://polygon.info.apeswap.finance/pair/${lpAddress}`
+    }
+    if (farm.token===farm.quoteToken){
+      infoAddr = `https://info.quickswap.exchange/address/${lpAddress}`
+    } */
   const infoAddr = farm.underlyingWebsite
 
 
@@ -189,7 +190,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
       {isPromotedFarm && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
-//        multiplier={farm.multiplier}
+        //        multiplier={farm.multiplier}
         isCommunityFarm={farm.isCommunity}
         isSushiFarm={farm.isSushi}
         isWaultFarm={farm.isWault}
@@ -202,7 +203,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center', textDecoration: 'line-through' }}>
-            {farm.apr>=0 ? (
+            {farm.apr >= 0 ? (
               <>
                 {farmAPR}%
               </>
@@ -213,20 +214,20 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         </Flex>
       )}
       <Flex justifyContent="space-between" alignItems="center">
-        <Text style={{textAlign: 'left'}}>{t('APY')}:</Text>
+        <Text style={{ textAlign: 'left' }}>{t('APY')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-          {farm.apr>=0 ? (
+          {farm.apr >= 0 ? (
             <>
-            {/*  <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apr={farm.apr} /> */}
+              {/*  <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apr={farm.apr} /> */}
               {farmAPY}%
-              {}
+              { }
             </>
           ) : (
             <Skeleton height={24} width={80} />
           )}
         </Text>
       </Flex>
-{/*      <Flex justifyContent="space-between" alignItems="center">
+      {/*      <Flex justifyContent="space-between" alignItems="center">
         <Text style={{textAlign: 'left'}}>{t('Daily')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
           {farm.apr ? (
@@ -239,7 +240,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
         </Text>
       </Flex> */}
 
-{/*      <Flex justifyContent="space-between">
+      {/*      <Flex justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
       </Flex> */}
@@ -252,7 +253,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, account }) => {
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          bscScanAddress={`https://polygonscan.com/address/${farm.jarAddresses[process.env.REACT_APP_CHAIN_ID]}`}
+          bscScanAddress={`https://polygonscan.com/address/${farm.jarAddresses[chainId]}`}
           infoAddress={infoAddr}
           totalValueFormatted={totalValueFormatted}
           userValueFormatted={userValueFormatted}

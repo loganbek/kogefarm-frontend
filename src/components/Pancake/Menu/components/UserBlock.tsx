@@ -2,6 +2,7 @@ import React from "react";
 import { Tooltip } from 'react-tippy'
 import styled from 'styled-components'
 import { Text } from "components/Pancake";
+import NetworkSwitcher from "components/NetworkSwitcher";
 import Flex from "../../Flex";
 import CopyToClipboard from "../../WalletModal/CopyToClipboard";
 import { connectorLocalStorageKey, walletLocalStorageKey } from "../../WalletModal/config";
@@ -49,6 +50,13 @@ const IconWrapper = styled.div<IconWrapperProps>`
   background: ${props => props.bg};
 `;
 
+const UserBlockContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 12px;
+  align-items: center;
+`
+
 const walletMap = {
   Metamask: {
     component: Metamask,
@@ -91,7 +99,8 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
   const wallet = walletMap[preferredWalletName]
 
   return (
-    <div>
+    <UserBlockContainer >
+      <NetworkSwitcher />
       {account ? (
         <Tooltip
           trigger="click"
@@ -143,7 +152,7 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
           Connect wallet
         </Button>
       )}
-    </div>
+    </UserBlockContainer>
   );
 };
 

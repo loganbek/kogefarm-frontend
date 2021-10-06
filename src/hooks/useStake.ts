@@ -2,14 +2,15 @@ import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance } from 'state/actions'
-import { stake, stakeKoge, sousStake, sousStakeBnb, depositJar  } from 'utils/callHelpers'
+import { stake, stakeKoge, sousStake, sousStakeBnb, depositJar } from 'utils/callHelpers'
+import { SUPPORTED_CHAINS } from 'config/index'
 // import { useMasterchef, useSousChef } from './useContract'
 import { useMasterchef, useSousChef, useJar } from './useContract'
 
-const useStake = (jarAddress: string) => {
+const useStake = (jarAddress: string, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const jarContract = useJar(jarAddress)
+  const jarContract = useJar(jarAddress, chain)
 
   const handleStake = useCallback(
     async (amount: string) => {
@@ -23,11 +24,11 @@ const useStake = (jarAddress: string) => {
   return { onStake: handleStake }
 }
 
-export const useSousStake = (sousId: number, isUsingBnb = false) => {
+export const useSousStake = (sousId: number, isUsingBnb = false, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
+  const masterChefContract = useMasterchef(chain)
+  const sousChefContract = useSousChef(sousId, chain)
 
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
@@ -48,17 +49,17 @@ export const useSousStake = (sousId: number, isUsingBnb = false) => {
 }
 
 
-export const useMasterChefStake = (sousId:number, pid: number) => {
+export const useMasterChefStake = (sousId: number, pid: number, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
+  const masterChefContract = useMasterchef(chain)
 
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
-      if (decimals===9){
+      if (decimals === 9) {
         await stakeKoge(masterChefContract, pid, amount, account, library)
       }
-      else{
+      else {
         await stake(masterChefContract, pid, amount, account, library)
       }
       dispatch(updateUserStakedBalance(sousId, account))

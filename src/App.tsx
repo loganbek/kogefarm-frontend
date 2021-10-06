@@ -8,6 +8,7 @@ import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 // import { useFetchPriceList, useFetchProfile, useFetchPublicData } from 'state/hooks'
 import { useFetchPriceList, useFetchPublicData } from 'state/hooks'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -16,6 +17,9 @@ import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+import { setupNetwork } from 'utils/wallet';
+import { useWeb3React } from '@web3-react/core';
+import { fetchFarmUserDataAsync } from 'state/farms';
 // import PrivacyPolicy from './views/PrivacyPolicy'
 // import TermsOfUse from './views/TermsOfUse';
 
@@ -43,9 +47,20 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
-  useEagerConnect()
-  useFetchPublicData()
-  useFetchPriceList()
+  const { getCurrentNetwork } = useNetworkSwitcher()
+  const { account } = useWeb3React()
+  useEagerConnect(getCurrentNetwork())
+  useFetchPublicData(getCurrentNetwork())
+  useFetchPriceList(getCurrentNetwork())
+
+  React.useEffect(() => {
+    fetchFarmUserDataAsync(account)
+  }, [getCurrentNetwork])
+
+  React.useEffect(() => {
+    setupNetwork(getCurrentNetwork())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Router history={history}>
@@ -59,11 +74,11 @@ const App: React.FC = () => {
               <Farms />
             </Route>
             <Route path="/farms">
-               <Pools />
+              <Pools />
             </Route>
             <Route path="/privacy">
               <PrivacyPolicy />
-              </Route>
+            </Route>
             <Route path="/terms" >
               <TermsOfUse />
             </Route>
@@ -73,7 +88,7 @@ const App: React.FC = () => {
       </Menu>
       <ToastListener />
       <ScrollToTop
-        smooth 
+        smooth
         color="#ffffff"
         style={{
           backgroundColor: "#1EA306",
