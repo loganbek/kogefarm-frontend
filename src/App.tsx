@@ -17,6 +17,7 @@ import PageLoader from './components/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+import { setupNetwork } from 'utils/wallet';
 // import PrivacyPolicy from './views/PrivacyPolicy'
 // import TermsOfUse from './views/TermsOfUse';
 
@@ -48,6 +49,11 @@ const App: React.FC = () => {
   useEagerConnect(getCurrentNetwork())
   useFetchPublicData(getCurrentNetwork)
   useFetchPriceList(getCurrentNetwork)
+
+  React.useEffect(() => {
+    setupNetwork(getCurrentNetwork())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Router history={history}>
