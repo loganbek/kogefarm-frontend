@@ -158,8 +158,8 @@ const Menu: React.FC<NavProps> = ({
   const kogePrice = useGetApiPrice('kogecoin');
 
   const farmsList = useCallback(
-    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+    (): FarmWithStakedValue[] => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = allFarms.map((farm) => {
         /* DZ Hack
           if (!farm.lpTotalInQuoteToken || !prices) {
             return farm
@@ -224,15 +224,9 @@ const Menu: React.FC<NavProps> = ({
         return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits }
       })
 
-      if (query) {
-        const lowercaseQuery = latinise(query.toLowerCase())
-        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
-          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
-        })
-      }
       return farmsToDisplayWithAPR
     },
-    [query, prices, isActive],
+    [prices, isActive, allFarms],
   )
 
   // Commented out as it creates a bug, #105 for more info
@@ -268,7 +262,7 @@ const Menu: React.FC<NavProps> = ({
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
-  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity ?? 0), new BigNumber(0))
+  const tvl = farmsList().map(f => f.liquidity).filter(f => f?.toString() !== "NaN").reduce((sum, current) => sum.plus(current ?? 0), new BigNumber(0))
 
   // const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
 
