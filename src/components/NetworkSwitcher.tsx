@@ -1,5 +1,4 @@
 import { CHAINS, SUPPORTED_CHAINS } from "config/index"
-import useAuth from "hooks/useAuth"
 import useNetworkSwitcher from "hooks/useNetworkSwitcher"
 import React from "react"
 import { setFarms } from "state/farms"
@@ -12,7 +11,6 @@ import Select, { OptionProps } from "./Select/Select"
 function NetworkSwitcher() {
     const dispatch = useAppDispatch()
     const { getCurrentNetwork, setCurrentNetwork } = useNetworkSwitcher()
-    const { logout } = useAuth(getCurrentNetwork())
 
     const networks = React.useMemo(
         () => [
@@ -28,13 +26,12 @@ function NetworkSwitcher() {
 
     const [value, setValue] = React.useState(networks.find(v => v.value === getCurrentNetwork()))
 
-    const changeNetwork = (v: OptionProps) => {
+    const changeNetwork = async (v: OptionProps) => {
+        window.localStorage.removeItem(connectorLocalStorageKey);
+        await setupNetwork(v.value)
+        setValue(v)
         dispatch(setFarms(CHAINS[v.value].farms ?? []))
         setCurrentNetwork(v.value)
-        setValue(v)
-        logout()
-        window.localStorage.removeItem(connectorLocalStorageKey);
-        setupNetwork(v.value)
     }
 
     return <Select value={value} options={networks} onChange={changeNetwork} />
