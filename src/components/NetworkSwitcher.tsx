@@ -31,6 +31,7 @@ function NetworkSwitcher() {
         setValue(v)
         setCurrentNetwork(v.value)
         await setupNetwork(v.value)
+        dispatch(setFarms([]))
         dispatch(setFarms(CHAINS[v.value].farms ?? []))
     }
 
