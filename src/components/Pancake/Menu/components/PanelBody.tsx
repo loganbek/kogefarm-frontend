@@ -161,7 +161,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
         );
       })}
     </React.Fragment>
-  )), [chain])
+  )), [chain, isPushed])
 
   return (
     <Container showMenu={showMenu}>
