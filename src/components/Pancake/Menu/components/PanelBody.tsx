@@ -61,11 +61,8 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
   const handleClick = isMobile ? () => pushNav(false) : undefined;
 
   const getHref = (href: string) => {
-    if (href === "/" && location.pathname === "/vaults") {
-      return "#"
-    }
-    if (href === location.pathname) {
-      return "#"
+    if (href === "/") {
+      return "/vaults"
     }
     return href
   }
