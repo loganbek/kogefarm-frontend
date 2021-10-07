@@ -154,6 +154,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
    * MOONRIVER ADDRESSES
    */
   const movr = "0x98878B06940aE243284CA214f92Bb71a2b032B8A"
+  const movrUSDCLP = "0xe537f70a8b62204832B8Ba91940B77d3f79AEb81"
   const movrDai = "0x80a16016cc4a2e6a2caca8a4a498b1699ff0f844"
   const movrUsdc = "0xe3f5a90f9cb311505cd691a46596599aa1a0ad7d"
   const movrUsdcDaiLp = "0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53"
@@ -787,6 +788,17 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [solarUSDCLP],
     },
+    // Movr
+    {
+      address: movr,
+      name: 'balanceOf',
+      params: [movrUSDCLP],
+    },
+    {
+      address: movrUsdc,
+      name: 'balanceOf',
+      params: [movrUSDCLP],
+    },
   ]
 
   const currentChain = useNetworkSwitcher().getCurrentNetwork()
@@ -960,12 +972,12 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   }
   if (currentChain === SUPPORTED_CHAINS.MOONRIVER) {
     // Get LP pool composition
-    const [daiBalance, daiUSDCBalance, solarBalance, solarUSDCBalance] = await multicall(erc20, moonriverCalls)
+    const [daiBalance, daiUSDCBalance, solarBalance, solarUSDCBalance, movrBalance, movrUSDCBalance] = await multicall(erc20, moonriverCalls)
 
     // Get implied prices by quote token
     const daiUSDC = daiBalance / (daiUSDCBalance * 10 ** 12)
     const solarUSDC = solarBalance / (solarUSDCBalance * 10 ** 12)
-
+    const movrUSDC = movrBalance / (movrUSDCBalance * 10 ** 12)
     // Convert to USD
     const usdcUSD = parseFloat(data.usdc.usd)
     const daiUSD = usdcUSD / daiUSDC

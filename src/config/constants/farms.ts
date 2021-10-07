@@ -1056,7 +1056,7 @@ const farms: FarmConfig[] = [
     token: tokens.mimatic,
     quoteToken: tokens.dai,
     rewardToken: tokens.quick,
-    rewardPerBlock: 0.00011574074074074 * 2,
+    rewardPerBlock: 0 * 2,
     poolWeightDesignate: 1,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
@@ -7740,7 +7740,7 @@ export const POLYGON_FARMS: FarmConfig[] = farms
 export const MOONRIVER_FARMS: FarmConfig[] = [
   {
     pid: 20,
-    lpSymbol: 'USDC-Dai',
+    lpSymbol: 'USDC-Dai LP',
     lpAddresses: {
       80001: '',
       1285: '0xFE1b71BDAEE495dCA331D28F5779E87bd32FbE53',
@@ -7755,6 +7755,168 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
       1285: '0x005d1d02e396D4B47DD92e3c068a6Cec153238cd',
     },
     token: tokens.dai,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
+    poolWeightDesignate: 270 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+  {
+    pid: 21,
+    lpSymbol: 'Solar-Movr LP',
+    lpAddresses: {
+      80001: '',
+      1285: '0x7eDA899b3522683636746a2f3a7814e6fFca75e1',
+    },
+    masterChefAddresses: {
+      80001: '',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      1285: '0x0a5E266afB071CB0F69310706154F2893a208D1c',
+    },
+    token: tokens.solar,
+    quoteToken: tokens.movr,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
+    poolWeightDesignate: 6000 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+  {
+    pid: 22,
+    lpSymbol: 'Movr-USDC LP',
+    lpAddresses: {
+      80001: '',
+      1285: '0xe537f70a8b62204832B8Ba91940B77d3f79AEb81',
+    },
+    masterChefAddresses: {
+      80001: '',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 6,
+    jarAddresses: {
+      80001: '',
+      1285: '0xB010b14A6D0590708551EEb63Fd435d031E2b8eD',
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.movr,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
+    poolWeightDesignate: 600 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+  {
+    pid: 23,
+    lpSymbol: 'Solar-USDC LP',
+    lpAddresses: {
+      80001: '',
+      1285: '0xe537f70a8b62204832B8Ba91940B77d3f79AEb81',
+    },
+    masterChefAddresses: {
+      80001: '',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 7,
+    jarAddresses: {
+      80001: '',
+      1285: '0x4c42f8224E16b40d79BeB775bf1df1a63967FC7c',
+    },
+    token: tokens.solar,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
+    poolWeightDesignate: 2300 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+  {
+    pid: 24,
+    lpSymbol: 'BUSD-USDC LP',
+    lpAddresses: {
+      80001: '',
+      1285: '0x384704557F73fBFAE6e9297FD1E6075FC340dbe5',
+    },
+    masterChefAddresses: {
+      80001: '',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 8,
+    jarAddresses: {
+      80001: '',
+      1285: '0x5Df309E6C22Ad6D78685c321Df5582B9C4D61492',
+    },
+    token: tokens.busd,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
+    poolWeightDesignate: 270 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+  {
+    pid: 25,
+    lpSymbol: 'USDC-USDT LP',
+    lpAddresses: {
+      80001: '',
+      1285: '0x2a44696DDc050f14429bd8a4A05c750C6582bF3b',
+    },
+    masterChefAddresses: {
+      80001: '',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 13,
+    jarAddresses: {
+      80001: '',
+      1285: '0x31645AEFBCF37127f511b7BD9A7bfdA7427AeF8e',
+    },
+    token: tokens.busd,
+    quoteToken: tokens.usdc,
+    rewardToken: tokens.solar,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
+    poolWeightDesignate: 270 / 11445,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://solarbeam.io/',
+    platform: 'SolarBeam'
+  },
+
+  {
+    pid: 26,
+    lpSymbol: 'Mai-USDC LP',
+    lpAddresses: {
+      80001: '',
+      1285: '0x55Ee073B38BF1069D5F1Ed0AA6858062bA42F5A9',
+    },
+    masterChefAddresses: {
+      80001: '',
+      1285: '0xf03b75831397D4695a6b9dDdEEA0E578faa30907',
+    },
+    masterChefPid: 17,
+    jarAddresses: {
+      80001: '',
+      1285: '0xA1d30Bee6896e07B8713E73b56A6c35a559DEa50',
+    },
+    token: tokens.mai,
     quoteToken: tokens.usdc,
     rewardToken: tokens.solar,
     rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
