@@ -680,7 +680,6 @@ const Farms: React.FC = () => {
     "label",
     ['asc']
   )
-  const mobilePolygon = !isDesktop && chainId===137
   return (
     <Page>
 
@@ -714,7 +713,7 @@ const Farms: React.FC = () => {
           </StyledText>
 
         </Flex>
-        {mobilePolygon &&
+        {!isDesktop &&
           (<Flex width="100%" justifyContent="flex-end" className="stats">
             <Flex flexDirection="column" width="100%">
               <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
@@ -723,7 +722,7 @@ const Farms: React.FC = () => {
               </Price>
             </Flex>
           </Flex>)}
-        {!isDesktop &&
+        {!isDesktop && isPolygon &&
           (<Flex width="100%" justifyContent="flex-end" className="stats">
             <Flex flexDirection="column" width="100%">
               <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
