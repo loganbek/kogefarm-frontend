@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { Box } from "components/Pancake";
-import { SUPPORTED_CHAINS } from "config/";
+import { CHAINS, SUPPORTED_CHAINS } from 'config/index';
 import { useTranslation } from 'contexts/Localization';
 import useNetworkSwitcher from "hooks/useNetworkSwitcher";
 import React, { useCallback, useRef, useState } from "react";
@@ -155,11 +155,13 @@ const Menu: React.FC<NavProps> = ({
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const kogePrice = useGetApiPrice('kogecoin');
 
-  const isOnPolygon = useNetworkSwitcher().getCurrentNetwork() === SUPPORTED_CHAINS.MATIC
+  const currentChain = useNetworkSwitcher().getCurrentNetwork()
+  const chainName = CHAINS[currentChain].chainNameAbbr
+  const isOnPolygon = currentChain === SUPPORTED_CHAINS.MATIC
 
   const farmsList = useCallback(
     (): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPR: FarmWithStakedValue[] = allFarms.map((farm) => {
+      const farmsToDisplayWithAPR: FarmWithStakedValue[] = allFarms.map((farm) => {
         /* DZ Hack
           if (!farm.lpTotalInQuoteToken || !prices) {
             return farm
@@ -301,7 +303,7 @@ const Menu: React.FC<NavProps> = ({
               )
             }
             <Stat>
-              {t('KogeFarm Vault TVL')}
+              {t(`KogeFarm Vault ${chainName} TVL`)}
               {" "}
               <span>{displayTVL !== '$NaN' && displayTVL}</span>
             </Stat>

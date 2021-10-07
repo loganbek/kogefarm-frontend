@@ -169,7 +169,9 @@ const Farms: React.FC = () => {
   const prices = useGetApiPrices()
   const kogePrice = useGetApiPrice('kogecoin');
 
-  const chainId = CHAINS[useNetworkSwitcher().getCurrentNetwork()].numberChainId
+  const currentChain = CHAINS[useNetworkSwitcher().getCurrentNetwork()]
+  const chainId = currentChain.numberChainId
+  const chainName = currentChain.chainNameAbbr
 
   const [platformSelectOption, setPlatformSelectOption] = useState<OptionProps>({ label: 'All', value: '' })
 
@@ -772,7 +774,7 @@ const Farms: React.FC = () => {
 
       <InfoContainer>
         <Text fontSize="12px">
-          Showing {current} of {activeFarms.length} vaults
+          Showing {current} of {activeFarms.length} {chainName} vaults
         </Text>
       </InfoContainer>
 
