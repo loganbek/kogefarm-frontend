@@ -7806,7 +7806,7 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
           masterChefPid: 6,
           jarAddresses: {
             80001: '',
-            1285: '0xB010b14A6D0590708551EEb63Fd435d031E2b8eD',
+            1285: '0xaE3BDcf55FE53408EC4ad07480368e04c795575d',
           },
           token: tokens.usdc,
           quoteToken: tokens.movr,
@@ -7824,7 +7824,7 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
           lpSymbol: 'Solar-USDC LP',
           lpAddresses: {
             80001: '',
-            1285: '0xe537f70a8b62204832B8Ba91940B77d3f79AEb81',
+            1285: '0xdb66BE1005f5Fe1d2f486E75cE3C50B52535F886',
           },
           masterChefAddresses: {
             80001: '',
