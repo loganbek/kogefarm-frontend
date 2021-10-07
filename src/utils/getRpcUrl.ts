@@ -1,12 +1,9 @@
 import random from 'lodash/random'
+import { CHAINS, SUPPORTED_CHAINS } from 'config/index'
 
-// Array of available nodes to connect to
-export const nodes = [process.env.REACT_APP_NODE_1, process.env.REACT_APP_NODE_2, process.env.REACT_APP_NODE_3, process.env.REACT_APP_NODE_4, process.env.REACT_APP_NODE_5]
+export const getRandomRpcNode = (nodes: string[]) => nodes?.[random(0, nodes?.length - 1)]
 
-const getNodeUrl = () => {
-  const randomIndex = random(0, nodes.length - 1)
-  return nodes[randomIndex]
-}
+// todo get dynamically node based on current network
+export const getNodeUrl = (chain: SUPPORTED_CHAINS) => getRandomRpcNode(CHAINS[chain]?.rpcUrls ?? [])
 
 
-export default getNodeUrl

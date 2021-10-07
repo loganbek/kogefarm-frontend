@@ -16,6 +16,7 @@ import { useMasterChefStake } from 'hooks/useStake'
 import { useMasterChefUnstake } from 'hooks/useUnstake'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { Pool } from 'state/types'
@@ -40,11 +41,12 @@ const StakeModal: React.FC<StakeModalProps> = ({
   isRemovingStake = false,
   onDismiss,
 }) => {
+  const { getCurrentNetwork } = useNetworkSwitcher()
   const { pid, sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const { onStake } = useMasterChefStake(sousId, pid)
-  const { onUnstake } = useMasterChefUnstake(sousId, pid, pool.enableEmergencyWithdraw)
+  const { onStake } = useMasterChefStake(sousId, pid, getCurrentNetwork())
+  const { onUnstake } = useMasterChefUnstake(sousId, pid, pool.enableEmergencyWithdraw, getCurrentNetwork())
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
@@ -57,7 +59,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     return stakingLimit.gt(0) && stakingTokenBalance.gt(stakingLimit) ? stakingLimit : stakingTokenBalance
   }
   let stakingTokenLink = BASE_EXCHANGE_URL
-  if (stakingToken.coingeico==='kogecoin'){
+  if (stakingToken.coingeico === 'kogecoin') {
     stakingTokenLink = `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
   }
 
@@ -147,7 +149,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-{/*          <Image src={`/images/tokens/${stakingToken.symbol}.png`} width={24} height={24} alt={stakingToken.symbol} /> */}
+          {/*          <Image src={`/images/tokens/${stakingToken.symbol}.png`} width={24} height={24} alt={stakingToken.symbol} /> */}
           <Text ml="4px" bold>
             {stakingToken.symbol}
           </Text>

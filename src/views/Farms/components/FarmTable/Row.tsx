@@ -129,13 +129,13 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = props => {
             switch (key) {
               case 'actions':
                 return (
-                  <td key={key}>
+                  <InView as="td" onChange={onInView} key={key}>
                     <CellInner>
                       <CellLayout align={props.actions.align}>
                         <StakedAction {...details} userDataReady={userDataReady} />
                       </CellLayout>
                     </CellInner>
-                  </td>
+                  </InView>
                 )
               case 'details':
                 return (

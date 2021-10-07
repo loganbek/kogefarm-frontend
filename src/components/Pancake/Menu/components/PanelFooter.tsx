@@ -7,6 +7,7 @@ import IconButton from "../../Button/IconButton";
 import { PanelProps, PushedProps } from "../types";
 import { SvgProps, CogIcon } from "../../Svg";
 import * as IconModule from "../icons";
+import packageJson from '../../../../../package.json';
 
 interface Props extends PanelProps, PushedProps { }
 
@@ -57,8 +58,15 @@ const StyledButtonMenu = styled(ButtonMenu)`
 const Copyright = styled.small`
   font-size: 10px;
   width: 100%;
-  margin-top: 19px;
+  margin-top: 10px;
   color: ${({ theme }) => theme.colors.rowHeaderText};
+`
+
+const BuildNumber = styled.div`
+  color: #167505;
+  font-size: 10px;
+  width: 100%;
+  margin: 5px 0px;
 `
 
 const PanelFooter: React.FC<Props> = ({
@@ -103,6 +111,9 @@ const PanelFooter: React.FC<Props> = ({
           <a href="terms">Terms of Use</a>
         </Links>
         <Copyright>© kogecoin. All rights reserved</Copyright>
+        <BuildNumber>
+          {packageJson.version}
+        </BuildNumber>
       </SettingsEntry>
     </Container>
   );

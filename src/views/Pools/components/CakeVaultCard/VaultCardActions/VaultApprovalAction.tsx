@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, AutoRenewIcon, Skeleton } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
 import { useVaultApprove } from 'hooks/useApprove'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 interface ApprovalActionProps {
   setLastUpdated: () => void
@@ -11,7 +12,7 @@ interface ApprovalActionProps {
 const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false, setLastUpdated }) => {
   const { t } = useTranslation()
 
-  const { handleApprove, requestedApproval } = useVaultApprove(setLastUpdated)
+  const { handleApprove, requestedApproval } = useVaultApprove(setLastUpdated, useNetworkSwitcher().getCurrentNetwork())
 
   return (
     <>

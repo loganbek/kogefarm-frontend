@@ -6,16 +6,18 @@ import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { fetchFarmUserDataAsync, updateUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
+import { SUPPORTED_CHAINS } from 'config/index'
 // import { useMasterchef, useCake, useSousChef, useLottery } from './useContract'
 import { useJar, useSousChef, useCakeVaultContract } from './useContract'
 import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
 
 // Approve a Farm
-export const useApprove = (lpContract: Contract, jarContractAddress: string) => {
+export const useApprove = (lpContract: Contract, jarContractAddress: string, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const jarContract = useJar(jarContractAddress)
+  const jarContract = useJar(jarContractAddress, chain)
+
 
   const handleApprove = useCallback(async () => {
     try {
@@ -23,6 +25,8 @@ export const useApprove = (lpContract: Contract, jarContractAddress: string) => 
       dispatch(fetchFarmUserDataAsync(account))
       return tx
     } catch (e) {
+      console.log(e);
+
       return false
     }
   }, [account, dispatch, lpContract, jarContract])
@@ -33,12 +37,12 @@ export const useApprove = (lpContract: Contract, jarContractAddress: string) => 
 export default useApprove
 
 // Approve a Pool
-export const useSousApprove = (lpContract: Contract, sousId) => {
+export const useSousApprove = (lpContract: Contract, sousId, chain: SUPPORTED_CHAINS) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { toastSuccess, toastError } = useToast()
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const sousChefContract = useSousChef(sousId)
+  const sousChefContract = useSousChef(sousId, chain)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -70,12 +74,12 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
 }
 
 // Approve CAKE auto pool
-export const useVaultApprove = (setLastUpdated: () => void) => {
+export const useVaultApprove = (setLastUpdated: () => void, chain: SUPPORTED_CHAINS) => {
   const { account } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { toastSuccess, toastError } = useToast()
-  const cakeVaultContract = useCakeVaultContract()
-  const cakeContract = useCakeVaultContract()
+  const cakeVaultContract = useCakeVaultContract(chain)
+  const cakeContract = useCakeVaultContract(chain)
 
   const handleApprove = () => {
     cakeContract.methods
@@ -99,11 +103,11 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
   return { handleApprove, requestedApproval }
 }
 
-export const useCheckVaultApprovalStatus = () => {
+export const useCheckVaultApprovalStatus = (chain: SUPPORTED_CHAINS) => {
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const { account } = useWeb3React()
-  const cakeContract = useCakeVaultContract()
-  const cakeVaultContract = useCakeVaultContract()
+  const cakeContract = useCakeVaultContract(chain)
+  const cakeVaultContract = useCakeVaultContract(chain)
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   useEffect(() => {
     const checkApprovalStatus = async () => {

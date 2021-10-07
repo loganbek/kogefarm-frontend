@@ -2,8 +2,10 @@ import BigNumber from 'bignumber.js'
 import { convertSharesToCake } from 'views/Pools/helpers'
 import { getCakeVaultContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
-const cakeVaultContract = getCakeVaultContract()
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const cakeVaultContract = getCakeVaultContract(useNetworkSwitcher().getCurrentNetwork())
 
 export const fetchPublicVaultData = async () => {
   try {

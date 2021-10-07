@@ -3,6 +3,7 @@ import { TranslatableText } from 'state/types'
 export interface Address {
   137?: string
   80001: string
+  1285?: string
 }
 
 export interface Token {

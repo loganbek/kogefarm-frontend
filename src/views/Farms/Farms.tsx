@@ -40,6 +40,8 @@ import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
+import { CHAINS, SUPPORTED_CHAINS } from 'config/index'
 
 const ControlContainer = React.memo(styled.div<{ isDesktop: boolean }>`
 display: flex;
@@ -148,7 +150,6 @@ margin:${props => props.isDesktop ? "0px" : "18px 0px"}
 `)
 
 const NUMBER_OF_FARMS_VISIBLE = 5000
-const chainId = process.env.REACT_APP_CHAIN_ID;
 
 // @ts-ignore
 const Farms: React.FC = () => {
@@ -167,6 +168,11 @@ const Farms: React.FC = () => {
   const [sortOption, setSortOption] = useState('')
   const prices = useGetApiPrices()
   const kogePrice = useGetApiPrice('kogecoin');
+
+  const currentChain = CHAINS[useNetworkSwitcher().getCurrentNetwork()]
+  const chainId = currentChain.numberChainId
+  const chainName = currentChain.chainNameAbbr
+  const isPolygon = useNetworkSwitcher().getCurrentNetwork() === SUPPORTED_CHAINS.MATIC
 
   const [platformSelectOption, setPlatformSelectOption] = useState<OptionProps>({ label: 'All', value: '' })
 
@@ -349,7 +355,7 @@ const Farms: React.FC = () => {
   )
 
   const userTvl = useMemo(
-    () => farmsList(allFarms, true).reduce((sum, curr) => sum.plus(curr.userValue ? curr.userValue : 0), new BigNumber(0))
+    () => farmsList(allFarms, true).map(f => f.userValue).filter(f => f?.toString() !== "NaN").reduce((sum, curr) => sum.plus(curr ?? 0), new BigNumber(0))
     , [allFarms, farmsList]
   )
   const displayUserTVL = userTvl ? (
@@ -623,17 +629,17 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} account={account} removed={false} chainId={chainId} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} account={account} removed chainId={chainId} />
             ))}
           </Route>
           <Route exact path={`${path}/archived`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} account={account} removed chainId={chainId} />
             ))}
           </Route>
         </FlexLayout>
@@ -695,15 +701,16 @@ const Farms: React.FC = () => {
                   </Text>
                 </Tip>
               )}>
-              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every 20 minutes.
+              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every {isPolygon ? "twenty minutes" : "hour"}.
             </Tooltip>
             {' Lowest '}
             <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
-            {' in Polygon. '}
+            {` in ${chainName}. `}
             <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
             {' '}
             by Obelisk.
           </StyledText>
+
         </Flex>
         {!isDesktop &&
           (<Flex width="100%" justifyContent="flex-end" className="stats">
@@ -769,7 +776,7 @@ const Farms: React.FC = () => {
 
       <InfoContainer>
         <Text fontSize="12px">
-          Showing {current} of {activeFarms.length} vaults
+          Showing {current} of {activeFarms.length} {chainName} vaults
         </Text>
       </InfoContainer>
 

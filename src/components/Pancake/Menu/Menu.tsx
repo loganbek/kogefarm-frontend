@@ -1,26 +1,24 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useLocation } from 'react-router-dom'
-import styled from "styled-components";
-import BigNumber from 'bignumber.js'
-import throttle from "lodash/throttle";
+import BigNumber from 'bignumber.js';
 import { Box } from "components/Pancake";
-import { useTranslation } from 'contexts/Localization'
-import { latinise } from 'utils/latinise'
-import { getAddress } from 'utils/addressHelpers'
-import { getMetaFarmApr } from 'utils/apr'
-import { Farm } from 'state/types'
-import { useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
-import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard'
+import { CHAINS, SUPPORTED_CHAINS } from 'config/index';
+import { useTranslation } from 'contexts/Localization';
+import useNetworkSwitcher from "hooks/useNetworkSwitcher";
+import React, { useCallback, useRef, useState } from "react";
+import { useLocation } from 'react-router-dom';
+import { useFarms, useGetApiPrice, useGetApiPrices } from 'state/hooks';
+import styled from "styled-components";
+import { getAddress } from 'utils/addressHelpers';
+import { getMetaFarmApr } from 'utils/apr';
+import { FarmWithStakedValue } from '../../../views/Farms/components/FarmCard/FarmCard';
 import { useMatchBreakpoints } from "../hooks";
-import Skeleton from '../Skeleton/Skeleton'
-import Text from '../Text/Text'
-import Logo from "./components/Logo";
-import { Wordmark } from "./icons";
-import Panel from "./components/Panel";
+import Text from '../Text/Text';
 import Avatar from "./components/Avatar";
+import Logo from "./components/Logo";
+import Panel from "./components/Panel";
 import UserBlock from "./components/UserBlock";
+import { MENU_HEIGHT, SIDEBAR_WIDTH_FULL, SIDEBAR_WIDTH_REDUCED } from "./config";
+import { Wordmark } from "./icons";
 import { NavProps } from "./types";
-import { MENU_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 
 const Wrapper = styled.div`
   position: relative;
@@ -157,9 +155,13 @@ const Menu: React.FC<NavProps> = ({
   const allFarms = farmsLP.filter((farm) => farm.pid !== 0)
   const kogePrice = useGetApiPrice('kogecoin');
 
+  const currentChain = useNetworkSwitcher().getCurrentNetwork()
+  const chainName = CHAINS[currentChain].chainNameAbbr
+  const isOnPolygon = currentChain === SUPPORTED_CHAINS.MATIC
+
   const farmsList = useCallback(
-    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+    (): FarmWithStakedValue[] => {
+      const farmsToDisplayWithAPR: FarmWithStakedValue[] = allFarms.map((farm) => {
         /* DZ Hack
           if (!farm.lpTotalInQuoteToken || !prices) {
             return farm
@@ -224,15 +226,9 @@ const Menu: React.FC<NavProps> = ({
         return { ...farm, apr, tradingFeeRate, liquidity: totalDeposits, userValue: userDeposits }
       })
 
-      if (query) {
-        const lowercaseQuery = latinise(query.toLowerCase())
-        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
-          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
-        })
-      }
       return farmsToDisplayWithAPR
     },
-    [query, prices, isActive],
+    [prices, isActive, allFarms],
   )
 
   // Commented out as it creates a bug, #105 for more info
@@ -268,7 +264,7 @@ const Menu: React.FC<NavProps> = ({
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
-  const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity ?? 0), new BigNumber(0))
+  const tvl = farmsList().map(f => f.liquidity).filter(f => f?.toString() !== "NaN").reduce((sum, current) => sum.plus(current ?? 0), new BigNumber(0))
 
   // const tvl = farmsList(allFarms).reduce((sum, current) => sum.plus(current.liquidity), new BigNumber(0))
 
@@ -297,13 +293,17 @@ const Menu: React.FC<NavProps> = ({
 
         {!isMobile ? (
           <InfoContainer>
+            {
+              isOnPolygon && (
+                <Stat>
+                  KogeCoin Price
+                  {" "}
+                  <span>${kogePrice?.toLocaleString(undefined, { maximumFractionDigits: 4 }) ?? '-'}</span>
+                </Stat>
+              )
+            }
             <Stat>
-              KogeCoin Price
-              {" "}
-              <span>${kogePrice?.toLocaleString(undefined, { maximumFractionDigits: 4 }) ?? '-'}</span>
-            </Stat>
-            <Stat>
-              {t('KogeFarm Vault TVL')}
+              {t(`KogeFarm Vault ${chainName} TVL`)}
               {" "}
               <span>{displayTVL !== '$NaN' && displayTVL}</span>
             </Stat>

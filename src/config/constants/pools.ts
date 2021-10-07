@@ -10,6 +10,7 @@ const pools: PoolConfig[] = [
     contractAddress: {
       80001: '',
       137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
+      1285: '',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
@@ -25,6 +26,7 @@ const pools: PoolConfig[] = [
     contractAddress: {
       80001: '',
       137: '0x6275518a63e891b1bC54FEEBBb5333776E32fAbD',
+      1285: '',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

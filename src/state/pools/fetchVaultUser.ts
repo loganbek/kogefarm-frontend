@@ -1,7 +1,9 @@
 import BigNumber from 'bignumber.js'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import { getCakeVaultContract } from 'utils/contractHelpers'
 
-const cakeVaultContract = getCakeVaultContract()
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const cakeVaultContract = getCakeVaultContract(useNetworkSwitcher().getCurrentNetwork())
 
 const fetchVaultUser = async (account: string) => {
   try {

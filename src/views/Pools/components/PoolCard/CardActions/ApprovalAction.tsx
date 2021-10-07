@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 import { getAddress } from 'utils/addressHelpers'
 import { Pool } from 'state/types'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 interface ApprovalActionProps {
   pool: Pool
@@ -14,8 +15,9 @@ interface ApprovalActionProps {
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false }) => {
   const { sousId, stakingToken } = pool
   const { t } = useTranslation()
-  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
-  const { handleApprove, requestedApproval } = useSousApprove(stakingTokenContract, sousId)
+  const chain = useNetworkSwitcher().getCurrentNetwork()
+  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '', chain)
+  const { handleApprove, requestedApproval } = useSousApprove(stakingTokenContract, sousId, chain)
 
   return (
     <>

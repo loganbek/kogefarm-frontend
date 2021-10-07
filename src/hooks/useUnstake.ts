@@ -7,15 +7,16 @@ import {
   updateUserBalance,
   updateUserPendingReward,
 } from 'state/actions'
+import { SUPPORTED_CHAINS } from 'config/index'
 // import { unstake, sousUnstake, sousEmergencyUnstake } from 'utils/callHelpers'
 import { unstake, sousUnstake, masterChefUnstake, sousEmergencyUnstake, masterChefEmergencyUnstake, withdrawalJar } from 'utils/callHelpers'
 // import { useMasterchef, useSousChef } from './useContract'
 import { useMasterchef, useSousChef, useJar } from './useContract'
 
-const useUnstake = (jarAddress: string) => {
+const useUnstake = (jarAddress: string, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const jarContract = useJar(jarAddress)
+  const jarContract = useJar(jarAddress, chain)
 
   const handleUnstake = useCallback(
     async (amount: string) => {
@@ -29,11 +30,11 @@ const useUnstake = (jarAddress: string) => {
   return { onUnstake: handleUnstake }
 }
 
-export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
+export const useSousUnstake = (sousId, enableEmergencyWithdraw = false, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
+  const masterChefContract = useMasterchef(chain)
+  const sousChefContract = useSousChef(sousId, chain)
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {
@@ -58,10 +59,10 @@ export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
 }
 
 
-export const useMasterChefUnstake = (sousId, pid, enableEmergencyWithdraw = false) => {
+export const useMasterChefUnstake = (sousId, pid, enableEmergencyWithdraw = false, chain: SUPPORTED_CHAINS) => {
   const dispatch = useAppDispatch()
   const { account, library } = useWeb3React()
-  const masterChefContract = useMasterchef()
+  const masterChefContract = useMasterchef(chain)
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {

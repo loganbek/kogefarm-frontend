@@ -9,13 +9,14 @@ import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 
 interface FarmCardActionsProps {
   stakedBalance?: BigNumber
   tokenBalance?: BigNumber
   tokenName?: string
   jarRatio?: BigNumber
-//  pid?: number
+  //  pid?: number
   jarAddress?: string
   addLiquidityUrl?: string
   depositFee?: number
@@ -33,42 +34,43 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenBalance,
   tokenName,
   jarRatio,
-//  pid,
+  //  pid,
   jarAddress,
   addLiquidityUrl,
   depositFee,
 }) => {
   const { t } = useTranslation()
-  const { onStake } = useStake(jarAddress)
-  const { onUnstake } = useUnstake(jarAddress)
+  const { getCurrentNetwork } = useNetworkSwitcher()
+  const { onStake } = useStake(jarAddress, getCurrentNetwork())
+  const { onUnstake } = useUnstake(jarAddress, getCurrentNetwork())
   const location = useLocation()
 
   let numDecimals = 18
-  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+  if (tokenName === "KogeCoin" || tokenName === "KOGECOIN") {
     numDecimals = 9
   }
-  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+  if (tokenName.toUpperCase() === "USDC" || tokenName.toUpperCase() === "USDT") {
     numDecimals = 6
   }
-  if (tokenName.toUpperCase()==="BTC"){
+  if (tokenName.toUpperCase() === "BTC") {
     numDecimals = 8
   }
 
-  const displayBalanceNumber = stakedBalance.times(jarRatio).div(10**18)
+  const displayBalanceNumber = stakedBalance.times(jarRatio).div(10 ** 18)
   const displayBalance = useCallback(() => {
-    const stakedBalanceNumber = getBalanceNumber(stakedBalance,numDecimals)
-    if (stakedBalanceNumber===0){
+    const stakedBalanceNumber = getBalanceNumber(stakedBalance, numDecimals)
+    if (stakedBalanceNumber === 0) {
       return stakedBalanceNumber.toLocaleString()
     }
     if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
       return getFullDisplayBalance(displayBalanceNumber, numDecimals, numDecimals).toLocaleString()
     }
     return getFullDisplayBalance(displayBalanceNumber, numDecimals, numDecimals).toLocaleString()
-//    return stakedBalanceNumber.toLocaleString()
-}, [stakedBalance, displayBalanceNumber, numDecimals])
+    //    return stakedBalanceNumber.toLocaleString()
+  }, [stakedBalance, displayBalanceNumber, numDecimals])
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} depositFee={depositFee}/>,
+    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} depositFee={depositFee} />,
   )
   const [onPresentWithdraw] = useModal(
     <WithdrawModal max={stakedBalance} displayMax={displayBalanceNumber} onConfirm={onUnstake} tokenName={tokenName} depositFee={depositFee} />,

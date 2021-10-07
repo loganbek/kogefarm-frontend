@@ -1,31 +1,29 @@
-// Set of helper functions to facilitate wallet setup
 
-import { nodes } from './getRpcUrl'
+import { ChainInterface, CHAINS, SUPPORTED_CHAINS } from 'config/index'
+import { getNodeUrl } from './getRpcUrl'
+
+// Set of helper functions to facilitate wallet setup
 
 /**
  * Prompt the user to add BSC as a network on Metamask, or switch to BSC if the wallet is on a different network
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
-export const setupNetwork = async () => {
+export const setupNetwork = async (chain: SUPPORTED_CHAINS) => {
   const provider = (window as WindowChain).ethereum
   if (provider) {
-    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+    const getChainInfo = (): ChainInterface => {
+      const chainInfo = { ...CHAINS[chain] }
+      delete chainInfo?.numberChainId
+      delete chainInfo?.farms
+      delete chainInfo?.chainNameAbbr
+      delete chainInfo?.logoUrl
+      return chainInfo
+    }
+
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Matic Network Mainnet',
-            nativeCurrency: {
-              name: 'MATIC',
-              symbol: 'MATIC',
-              decimals: 18,
-            },
-            rpcUrls: nodes,
-            blockExplorerUrls: ['https://polygonscan.com/'],
-          },
-        ],
+        params: [getChainInfo()],
       })
       return true
     } catch (error) {

@@ -8,6 +8,7 @@ import { Button, Flex, Text } from 'components/Pancake'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import useWeb3 from 'hooks/useWeb3'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import { useApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
 import StakeAction from './StakeAction'
@@ -31,7 +32,7 @@ interface FarmCardActionsProps {
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl }) => {
   const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { lpAddresses, jarAddresses, jarRatio} = farm
+  const { lpAddresses, jarAddresses, jarRatio } = farm
   const {
     allowance: allowanceAsString = 0,
     tokenBalance: tokenBalanceAsString = 0,
@@ -40,18 +41,19 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const allowance = new BigNumber(allowanceAsString)
   const tokenBalance = new BigNumber(tokenBalanceAsString)
   const stakedBalance = new BigNumber(stakedBalanceAsString)
-//   const jarRatio = new BigNumber(farm.jarRatio)
-//  const earnings = new BigNumber(earningsAsString)
+  //   const jarRatio = new BigNumber(farm.jarRatio)
+  //  const earnings = new BigNumber(earningsAsString)
   const lpAddress = getAddress(lpAddresses)
   const jarAddress = getAddress(jarAddresses)
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
-  const web3 = useWeb3()
+  const chain = useNetworkSwitcher().getCurrentNetwork()
+  const web3 = useWeb3(chain)
 
-  const lpContract = getBep20Contract(lpAddress, web3)
-//  const jarContract = getBep20Contract(jarAddress, web3)
+  const lpContract = getBep20Contract(lpAddress, chain, web3)
+  //  const jarContract = getBep20Contract(jarAddress, web3)
 
-  const { onApprove } = useApprove(lpContract, jarAddress)
+  const { onApprove } = useApprove(lpContract, jarAddress, chain)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -69,8 +71,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         stakedBalance={stakedBalance}
         tokenBalance={tokenBalance}
         tokenName={lpName}
-        jarRatio = {jarRatio}
-   //     pid={pid}
+        jarRatio={jarRatio}
+        //     pid={pid}
         jarAddress={jarAddress}
         addLiquidityUrl={addLiquidityUrl}
         depositFee={farm.depositFee}

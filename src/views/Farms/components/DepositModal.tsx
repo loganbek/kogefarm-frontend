@@ -1,10 +1,12 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState, useRef } from 'react'
-import { Button, Flex } from 'components/Pancake'
 import ModalInput from 'components/ModalInput'
+import { Button, Flex } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
-import { getFullDisplayBalance } from 'utils/formatBalance'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { getFullDisplayBalance } from 'utils/formatBalance'
+import { setupNetwork } from 'utils/wallet'
 
 interface DepositModalProps {
   max: BigNumber
@@ -27,16 +29,18 @@ const DepositModal: React.FC<DepositModalProps> = ({
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
 
+  const { getCurrentNetwork } = useNetworkSwitcher()
+
   const depostModalRef = useRef()
 
   let numDecimals = 18
-  if (tokenName==="KogeCoin" || tokenName==="KOGECOIN"){
+  if (tokenName === "KogeCoin" || tokenName === "KOGECOIN") {
     numDecimals = 9
   }
-  if (tokenName.toUpperCase()==="USDC" || tokenName.toUpperCase()==="USDT"){
+  if (tokenName.toUpperCase() === "USDC" || tokenName.toUpperCase() === "USDT") {
     numDecimals = 6
   }
-  if (tokenName.toUpperCase()==="BTC"){
+  if (tokenName.toUpperCase() === "BTC") {
     numDecimals = 8
   }
 
@@ -73,17 +77,23 @@ const DepositModal: React.FC<DepositModalProps> = ({
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={t('Stake/Harvest')}
-        depositFee = {depositFee}
+        depositFee={depositFee}
       />
       <Flex mt="12px">
         <Button
           width="100%"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           onClick={async () => {
-            setPendingTx(true)
-            await onConfirm(val)
-            setPendingTx(false)
-            onClose()
+            try {
+              setPendingTx(true)
+              await setupNetwork(getCurrentNetwork())
+              await onConfirm(val)
+              setPendingTx(false)
+              onClose()
+            } catch (e) {
+              setPendingTx(false)
+              onClose()
+            }
           }}
         >
           {pendingTx ? t('Pending...') : t('Deposit')}
