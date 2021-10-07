@@ -146,6 +146,7 @@ const tokens = {
     address: {
       137: '0xa3Fa99A148fA48D14Ed51d610c367C61876997F1',
       80001: '',
+      1285: '0x7f5a79576620C046a293F54FFCdbd8f2468174F1',
     },
     decimals: 18,
     projectLink: '',
@@ -835,6 +836,16 @@ const tokens = {
       137: '',
       80001: '',
       1285: '0x6bD193Ee6D2104F14F94E2cA6efefae561A4334B',
+    },
+    decimals: 18,
+  },
+  movr: {
+    symbol: 'Movr',
+    coingeico: 'movr',
+    address: {
+      137: '',
+      80001: '',
+      1285: '0x98878B06940aE243284CA214f92Bb71a2b032B8A',
     },
     decimals: 18,
   },

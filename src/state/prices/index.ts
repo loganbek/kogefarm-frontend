@@ -982,10 +982,12 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     const usdcUSD = parseFloat(data.usdc.usd)
     const daiUSD = usdcUSD / daiUSDC
     const solarUSD = usdcUSD / solarUSDC
+    const movrUSD = usdcUSD / movrUSDC
 
     // Get dollar prices
     data.dai = { "usd": daiUSD.toString() }
     data.solar = { "usd": solarUSD.toString() }
+    data.movr = { "usd": movrUSD.toString() }
   }
   // Return normalized token names
   return {
