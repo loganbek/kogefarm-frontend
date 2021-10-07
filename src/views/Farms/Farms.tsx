@@ -41,7 +41,7 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
-import { CHAINS } from 'config/index'
+import { CHAINS, SUPPORTED_CHAINS } from 'config/index'
 
 const ControlContainer = React.memo(styled.div<{ isDesktop: boolean }>`
 display: flex;
@@ -172,6 +172,7 @@ const Farms: React.FC = () => {
   const currentChain = CHAINS[useNetworkSwitcher().getCurrentNetwork()]
   const chainId = currentChain.numberChainId
   const chainName = currentChain.chainNameAbbr
+  const isPolygon = useNetworkSwitcher().getCurrentNetwork() === SUPPORTED_CHAINS.MATIC
 
   const [platformSelectOption, setPlatformSelectOption] = useState<OptionProps>({ label: 'All', value: '' })
 
@@ -700,15 +701,16 @@ const Farms: React.FC = () => {
                   </Text>
                 </Tip>
               )}>
-              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every hour.
+              <a href="https://koge.gitbook.io/kogefarm/why-autocompound">auto-compounding</a> every {isPolygon ? "twenty minutes" : "hour"}.
             </Tooltip>
             {' Lowest '}
             <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
-            {' in defi. '}
+            {` in ${chainName}. `}
             <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
             {' '}
             by Obelisk.
           </StyledText>
+
         </Flex>
         {!isDesktop &&
           (<Flex width="100%" justifyContent="flex-end" className="stats">
