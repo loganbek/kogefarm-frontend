@@ -7889,7 +7889,7 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
       80001: '',
       1285: '0x31645AEFBCF37127f511b7BD9A7bfdA7427AeF8e',
     },
-    token: tokens.busd,
+    token: tokens.usdt,
     quoteToken: tokens.usdc,
     rewardToken: tokens.solar,
     rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time

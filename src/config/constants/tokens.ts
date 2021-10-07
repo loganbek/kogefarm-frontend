@@ -19,6 +19,17 @@ const tokens = {
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc',
   },
+  busd: {
+    symbol: 'BUSD',
+    coingeico: 'busd',
+    address: {
+      137: '',
+      80001: '',
+      1285: '0x5D9ab5522c64E1F6ef5e3627ECCc093f56167818',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
   matic: {
     symbol: 'MATIC',
     coingeico: 'matic-network',
