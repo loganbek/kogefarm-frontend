@@ -1,8 +1,9 @@
 import { getWeb3NoAccount } from 'utils/web3'
 import Web3 from 'web3'
 import BigNumber from 'bignumber.js'
-import { DEFAULT_TOKEN_DECIMAL, KOGE_TOKEN_DECIMAL } from 'config'
+import { DEFAULT_TOKEN_DECIMAL, KOGE_TOKEN_DECIMAL, SUPPORTED_CHAINS } from 'config'
 import { ethers } from 'ethers'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
 
 
@@ -261,6 +262,9 @@ export const soushHarvestBnb = async (sousChefContract, account, library) => {
 }
 
 export const estimateGas = async (callObject, account, library) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const isPolygon = useNetworkSwitcher().getCurrentNetwork() === SUPPORTED_CHAINS.MATIC
+
     let gasLimit = await callObject.estimateGas({ from: account })
 
     // estimateGas is not super accurate, so doubling it to be safe
@@ -274,7 +278,7 @@ export const estimateGas = async (callObject, account, library) => {
     const web3 = library ? new Web3(library) : getWeb3NoAccount()
 
     const gasPrice = await web3.eth.getGasPrice();
-    const gasPriceEstimate = (parseInt(gasPrice) * 2).toString();
+    const gasPriceEstimate = (parseInt(gasPrice) * (isPolygon ? 2 : 1)).toString();
 
     return [gasLimit, gasPriceEstimate]
 }
