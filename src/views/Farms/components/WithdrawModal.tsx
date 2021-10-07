@@ -103,6 +103,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
             } finally {
               setPendingTx(false)
               withdrawBalance = "0.00"
+              onClose()
             }
           }}
           width="100%"
