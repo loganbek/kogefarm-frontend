@@ -153,7 +153,7 @@ const farms: FarmConfig[] = [
        platform: 'Curve',
        multiplier: '0X'
      },
-  
+
      {
        pid: 166,
        lpSymbol: 'atricrypto2',
@@ -2601,7 +2601,7 @@ const farms: FarmConfig[] = [
             multiplier: '0X',
             platform: 'Gravity (legacy)'
           },
-  
+
           {
             pid: 89,
             lpSymbol: 'GFI-ETH LP',
@@ -4515,7 +4515,7 @@ const farms: FarmConfig[] = [
           multiplier: '0X',
           platform: 'Swamp'
         },
-  
+
         {
           pid: 142,
           lpSymbol: 'USDT-UST LP',
@@ -4545,7 +4545,7 @@ const farms: FarmConfig[] = [
           underlyingWebsite: 'https://swamp.finance/polygon/',
           kogefarmComment: ' (pSwamp, Dino)',
         },
-  
+
         {
           pid: 108,
           lpSymbol: 'Eth-Matic',
@@ -6772,7 +6772,7 @@ const farms: FarmConfig[] = [
           kogefarmComment: ' (ROLL)',
           depositFee: 0.04,
         },
-  
+
         {
           pid: 38,
           lpSymbol: 'Eth',
@@ -6799,7 +6799,7 @@ const farms: FarmConfig[] = [
           kogefarmComment: ' (ROLL)',
           depositFee: 0.04,
         },
-  
+
         {
           pid: 39,
           lpSymbol: 'USDC',
@@ -6826,7 +6826,7 @@ const farms: FarmConfig[] = [
           kogefarmComment: ' (ROLL)',
           depositFee: 0.04,
         },
-  
+
         {
           pid: 40,
           lpSymbol: 'USDT',
@@ -7606,7 +7606,7 @@ const farms: FarmConfig[] = [
      kogefarmComment: ' (Quick)',
      multiplier: '0X',
    },
-  
+
    {
      pid: 6,
      lpSymbol: 'Iron-USDC LP',
@@ -7752,12 +7752,12 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
     masterChefPid: 8,
     jarAddresses: {
       80001: '',
-      1285: '0x2a5d9C979deB9da7F5Bb208b94C704e31B18e423',
+      1285: '0x005d1d02e396D4B47DD92e3c068a6Cec153238cd',
     },
     token: tokens.dai,
     quoteToken: tokens.usdc,
     rewardToken: tokens.solar,
-    rewardPerBlock: 3.95,
+    rewardPerBlock: 3.95 * 2 / 13, // Fix reward block time
     poolWeightDesignate: 270 / 11445,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
