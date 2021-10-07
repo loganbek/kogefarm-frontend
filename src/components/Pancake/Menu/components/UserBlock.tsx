@@ -1,23 +1,25 @@
-import React from "react";
-import { Tooltip } from 'react-tippy'
-import styled from 'styled-components'
-import { Text } from "components/Pancake";
 import NetworkSwitcher from "components/NetworkSwitcher";
-import Flex from "../../Flex";
-import CopyToClipboard from "../../WalletModal/CopyToClipboard";
-import { connectorLocalStorageKey, walletLocalStorageKey } from "../../WalletModal/config";
+import { Text } from "components/Pancake";
+import useNetworkSwitcher from "hooks/useNetworkSwitcher";
+import React from "react";
+import { Tooltip } from 'react-tippy';
+import styled from 'styled-components';
+import { setupNetwork } from "utils/wallet";
 import Button from "../../Button/Button";
+import Flex from "../../Flex";
+import BinanceChain from "../../Svg/Icons/BinanceChain";
+import Coin98 from "../../Svg/Icons/Coin98";
+import MathWallet from "../../Svg/Icons/MathWallet";
+import Metamask from "../../Svg/Icons/Metamask";
+import SafePal from "../../Svg/Icons/SafePal";
+import TokenPocket from "../../Svg/Icons/TokenPocket";
+import TrustWallet from "../../Svg/Icons/TrustWallet";
+import WalletConnect from "../../Svg/Icons/WalletConnect";
 import { useWalletModal } from "../../WalletModal";
+import { connectorLocalStorageKey, walletLocalStorageKey } from "../../WalletModal/config";
+import CopyToClipboard from "../../WalletModal/CopyToClipboard";
 import { Login } from "../../WalletModal/types";
 
-import Metamask from "../../Svg/Icons/Metamask"
-import WalletConnect from "../../Svg/Icons/WalletConnect";
-import TrustWallet from "../../Svg/Icons/TrustWallet";
-import MathWallet from "../../Svg/Icons/MathWallet";
-import TokenPocket from "../../Svg/Icons/TokenPocket";
-import BinanceChain from "../../Svg/Icons/BinanceChain";
-import SafePal from "../../Svg/Icons/SafePal";
-import Coin98 from "../../Svg/Icons/Coin98";
 
 
 interface Props {
@@ -97,6 +99,7 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
   const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 6)}` : null;
   const preferredWalletName = localStorage.getItem(walletLocalStorageKey);
   const wallet = walletMap[preferredWalletName]
+  const { getCurrentNetwork } = useNetworkSwitcher()
 
   return (
     <UserBlockContainer >
@@ -145,7 +148,8 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
       ) : (
         <Button
           scale="sm"
-          onClick={() => {
+          onClick={async () => {
+            await setupNetwork(getCurrentNetwork());
             onPresentConnectModal();
           }}
         >
