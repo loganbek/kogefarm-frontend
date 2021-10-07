@@ -7860,7 +7860,7 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
           masterChefPid: 8,
           jarAddresses: {
             80001: '',
-            1285: '0x5Df309E6C22Ad6D78685c321Df5582B9C4D61492',
+            1285: '0xFA45b55c3a2bA74B9De476FC01658F9352209390',
           },
           token: tokens.busd,
           quoteToken: tokens.usdc,

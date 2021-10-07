@@ -263,11 +263,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = farm.underlyingWebsite
 
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
+  const wmovrAddress = "0x98878B06940aE243284CA214f92Bb71a2b032B8A"
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   if (getCurrentNetwork() === SUPPORTED_CHAINS.MOONRIVER) {
     liquidityurl = `https://solarbeam.io/exchange/add/${farm.token.address[chainId]}/${farm.quoteToken.address[chainId]}`
-
+    liquidityurl = liquidityurl.replace(wmovrAddress, 'ETH')
   }
 
   if (farm.isSushi === true) {
