@@ -1,11 +1,13 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState, useRef } from 'react'
-import { Button, Flex } from 'components/Pancake'
 import ModalInput from 'components/ModalInput'
+import { Button, Flex } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
-import { getFullDisplayBalance } from 'utils/formatBalance'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
 import useToast from 'hooks/useToast'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { getFullDisplayBalance } from 'utils/formatBalance'
+import { setupNetwork } from 'utils/wallet'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -27,6 +29,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+
+  const { getCurrentNetwork } = useNetworkSwitcher()
 
   const { toastError } = useToast()
 
@@ -91,6 +95,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
             }
             setPendingTx(true)
             try {
+              await setupNetwork(getCurrentNetwork())
               await onConfirm(withdrawBalance)
             } catch (e) {
               setPendingTx(false)

@@ -1,10 +1,12 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState, useRef } from 'react'
-import { Button, Flex } from 'components/Pancake'
 import ModalInput from 'components/ModalInput'
+import { Button, Flex } from 'components/Pancake'
 import { useTranslation } from 'contexts/Localization'
-import { getFullDisplayBalance } from 'utils/formatBalance'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import useOutsideClickDetection from 'hooks/useOutsideClickDetection'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { getFullDisplayBalance } from 'utils/formatBalance'
+import { setupNetwork } from 'utils/wallet'
 
 interface DepositModalProps {
   max: BigNumber
@@ -26,6 +28,8 @@ const DepositModal: React.FC<DepositModalProps> = ({
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+
+  const { getCurrentNetwork } = useNetworkSwitcher()
 
   const depostModalRef = useRef()
 
@@ -82,6 +86,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
           onClick={async () => {
             try {
               setPendingTx(true)
+              await setupNetwork(getCurrentNetwork())
               await onConfirm(val)
               setPendingTx(false)
               onClose()
