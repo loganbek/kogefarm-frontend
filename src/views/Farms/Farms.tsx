@@ -402,8 +402,9 @@ const Farms: React.FC = () => {
             tokens.dai.address[chainId],
             tokens.usdt.address[chainId],
             tokens.mimatic.address[chainId],
+            tokens.busd.address[chainId],
             tokens.ust.address[chainId]]
-              .includes(f.token.address[chainId]) || ["DAI", "USDT", "USDT"].reduce((p, c) => p && f.lpSymbol.includes(c), Boolean(true)))
+              .includes(f.token.address[chainId]) || ["DAI", "USDT", "USDT", "BUSD"].reduce((p, c) => p && f.lpSymbol.includes(c), Boolean(true)))
               && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
               && !/(-+eth)|(eth-+)/gmi.exec(f.lpSymbol)
 
@@ -679,6 +680,7 @@ const Farms: React.FC = () => {
     "label",
     ['asc']
   )
+  const mobilePolygon = !isDesktop && chainId===137
   return (
     <Page>
 
@@ -712,7 +714,7 @@ const Farms: React.FC = () => {
           </StyledText>
 
         </Flex>
-        {!isDesktop &&
+        {mobilePolygon &&
           (<Flex width="100%" justifyContent="flex-end" className="stats">
             <Flex flexDirection="column" width="100%">
               <Price alignItems="center" width="100%" justifyContent="space-between" mb="12px" marginRight="12px">
