@@ -7,14 +7,14 @@ import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
 import BigNumber from 'bignumber.js'
+import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 import StakedAction from './StakedAction'
 import { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
-import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -243,6 +243,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   expanded,
 }) => {
   const farm = details
+  console.log({ farm });
+
   const { t } = useTranslation()
   const theme = useTheme();
   const isActive = true
@@ -252,15 +254,23 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-  const chainId = useNetworkSwitcher().getCurrentNetwork()
+  const { getCurrentNetwork } = useNetworkSwitcher()
+  const chainId = CHAINS[getCurrentNetwork()].numberChainId
   const lpAddress = farm.lpAddresses[chainId]
   const jarAddress = farm.jarAddresses[chainId]
-  const bsc = `https://polygonscan.com/address/${jarAddress}`
+  const bsc = getCurrentNetwork() === SUPPORTED_CHAINS.MATIC
+    ? `https://polygonscan.com/address/${jarAddress}`
+    : `https://blockscout.moonriver.moonbeam.network/address/${jarAddress}`
   const info = farm.underlyingWebsite
 
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  if (getCurrentNetwork() === SUPPORTED_CHAINS.MOONRIVER) {
+    liquidityurl = `https://solarbeam.io/exchange/add/${farm.token.address[chainId]}/${farm.quoteToken.address[chainId]}`
+
+  }
+
   if (farm.isSushi === true) {
     liquidityurl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
