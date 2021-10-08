@@ -16,6 +16,7 @@ function NetworkSwitcher() {
         () => [
             { ...CHAINS[SUPPORTED_CHAINS.MATIC], SUPPORTED_CHAIN: SUPPORTED_CHAINS.MATIC },
             { ...CHAINS[SUPPORTED_CHAINS.MOONRIVER], SUPPORTED_CHAIN: SUPPORTED_CHAINS.MOONRIVER },
+            { ...CHAINS[SUPPORTED_CHAINS.FANTOM], SUPPORTED_CHAIN: SUPPORTED_CHAINS.FANTOM },
         ]
             .map(n => ({
                 label: n.chainNameAbbr,

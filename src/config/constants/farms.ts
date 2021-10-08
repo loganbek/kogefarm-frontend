@@ -7920,4 +7920,6 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
 
 ]
 
+export const FANTOM_FARMS: FarmConfig[] = []
+
 export default farms

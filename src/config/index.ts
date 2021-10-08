@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js/bignumber'
 import { BIG_TEN } from 'utils/bigNumber'
-import { MOONRIVER_FARMS, POLYGON_FARMS } from './constants/farms'
+import { FANTOM_FARMS, MOONRIVER_FARMS, POLYGON_FARMS } from './constants/farms'
 import { FarmConfig } from './constants/types'
 
 BigNumber.config({
@@ -106,9 +106,26 @@ export const MOONRIVER_CHAIN: ChainInterface = {
   blockExplorerUrls: ['https://blockscout.moonriver.moonbeam.network/'],
 }
 
+// Fantom
+const FANTOM_CHAIN_ID = 250
+export const FANTOM_CHAIN: ChainInterface = {
+  chainId: `0x${Number(FANTOM_CHAIN_ID).toString(16)}`,
+  chainName: 'Fantom Opera',
+  nativeCurrency: {
+    name: 'FTM',
+    symbol: 'FTM',
+    decimals: 18,
+  },
+  rpcUrls: [
+    "https://rpc.ftm.tools/",
+  ],
+  blockExplorerUrls: ["https://ftmscan.com/"],
+}
+
 export enum SUPPORTED_CHAINS {
   MATIC = "MATIC",
-  MOONRIVER = "MOONRIVER"
+  MOONRIVER = "MOONRIVER",
+  FANTOM = "FANTOM"
 }
 export type CHAINSInterface = {
   [x in SUPPORTED_CHAINS]: ChainInterface & { numberChainId: number; chainNameAbbr: string; logoUrl: string; farms: FarmConfig[] }
@@ -117,16 +134,23 @@ export type CHAINSInterface = {
 export const CHAINS: CHAINSInterface = {
   [SUPPORTED_CHAINS.MATIC]: {
     ...POLYGON_CHAIN,
-    numberChainId: 137,
+    numberChainId: POLYGON_CHAIN_ID,
     chainNameAbbr: "Polygon",
     logoUrl: "/images/polygon.svg",
     farms: POLYGON_FARMS
   },
   [SUPPORTED_CHAINS.MOONRIVER]: {
     ...MOONRIVER_CHAIN,
-    numberChainId: 1285,
+    numberChainId: MOONRIVER_CHAIN_ID,
     chainNameAbbr: "Moonriver",
     logoUrl: "/images/moonriver.svg",
     farms: MOONRIVER_FARMS
+  },
+  [SUPPORTED_CHAINS.FANTOM]: {
+    ...FANTOM_CHAIN,
+    numberChainId: FANTOM_CHAIN_ID,
+    chainNameAbbr: "Fantom",
+    logoUrl: "/images/fantom.svg",
+    farms: FANTOM_FARMS
   }
 }
