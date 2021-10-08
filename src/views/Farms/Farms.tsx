@@ -661,6 +661,7 @@ const Farms: React.FC = () => {
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
+    setPlatformSelectOption(option)
     setPlatform(option.value)
     setSortOption('multi')
     if (option.value) {
