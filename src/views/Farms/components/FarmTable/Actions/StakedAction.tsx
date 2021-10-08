@@ -24,6 +24,7 @@ import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
 import useTheme from 'hooks/useTheme'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
+import { AutoRenewIcon } from '@pancakeswap/uikit';
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
@@ -318,6 +319,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <Button
           width="100%"
           disabled={requestedApproval}
+          isLoading={requestedApproval}
+          endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           onClick={handleApprove}
           variant="outline"
         >
