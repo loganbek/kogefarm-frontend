@@ -15,6 +15,7 @@ import { AprProps } from '../Apr'
 import Apy, { ApyProps } from '../Apy'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import UserValue, { UserValueProps } from '../UserValue'
+import Divider from '../../Divider';
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -378,6 +379,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <Wrapper isMobile={isMobile}>
         <ContainerWrapper>
           <ValueContainer>
+            {isMobile && (<Divider style={{ margin: 0, backgroundColor: "rgb(48, 48, 48)" }} />)}
             <ValueWrapper>
               <Text>{t('APY')}</Text>
               <Apy {...apy} />
