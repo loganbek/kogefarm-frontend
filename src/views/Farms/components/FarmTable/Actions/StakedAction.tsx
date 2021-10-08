@@ -29,8 +29,8 @@ import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
 import { ActionContainer, ActionContent } from './styles'
 
-const StyledButtonMenuItem = styled(ButtonMenuItem)`
-  background-color: transparent;
+const StyledButtonMenuItem = styled(ButtonMenuItem) <{ disabled?: boolean }>`
+  background-color: transparent !important;
 `
 
 const Tip = styled.div`
@@ -289,6 +289,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
                 e.stopPropagation()
                 setWithdrawIsOpen(true)
               }}
+              disabled={stakedBalance.toString() === "0"}
             >
               <Withdraw isDark={isDark} />
               <Text fontWeight="bold">
