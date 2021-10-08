@@ -89,7 +89,7 @@ const farms: FarmConfig[] = [
     minutesPerCompound: 1,
     kogefarmFee: 0.00,
     underlyingWebsite: 'https://kogecoin.io',
-    platform: 'Koge'
+    platform: 'KogeFarm'
   },
 
   {
@@ -1664,7 +1664,7 @@ const farms: FarmConfig[] = [
            minutesPerCompound: 5,
            kogefarmFee: 0,
            underlyingWebsite: 'https://kogecoin.io',
-           platform: 'Koge',
+           platform: 'KogeFarm',
            multiplier: '0X',
          },
   */
