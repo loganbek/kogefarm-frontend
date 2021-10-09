@@ -1032,7 +1032,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange/#/quick',
     kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -1088,7 +1089,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange/#/quick',
     kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -1144,7 +1146,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange/#/quick',
     kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -1200,7 +1203,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange/#/quick',
     kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -4086,7 +4090,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange/',
     kogefarmComment: ' (QuickSwap)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -4142,7 +4147,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange',
     kogefarmComment: ' (QuickSwap)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -4198,7 +4204,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange',
     kogefarmComment: ' (QuickSwap)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
@@ -4226,7 +4233,8 @@ const farms: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://quickswap.exchange',
     kogefarmComment: ' (QuickSwap)',
-    platform: 'QuickSwap'
+    platform: 'QuickSwap',
+    multiplier: '0X',
   },
 
   {
