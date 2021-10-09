@@ -4293,6 +4293,61 @@ const farms: FarmConfig[] = [
     platform: 'QuickSwap'
   },
 
+  {
+    pid: 280,
+    lpSymbol: 'IMX-ETH LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x5F819F510CA9B1469e6a3Ffe4ecD7F0C1126f8F5',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xBba6c7B2D1B088ecC969E13140b801714f9b1a20',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      80001: '',
+      137: '0x9e7eB04168078eE76755D81ddC229d5C7Ad218c9',
+    },
+    token: tokens.imx,
+    quoteToken: tokens.eth,
+    rewardToken: tokens.dquick,
+    rewardPerBlock: 0.000009085648148148 * 2,
+    poolWeightDesignate: 1,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://quickswap.exchange/',
+    kogefarmComment: ' (QuickSwap)',
+    platform: 'QuickSwap'
+  },
+
+  {
+    pid: 281,
+    lpSymbol: 'IMX-Quick LP',
+    lpAddresses: {
+      80001: '',
+      137: '0x7E1cF35E362cAeA8C1a132bA4E4222080f26D8B0',
+    },
+    masterChefAddresses: {
+      80001: '',
+      137: '0xbAa4E89245f462B6746CBfadDe6a1Ae120fb62C3',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      80001: '',
+      137: '0x9420981430E703f0310db748483d1627478EfCFA',
+    },
+    token: tokens.imx,
+    quoteToken: tokens.quick,
+    rewardToken: tokens.dquick,
+    rewardPerBlock: 0.000004542824074074 * 2,
+    poolWeightDesignate: 1,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://quickswap.exchange/',
+    kogefarmComment: ' (QuickSwap)',
+    platform: 'QuickSwap'
+  },
 
   {
     pid: 135,
