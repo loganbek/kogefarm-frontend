@@ -891,6 +891,16 @@ const tokens = {
     },
     decimals: 18,
   },
+  imx: {
+    symbol: 'Imx',
+    coingeico: 'imx',
+    address: {
+      137: '0x60bB3D364B765C497C8cE50AE0Ae3f0882c5bD05',
+      80001: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
