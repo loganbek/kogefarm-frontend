@@ -253,6 +253,17 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  dquick: {
+    symbol: 'dQuick',
+    coingeico: 'dquick',
+    address: {
+      137: '0xf28164A485B0B2C90639E47b0f377b4a438a16B1',
+      80001: '',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+
   pyq: {
     symbol: 'Pyq',
     coingeico: 'pyq',
@@ -865,6 +876,16 @@ const tokens = {
     coingeico: 'beta',
     address: {
       137: '0xaC3090B7042FCA2cDBF233022e4a9823a032600c',
+      80001: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
+  uni: {
+    symbol: 'Uni',
+    coingeico: 'uni',
+    address: {
+      137: '0xb33EaAd8d922B1083446DC23f610c2567fB5180f',
       80001: '',
       1285: '',
     },
