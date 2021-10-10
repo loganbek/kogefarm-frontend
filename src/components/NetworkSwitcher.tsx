@@ -33,7 +33,13 @@ function NetworkSwitcher() {
         window.location.reload()
     }
 
-    return <Select value={value} options={networks} onChange={changeNetwork} />
+    return <Select
+        value={value}
+        options={networks}
+        onChange={changeNetwork}
+        dropDownHeaderStyle={{ gridTemplateColumns: '1fr 3fr' }}
+        dropDownListItemStyle={{ gridTemplateColumns: '1fr 3fr' }}
+    />
 
 }
 
