@@ -708,9 +708,7 @@ const Farms: React.FC = () => {
             {' Lowest '}
             <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
             {` in ${chainName}. `}
-            <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Audited</a>
-            {' '}
-            by Obelisk.
+            Audited by <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Obelisk</a> and <a href="https://paladinsec.co/projects/kogefarm/">Paladin</a>. Public <a href="https://medium.com/kogecoin/the-kogefarm-team-is-expanding-4694399d0e52">lead dev</a>.
           </StyledText>
 
         </Flex>
@@ -745,7 +743,7 @@ const Farms: React.FC = () => {
       </Hero>
 
       <ControlContainer isDesktop={isDesktop}>
-        <ToggleWrapper style={!isDesktop && { marginBottom: 12 }}>
+        <ToggleWrapper style={!isDesktop ? { marginBottom: 12 } : {}}>
           <Text fontSize="12px" bold>{t('Staked only')}</Text>
           <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
         </ToggleWrapper>

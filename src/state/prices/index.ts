@@ -113,6 +113,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const pawMaticLP = '0xCdf59DE1d771E265aD8A1571532181e137258f44'
   const betaAddr = '0xaC3090B7042FCA2cDBF233022e4a9823a032600c'
   const betaMaticLP = '0x2F2C4A52616663D15E3fACe26Db6305AFe549EDc'
+  // dQuick
+  const dQuickAddr = '0xf28164A485B0B2C90639E47b0f377b4a438a16B1'
   //LPTOKENADDRESSHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
   //HARVESTTOKENADDRESSESHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
   // Curve
@@ -781,7 +783,18 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: maticAddr,
       name: 'balanceOf',
       params: [betaMaticLP],
-    }, //NEWCALLHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
+    },
+    // Quick
+    {
+      address: quickAddr,
+      name: 'balanceOf',
+      params: [dQuickAddr],
+    },
+    {
+      address: dQuickAddr,
+      name: 'totalSupply',
+    }
+//NEWCALLHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
   ]
 
   /**
@@ -826,7 +839,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const currentChain = useNetworkSwitcher().getCurrentNetwork()
 
   if (currentChain === SUPPORTED_CHAINS.MATIC) {
-    const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance, maticFish, wexBalanceLP, usdcWex, miMaticQidaoUSDC, usdcmiMaticQidao, miMaticQidao, qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance, elkBalance, maticBalanceElk, collarBalance, collarMaticBalance, pbrewBalance, pbrewMaticBalance, pawBalance, pawMaticBalance, betaBalance, betaMaticBalance] = await multicall(erc20, polygonCalls)
+    const [maticBalanceUM, usdcBalanceUM, kogeBalanceLP, maticTokenBalanceLP, ethBalance, ethMaticBalance, quickBalance, quickMaticBalance, totalLPSupply, titanBalanceLP, maticBalanceLP, ironBalanceLP, usdcBalanceIron, bootyBalanceLP, maticBalanceBooty, fishBalance, maticFish, wexBalanceLP, usdcWex, miMaticQidaoUSDC, usdcmiMaticQidao, miMaticQidao, qidaoMiMatic, omenBalance, omenUSDCBalance, yeldBalance, yeldUSDCBalance, crystlBalance, crystalMaticBalance, pyqBalance, pyqUSDCBalance, rollBalance, rollMaticBalance, boneBalance, boneMaticBalance, pupBalance, pupMaticBalance, btcBalance, btcUSDCBalance, boneswapBalance, boneswapMaticBalance, pwingsBalance, pwingsMaticBalance, gfiBalance, gfiEthBalance, iceBalance, iceUSDCBalance, crvBalance, crvWETHBalance, vertBalance, vertUSDCBalance, dinoBalance, dinoUSDCBalance, pswampBalance, pswampMaticBalance, lithiumBalance, lithiumMaticBalance, linkBalance, linkEthBalance, sushiBalance, sushiEthBalance, ballBalance, ballMaticBalance, bananaBalance, bananaMaticBalance, myfriendsBalance, myfriendsUSDCBalance, arcadiumBalance, arcadiumUSDCBalance, shieldBalance, shieldMaticBalance, irisBalance, irisMaticBalance, alphaBalance, alphaMaticBalance, spadeBalance, spadeUSDCBalance, elkBalance, maticBalanceElk, collarBalance, collarMaticBalance, pbrewBalance, pbrewMaticBalance, pawBalance, pawMaticBalance, betaBalance, betaMaticBalance, quickdQuickBalance, dQuickSupply] = await multicall(erc20, polygonCalls)
 
     const [curve3poolSupply, amDaiCurve, amUSDCCurve, amUSDTCurve, iron3poolSupply, daiIron, usdcIron, usdtIron, iron4poolSupply, i3usdIron4pool, ironIron4pool, btcrenbtcSupply, amWBTCCurve, amRenBTCCurve, atricryptoSupply, amWBTCatricrypto, amWETHatricrypto, am3CRVatricrypto, atricrypto2Supply, amWBTCatricrypto2, amWETHatricrypto2, am3CRVatricrypto2, atricrypto3Supply, amWBTCatricrypto3, amWETHatricrypto3, am3CRVatricrypto3, kogeBal] = await multicall(erc20, polygonCurveCalls)
     // Curve ratio
@@ -941,6 +954,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     const atricrypto3USD = atricrypto3Value / (atricrypto3Supply / 10 ** 18)
     // Get Koge LP price
     const kogeMaticLPUSD = maticTokenBalanceLP * 2 * maticUSD / totalLPSupply
+    // Ratio quickdQuickBalance, dQuickSupply
+    const dQuickUSD = quickdQuickBalance / dQuickSupply * quickUSD
     // Get Koge price and Koge LP price
     data['matic-network'] = { "usd": maticUSD.toString() }
     data.kogecoin = { "usd": kogeUSD.toString() }
@@ -996,8 +1011,8 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.pbrew = { "usd": pbrewUSD.toString() }
     data.paw = { "usd": pawUSD.toString() }
     data.beta = { "usd": betaUSD.toString() }
+    data.dquick = { "usd": dQuickUSD.toString() }
     data.kogeremaining = { "usd": kogeRemaining.toString() }
-
   }
   if (currentChain === SUPPORTED_CHAINS.MOONRIVER) {
     // Get LP pool composition
