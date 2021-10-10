@@ -743,7 +743,7 @@ const Farms: React.FC = () => {
       </Hero>
 
       <ControlContainer isDesktop={isDesktop}>
-        <ToggleWrapper style={!isDesktop && { marginBottom: 12 }}>
+        <ToggleWrapper style={!isDesktop ? { marginBottom: 12 } : {}}>
           <Text fontSize="12px" bold>{t('Staked only')}</Text>
           <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
         </ToggleWrapper>

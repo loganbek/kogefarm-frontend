@@ -103,7 +103,7 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
   const { getCurrentNetwork } = useNetworkSwitcher()
 
   return (
-    <UserBlockContainer style={isMobile && { marginLeft: 15 }}>
+    <UserBlockContainer style={isMobile ? { marginLeft: 15 } : {}}>
       <NetworkSwitcher />
       {account ? (
         <Tooltip
