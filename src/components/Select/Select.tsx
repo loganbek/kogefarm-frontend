@@ -7,7 +7,6 @@ const DropDownHeader = styled.div<{ isActive?: boolean }>`
   width: 100%;
   height: 40px;
   display: grid;
-  grid-template-columns: 1fr 3fr;
   grid-gap: 12px;
   align-items: center;
   padding: 0px 16px;
@@ -90,7 +89,6 @@ const DropDownList = styled.ul`
 
 const ListItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr 3fr;
   grid-gap: 12px;
   align-items: center;
   list-style: none;
@@ -106,6 +104,8 @@ export interface SelectProps {
   options: OptionProps[]
   onChange?: (option: OptionProps) => void
   style?: React.CSSProperties
+  dropDownHeaderStyle?: React.CSSProperties
+  dropDownListItemStyle?: React.CSSProperties
 }
 
 export interface OptionProps {
@@ -114,7 +114,7 @@ export interface OptionProps {
   icon?: any
 }
 
-const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value, style }) => {
+const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value, style, dropDownHeaderStyle, dropDownListItemStyle }) => {
   const containerRef = useRef(null)
   const dropdownRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -147,7 +147,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
   return (
     <DropDownContainer style={style} isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
-        <DropDownHeader onClick={toggling} isActive={isOpen}>
+        <DropDownHeader onClick={toggling} isActive={isOpen} style={dropDownHeaderStyle}>
           {selectedOption.icon}
           <Text>{selectedOption.label}</Text>
         </DropDownHeader>
@@ -157,7 +157,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, value
         <DropDownList ref={dropdownRef}>
           {options.map((option) =>
             option.label !== selectedOption.label ? (
-              <ListItem onClick={onOptionClicked(option)} key={option.label}>
+              <ListItem onClick={onOptionClicked(option)} key={option.label} style={dropDownListItemStyle}>
                 {option.icon}
                 <Text fontWeight="bold">
                   {option.label}
