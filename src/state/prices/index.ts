@@ -164,6 +164,14 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const solarUSDCLP = "0xdb66BE1005f5Fe1d2f486E75cE3C50B52535F886"
 
   /**
+   * FANTOM ADDRESSES
+   */
+
+  const ftmFtm = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
+  const ftmUsdc = '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'
+  const ftmUsdcLp = "0xe7E90f5a767406efF87Fdad7EB07ef407922EC1D"
+
+  /**
    * POLYGON CALLS
    */
   const polygonCurveCalls = [
@@ -794,7 +802,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: dQuickAddr,
       name: 'totalSupply',
     }
-//NEWCALLHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
+    //NEWCALLHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
   ]
 
   /**
@@ -834,6 +842,27 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [movrUSDCLP],
     },
+  ]
+
+
+  /**
+   * FANTOM CALLS
+   */
+  const fantomCalls = [
+    // ftm
+    {
+      address: ftmFtm,
+      name: 'balanceOf',
+      params: [ftmUsdcLp],
+    },
+
+    // usdc
+    {
+      address: ftmUsdc,
+      name: 'balanceOf',
+      params: [ftmUsdcLp],
+    },
+
   ]
 
   const currentChain = useNetworkSwitcher().getCurrentNetwork()
@@ -1033,6 +1062,21 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.solar = { "usd": solarUSD.toString() }
     data.movr = { "usd": movrUSD.toString() }
   }
+
+  if (currentChain === SUPPORTED_CHAINS.FANTOM) {
+    // Get LP pool composition
+    const [ftmBalance, usdcBalance] = await multicall(erc20, fantomCalls)
+
+    // Get implied prices by quote token
+    const ftmUSDC = ftmBalance / (usdcBalance * 10 ** 12)
+    // Convert to USD
+    const usdcUSD = parseFloat(data.usdc.usd)
+    const ftmUSD = usdcUSD / ftmUSDC
+
+    // Get dollar prices
+    data.ftm = { "usd": ftmUSD.toString() }
+  }
+
   // Return normalized token names
   return {
     //    updated_at: data.updated_at,

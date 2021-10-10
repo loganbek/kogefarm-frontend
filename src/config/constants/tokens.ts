@@ -15,6 +15,7 @@ const tokens = {
       137: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
       80001: '',
       1285: '0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D',
+      250: '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'
     },
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc',
@@ -901,6 +902,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  ftm: {
+    symbol: 'FTM',
+    coingeico: 'ftm',
+    address: {
+      250: '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83',
+    },
+    decimals: 18,
+  }
 }
 
 export default tokens

@@ -8374,6 +8374,32 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
 
 ]
 
-export const FANTOM_FARMS: FarmConfig[] = []
+export const FANTOM_FARMS: FarmConfig[] = [
+  {
+    pid: 27,
+    lpSymbol: 'USDC-FTM LP',
+    lpAddresses: {
+      80001: '',
+      250: '0xe7E90f5a767406efF87Fdad7EB07ef407922EC1D',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x9083EA3756BDE6Ee6f27a6e996806FBD37F6F093',
+    },
+    masterChefPid: 17,
+    jarAddresses: {
+      80001: '',
+      250: '0xD1FDFB2BE4fd5e7Ee5b9D6E91538b2cf073B8AA2',
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.ftm,
+    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    poolWeightDesignate: 80 / 1000,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://app.spiritswap.finance/',
+    platform: 'SpiritSwap'
+  },
+]
 
 export default farms
