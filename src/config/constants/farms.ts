@@ -8393,6 +8393,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     },
     token: tokens.ftm,
     quoteToken: tokens.usdc,
+    rewardToken: tokens.spirit,
     rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
     poolWeightDesignate: 80 / 1000,
     minutesPerCompound: 60,
@@ -8400,7 +8401,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     underlyingWebsite: 'https://app.spiritswap.finance/',
     platform: 'SpiritSwap',
     kogefarmComment: ' (Spirit)',
-    isSpirit: true
+    isSpirit: true,
   },
   {
     pid: 28,

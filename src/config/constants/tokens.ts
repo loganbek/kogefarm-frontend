@@ -932,6 +932,14 @@ const tokens = {
       250: '0x468003B688943977e6130F4F68F23aad939a1040',
     },
     decimals: 18,
+  },
+  spirit: {
+    symbol: 'spirit',
+    coingeico: 'spirit',
+    address: {
+      250: '0x5Cc61A78F164885776AA610fb0FE1257df78E59B',
+    },
+    decimals: 18,
   }
 }
 

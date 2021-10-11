@@ -175,6 +175,9 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const mim3pool = "0x2dd7C9371965472E5A5fD28fbE165007c61439E1"
   const ftmSpell = "0x468003B688943977e6130F4F68F23aad939a1040"
   const spellfUSDTLP = "0x31c0385DDE956f95D43Dac80Bd74FEE149961f4c"
+  const wftm = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
+  const spirit = "0x5Cc61A78F164885776AA610fb0FE1257df78E59B"
+  const wftmSpiritLp = "0x30748322B6E34545DBe0788C421886AEB5297789"
 
   /**
    * POLYGON CALLS
@@ -866,7 +869,6 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [ftmUsdcLp],
     },
-
     // spell
     {
       address: ftmSpell,
@@ -900,6 +902,18 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [mim3pool],
     },
+    // Spirit
+    {
+      address: wftm,
+      name: 'balanceOf',
+      params: [wftmSpiritLp],
+    },
+    {
+      address: spirit,
+      name: 'balanceOf',
+      params: [wftmSpiritLp],
+    },
+
   ]
 
   const currentChain = useNetworkSwitcher().getCurrentNetwork()
@@ -1102,28 +1116,27 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
 
   if (currentChain === SUPPORTED_CHAINS.FANTOM) {
     // Get LP pool composition
-    const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal] = await multicall(erc20, fantomCalls)
+    const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal, wftmBalance, wftmSpiritBalance] = await multicall(erc20, fantomCalls)
 
     // Get implied prices by quote token
-    const ftmUSDC = ftmBalance / (usdcBalance * 10 ** 12)
+    const ftmUsdc = ftmBalance / (usdcBalance * 10 ** 12)
     const spellUSDT = spellBalance / (spellUSDTBalance * 10 ** 12)
     const curveRatio = (ftmMIM3poolBal / 10 ** 18 + fUSDT3poolBal / 10 ** 6 + ftmUSDC3poolBal / 10 ** 6) / (mim3poolSupply / 10 ** 18)
+    const wftmSpirit = wftmSpiritBalance / wftmBalance
 
     // Convert to USD
     const usdcUSD = parseFloat(data.usdc.usd)
-    const ftmUSD = usdcUSD / ftmUSDC
+    const ftmUSD = usdcUSD / ftmUsdc
     const spellUSD = usdcUSD / spellUSDT
     const mim3poolUSD = curveRatio
+    const spiritUSD = usdcUSD / wftmSpirit
 
     // Get dollar prices
     data.ftm = { "usd": ftmUSD.toString() }
+    data.spirit = { "usd": ftmUSD.toString() }
     data.spell = { "usd": spellUSD.toString() }
-    data.mim3pool = {"usd": mim3poolUSD.toString() }
-
-    // print
-    console.log(ftmUSD)
-    console.log(spellUSD)
-    console.log(mim3poolUSD)
+    data.mim3pool = { "usd": mim3poolUSD.toString() }
+    data.spirit = { "usd": spiritUSD.toString() }
 
   }
 
