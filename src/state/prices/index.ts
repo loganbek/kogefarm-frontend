@@ -1129,7 +1129,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     const ftmUSD = usdcUSD / ftmUsdc
     const spellUSD = usdcUSD / spellUSDT
     const mim3poolUSD = curveRatio
-    const spiritUSD = usdcUSD / wftmSpirit
+    const spiritUSD = ftmUSD / wftmSpirit
 
     // Get dollar prices
     data.ftm = { "usd": ftmUSD.toString() }

@@ -8376,6 +8376,33 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
 
 export const FANTOM_FARMS: FarmConfig[] = [
   {
+    pid: 28,
+    lpSymbol: 'MIM-fUSDT-USDC LP',
+    lpAddresses: {
+      80001: '',
+      250: '0x2dd7C9371965472E5A5fD28fbE165007c61439E1',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x37Cf490255082ee50845EA4Ff783Eb9b6D1622ce',
+    },
+    masterChefPid: 0,
+    jarAddresses: {
+      80001: '',
+      250: '0x0a5E266afB071CB0F69310706154F2893a208D1c',
+    },
+    token: tokens.mim3pool,
+    quoteToken: tokens.mim3pool,
+    rewardToken: tokens.spell,
+    rewardPerBlock: 182.894918981 * 2 / 1.1, // 0.625
+    poolWeightDesignate: 3000 / 3000,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://abracadabra.money/farm-stand',
+    platform: 'Abracadabra',
+    kogefarmComment: ' (Curve)'
+  },
+  {
     pid: 27,
     lpSymbol: 'USDC-FTM LP',
     lpAddresses: {
@@ -8402,33 +8429,6 @@ export const FANTOM_FARMS: FarmConfig[] = [
     platform: 'SpiritSwap',
     kogefarmComment: ' (Spirit)',
     isSpirit: true,
-  },
-  {
-    pid: 28,
-    lpSymbol: 'MIM-fUSDT-USDC LP',
-    lpAddresses: {
-      80001: '',
-      250: '0x2dd7C9371965472E5A5fD28fbE165007c61439E1',
-    },
-    masterChefAddresses: {
-      80001: '',
-      250: '0x37Cf490255082ee50845EA4Ff783Eb9b6D1622ce',
-    },
-    masterChefPid: 0,
-    jarAddresses: {
-      80001: '',
-      250: '0x0a5E266afB071CB0F69310706154F2893a208D1c',
-    },
-    token: tokens.mim3pool,
-    quoteToken: tokens.mim3pool,
-    rewardToken: tokens.spell,
-    rewardPerBlock: 182.894918981 * 2 / 1.1, // 0.625
-    poolWeightDesignate: 3000 / 3000,
-    minutesPerCompound: 60,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://abracadabra.money/farm-stand',
-    platform: 'Abracadabra',
-    kogefarmComment: ' (Curve)'
   },
 
 ]
