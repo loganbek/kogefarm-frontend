@@ -70,7 +70,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
 
   svg {
     position: absolute;
-    right: 16px;
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
   }
