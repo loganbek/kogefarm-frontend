@@ -1,3 +1,4 @@
+import { AutoRenewIcon } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import ModalInput from 'components/ModalInput'
 import { Button, Flex } from 'components/Pancake'
@@ -83,6 +84,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         <Button
           width="100%"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
+          endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
           onClick={async () => {
             try {
               setPendingTx(true)
@@ -96,7 +98,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
             }
           }}
         >
-          {pendingTx ? t('Pending...') : t('Deposit')}
+          {pendingTx ? t('Pending') : t('Deposit')}
         </Button>
         <Button
           variant="tertiary"

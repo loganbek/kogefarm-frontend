@@ -17,20 +17,21 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, CHAINS } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, CHAINS, SUPPORTED_CHAINS } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
 import useTheme from 'hooks/useTheme'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
+import { AutoRenewIcon } from '@pancakeswap/uikit';
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
 import { ActionContainer, ActionContent } from './styles'
 
-const StyledButtonMenuItem = styled(ButtonMenuItem)`
-  background-color: transparent;
+const StyledButtonMenuItem = styled(ButtonMenuItem) <{ disabled?: boolean }>`
+  background-color: transparent !important;
 `
 
 const Tip = styled.div`
@@ -124,6 +125,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
 
   let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  if (chain === SUPPORTED_CHAINS.MOONRIVER) {
+    addLiquidityUrl = `https://solarbeam.io/exchange/add/${token.address[CHAINS[chain].numberChainId]}/${quoteToken.address[CHAINS[chain].numberChainId]}`
+  }
+
   if (isSushi === true) {
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   }
@@ -289,6 +294,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
                 e.stopPropagation()
                 setWithdrawIsOpen(true)
               }}
+              disabled={stakedBalance.toString() === "0"}
             >
               <Withdraw isDark={isDark} />
               <Text fontWeight="bold">
@@ -317,6 +323,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <Button
           width="100%"
           disabled={requestedApproval}
+          isLoading={requestedApproval}
+          endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           onClick={handleApprove}
           variant="outline"
         >

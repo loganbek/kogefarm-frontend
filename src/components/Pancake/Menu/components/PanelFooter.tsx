@@ -112,7 +112,7 @@ const PanelFooter: React.FC<Props> = ({
         </Links>
         <Copyright>© kogecoin. All rights reserved</Copyright>
         <BuildNumber>
-          {packageJson.version}
+          <a href="https://kogecoin.notion.site/KogeFarm-io-Release-Notes-89c93440215a4a1bb736115d49c6ec06" target="_blank" rel="noreferrer">{packageJson.version}</a>
         </BuildNumber>
       </SettingsEntry>
     </Container>

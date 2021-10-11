@@ -80,14 +80,14 @@ svg {
 }
 `)
 
-const ToggleWrapper = React.memo(styled.div`
+const ToggleWrapper = styled.div`
 display: flex;
 align-items: center;
 
 ${Text} {
   margin-right: 8px;
 }
-`)
+`
 
 const Hero = React.memo(styled(Flex)`
 a {
@@ -661,6 +661,7 @@ const Farms: React.FC = () => {
   }
 
   const handleSortOptionChangeAlt = (option: OptionProps): void => {
+    setPlatformSelectOption(option)
     setPlatform(option.value)
     setSortOption('multi')
     if (option.value) {
@@ -742,7 +743,7 @@ const Farms: React.FC = () => {
       </Hero>
 
       <ControlContainer isDesktop={isDesktop}>
-        <ToggleWrapper>
+        <ToggleWrapper style={!isDesktop ? { marginBottom: 12 } : {}}>
           <Text fontSize="12px" bold>{t('Staked only')}</Text>
           <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
         </ToggleWrapper>
