@@ -341,6 +341,8 @@ const tokens = {
     address: {
       137: '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171',
       80001: '',
+      250: '',
+      1285: '',
     },
     decimals: 18,
     projectLink: '',
@@ -381,6 +383,8 @@ const tokens = {
     address: {
       137: '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17',
       80001: '',
+      250: '',
+      1285: '',
     },
     decimals: 18,
     projectLink: '',
@@ -907,6 +911,25 @@ const tokens = {
     coingeico: 'ftm',
     address: {
       250: '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83',
+    },
+    decimals: 18,
+  },
+  mim3pool: {
+    symbol: 'mim3pool',
+    coingeico: 'mim3pool',
+    address: {
+      250: '0x2dd7C9371965472E5A5fD28fbE165007c61439E1',
+      80001: '',
+      137: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
+  spell: {
+    symbol: 'spell',
+    coingeico: 'spell',
+    address: {
+      250: '0x468003B688943977e6130F4F68F23aad939a1040',
     },
     decimals: 18,
   }

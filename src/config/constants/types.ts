@@ -75,6 +75,7 @@ export interface FarmConfig {
   isElk?: boolean
   isGravity?: boolean
   isCafeSwap?: boolean
+  isSpirit?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string

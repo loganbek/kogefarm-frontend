@@ -168,8 +168,13 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
    */
 
   const ftmFtm = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
-  const ftmUsdc = '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'
   const ftmUsdcLp = "0xe7E90f5a767406efF87Fdad7EB07ef407922EC1D"
+  const ftmUSDC = '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'
+  const fUSDT = "0x049d68029688eAbF473097a2fC38ef61633A3C7A"
+  const ftmMIM = "0x82f0B8B456c1A451378467398982d4834b6829c1"
+  const mim3pool = "0x2dd7C9371965472E5A5fD28fbE165007c61439E1"
+  const ftmSpell = "0x468003B688943977e6130F4F68F23aad939a1040"
+  const spellfUSDTLP = "0x31c0385DDE956f95D43Dac80Bd74FEE149961f4c"
 
   /**
    * POLYGON CALLS
@@ -856,13 +861,45 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       params: [ftmUsdcLp],
     },
 
-    // usdc
     {
-      address: ftmUsdc,
+      address: ftmUSDC,
       name: 'balanceOf',
       params: [ftmUsdcLp],
     },
 
+    // spell
+    {
+      address: ftmSpell,
+      name: 'balanceOf',
+      params: [spellfUSDTLP],
+    },
+
+    {
+      address: fUSDT,
+      name: 'balanceOf',
+      params: [spellfUSDTLP],
+    },
+
+    // Curve
+    {
+      address: mim3pool,
+      name: 'totalSupply'
+    },
+    {
+      address: fUSDT,
+      name: 'balanceOf',
+      params: [mim3pool],
+    },
+    {
+      address: ftmUSDC,
+      name: 'balanceOf',
+      params: [mim3pool],
+    },
+    {
+      address: ftmMIM,
+      name: 'balanceOf',
+      params: [mim3pool],
+    },
   ]
 
   const currentChain = useNetworkSwitcher().getCurrentNetwork()
@@ -1065,17 +1102,31 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
 
   if (currentChain === SUPPORTED_CHAINS.FANTOM) {
     // Get LP pool composition
-    const [ftmBalance, usdcBalance] = await multicall(erc20, fantomCalls)
+    const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal] = await multicall(erc20, fantomCalls)
 
     // Get implied prices by quote token
     const ftmUSDC = ftmBalance / (usdcBalance * 10 ** 12)
+    const spellUSDT = spellBalance / (spellUSDTBalance * 10 ** 12)
+    const curveRatio = (ftmMIM3poolBal / 10 ** 18 + fUSDT3poolBal / 10 ** 6 + ftmUSDC3poolBal / 10 ** 6) / (mim3poolSupply / 10 ** 18)
+
     // Convert to USD
     const usdcUSD = parseFloat(data.usdc.usd)
     const ftmUSD = usdcUSD / ftmUSDC
+    const spellUSD = usdcUSD / spellUSDT
+    const mim3poolUSD = curveRatio
 
     // Get dollar prices
     data.ftm = { "usd": ftmUSD.toString() }
+    data.spell = { "usd": spellUSD.toString() }
+    data.mim3pool = {"usd": mim3poolUSD.toString() }
+
+    // print
+    console.log(ftmUSD)
+    console.log(spellUSD)
+    console.log(mim3poolUSD)
+
   }
+
 
   // Return normalized token names
   return {
