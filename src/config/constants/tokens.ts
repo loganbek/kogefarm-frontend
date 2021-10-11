@@ -940,6 +940,14 @@ const tokens = {
       250: '0x5Cc61A78F164885776AA610fb0FE1257df78E59B',
     },
     decimals: 18,
+  },
+  fusdt: {
+    symbol: 'fusdt',
+    coingeico: 'fusdt',
+    address: {
+      250: '0x049d68029688eAbF473097a2fC38ef61633A3C7A',
+    },
+    decimals: 18,
   }
 }
 

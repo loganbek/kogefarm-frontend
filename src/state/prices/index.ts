@@ -178,6 +178,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const wftm = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
   const spirit = "0x5Cc61A78F164885776AA610fb0FE1257df78E59B"
   const wftmSpiritLp = "0x30748322B6E34545DBe0788C421886AEB5297789"
+  const fusdtFtmLp = "0xd14Dd3c56D9bc306322d4cEa0E1C49e9dDf045D4"
 
   /**
    * POLYGON CALLS
@@ -913,7 +914,18 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       name: 'balanceOf',
       params: [wftmSpiritLp],
     },
+    // fusdt
+    {
+      address: fUSDT,
+      name: 'balanceOf',
+      params: [fusdtFtmLp],
+    },
 
+    {
+      address: ftmFtm,
+      name: 'balanceOf',
+      params: [fusdtFtmLp],
+    },
   ]
 
   const currentChain = useNetworkSwitcher().getCurrentNetwork()
@@ -1116,13 +1128,14 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
 
   if (currentChain === SUPPORTED_CHAINS.FANTOM) {
     // Get LP pool composition
-    const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal, wftmBalance, wftmSpiritBalance] = await multicall(erc20, fantomCalls)
+    const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal, wftmBalance, wftmSpiritBalance, fusdtBalance, fusdtFtmBalance] = await multicall(erc20, fantomCalls)
 
     // Get implied prices by quote token
     const ftmUsdc = ftmBalance / (usdcBalance * 10 ** 12)
     const spellUSDT = spellBalance / (spellUSDTBalance * 10 ** 12)
     const curveRatio = (ftmMIM3poolBal / 10 ** 18 + fUSDT3poolBal / 10 ** 6 + ftmUSDC3poolBal / 10 ** 6) / (mim3poolSupply / 10 ** 18)
     const wftmSpirit = wftmSpiritBalance / wftmBalance
+    const fusdtUsdc = fusdtFtmBalance / (fusdtBalance * 10 ** 12)
 
     // Convert to USD
     const usdcUSD = parseFloat(data.usdc.usd)
@@ -1130,6 +1143,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     const spellUSD = usdcUSD / spellUSDT
     const mim3poolUSD = curveRatio
     const spiritUSD = ftmUSD / wftmSpirit
+    const fusdtUSD = usdcUSD / fusdtUsdc
 
     // Get dollar prices
     data.ftm = { "usd": ftmUSD.toString() }
@@ -1137,6 +1151,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.spell = { "usd": spellUSD.toString() }
     data.mim3pool = { "usd": mim3poolUSD.toString() }
     data.spirit = { "usd": spiritUSD.toString() }
+    data.fusdt = { "usd": fusdtUSD.toString() }
 
   }
 
