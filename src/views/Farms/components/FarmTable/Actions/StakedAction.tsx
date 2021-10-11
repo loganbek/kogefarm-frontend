@@ -128,9 +128,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (chain === SUPPORTED_CHAINS.MOONRIVER) {
     addLiquidityUrl = `https://solarbeam.io/exchange/add/${token.address[CHAINS[chain].numberChainId]}/${quoteToken.address[CHAINS[chain].numberChainId]}`
   }
-  if (chain === SUPPORTED_CHAINS.FANTOM) {
-    addLiquidityUrl = `https://swap.spiritswap.finance/#/add/${token.address[CHAINS[chain].numberChainId]}/${quoteToken.symbol.toLocaleLowerCase() === 'ftm' ? "FTM" : quoteToken.address[CHAINS[chain].numberChainId]}`
-  }
 
   if (isSushi === true) {
     addLiquidityUrl = `${SUSHI_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
