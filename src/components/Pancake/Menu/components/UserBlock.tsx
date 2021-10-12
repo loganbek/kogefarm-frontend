@@ -2,6 +2,7 @@ import NetworkSwitcher from "components/NetworkSwitcher";
 import { Text } from "components/Pancake";
 import useNetworkSwitcher from "hooks/useNetworkSwitcher";
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { Tooltip } from 'react-tippy';
 import styled from 'styled-components';
 import { setupNetwork } from "utils/wallet";
@@ -96,13 +97,13 @@ const walletMap = {
 
 const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
   const { onPresentConnectModal } = useWalletModal(login, logout, account);
-  const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 6)}` : null;
+  const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : null;
   const preferredWalletName = localStorage.getItem(walletLocalStorageKey);
   const wallet = walletMap[preferredWalletName]
   const { getCurrentNetwork } = useNetworkSwitcher()
 
   return (
-    <UserBlockContainer >
+    <UserBlockContainer style={isMobile ? { marginLeft: 15 } : {}}>
       <NetworkSwitcher />
       {account ? (
         <Tooltip

@@ -1,3 +1,4 @@
+import { AutoRenewIcon } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import ModalInput from 'components/ModalInput'
 import { Button, Flex } from 'components/Pancake'
@@ -88,6 +89,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
       <Flex mt="12px">
         <Button
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullDisplayBalanceNumber)}
+          endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
           onClick={async () => {
             let withdrawBalance = valNumber.times(fullBalanceNumber).div(fullDisplayBalanceNumber).toFixed(numDecimals, 1)
             if (val === fullDisplayBalance) {
@@ -108,7 +110,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
           }}
           width="100%"
         >
-          {pendingTx ? t('Pending...') : t('Withdraw')}
+          {pendingTx ? t('Pending') : t('Withdraw')}
         </Button>
         <Button
           onClick={onClose}

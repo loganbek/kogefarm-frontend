@@ -49,10 +49,6 @@ const Label = styled.label<{ checked?: boolean }>`
 
 const tabs = [
 	{
-		label: "All",
-		value: "all"
-	},
-	{
 		label: "Single Assets",
 		value: "single"
 	},
@@ -109,7 +105,7 @@ const CheckBoxMenu = ({
 						/>
 					))}
 					{tabs.map(({ label, value }) => (
-						<Label htmlFor={value} key={value} style={value === "all" && !isDesktop ? {padding: "22px 14px"}:{}}>
+						<Label htmlFor={value} key={value} style={value === "all" && !isDesktop ? { padding: "22px 14px" } : {}}>
 							<Text bold fontSize="10px">
 								{label}
 							</Text>

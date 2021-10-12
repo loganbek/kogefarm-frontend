@@ -36,6 +36,18 @@ const tokens = {
     address: {
       137: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
       80001: '',
+      1285: '0x682F81e57EAa716504090C3ECBa8595fB54561D8',
+    },
+    decimals: 18,
+    projectLink: 'https://matic.network',
+  },
+  ftm: {
+    symbol: 'FTM',
+    coingeico: 'ftm',
+    address: {
+      137: '',
+      80001: '',
+      1285: '0xaD12daB5959f30b9fF3c2d6709f53C335dC39908',
     },
     decimals: 18,
     projectLink: 'https://matic.network',
@@ -151,6 +163,28 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  mim: {
+    symbol: 'mim',
+    coingeico: 'mim',
+    address: {
+      137: '',
+      80001: '',
+      1285: '0x0caE51e1032e8461f4806e26332c030E34De3aDb',
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  mim3pool: {
+    symbol: 'mim3pool',
+    coingeico: 'mim3pool',
+    address: {
+      250: '0x2dd7C9371965472E5A5fD28fbE165007c61439E1',
+      80001: '',
+      137: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
   qidao: {
     symbol: 'Qi',
     coingeico: 'qidao',
@@ -197,6 +231,7 @@ const tokens = {
     address: {
       137: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
       80001: '',
+      1285: '0x639A647fbe20b6c8ac19E48E2de44ea792c62c5C',
     },
     decimals: 18,
     projectLink: '',
@@ -320,6 +355,7 @@ const tokens = {
     address: {
       137: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
       80001: '',
+      1285: '0x6aB6d61428fde76768D7b45D8BFeec19c6eF91A8',
     },
     decimals: 8,
     projectLink: '',
@@ -560,6 +596,7 @@ const tokens = {
     address: {
       137: '0xA649325Aa7C5093d12D6F98EB4378deAe68CE23F',
       80001: '',
+      1285: '0x2bF9b864cdc97b08B6D79ad4663e71B8aB65c45c',
     },
     decimals: 18,
     projectLink: '',
@@ -721,6 +758,7 @@ const tokens = {
     address: {
       137: '0x2C89bbc92BD86F8075d1DEcc58C7F4E0107f286b',
       80001: '',
+      1285: '0x14a0243C333A5b238143068dC3A7323Ba4C30ECB',
     },
     decimals: 18,
   },

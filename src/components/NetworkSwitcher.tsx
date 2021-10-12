@@ -28,14 +28,17 @@ function NetworkSwitcher() {
 
     const changeNetwork = async (v: OptionProps) => {
         window.localStorage.removeItem(connectorLocalStorageKey);
-        setValue(v)
         setCurrentNetwork(v.value)
-        await setupNetwork(v.value)
-        dispatch(setFarms([]))
-        dispatch(setFarms(CHAINS[v.value].farms ?? []))
+        window.location.reload()
     }
 
-    return <Select value={value} options={networks} onChange={changeNetwork} />
+    return <Select
+        value={value}
+        options={networks}
+        onChange={changeNetwork}
+        dropDownHeaderStyle={{ gridTemplateColumns: '1fr 3fr' }}
+        dropDownListItemStyle={{ gridTemplateColumns: '1fr 3fr' }}
+    />
 
 }
 

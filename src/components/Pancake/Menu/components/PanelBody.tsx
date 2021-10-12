@@ -107,6 +107,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
         const iconElement = <Icon width="24px" mr="8px" />;
         const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
 
+        const hrefOpenNewTabProps = entry.group ? { target: "_blank", rel: "noreferrer" } : {}
         if (entry.items) {
           const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
           const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
@@ -128,7 +129,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
               {isPushed &&
                 entry.items.map((item) => (
                   <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
-                    <MenuLink href={getHref(item.href)}>
+                    <MenuLink href={getHref(item.href)} {...hrefOpenNewTabProps}>
                       <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
                       {item.status && (
                         <LinkStatus color="primary">
@@ -145,7 +146,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, showMe
         return withToolTip(
           entry.label,
           <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
-            <MenuLink href={getHref(entry.href)} onClick={handleClick}>
+            <MenuLink href={getHref(entry.href)} onClick={handleClick} {...hrefOpenNewTabProps}>
               {iconElement}
               <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
               {entry.status && (
