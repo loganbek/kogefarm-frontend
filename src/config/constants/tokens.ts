@@ -171,6 +171,7 @@ const tokens = {
       137: '',
       80001: '',
       1285: '0x0caE51e1032e8461f4806e26332c030E34De3aDb',
+      250: '0x82f0B8B456c1A451378467398982d4834b6829c1',
     },
     decimals: 18,
     projectLink: '',
