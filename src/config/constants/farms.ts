@@ -1149,33 +1149,6 @@ const farms: FarmConfig[] = [
     platform: 'QuickSwap'
   },
 
-  {
-    pid: 246,
-    lpSymbol: 'MAI-Dai LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x74214F5d8AA71b8dc921D8A963a1Ba3605050781',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0xb827B23e2276ceB912CB42088ab064800447c158',
-    },
-    masterChefPid: 1,
-    jarAddresses: {
-      80001: '',
-      137: '0xCF6081788AFa655705078D8371c1E6A08B7C6619',
-    },
-    token: tokens.mimatic,
-    quoteToken: tokens.dai,
-    rewardToken: tokens.dquick,
-    rewardPerBlock: 0.000090856481481481 * 2,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://quickswap.exchange/#/quick',
-    kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
-  },
 
   {
     pid: 200,
@@ -1234,33 +1207,6 @@ const farms: FarmConfig[] = [
     platform: 'QuickSwap'
   },
 
-  {
-    pid: 247,
-    lpSymbol: 'MAI-Matic LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x7805B64e2d99412d3b8F10Dfe8fc55217C5cc954',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x5F709F81cdA3E84fC2af3662B8B8C3F4f44e3d4E',
-    },
-    masterChefPid: 1,
-    jarAddresses: {
-      80001: '',
-      137: '0x928aC990A5A9471DA5f05A27211613aA5c75DD3c',
-    },
-    token: tokens.mimatic,
-    quoteToken: tokens.matic,
-    rewardToken: tokens.dquick,
-    rewardPerBlock: 0.000018171296296296 * 2,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 1,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://quickswap.exchange/#/quick',
-    kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
-  },
 
   {
     pid: 201,
@@ -1289,34 +1235,6 @@ const farms: FarmConfig[] = [
     kogefarmComment: ' (Quick)',
     platform: 'QuickSwap',
     multiplier: '0X',
-  },
-
-  {
-    pid: 248,
-    lpSymbol: 'Qi-Eth LP',
-    lpAddresses: {
-      80001: '',
-      137: '0x8C1b40Ea78081B70F661C3286c74E71b4602C9C0',
-    },
-    masterChefAddresses: {
-      80001: '',
-      137: '0x17fE4630A855FF6e546C19c315BE7f3ED01f38Ff',
-    },
-    masterChefPid: 1,
-    jarAddresses: {
-      80001: '',
-      137: '0xAD37B0Be3164a85C6Ffc48fEc9D722756C000AE6',
-    },
-    token: tokens.qidao,
-    quoteToken: tokens.eth,
-    rewardToken: tokens.dquick,
-    rewardPerBlock: 0.000090856481481481 * 2,
-    poolWeightDesignate: 1,
-    minutesPerCompound: 5,
-    kogefarmFee: 0.01,
-    underlyingWebsite: 'https://quickswap.exchange/#/quick',
-    kogefarmComment: ' (Quick)',
-    platform: 'QuickSwap'
   },
 
   {
