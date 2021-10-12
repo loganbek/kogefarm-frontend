@@ -8595,7 +8595,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     isSpirit: true,
   },
   {
-    pid: 21,
+    pid: 31,
     lpSymbol: 'LINK-FTM LP',
     lpAddresses: {
       80001: '',
@@ -8615,6 +8615,34 @@ export const FANTOM_FARMS: FarmConfig[] = [
     rewardToken: tokens.spirit,
     rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
     poolWeightDesignate: 20 / 1000,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://app.spiritswap.finance/',
+    platform: 'SpiritSwap',
+    kogefarmComment: ' (Spirit)',
+    isSpirit: true,
+  },
+  {
+    pid: 32,
+    lpSymbol: 'CRV-FTM LP',
+    lpAddresses: {
+      80001: '',
+      250: '0x374C8ACb146407Ef0AE8F82BaAFcF8f4EC1708CF',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x9083EA3756BDE6Ee6f27a6e996806FBD37F6F093',
+    },
+    masterChefPid: 10,
+    jarAddresses: {
+      80001: '',
+      250: '0xB49fecd52B88EFA8248BF2408e4ff08EaFC85b91',
+    },
+    token: tokens.crv,
+    quoteToken: tokens.ftm,
+    rewardToken: tokens.spirit,
+    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    poolWeightDesignate: 29 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.spiritswap.finance/',
