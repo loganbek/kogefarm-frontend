@@ -1124,6 +1124,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.dai = { "usd": daiUSD.toString() }
     data.solar = { "usd": solarUSD.toString() }
     data.movr = { "usd": movrUSD.toString() }
+    data.busd = { "usd": "1.0" }
   }
 
   if (currentChain === SUPPORTED_CHAINS.FANTOM) {
