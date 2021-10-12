@@ -411,6 +411,7 @@ const tokens = {
     address: {
       137: '0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef',
       80001: '',
+      250: '0xf16e81dce15B08F326220742020379B855B87DF9',
     },
     decimals: 18,
     projectLink: '',
