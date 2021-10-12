@@ -49,6 +49,7 @@ const tokens = {
       137: '',
       80001: '',
       1285: '0xaD12daB5959f30b9fF3c2d6709f53C335dC39908',
+      250: '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83',
     },
     decimals: 18,
     projectLink: 'https://matic.network',
@@ -941,25 +942,6 @@ const tokens = {
     address: {
       137: '0x60bB3D364B765C497C8cE50AE0Ae3f0882c5bD05',
       80001: '',
-      1285: '',
-    },
-    decimals: 18,
-  },
-  ftm: {
-    symbol: 'FTM',
-    coingeico: 'ftm',
-    address: {
-      250: '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83',
-    },
-    decimals: 18,
-  },
-  mim3pool: {
-    symbol: 'mim3pool',
-    coingeico: 'mim3pool',
-    address: {
-      250: '0x2dd7C9371965472E5A5fD28fbE165007c61439E1',
-      80001: '',
-      137: '',
       1285: '',
     },
     decimals: 18,
