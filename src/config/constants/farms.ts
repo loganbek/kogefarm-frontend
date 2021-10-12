@@ -8310,7 +8310,7 @@ export const MOONRIVER_FARMS: FarmConfig[] = [
     quoteToken: tokens.usdc,
     rewardToken: tokens.solar,
     rewardPerBlock: 3.95 * 2 / 12, // Fix reward block time
-    poolWeightDesignate: 135 / 12120,
+    poolWeightDesignate: 270 / 12120,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://solarbeam.io/',
