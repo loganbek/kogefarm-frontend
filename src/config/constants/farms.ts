@@ -8678,6 +8678,34 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmComment: ' (Spirit)',
     isSpirit: true,
   },
+  {
+    pid: 34,
+    lpSymbol: 'SPELL-fUSDT LP',
+    lpAddresses: {
+      80001: '',
+      250: '0x31c0385DDE956f95D43Dac80Bd74FEE149961f4c',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x9083EA3756BDE6Ee6f27a6e996806FBD37F6F093',
+    },
+    masterChefPid: 40,
+    jarAddresses: {
+      80001: '',
+      250: '0x5a94Fd3A5D58fbB97F817223aA2Ea6773fE7dA57',
+    },
+    token: tokens.fusdt,
+    quoteToken: tokens.spell,
+    rewardToken: tokens.spirit,
+    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    poolWeightDesignate: 40 / 1000,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://app.spiritswap.finance/',
+    platform: 'SpiritSwap',
+    kogefarmComment: ' (Spirit)',
+    isSpirit: true,
+  },
 
 ]
 
