@@ -411,6 +411,7 @@ const tokens = {
     address: {
       137: '0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef',
       80001: '',
+      250: '0xf16e81dce15B08F326220742020379B855B87DF9',
     },
     decimals: 18,
     projectLink: '',
@@ -483,6 +484,7 @@ const tokens = {
     address: {
       137: '0x172370d5Cd63279eFa6d502DAB29171933a610AF',
       80001: '',
+      250: '0x1E4F97b9f9F913c46F1632781732927B9019C68b',
     },
     decimals: 18,
     projectLink: '',
@@ -573,6 +575,7 @@ const tokens = {
     address: {
       137: '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
       80001: '',
+      250: '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8'
     },
     decimals: 18,
     projectLink: '',
