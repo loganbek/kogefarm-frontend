@@ -16,6 +16,7 @@ const sushiGraphURL = 'https://api.thegraph.com/subgraphs/name/sushiswap/matic-e
 const dfynGraphURL = 'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5'
 const apeswapGraphURL = 'https://api.thegraph.com/subgraphs/name/apeswapfinance/dex-polygon'
 const waultGraphURL = 'https://api.thegraph.com/subgraphs/name/waultfinance/waultswap-polygon'
+const spiritGraphURL = 'https://api.thegraph.com/subgraphs/name/layer3org/spiritswap-analytics'
 
 const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
   const data = await Promise.all(
@@ -141,6 +142,9 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           if (farmConfig.isWault) {
             APIURL = waultGraphURL
           }
+          if (farmConfig.isSpirit) {
+            APIURL = spiritGraphURL
+          }
 
           const client = createClient({
             url: APIURL,
@@ -181,7 +185,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
           tradingFeeRate = 0.0410 / 365 * 100
         }
         if (farmConfig.token.coingeico === 'btcrenbtc') {
-          tradingFeeRate = 0.0121 / 365 * 100 // 
+          tradingFeeRate = 0.0121 / 365 * 100 //
         }
       }
       // new BigNumber(totalDepositsVal).times(quoteTokenAmount).div(tokenAmount).div(BIG_TEN.pow(quoteTokenDecimals)).times(2)

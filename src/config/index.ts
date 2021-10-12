@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js/bignumber'
 import { BIG_TEN } from 'utils/bigNumber'
-import { MOONRIVER_FARMS, POLYGON_FARMS } from './constants/farms'
+import { FANTOM_FARMS, MOONRIVER_FARMS, POLYGON_FARMS } from './constants/farms'
 import { FarmConfig } from './constants/types'
 
 BigNumber.config({
@@ -31,6 +31,7 @@ export const FIREBIRD_EXCHANGE_URL = 'https://app.firebird.finance'
 export const GRAVITY_EXCHANGE_URL = 'https://gravityfinance.io'
 export const ELK_EXCHANGE_URL = 'https://app.elk.finance'
 export const CAFE_EXCHANGE_URL = 'https://polygondex.cafeswap.finance'
+export const SPIRIT_EXCHANGE_URL = 'https://swap.spiritswap.finance'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_EXCHANGE_URL}/#/add`
 export const SUSHI_ADD_LIQUIDITY_URL = `${SUSHI_EXCHANGE_URL}/add`
 export const DFYN_ADD_LIQUIDITY_URL = `${DFYN_EXCHANGE_URL}/#/add`
@@ -41,6 +42,7 @@ export const ELK_ADD_LIQUIDITY_URL = `${ELK_EXCHANGE_URL}/#/add`
 export const GRAVITY_ADD_LIQUIDITY_URL = `${GRAVITY_EXCHANGE_URL}/add`
 export const FIREBIRD_ADD_LIQUIDITY_URL = `${FIREBIRD_EXCHANGE_URL}/add`
 export const CAFE_ADD_LIQUIDITY_URL = `${CAFE_EXCHANGE_URL}/#/add`
+export const SPIRIT_ADD_LIQUIDITY_URL = `${SPIRIT_EXCHANGE_URL}/#/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_EXCHANGE_URL}/#/pool`
 export const SUSHI_LIQUIDITY_POOL_URL = `${SUSHI_EXCHANGE_URL}/pool`
 export const WAULT_LIQUIDITY_POOL_URL = `${WAULT_EXCHANGE_URL}/#/pool`
@@ -106,9 +108,26 @@ export const MOONRIVER_CHAIN: ChainInterface = {
   blockExplorerUrls: ['https://blockscout.moonriver.moonbeam.network/'],
 }
 
+// Fantom
+const FANTOM_CHAIN_ID = 250
+export const FANTOM_CHAIN: ChainInterface = {
+  chainId: `0x${Number(FANTOM_CHAIN_ID).toString(16)}`,
+  chainName: 'Fantom Opera',
+  nativeCurrency: {
+    name: 'FTM',
+    symbol: 'FTM',
+    decimals: 18,
+  },
+  rpcUrls: [
+    "https://rpc.ftm.tools/",
+  ],
+  blockExplorerUrls: ["https://ftmscan.com/"],
+}
+
 export enum SUPPORTED_CHAINS {
   MATIC = "MATIC",
-  MOONRIVER = "MOONRIVER"
+  MOONRIVER = "MOONRIVER",
+  FANTOM = "FANTOM"
 }
 export type CHAINSInterface = {
   [x in SUPPORTED_CHAINS]: ChainInterface & { numberChainId: number; chainNameAbbr: string; logoUrl: string; farms: FarmConfig[] }
@@ -117,16 +136,23 @@ export type CHAINSInterface = {
 export const CHAINS: CHAINSInterface = {
   [SUPPORTED_CHAINS.MATIC]: {
     ...POLYGON_CHAIN,
-    numberChainId: 137,
+    numberChainId: POLYGON_CHAIN_ID,
     chainNameAbbr: "Polygon",
     logoUrl: "/images/polygon.svg",
     farms: POLYGON_FARMS
   },
   [SUPPORTED_CHAINS.MOONRIVER]: {
     ...MOONRIVER_CHAIN,
-    numberChainId: 1285,
+    numberChainId: MOONRIVER_CHAIN_ID,
     chainNameAbbr: "Moonriver",
     logoUrl: "/images/moonriver.svg",
     farms: MOONRIVER_FARMS
+  },
+  [SUPPORTED_CHAINS.FANTOM]: {
+    ...FANTOM_CHAIN,
+    numberChainId: FANTOM_CHAIN_ID,
+    chainNameAbbr: "Fantom",
+    logoUrl: "/images/fantom.svg",
+    farms: FANTOM_FARMS
   }
 }

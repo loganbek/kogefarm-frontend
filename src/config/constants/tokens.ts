@@ -15,6 +15,7 @@ const tokens = {
       137: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
       80001: '',
       1285: '0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D',
+      250: '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'
     },
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc',
@@ -48,6 +49,7 @@ const tokens = {
       137: '',
       80001: '',
       1285: '0xaD12daB5959f30b9fF3c2d6709f53C335dC39908',
+      250: '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83',
     },
     decimals: 18,
     projectLink: 'https://matic.network',
@@ -170,6 +172,7 @@ const tokens = {
       137: '',
       80001: '',
       1285: '0x0caE51e1032e8461f4806e26332c030E34De3aDb',
+      250: '0x82f0B8B456c1A451378467398982d4834b6829c1',
     },
     decimals: 18,
     projectLink: '',
@@ -376,6 +379,8 @@ const tokens = {
     address: {
       137: '0xE7a24EF0C5e95Ffb0f6684b813A78F2a3AD7D171',
       80001: '',
+      250: '',
+      1285: '',
     },
     decimals: 18,
     projectLink: '',
@@ -406,6 +411,7 @@ const tokens = {
     address: {
       137: '0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef',
       80001: '',
+      250: '0xf16e81dce15B08F326220742020379B855B87DF9',
     },
     decimals: 18,
     projectLink: '',
@@ -416,6 +422,8 @@ const tokens = {
     address: {
       137: '0xb4d09ff3dA7f9e9A2BA029cb0A81A989fd7B8f17',
       80001: '',
+      250: '',
+      1285: '',
     },
     decimals: 18,
     projectLink: '',
@@ -476,6 +484,7 @@ const tokens = {
     address: {
       137: '0x172370d5Cd63279eFa6d502DAB29171933a610AF',
       80001: '',
+      250: '0x1E4F97b9f9F913c46F1632781732927B9019C68b',
     },
     decimals: 18,
     projectLink: '',
@@ -566,6 +575,7 @@ const tokens = {
     address: {
       137: '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
       80001: '',
+      250: '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8'
     },
     decimals: 18,
     projectLink: '',
@@ -939,6 +949,30 @@ const tokens = {
     },
     decimals: 18,
   },
+  spell: {
+    symbol: 'spell',
+    coingeico: 'spell',
+    address: {
+      250: '0x468003B688943977e6130F4F68F23aad939a1040',
+    },
+    decimals: 18,
+  },
+  spirit: {
+    symbol: 'spirit',
+    coingeico: 'spirit',
+    address: {
+      250: '0x5Cc61A78F164885776AA610fb0FE1257df78E59B',
+    },
+    decimals: 18,
+  },
+  fusdt: {
+    symbol: 'fusdt',
+    coingeico: 'fusdt',
+    address: {
+      250: '0x049d68029688eAbF473097a2fC38ef61633A3C7A',
+    },
+    decimals: 18,
+  }
 }
 
 export default tokens
