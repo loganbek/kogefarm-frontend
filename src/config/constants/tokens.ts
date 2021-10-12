@@ -175,6 +175,17 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  mim3pool: {
+    symbol: 'mim3pool',
+    coingeico: 'mim3pool',
+    address: {
+      250: '0x2dd7C9371965472E5A5fD28fbE165007c61439E1',
+      80001: '',
+      137: '',
+      1285: '',
+    },
+    decimals: 18,
+  },
   qidao: {
     symbol: 'Qi',
     coingeico: 'qidao',
