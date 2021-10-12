@@ -8502,7 +8502,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.mim3pool,
     quoteToken: tokens.mim3pool,
     rewardToken: tokens.spell,
-    rewardPerBlock: 182.894918981 * 2 / 1.1, // 0.625
+    rewardPerBlock: 182.894918981 * 2 / 1.03, // 0.625
     poolWeightDesignate: 3000 / 3000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8529,7 +8529,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.ftm,
     quoteToken: tokens.usdc,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 80 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8557,7 +8557,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.ftm,
     quoteToken: tokens.fusdt,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 80 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8585,7 +8585,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.mim,
     quoteToken: tokens.ftm,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 80 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8613,7 +8613,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.link,
     quoteToken: tokens.ftm,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 20 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8641,7 +8641,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.crv,
     quoteToken: tokens.ftm,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 29 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8669,7 +8669,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.ice,
     quoteToken: tokens.ftm,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 20 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
@@ -8697,7 +8697,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     token: tokens.fusdt,
     quoteToken: tokens.spell,
     rewardToken: tokens.spirit,
-    rewardPerBlock: 17 * 2 / 1.1, // Fix reward block time
+    rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 40 / 1000,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
