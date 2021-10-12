@@ -164,6 +164,23 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   const solarUSDCLP = "0xdb66BE1005f5Fe1d2f486E75cE3C50B52535F886"
 
   /**
+   * FANTOM ADDRESSES
+   */
+
+  const ftmFtm = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
+  const ftmUsdcLp = "0xe7E90f5a767406efF87Fdad7EB07ef407922EC1D"
+  const ftmUSDC = '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'
+  const fUSDT = "0x049d68029688eAbF473097a2fC38ef61633A3C7A"
+  const ftmMIM = "0x82f0B8B456c1A451378467398982d4834b6829c1"
+  const mim3pool = "0x2dd7C9371965472E5A5fD28fbE165007c61439E1"
+  const ftmSpell = "0x468003B688943977e6130F4F68F23aad939a1040"
+  const spellfUSDTLP = "0x31c0385DDE956f95D43Dac80Bd74FEE149961f4c"
+  const wftm = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
+  const spirit = "0x5Cc61A78F164885776AA610fb0FE1257df78E59B"
+  const wftmSpiritLp = "0x30748322B6E34545DBe0788C421886AEB5297789"
+  const fusdtFtmLp = "0xd14Dd3c56D9bc306322d4cEa0E1C49e9dDf045D4"
+
+  /**
    * POLYGON CALLS
    */
   const polygonCurveCalls = [
@@ -794,7 +811,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: dQuickAddr,
       name: 'totalSupply',
     }
-//NEWCALLHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
+    //NEWCALLHERE (VAULT_CREATION_AUTOMATOIN_DO_NOT_REMOVE)
   ]
 
   /**
@@ -833,6 +850,81 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
       address: movrUsdc,
       name: 'balanceOf',
       params: [movrUSDCLP],
+    },
+  ]
+
+
+  /**
+   * FANTOM CALLS
+   */
+  const fantomCalls = [
+    // ftm
+    {
+      address: ftmFtm,
+      name: 'balanceOf',
+      params: [ftmUsdcLp],
+    },
+
+    {
+      address: ftmUSDC,
+      name: 'balanceOf',
+      params: [ftmUsdcLp],
+    },
+    // spell
+    {
+      address: ftmSpell,
+      name: 'balanceOf',
+      params: [spellfUSDTLP],
+    },
+
+    {
+      address: fUSDT,
+      name: 'balanceOf',
+      params: [spellfUSDTLP],
+    },
+
+    // Curve
+    {
+      address: mim3pool,
+      name: 'totalSupply'
+    },
+    {
+      address: fUSDT,
+      name: 'balanceOf',
+      params: [mim3pool],
+    },
+    {
+      address: ftmUSDC,
+      name: 'balanceOf',
+      params: [mim3pool],
+    },
+    {
+      address: ftmMIM,
+      name: 'balanceOf',
+      params: [mim3pool],
+    },
+    // Spirit
+    {
+      address: wftm,
+      name: 'balanceOf',
+      params: [wftmSpiritLp],
+    },
+    {
+      address: spirit,
+      name: 'balanceOf',
+      params: [wftmSpiritLp],
+    },
+    // fusdt
+    {
+      address: fUSDT,
+      name: 'balanceOf',
+      params: [fusdtFtmLp],
+    },
+
+    {
+      address: ftmFtm,
+      name: 'balanceOf',
+      params: [fusdtFtmLp],
     },
   ]
 
@@ -1034,6 +1126,37 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.movr = { "usd": movrUSD.toString() }
     data.busd = { "usd": "1.0" }
   }
+
+  if (currentChain === SUPPORTED_CHAINS.FANTOM) {
+    // Get LP pool composition
+    const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal, wftmBalance, wftmSpiritBalance, fusdtBalance, fusdtFtmBalance] = await multicall(erc20, fantomCalls)
+
+    // Get implied prices by quote token
+    const ftmUsdc = ftmBalance / (usdcBalance * 10 ** 12)
+    const spellUSDT = spellBalance / (spellUSDTBalance * 10 ** 12)
+    const curveRatio = (ftmMIM3poolBal / 10 ** 18 + fUSDT3poolBal / 10 ** 6 + ftmUSDC3poolBal / 10 ** 6) / (mim3poolSupply / 10 ** 18)
+    const wftmSpirit = wftmSpiritBalance / wftmBalance
+    const fusdtUsdc = fusdtFtmBalance / (fusdtBalance * 10 ** 12)
+
+    // Convert to USD
+    const usdcUSD = parseFloat(data.usdc.usd)
+    const ftmUSD = usdcUSD / ftmUsdc
+    const spellUSD = usdcUSD / spellUSDT
+    const mim3poolUSD = curveRatio
+    const spiritUSD = ftmUSD / wftmSpirit
+    const fusdtUSD = usdcUSD / fusdtUsdc
+
+    // Get dollar prices
+    data.ftm = { "usd": ftmUSD.toString() }
+    data.spirit = { "usd": ftmUSD.toString() }
+    data.spell = { "usd": spellUSD.toString() }
+    data.mim3pool = { "usd": mim3poolUSD.toString() }
+    data.spirit = { "usd": spiritUSD.toString() }
+    data.fusdt = { "usd": fusdtUSD.toString() }
+
+  }
+
+
   // Return normalized token names
   return {
     //    updated_at: data.updated_at,

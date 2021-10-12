@@ -7,7 +7,7 @@ import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SPIRIT_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
 import BigNumber from 'bignumber.js'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 import StakedAction from './StakedAction'
@@ -258,13 +258,21 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const chainId = CHAINS[getCurrentNetwork()].numberChainId
   const lpAddress = farm.lpAddresses[chainId]
   const jarAddress = farm.jarAddresses[chainId]
-  const bsc = getCurrentNetwork() === SUPPORTED_CHAINS.MATIC
-    ? `https://polygonscan.com/address/${jarAddress}`
-    : `https://blockscout.moonriver.moonbeam.network/address/${jarAddress}`
+  let bsc
+  if (getCurrentNetwork() === SUPPORTED_CHAINS.MATIC){
+    bsc =  `https://polygonscan.com/address/${jarAddress}`
+  }
+  else if (getCurrentNetwork() === SUPPORTED_CHAINS.MOONRIVER){
+    bsc = `https://blockscout.moonriver.moonbeam.network/address/${jarAddress}`
+  }
+  else if (getCurrentNetwork() === SUPPORTED_CHAINS.FANTOM){
+    bsc = `https://ftmscan.com/address/${jarAddress}`
+  }
   const info = farm.underlyingWebsite
 
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
   const wmovrAddress = "0x98878B06940aE243284CA214f92Bb71a2b032B8A"
+  const wftmAddress = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   if (getCurrentNetwork() === SUPPORTED_CHAINS.MOONRIVER) {
@@ -298,6 +306,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   }
   if (farm.isCafeSwap === true) {
     liquidityurl = `${CAFE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  }
+  if (farm.isSpirit === true) {
+    liquidityurl = `${SPIRIT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(wftmAddress, 'FTM')}`
   }
   if (farm.token === farm.quoteToken) {
     liquidityurl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
@@ -340,6 +351,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   }
   if (farm.token.coingeico === 'atricrypto3') {
     liquidityurl = `https://polygon.curve.fi/atricrypto3/deposit`
+  }
+  if (farm.token.coingeico === 'mim3pool') {
+    liquidityurl = `https://ftm.curve.fi/factory/1/deposit`
   }
   if (farm.token.coingeico === 'btcrenbtc') {
     liquidityurl = `https://polygon.curve.fi/ren/deposit`

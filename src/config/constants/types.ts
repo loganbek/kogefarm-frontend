@@ -2,8 +2,9 @@ import { TranslatableText } from 'state/types'
 
 export interface Address {
   137?: string
-  80001: string
+  80001?: string
   1285?: string
+  250?: string
 }
 
 export interface Token {
@@ -74,6 +75,7 @@ export interface FarmConfig {
   isElk?: boolean
   isGravity?: boolean
   isCafeSwap?: boolean
+  isSpirit?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string

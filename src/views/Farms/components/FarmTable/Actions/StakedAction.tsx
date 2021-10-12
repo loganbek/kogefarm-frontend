@@ -17,7 +17,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, CHAINS, SUPPORTED_CHAINS } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SPIRIT_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -80,6 +80,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isFirebird,
   isGravity,
   isCafeSwap,
+  isSpirit,
   depositFee,
   userDataReady,
 }) => {
@@ -123,6 +124,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   })
 
   const maticAddress = "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
+  const wmovrAddress = "0x98878B06940aE243284CA214f92Bb71a2b032B8A"
+  const wftmAddress = "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
 
   let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   if (chain === SUPPORTED_CHAINS.MOONRIVER) {
@@ -155,6 +158,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }
   if (isCafeSwap === true) {
     addLiquidityUrl = `${CAFE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
+  }
+  if (isSpirit === true) {
+    addLiquidityUrl = `${SPIRIT_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(wftmAddress, 'FTM')}`
   }
   if (quoteToken === token) {
     addLiquidityUrl = `https://quickswap.exchange/#/swap?outputCurrency=${lpAddress}`
@@ -195,6 +201,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   if (token.coingeico === 'atricrypto3') {
     addLiquidityUrl = `https://polygon.curve.fi/atricrypto3/deposit`
   }
+  if (token.coingeico === 'mim3pool') {
+    addLiquidityUrl = `https://ftm.curve.fi/factory/1/deposit`
+  }
   if (token.coingeico === 'btcrenbtc') {
     addLiquidityUrl = `https://polygon.curve.fi/ren/deposit`
   }
@@ -203,6 +212,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }
   if (token.coingeico === 'arcadium') {
     addLiquidityUrl = `https://stadiumarcadium.farm/addliquidity/`
+  }
+  const chainId = CHAINS[getCurrentNetwork()].numberChainId
+  if (getCurrentNetwork() === SUPPORTED_CHAINS.MOONRIVER) {
+    addLiquidityUrl = `https://solarbeam.io/exchange/add/${token.address[chainId]}/${quoteToken.address[chainId]}`
+    addLiquidityUrl = addLiquidityUrl.replace(wmovrAddress, 'ETH')
   }
 
 

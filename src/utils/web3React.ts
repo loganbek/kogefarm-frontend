@@ -16,6 +16,7 @@ export const useGetConnectorsByName = (chain: SUPPORTED_CHAINS) => {
     supportedChainIds: [
       CHAINS[SUPPORTED_CHAINS.MATIC].numberChainId,
       CHAINS[SUPPORTED_CHAINS.MOONRIVER].numberChainId,
+      CHAINS[SUPPORTED_CHAINS.FANTOM].numberChainId,
     ]
   })
 
