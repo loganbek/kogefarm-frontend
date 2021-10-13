@@ -5728,7 +5728,8 @@ const farms: FarmConfig[] = [
     isSushi: true,
     underlyingWebsite: 'https://polyroll.org',
     kogefarmComment: ' (Matic)',
-    platform: 'PolyRoll'
+    platform: 'PolyRoll',
+    multiplier: '0X'
   },
 
   {
@@ -5750,7 +5751,7 @@ const farms: FarmConfig[] = [
     token: tokens.roll,
     quoteToken: tokens.roll,
     rewardPerBlock: 11.212426407522420097,
-    poolWeightDesignate: 145 / 1090,
+    poolWeightDesignate: 290 / 1090,
     minutesPerCompound: 1,
     kogefarmFee: 0.01,
     isSushi: true,
