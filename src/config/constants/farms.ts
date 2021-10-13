@@ -244,7 +244,30 @@ const farms: FarmConfig[] = [
     platform: 'Curve'
   },
 
-
+  {
+    pid: -1,
+    lpSymbol: 'SAGE-KOGE',
+    lpAddresses: {
+      137: '0x51A08a8D4A636A978181Ec03a88eb5aCFB4dD40e',
+    },
+    masterChefAddresses: {
+      137: '0x0451b4893e4a77E7Eec3B25E816ed7FFeA1EBA68',
+    },
+    masterChefPid: 25,
+    jarAddresses: {
+      137: '0x4792b5943a05fc6AF3B20B5F1D1d7dDe33C42980',
+    },
+    token: tokens.kogecoin,
+    quoteToken: tokens.sage,
+    rewardToken: tokens.sage,
+    rewardPerBlock: 0.007, // Fix reward block time
+    poolWeightDesignate: 2500 / 51500,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polysage.finance/',
+    platform: 'Polysage',
+    kogefarmComment: ' (Sage)',
+  },
 
   {
     pid: 253,
