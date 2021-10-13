@@ -950,7 +950,7 @@ const tokens = {
     decimals: 18,
   },
   spell: {
-    symbol: 'spell',
+    symbol: 'Spell',
     coingeico: 'spell',
     address: {
       250: '0x468003B688943977e6130F4F68F23aad939a1040',
@@ -958,7 +958,7 @@ const tokens = {
     decimals: 18,
   },
   spirit: {
-    symbol: 'spirit',
+    symbol: 'Spirit',
     coingeico: 'spirit',
     address: {
       250: '0x5Cc61A78F164885776AA610fb0FE1257df78E59B',
@@ -966,13 +966,21 @@ const tokens = {
     decimals: 18,
   },
   fusdt: {
-    symbol: 'fusdt',
+    symbol: 'fUSDT',
     coingeico: 'fusdt',
     address: {
       250: '0x049d68029688eAbF473097a2fC38ef61633A3C7A',
     },
     decimals: 18,
-  }
+  },
+  sage: {
+    symbol: 'Sage',
+    coingeico: 'sage',
+    address: {
+      137: '0x2ed945Dc703D85c80225d95ABDe41cdeE14e1992',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
