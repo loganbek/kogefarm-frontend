@@ -270,6 +270,31 @@ const farms: FarmConfig[] = [
   },
 
   {
+    pid: -2,
+    lpSymbol: 'SAGE-WMATIC',
+    lpAddresses: {
+      137: '0x70c096187F8a9ac03E34a0e7ed41bCd516878158',
+    },
+    masterChefAddresses: {
+      137: '0x0451b4893e4a77E7Eec3B25E816ed7FFeA1EBA68',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      137: '0x99dE9f6ACc587726FE72AC8F6E2b4a6563c98Af9',
+    },
+    token: tokens.matic,
+    quoteToken: tokens.sage,
+    rewardToken: tokens.sage,
+    rewardPerBlock: 0.007, // Fix reward block time
+    poolWeightDesignate: 10000 / 51500,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polysage.finance/',
+    platform: 'Polysage',
+    kogefarmComment: ' (Sage)',
+  },
+
+  {
     pid: 253,
     lpSymbol: 'pBrew',
     lpAddresses: {
