@@ -244,7 +244,80 @@ const farms: FarmConfig[] = [
     platform: 'Curve'
   },
 
+  {
+    pid: -1,
+    lpSymbol: 'SAGE-KOGE',
+    lpAddresses: {
+      137: '0x51A08a8D4A636A978181Ec03a88eb5aCFB4dD40e',
+    },
+    masterChefAddresses: {
+      137: '0x0451b4893e4a77E7Eec3B25E816ed7FFeA1EBA68',
+    },
+    masterChefPid: 25,
+    jarAddresses: {
+      137: '0x4792b5943a05fc6AF3B20B5F1D1d7dDe33C42980',
+    },
+    token: tokens.kogecoin,
+    quoteToken: tokens.sage,
+    rewardToken: tokens.sage,
+    rewardPerBlock: 0.007, // Fix reward block time
+    poolWeightDesignate: 2500 / 51500,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polysage.finance/',
+    platform: 'Polysage',
+    kogefarmComment: ' (Sage)',
+  },
 
+  {
+    pid: -2,
+    lpSymbol: 'SAGE-WMATIC',
+    lpAddresses: {
+      137: '0x70c096187F8a9ac03E34a0e7ed41bCd516878158',
+    },
+    masterChefAddresses: {
+      137: '0x0451b4893e4a77E7Eec3B25E816ed7FFeA1EBA68',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      137: '0x99dE9f6ACc587726FE72AC8F6E2b4a6563c98Af9',
+    },
+    token: tokens.matic,
+    quoteToken: tokens.sage,
+    rewardToken: tokens.sage,
+    rewardPerBlock: 0.007, // Fix reward block time
+    poolWeightDesignate: 10000 / 51500,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polysage.finance/',
+    platform: 'Polysage',
+    kogefarmComment: ' (Sage)',
+  },
+
+  {
+    pid: -3,
+    lpSymbol: 'SAGE-USDC',
+    lpAddresses: {
+      137: '0x62F089467e22de4bc1FB5EE605eDe7e782b76B29',
+    },
+    masterChefAddresses: {
+      137: '0x0451b4893e4a77E7Eec3B25E816ed7FFeA1EBA68',
+    },
+    masterChefPid: 2,
+    jarAddresses: {
+      137: '0xBF773f00C3aE7B1eE9641c7e1cF14FdDCDC0CEBb',
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.sage,
+    rewardToken: tokens.sage,
+    rewardPerBlock: 0.007, // Fix reward block time
+    poolWeightDesignate: 10000 / 51500,
+    minutesPerCompound: 20,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://polysage.finance/',
+    platform: 'Polysage',
+    kogefarmComment: ' (Sage)',
+  },
 
   {
     pid: 253,
