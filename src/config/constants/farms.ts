@@ -8697,7 +8697,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
   },
 
   {
-    pid: 38,
+    pid: 39,
     lpSymbol: 'BTC-USDC LP',
     lpAddresses: {
       80001: '',
