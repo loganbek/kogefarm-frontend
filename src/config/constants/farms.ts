@@ -8613,7 +8613,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
   },
 
   {
-    pid: 35,
+    pid: 36,
     lpSymbol: 'FTM-BTC-ETH LP',
     lpAddresses: {
       80001: '',
@@ -8641,7 +8641,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
   },
 
   {
-    pid: 36,
+    pid: 37,
     lpSymbol: 'Sonata',
     lpAddresses: {
       80001: '',
@@ -8669,7 +8669,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
   },
 
   {
-    pid: 37,
+    pid: 38,
     lpSymbol: 'USDC-Eth LP',
     lpAddresses: {
       80001: '',
