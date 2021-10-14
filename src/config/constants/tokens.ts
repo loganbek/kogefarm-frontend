@@ -1053,6 +1053,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  beetsftmx: {
+    symbol: 'BeetsFtmX',
+    coingeico: 'beetsftmx',
+    address: {
+      250: '0xcdE5a11a4ACB4eE4c805352Cec57E236bdBC3837',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
