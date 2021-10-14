@@ -997,7 +997,7 @@ const tokens = {
     },
     decimals: 18,
   },
-  beetsusdc: {
+  beetsusdcx: {
     symbol: 'BeetsUSDCX',
     coingeico: 'beetsusdcx',
     address: {
@@ -1010,6 +1010,14 @@ const tokens = {
     coingeico: 'ftmbtcethx',
     address: {
       250: '0xd47D2791d3B46f9452709Fa41855a045304D6f9d',
+    },
+    decimals: 18,
+  },
+  sonatax: {
+    symbol: 'Sonatax',
+    coingeico: 'sonatax',
+    address: {
+      250: '0xf0e2c47d4C9FBBbc2F2E19ACdaA3c773A3ECD221',
     },
     decimals: 18,
   },
