@@ -8585,6 +8585,33 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmComment: ' (Curve)'
   },
   {
+    pid: 35,
+    lpSymbol: 'USDC-FTM LP',
+    lpAddresses: {
+      80001: '',
+      250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x8166994d9ebBe5829EC86Bd81258149B87faCfd3',
+    },
+    masterChefPid: 8,
+    jarAddresses: {
+      80001: '',
+      250: '0xC726831E650AA90D6Cc5a9AE66E5eBf29906Ac0f',
+    },
+    token: tokens.usdcftmx,
+    quoteToken: tokens.usdcftmbeets,
+    rewardToken: tokens.beets,
+    rewardPerBlock: 5.05 * 2 / 1.03, // 0.625
+    poolWeightDesignate: 100 / 830,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://app.beethovenx.io/#/farm',
+    platform: 'Beethoven-X',
+    kogefarmComment: ' (Beets)'
+  },
+  {
     pid: 27,
     lpSymbol: 'USDC-FTM LP',
     lpAddresses: {

@@ -981,6 +981,22 @@ const tokens = {
     },
     decimals: 18,
   },
+  beets: {
+    symbol: 'Beets',
+    coingeico: 'beets',
+    address: {
+      250: '0xF24Bcf4d1e507740041C9cFd2DddB29585aDCe1e',
+    },
+    decimals: 18,
+  },
+  usdcftmx: {
+    symbol: 'USDCFantomX',
+    coingeico: 'usdcfantomx',
+    address: {
+      250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
