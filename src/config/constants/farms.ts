@@ -8600,8 +8600,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
       80001: '',
       250: '0xc8A4D5611F31f943eC22cd07C7078b7E4d4B9161',
     },
-    token: tokens.beetsusdc,
-    quoteToken: tokens.beetsusdc,
+    token: tokens.beetsusdcx,
+    quoteToken: tokens.beetsusdcx,
     rewardToken: tokens.beets,
     rewardPerBlock: 5.05 * 2 / 1.03, // 0.625
     poolWeightDesignate: 150 / 830,

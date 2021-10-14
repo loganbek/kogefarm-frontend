@@ -997,7 +997,7 @@ const tokens = {
     },
     decimals: 18,
   },
-  beetsusdcx: {
+  beetsusdc: {
     symbol: 'BeetsUSDCX',
     coingeico: 'beetsusdcx',
     address: {
