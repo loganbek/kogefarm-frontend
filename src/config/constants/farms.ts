@@ -8595,7 +8595,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
       80001: '',
       250: '0x8166994d9ebBe5829EC86Bd81258149B87faCfd3',
     },
-    masterChefPid: 8,
+    masterChefPid: 0,
     jarAddresses: {
       80001: '',
       250: '0xc8A4D5611F31f943eC22cd07C7078b7E4d4B9161',
@@ -8605,6 +8605,34 @@ export const FANTOM_FARMS: FarmConfig[] = [
     rewardToken: tokens.beets,
     rewardPerBlock: 5.05 * 2 / 1.03, // 0.625
     poolWeightDesignate: 150 / 830,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://app.beethovenx.io/#/farm',
+    platform: 'Beethoven-X',
+    kogefarmComment: ' (Beets)'
+  },
+
+  {
+    pid: 35,
+    lpSymbol: 'FTM-BTC-ETH LP',
+    lpAddresses: {
+      80001: '',
+      250: '0xd47D2791d3B46f9452709Fa41855a045304D6f9d',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x8166994d9ebBe5829EC86Bd81258149B87faCfd3',
+    },
+    masterChefPid: 1,
+    jarAddresses: {
+      80001: '',
+      250: '0xE67217110E27dA496C219eAffA9dCb51898d17FA',
+    },
+    token: tokens.ftmbtcethx,
+    quoteToken: tokens.ftmbtcethx,
+    rewardToken: tokens.beets,
+    rewardPerBlock: 5.05 * 2 / 1.03, // 0.625
+    poolWeightDesignate: 80 / 830,
     minutesPerCompound: 60,
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',

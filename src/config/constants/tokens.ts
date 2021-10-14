@@ -1005,6 +1005,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  ftmbtcethx: {
+    symbol: 'FtmBtcEthx',
+    coingeico: 'ftmbtcethx',
+    address: {
+      250: '0xd47D2791d3B46f9452709Fa41855a045304D6f9d',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
