@@ -1037,6 +1037,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  btcethusdcx: {
+    symbol: 'BtcEthUsdcX',
+    coingeico: 'btcethusdcx',
+    address: {
+      250: '0x6FDC8415B654B0F60475944A0b9421Dc36ee1363',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
