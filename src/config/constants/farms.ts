@@ -8589,7 +8589,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     lpSymbol: 'Beets-USDC LP',
     lpAddresses: {
       80001: '',
-      250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
+      250: '0x03c6B3f09D2504606936b1A4DeCeFaD204687890',
     },
     masterChefAddresses: {
       80001: '',
