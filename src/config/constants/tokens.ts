@@ -997,6 +997,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  beetsusdcx: {
+    symbol: 'BeetsUSDCX',
+    coingeico: 'beetsusdcx',
+    address: {
+      250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
