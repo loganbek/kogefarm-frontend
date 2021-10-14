@@ -8586,6 +8586,34 @@ export const FANTOM_FARMS: FarmConfig[] = [
   },
   {
     pid: 35,
+    lpSymbol: 'Beets-USDC LP',
+    lpAddresses: {
+      80001: '',
+      250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
+    },
+    masterChefAddresses: {
+      80001: '',
+      250: '0x8166994d9ebBe5829EC86Bd81258149B87faCfd3',
+    },
+    masterChefPid: 8,
+    jarAddresses: {
+      80001: '',
+      250: '0xc8A4D5611F31f943eC22cd07C7078b7E4d4B9161',
+    },
+    token: tokens.beetsusdc,
+    quoteToken: tokens.beetsusdc,
+    rewardToken: tokens.beets,
+    rewardPerBlock: 5.05 * 2 / 1.03, // 0.625
+    poolWeightDesignate: 150 / 830,
+    minutesPerCompound: 60,
+    kogefarmFee: 0.01,
+    underlyingWebsite: 'https://app.beethovenx.io/#/farm',
+    platform: 'Beethoven-X',
+    kogefarmComment: ' (Beets)'
+  },
+
+  {
+    pid: 43,
     lpSymbol: 'USDC-FTM LP',
     lpAddresses: {
       80001: '',
@@ -8598,10 +8626,10 @@ export const FANTOM_FARMS: FarmConfig[] = [
     masterChefPid: 8,
     jarAddresses: {
       80001: '',
-      250: '0xC726831E650AA90D6Cc5a9AE66E5eBf29906Ac0f',
+      250: '0x184E361C92157bd44A28B6C4bC069588Ec0E97E2',
     },
     token: tokens.usdcftmx,
-    quoteToken: tokens.usdcftmbeets,
+    quoteToken: tokens.usdcftmx,
     rewardToken: tokens.beets,
     rewardPerBlock: 5.05 * 2 / 1.03, // 0.625
     poolWeightDesignate: 100 / 830,
