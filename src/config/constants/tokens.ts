@@ -1045,6 +1045,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  mimfusdtusdcx: {
+    symbol: 'MimUsdtUsdcx',
+    coingeico: 'mimfusdtusdcx',
+    address: {
+      250: '0xD163415BD34EF06f57C58D2AEd5A5478AfB464cC',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
