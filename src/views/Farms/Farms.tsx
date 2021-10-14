@@ -711,7 +711,7 @@ const Farms: React.FC = () => {
             </Tooltip>
             {' Lowest '}
             <a href="https://koge.gitbook.io/kogefarm/fees">fees</a>
-            {` in ${chainName}. `}
+            {` on ${chainName}. `}
             Audited by <a href="https://github.com/Tibereum/obelisk-audits/blob/main/Kogefarm.pdf">Obelisk</a> and <a href="https://paladinsec.co/projects/kogefarm/">Paladin</a>. Public <a href="https://medium.com/kogecoin/the-kogefarm-team-is-expanding-4694399d0e52">lead dev</a>.
           </StyledText>
 
