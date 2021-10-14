@@ -1021,6 +1021,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  usdcethx: {
+    symbol: 'UsdcEthX',
+    coingeico: 'usdcethx',
+    address: {
+      250: '0xA07De66AeF84e2c01D88a48D57D1463377Ee602b',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
