@@ -148,6 +148,25 @@ export const config: MenuEntry[] = [
       }
     ]
   },
+  {
+    label: "Listings",
+    icon: "InfoIcon",
+    items: [
+    {
+      label: "CoinMarketCap",
+      href: "https://coinmarketcap.com/currencies/kogecoin/",    
+    },
+    {
+      label: "CoinGecko",
+      href: "https://www.coingecko.com/en/coins/kogecoin",
+    },
+    {
+      label: "Coinbase",
+      href: "https://www.coinbase.com/price/kogecoin",
+    }
+    ],
+    group: "Listings"
+  }
 ]
 
 export const socials = [
