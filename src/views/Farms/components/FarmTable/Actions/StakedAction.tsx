@@ -17,7 +17,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SPIRIT_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SPIRIT_ADD_LIQUIDITY_URL, BEETHOVEN_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -81,6 +81,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isGravity,
   isCafeSwap,
   isSpirit,
+  isBeethoven,
   depositFee,
   userDataReady,
 }) => {
@@ -129,7 +130,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   let addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   if (chain === SUPPORTED_CHAINS.MOONRIVER) {
-    addLiquidityUrl = `https://solarbeam.io/exchange/add/${token.address[CHAINS[chain].numberChainId]}/${quoteToken.address[CHAINS[chain].numberChainId]}`
+    addLiquidityUrl = `https://app.solarbeam.io/exchange/add/${token.address[CHAINS[chain].numberChainId]}/${quoteToken.address[CHAINS[chain].numberChainId]}`
   }
 
   if (isSushi === true) {
@@ -178,6 +179,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
     if (token.coingeico === 'pwings') {
       addLiquidityUrl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
+    if (isBeethoven === true) {
+      addLiquidityUrl = `${BEETHOVEN_ADD_LIQUIDITY_URL}/${token.poolid}`
     }
   }
   if (lpSymbol.toUpperCase() === "PYQ-USDC") {
