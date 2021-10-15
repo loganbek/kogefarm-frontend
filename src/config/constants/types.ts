@@ -13,6 +13,7 @@ export interface Token {
   decimals?: number
   projectLink?: string
   coingeico?: string
+  poolid?: string
 }
 
 export enum PoolIds {
@@ -76,6 +77,8 @@ export interface FarmConfig {
   isGravity?: boolean
   isCafeSwap?: boolean
   isSpirit?: boolean
+  isBeethoven?: boolean
+  beethovenPoolId?: string
   dual?: {
     rewardPerBlock: number
     earnLabel: string

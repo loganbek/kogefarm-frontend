@@ -149,10 +149,7 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
       ) : (
         <Button
           scale="sm"
-          onClick={async () => {
-            await setupNetwork(getCurrentNetwork());
-            onPresentConnectModal();
-          }}
+          onClick={onPresentConnectModal}
         >
           Connect wallet
         </Button>
