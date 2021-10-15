@@ -77,7 +77,7 @@ export interface ChainInterface {
 const POLYGON_CHAIN_ID = 137
 export const POLYGON_CHAIN: ChainInterface = {
   chainId: `0x${Number(POLYGON_CHAIN_ID).toString(16)}`,
-  chainName: 'Polygon Mainnet',
+  chainName: 'Matic Network Mainnet',
   nativeCurrency: {
     name: 'MATIC',
     symbol: 'MATIC',
