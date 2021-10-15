@@ -33,42 +33,42 @@ const connectors: Config[] = [
     bg: 'rgba(51, 117, 187, 0.2)'
 
   },
-  // {
-  //   title: "MathWallet",
-  //   icon: MathWallet,
-  //   connectorId: ConnectorNames.Injected,
-  //   priority: 999,
-  //   bg: 'rgba(0, 0, 0, 0.2)'
-  // },
-  // {
-  //   title: "TokenPocket",
-  //   icon: TokenPocket,
-  //   connectorId: ConnectorNames.Injected,
-  //   priority: 999,
-  //   bg: 'rgba(0, 166, 242, 0.2)'
-  // },
+  {
+    title: "MathWallet",
+    icon: MathWallet,
+    connectorId: ConnectorNames.Injected,
+    priority: 999,
+    bg: 'rgba(0, 0, 0, 0.2)'
+  },
+  {
+    title: "TokenPocket",
+    icon: TokenPocket,
+    connectorId: ConnectorNames.Injected,
+    priority: 999,
+    bg: 'rgba(0, 166, 242, 0.2)'
+  },
 
-  // {
-  //   title: "Binance Chain",
-  //   icon: BinanceChain,
-  //   connectorId: ConnectorNames.BSC,
-  //   priority: 999,
-  //   bg: 'rgba(240, 185, 11, 0.2)'
-  // },
-  // {
-  //   title: "SafePal",
-  //   icon: SafePal,
-  //   connectorId: ConnectorNames.Injected,
-  //   priority: 999,
-  //   bg: 'rgba(0, 0, 0, 0.2)'
-  // },
-  // {
-  //   title: "Coin98",
-  //   icon: Coin98,
-  //   connectorId: ConnectorNames.Injected,
-  //   priority: 999,
-  //   bg: 'rgba(223, 190, 70, 0.2)'
-  // },
+  {
+    title: "Binance Chain",
+    icon: BinanceChain,
+    connectorId: ConnectorNames.BSC,
+    priority: 999,
+    bg: 'rgba(240, 185, 11, 0.2)'
+  },
+  {
+    title: "SafePal",
+    icon: SafePal,
+    connectorId: ConnectorNames.Injected,
+    priority: 999,
+    bg: 'rgba(0, 0, 0, 0.2)'
+  },
+  {
+    title: "Coin98",
+    icon: Coin98,
+    connectorId: ConnectorNames.Injected,
+    priority: 999,
+    bg: 'rgba(223, 190, 70, 0.2)'
+  },
 ];
 
 export default connectors;
