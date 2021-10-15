@@ -18,13 +18,13 @@ const connectors: Config[] = [
     bg: 'rgba(245, 132, 31, 0.2)'
 
   },
-  {
-    title: "WalletConnect",
-    icon: WalletConnect,
-    connectorId: ConnectorNames.WalletConnect,
-    priority: 2,
-    bg: 'rgba(59, 153, 252, 0.2)'
-  },
+  // {
+  //   title: "WalletConnect",
+  //   icon: WalletConnect,
+  //   connectorId: ConnectorNames.WalletConnect,
+  //   priority: 2,
+  //   bg: 'rgba(59, 153, 252, 0.2)'
+  // },
   {
     title: "Trust Wallet",
     icon: TrustWallet,
