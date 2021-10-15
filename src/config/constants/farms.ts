@@ -8609,7 +8609,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true,
   },
 
   {
@@ -8637,12 +8638,13 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true,
   },
 
   {
     pid: 37,
-    lpSymbol: 'Sonata',
+    lpSymbol: 'FTM-Sonata',
     lpAddresses: {
       80001: '',
       250: '0xf0e2c47d4C9FBBbc2F2E19ACdaA3c773A3ECD221',
@@ -8665,7 +8667,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {
@@ -8693,7 +8696,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {
@@ -8721,7 +8725,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {
@@ -8749,7 +8754,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {
@@ -8777,7 +8783,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {
@@ -8805,7 +8812,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {
@@ -8833,7 +8841,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
     kogefarmFee: 0.01,
     underlyingWebsite: 'https://app.beethovenx.io/#/farm',
     platform: 'Beethoven-X',
-    kogefarmComment: ' (Beets)'
+    kogefarmComment: ' (Beets)',
+    isBeethoven: true
   },
 
   {

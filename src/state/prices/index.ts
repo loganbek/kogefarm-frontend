@@ -6,6 +6,8 @@ import multicall from 'utils/multicall'
 import erc20 from 'config/abi/erc20.json'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher'
 import { SUPPORTED_CHAINS } from 'config/index'
+import tokens from 'config/constants/tokens'
+import { getAddress } from 'utils/addressHelpers'
 
 const initialState: PriceState = {
   isLoading: false,
@@ -1145,8 +1147,125 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
   }
 
   if (currentChain === SUPPORTED_CHAINS.FANTOM) {
+    // Balancer calls
+    const beethovenX = '0x20dd72Ed959b6147912C2e529F0a0C651c33c9ce';
+
+    const beetsUSDCPoolId = tokens.beetsusdcx.poolid;
+    const beetsUSDCLP = getAddress(tokens.beetsusdcx.address);
+    const ftmBtcEthPoolId = tokens.ftmbtcethx.poolid;
+    const ftmBtcEthLP = getAddress(tokens.ftmbtcethx.address);
+    const ftmSonataPoolId = tokens.sonatax.poolid;
+    const ftmSonataLP = getAddress(tokens.sonatax.address);
+    const usdcETHPoolId = tokens.usdcethx.poolid;
+    const usdcEthLP =   getAddress(tokens.usdcethx.address);
+
+    const btcUSDCPoolId = tokens.btcusdcx.poolid;
+    const btcUSDCLP =   getAddress(tokens.btcusdcx.address);
+    const btcEthUSDCPoolId = tokens.btcethusdcx.poolid;
+    const btcEthUSDCLP =   getAddress(tokens.btcethusdcx.address);
+    const mimFusdUsdtPoolId = tokens.mimfusdtusdcx.poolid;
+    const mimFusdUsdtLP =   getAddress(tokens.mimfusdtusdcx.address);
+    const beetsFtmPoolId = tokens.beetsftmx.poolid;
+    const beetsFtmLP =   getAddress(tokens.beetsftmx.address);
+    const usdcFtmPoolId = tokens.usdcftmx.poolid;
+    const usdcFtmLP =   getAddress(tokens.usdcftmx.address);
+
+    const balancerCalls = [
+      // Beets-USDC
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [beetsUSDCPoolId],
+      },
+      {
+        address: beetsUSDCLP,
+        name: 'totalSupply',
+      },
+      // Ftm-Btc-Eth
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [ftmBtcEthPoolId],
+      },
+      {
+        address: ftmBtcEthLP,
+        name: 'totalSupply',
+      },
+      // Ftm-Sonata
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [ftmSonataPoolId],
+      },
+      {
+        address: ftmSonataLP,
+        name: 'totalSupply',
+      },
+      // USDC-ETH
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [usdcETHPoolId],
+      },
+      {
+        address: usdcEthLP,
+        name: 'totalSupply',
+      },
+      // Btc-Usdc
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [btcUSDCPoolId],
+      },
+      {
+        address: btcUSDCLP,
+        name: 'totalSupply',
+      },
+      // Btc-Eth-Usdc
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [btcEthUSDCPoolId],
+      },
+      {
+        address: btcEthUSDCLP,
+        name: 'totalSupply',
+      },
+      // mim3pool
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [mimFusdUsdtPoolId],
+      },
+      {
+        address: mimFusdUsdtLP,
+        name: 'totalSupply',
+      },
+      // beetsFtmPoolId
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [beetsFtmPoolId],
+      },
+      {
+        address: beetsFtmLP,
+        name: 'totalSupply',
+      },
+      // usdcFtmPoolId
+      {
+        address: beethovenX,
+        name: 'getPoolTokens',
+        params: [usdcFtmPoolId],
+      },
+      {
+        address: usdcFtmLP,
+        name: 'totalSupply',
+      },
+    ]
+
     // Get LP pool composition
     const [ftmBalance, usdcBalance, spellBalance, spellUSDTBalance, mim3poolSupply, fUSDT3poolBal, ftmUSDC3poolBal, ftmMIM3poolBal, wftmBalance, wftmSpiritBalance, fusdtBalance, fusdtFtmBalance] = await multicall(erc20, fantomCalls)
+    const [beetsUSDCPool, beetsUSDCSupply, ftmBtcEthPool, ftmBtcEthSupply, ftmSonataPool, ftmSonataSupply, usdcEthPool, usdcEthSupply, btcUsdcPool, btcUsdcSupply, btcEthUsdcPool, btcEthUsdcSupply, mimFusdUsdtPool, mimFusdUsdtSupply, beetsFtmPool, beetsFtmSupply, usdcFtmPool, usdcFtmSupply] = await multicall(erc20, balancerCalls)
 
     // Get implied prices by quote token
     const ftmUsdc = ftmBalance / (usdcBalance * 10 ** 12)
@@ -1162,7 +1281,20 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     const mim3poolUSD = curveRatio
     const spiritUSD = ftmUSD / wftmSpirit
     const fusdtUSD = usdcUSD / fusdtUsdc
+    const beetsUSDCusdc = beetsUSDCPool.balances[0] * 10**12 / 0.2 / beetsUSDCSupply
+    const beetsUSD = beetsUSDCPool.balances[0] * 10**12 / beetsUSDCPool.balances[1] * 0.8 / 0.2
+    const ftmbtcethUSD = ftmUSD * ftmBtcEthPool.balances[0] / 0.3333 / ftmBtcEthSupply
+    const ftmSonataUSD =  ftmSonataPool.balances[0] * 10**12 / 0.1 /  ftmSonataSupply
+    const usdcEthUSD =  usdcEthPool.balances[0] * 10**12 / 0.4 /  usdcEthSupply
+    const btcUsdcUSD = btcUsdcPool.balances[0] * 10**12 / 0.4 / btcUsdcSupply
+    const btcEthUsdcUsd = btcEthUsdcPool.balances[0] * 10**12 / 0.2 / btcEthUsdcSupply
+    const mimFusdUsdtUsd = mimFusdUsdtPool.balances[0] * 10**12 / mimFusdUsdtSupply + mimFusdUsdtPool.balances[1] * 10**12 / mimFusdUsdtSupply + mimFusdUsdtPool.balances[2] / mimFusdUsdtSupply
+    const beetsFtmUsd = ftmUSD * beetsFtmPool.balances[0] / 0.2 / beetsFtmSupply
+    const usdcFtmUsd = usdcFtmPool.balances[0] * 10**12 / 0.3 / usdcFtmSupply
 
+    // beetsFtmPool, beetsFtmSupply, usdcFtmPool, usdcFtmSupply
+//  btcUsdcPool, btcUsdcSupply, btcEthUsdcPool, btcEthUsdcSupply, mimFusdUsdtPool, mimFusdUsdtSupply, beetsFtmPool, beetsFtmSupply, usdcFtmPool, usdcFtmSupply
+//  console.log(usdcEth)
     // Get dollar prices
     data.ftm = { "usd": ftmUSD.toString() }
     data.spirit = { "usd": ftmUSD.toString() }
@@ -1170,6 +1302,16 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.mim3pool = { "usd": mim3poolUSD.toString() }
     data.spirit = { "usd": spiritUSD.toString() }
     data.fusdt = { "usd": fusdtUSD.toString() }
+    data.beetsusdcx = { "usd": beetsUSDCusdc.toString() }
+    data.beets = { "usd": beetsUSD.toString() }
+    data.ftmbtcethx = { "usd": ftmbtcethUSD.toString() }
+    data.sonatax = { "usd": ftmSonataUSD.toString() }
+    data.usdcethx = { "usd": usdcEthUSD.toString() }
+    data.btcusdcx = { "usd": btcUsdcUSD.toString() }
+    data.btcethusdcx = { "usd": btcEthUsdcUsd.toString() }
+    data.mimfusdtusdcx = { "usd": mimFusdUsdtUsd.toString() }
+    data.beetsftmx = { "usd": beetsFtmUsd.toString() }
+    data.usdcftmx = { "usd": usdcFtmUsd.toString() }
 
   }
 

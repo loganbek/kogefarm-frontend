@@ -995,15 +995,17 @@ const tokens = {
     address: {
       250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
     },
+    poolid: '0xcdf68a4d525ba2e90fe959c74330430a5a6b8226000200000000000000000008',
     decimals: 18,
   },
   beetsusdcx: {
     symbol: 'BeetsUSDCX',
     coingeico: 'beetsusdcx',
     address: {
-      250: '0xcdF68a4d525Ba2E90Fe959c74330430A5a6b8226',
+      250: '0x03c6B3f09D2504606936b1A4DeCeFaD204687890',
     },
     decimals: 18,
+    poolid: '0x03c6b3f09d2504606936b1a4decefad204687890000200000000000000000015',
   },
   ftmbtcethx: {
     symbol: 'FtmBtcEthx',
@@ -1012,6 +1014,7 @@ const tokens = {
       250: '0xd47D2791d3B46f9452709Fa41855a045304D6f9d',
     },
     decimals: 18,
+    poolid: '0xd47d2791d3b46f9452709fa41855a045304d6f9d000100000000000000000004'
   },
   sonatax: {
     symbol: 'Sonatax',
@@ -1020,6 +1023,7 @@ const tokens = {
       250: '0xf0e2c47d4C9FBBbc2F2E19ACdaA3c773A3ECD221',
     },
     decimals: 18,
+    poolid: '0xf0e2c47d4c9fbbbc2f2e19acdaa3c773a3ecd22100010000000000000000000a'
   },
   usdcethx: {
     symbol: 'UsdcEthX',
@@ -1028,6 +1032,7 @@ const tokens = {
       250: '0xA07De66AeF84e2c01D88a48D57D1463377Ee602b',
     },
     decimals: 18,
+    poolid: '0xa07de66aef84e2c01d88a48d57d1463377ee602b000200000000000000000002'
   },
   btcusdcx: {
     symbol: 'BtcUsdcX',
@@ -1036,6 +1041,7 @@ const tokens = {
       250: '0x22B30B00e6796Daf710fBE5cAFBFc9Cdd1377f2A',
     },
     decimals: 18,
+    poolid: '0x22b30b00e6796daf710fbe5cafbfc9cdd1377f2a000200000000000000000001',
   },
   btcethusdcx: {
     symbol: 'BtcEthUsdcX',
@@ -1044,6 +1050,7 @@ const tokens = {
       250: '0x6FDC8415B654B0F60475944A0b9421Dc36ee1363',
     },
     decimals: 18,
+    poolid: '0x6fdc8415b654b0f60475944a0b9421dc36ee1363000100000000000000000000',
   },
   mimfusdtusdcx: {
     symbol: 'MimUsdtUsdcx',
@@ -1052,6 +1059,7 @@ const tokens = {
       250: '0xD163415BD34EF06f57C58D2AEd5A5478AfB464cC',
     },
     decimals: 18,
+    poolid: '0xd163415bd34ef06f57c58d2aed5a5478afb464cc00000000000000000000000e'
   },
   beetsftmx: {
     symbol: 'BeetsFtmX',
@@ -1060,6 +1068,7 @@ const tokens = {
       250: '0xcdE5a11a4ACB4eE4c805352Cec57E236bdBC3837',
     },
     decimals: 18,
+    poolid: '0xcde5a11a4acb4ee4c805352cec57e236bdbc3837000200000000000000000019'
   },
 }
 
