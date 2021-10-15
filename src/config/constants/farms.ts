@@ -8917,8 +8917,8 @@ export const FANTOM_FARMS: FarmConfig[] = [
       80001: '',
       250: '0xfF3349c817B795a0A44c74B823a765B31C226038',
     },
-    token: tokens.mim,
-    quoteToken: tokens.ftm,
+    token: tokens.ftm,
+    quoteToken: tokens.mim,
     rewardToken: tokens.spirit,
     rewardPerBlock: 17 * 2 / 1.03, // Fix reward block time
     poolWeightDesignate: 80 / 1000,

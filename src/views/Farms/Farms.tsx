@@ -407,7 +407,8 @@ const Farms: React.FC = () => {
             tokens.curve3pool.address[chainId],
             tokens.iron3pool.address[chainId],
             tokens.mim3pool.address[chainId],
-            tokens.mim.address[chainId]]
+            tokens.mim.address[chainId],
+            tokens.mimfusdtusdcx.address[chainId]]
               .includes(f.token.address[chainId]) || ["DAI", "USDT", "FUSDT", "USDC", "BUSD", "MIM"].reduce((p, c) => p && f.lpSymbol.includes(c), Boolean(true)))
               && !/(-+matic)|(matic-+)/gmi.exec(f.lpSymbol)
               && !/(-+eth)|(eth-+)/gmi.exec(f.lpSymbol)

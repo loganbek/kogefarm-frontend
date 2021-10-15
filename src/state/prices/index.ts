@@ -1312,6 +1312,7 @@ export const fetchPrices = createAsyncThunk<PriceApiThunk>('prices/fetch', async
     data.mimfusdtusdcx = { "usd": mimFusdUsdtUsd.toString() }
     data.beetsftmx = { "usd": beetsFtmUsd.toString() }
     data.usdcfantomx = { "usd": usdcFtmUsd.toString() }
+    data.mim = { "usd": "1.0" }
   }
 
 
