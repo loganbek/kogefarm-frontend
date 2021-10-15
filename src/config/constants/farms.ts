@@ -8627,7 +8627,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
     masterChefPid: 9,
     jarAddresses: {
       80001: '',
-      250: '0x98ec2A4afEe2578eF95421D6Ff699A247304D1F3',
+      250: '0xC9f625e17650F69CA877f016aa2e9BfEC17D3Ed5',
     },
     token: tokens.beetsftmx,
     quoteToken: tokens.beetsftmx,
