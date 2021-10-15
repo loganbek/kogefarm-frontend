@@ -8615,7 +8615,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
 
   {
     pid: 43,
-    lpSymbol: 'Beets-FTM LP',
+    lpSymbol: 'Beets-wFTM LP',
     lpAddresses: {
       80001: '',
       250: '0xcdE5a11a4ACB4eE4c805352Cec57E236bdBC3837',
@@ -8644,7 +8644,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
 
   {
     pid: 36,
-    lpSymbol: 'FTM-BTC-ETH LP',
+    lpSymbol: 'wFTM-BTC-ETH LP',
     lpAddresses: {
       80001: '',
       250: '0xd47D2791d3B46f9452709Fa41855a045304D6f9d',
@@ -8673,7 +8673,7 @@ export const FANTOM_FARMS: FarmConfig[] = [
 
   {
     pid: 37,
-    lpSymbol: 'FTM-Sonata',
+    lpSymbol: 'wFTM-Sonata',
     lpAddresses: {
       80001: '',
       250: '0xf0e2c47d4C9FBBbc2F2E19ACdaA3c773A3ECD221',
