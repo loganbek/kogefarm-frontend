@@ -7,7 +7,7 @@ import { LinkExternal, Text } from 'components/Pancake'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, WaultTag, DualTag, ApeTag, JetSwapTag } from 'components/Tags'
-import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SPIRIT_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
+import { BASE_ADD_LIQUIDITY_URL, SUSHI_ADD_LIQUIDITY_URL, DFYN_ADD_LIQUIDITY_URL, WAULT_ADD_LIQUIDITY_URL, APE_ADD_LIQUIDITY_URL, JET_ADD_LIQUIDITY_URL, ELK_ADD_LIQUIDITY_URL, GRAVITY_ADD_LIQUIDITY_URL, FIREBIRD_ADD_LIQUIDITY_URL, CAFE_ADD_LIQUIDITY_URL, SPIRIT_ADD_LIQUIDITY_URL, BEETHOVEN_ADD_LIQUIDITY_URL, SUPPORTED_CHAINS, CHAINS } from 'config'
 import BigNumber from 'bignumber.js'
 import useNetworkSwitcher from 'hooks/useNetworkSwitcher';
 import StakedAction from './StakedAction'
@@ -276,7 +276,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
   let liquidityurl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts.replace(maticAddress, 'ETH')}`
   if (getCurrentNetwork() === SUPPORTED_CHAINS.MOONRIVER) {
-    liquidityurl = `https://solarbeam.io/exchange/add/${farm.token.address[chainId]}/${farm.quoteToken.address[chainId]}`
+    liquidityurl = `https://app.solarbeam.io/exchange/add/${farm.token.address[chainId]}/${farm.quoteToken.address[chainId]}`
     liquidityurl = liquidityurl.replace(wmovrAddress, 'ETH')
   }
 
@@ -329,6 +329,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     }
     if (farm.token.coingeico === 'pwings') {
       liquidityurl = `https://polygon-exchange.jetswap.finance/#/swap?outputCurrency=${lpAddress}`
+    }
+    if (farm.isBeethoven === true) {
+      liquidityurl = `${BEETHOVEN_ADD_LIQUIDITY_URL}/${farm.token.poolid}`
     }
   }
   if (farm.lpSymbol === "PYQ-USDC") {
